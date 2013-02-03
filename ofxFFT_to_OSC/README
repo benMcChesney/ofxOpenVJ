@@ -1,0 +1,13 @@
+/*
+
+Forked from https://github.com/adenine/ofxFFT_to_OSC 
+
+*/
+
+Updated to work with Open Frameworks v0071
+
+external community addons required :
+
+	ofxFFT - https://github.com/kylemcdonald/ofxFft
+	
+The goal of this is to place all sound analysis in it's own module and send the data to another program via OSC.

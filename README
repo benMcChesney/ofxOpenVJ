@@ -1,0 +1,26 @@
+/*
+
+ofxOpenVJ
+
+The goal of this project is to create an easy way for the community to create audio reactive visuals with the microsoft kinect for live performances.
+
+
+originally a part of VJ Kinect HackWeek
+@ Helios Interactive , San Francisco
+
+*/
+
+Built using Open Frameworks 0073
+
+Community addons :
+	ofxFFT
+	ofxTweenzor
+	ofxKinect
+	ofxUI
+	ofxParticles
+
+Contributors : 
+	Ben McChesney	
+	Nick Hardemann
+
+
