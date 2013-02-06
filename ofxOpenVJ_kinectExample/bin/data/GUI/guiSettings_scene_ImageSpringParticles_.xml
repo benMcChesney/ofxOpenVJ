@@ -1,0 +1,80 @@
+<Widget>
+    <Kind>4</Kind>
+    <Name>FORCE RADIUS</Name>
+    <Value>900.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>FRICTION</Name>
+    <Value>0.419999987</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>SPRING FACTOR</Name>
+    <Value>0.800000012</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>FADE AMOUNT</Name>
+    <Value>7.649999619</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>PARTICLE ALPHA</Name>
+    <Value>204.850006104</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>FORCE STRENGTH</Name>
+    <Value>166.666656494</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>SAMPLING</Name>
+    <Value>2.186666727</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>FRAMES UNTIL SWITCH</Name>
+    <Value>58.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>POINT CLOUD OFFSET X</Name>
+    <Value>-260.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>POINT CLOUD OFFSET Y</Name>
+    <Value>-240.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>POINT CLOUD OFFSET Z</Name>
+    <Value>-320.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>FORCE TARGET X</Name>
+    <Value>220.000244141</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>FORCE TARGET Y</Name>
+    <Value>139.999755859</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>FORCE TARGET Z</Name>
+    <Value>-20.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>SEEK</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>SPRING ENABLED</Name>
+    <Value>1</Value>
+</Widget>

@@ -1,0 +1,36 @@
+<Widget>
+    <Kind>17</Kind>
+    <Name>INV X AXIS</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>17</Kind>
+    <Name>INV Y AXIS</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>17</Kind>
+    <Name>INV Z AXIS</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>6</Kind>
+    <Name>Scaled Bounds</Name>
+    <HighValue>1.500000000</HighValue>
+    <LowValue>0.799999952</LowValue>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>Offset X</Name>
+    <Value>0.759999990</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>Offset Y</Name>
+    <Value>2.399999619</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>Offset Z</Name>
+    <Value>0.000000000</Value>
+</Widget>

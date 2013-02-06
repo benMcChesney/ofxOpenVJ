@@ -1,0 +1,24 @@
+<prefs>
+    <Send_Full_Spectrum>false</Send_Full_Spectrum>
+</prefs>
+<Trigger>
+    <name>low</name>
+    <low_band>0</low_band>
+    <high_band>14</high_band>
+    <height>0.150390625</height>
+    <maxFreq>0.259765625</maxFreq>
+</Trigger>
+<Trigger>
+    <name>mid</name>
+    <low_band>24</low_band>
+    <high_band>36</high_band>
+    <height>0.150390625</height>
+    <maxFreq>0.326171875</maxFreq>
+</Trigger>
+<Trigger>
+    <name>high</name>
+    <low_band>54</low_band>
+    <high_band>67</high_band>
+    <height>0.136718750</height>
+    <maxFreq>0.267578125</maxFreq>
+</Trigger>
