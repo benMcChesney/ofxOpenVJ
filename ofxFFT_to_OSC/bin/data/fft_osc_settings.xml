@@ -10,10 +10,10 @@
 </Trigger>
 <Trigger>
     <name>mid</name>
-    <low_band>24</low_band>
-    <high_band>36</high_band>
-    <height>0.150390625</height>
-    <maxFreq>0.326171875</maxFreq>
+    <low_band>23</low_band>
+    <high_band>35</high_band>
+    <height>0.080078125</height>
+    <maxFreq>0.240234375</maxFreq>
 </Trigger>
 <Trigger>
     <name>high</name>

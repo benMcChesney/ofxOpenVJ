@@ -30,7 +30,9 @@ void KinectShaderScene::setup() {
     redrawAlpha = 0.0f ; 
     
     trailFbo.allocate( getWidth() , getHeight() , GL_RGBA ) ;
-    shader.load( "shaders/PointCloud.vert", "shaders/PointCloud.frag" ) ;
+    
+     string path = ofToDataPath( "../../../../ofxOpenVJ/shaders/" ) ;
+    shader.load( path + "basic.vert", path + "PointCloud.frag" ) ;
 }
 
 //--------------------------------------------------------------

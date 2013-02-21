@@ -22,7 +22,7 @@ CircleNoiseScene::~CircleNoiseScene() {
 void CircleNoiseScene::setup() {
     
     string path = ofToDataPath( "../../../../ofxOpenVJ/shaders/" ) ;
-    shader.load( path+"CircleNoise.vert", path+"CircleNoise.frag" ) ;
+    shader.load( path+"basic.vert", path+"CircleNoise.frag" ) ;
 
 }
 

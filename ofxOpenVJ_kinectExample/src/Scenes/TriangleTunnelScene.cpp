@@ -6,59 +6,65 @@
 //
 //
 
-#include "AlienTunnelScene.h"
+#include "TriangleTunnelScene.h"
 
 //--------------------------------------------------------------
-AlienTunnelScene::AlienTunnelScene() {
+TriangleTunnelScene::TriangleTunnelScene() {
     
 }
 
 //--------------------------------------------------------------
-AlienTunnelScene::~AlienTunnelScene() {
+TriangleTunnelScene::~TriangleTunnelScene() {
     
 }
 
 //--------------------------------------------------------------
-void AlienTunnelScene::setup() {
+void TriangleTunnelScene::setup() {
     
     string path = ofToDataPath( "../../../../ofxOpenVJ/shaders/" ) ;
-    shader.load( path + "basic.vert", path + "AlienTunnel.frag" ) ;
+    shader.load( path+"basic.vert", path+"triangleLightTunnel.frag" ) ;
 
 }
 
 //--------------------------------------------------------------
-void AlienTunnelScene::setupGui(float a_x, float a_y) {
+void TriangleTunnelScene::setupGui(float a_x, float a_y) {
     // creates new gui and adds the name to it //
     BaseScene::setupGui(a_x, a_y);
     
     
-    ofAddListener( gui->newGUIEvent, this, &AlienTunnelScene::guiEvent );
+    ofAddListener( gui->newGUIEvent, this, &TriangleTunnelScene::guiEvent );
 }
 
 //--------------------------------------------------------------
-void AlienTunnelScene::guiEvent(ofxUIEventArgs &e) {
+void TriangleTunnelScene::guiEvent(ofxUIEventArgs &e) {
     
 }
 
 //--------------------------------------------------------------
-void AlienTunnelScene::activate() {
-    
+void TriangleTunnelScene::activate() {
+    if(fbo.getWidth() != getWidth() || fbo.getHeight() != getHeight()) {
+        fbo.allocate( getWidth() , getHeight(), GL_RGBA ) ;
+        fbo.begin() ;
+        ofClear( 1 , 1 , 1 , 0 ) ;
+        fbo.end() ;
+    }
 }
 
 //--------------------------------------------------------------
-void AlienTunnelScene::deactivate() {
+void TriangleTunnelScene::deactivate() {
     // turn off the gui //
     BaseScene::deactivate();
 }
 
 //--------------------------------------------------------------
-void AlienTunnelScene::update() {
-    
+void TriangleTunnelScene::update() {
+
 }
 
 //--------------------------------------------------------------
-void AlienTunnelScene::draw() {
+void TriangleTunnelScene::draw() {
     
+    fbo.begin() ; 
     shader.begin();
         //we want to pass in some varrying values to animate our type / color
         shader.setUniform1f("time", ofGetElapsedTimef() );
@@ -66,17 +72,30 @@ void AlienTunnelScene::draw() {
         shader.setUniform1f( "low" , low ) ;
         shader.setUniform1f( "mid" , mid ) ;
         shader.setUniform1f( "high" , high ) ;
-    
         shader.setUniform2f("resolution",getWidth() , getHeight() );
         
         ofSetColor( 255 , 255 , 255 ) ;
         ofRect( 0 ,0, getWidth() , getHeight() ) ;
-    shader.end() ; 
+    shader.end() ;
+    
+    ofEnableBlendMode( OF_BLENDMODE_ADD ) ;
+    ofSetColor( 255 , 255 , 255 , 120 ) ;
+   // for ( int i = 0 ; i < 2 ; i++ )
+        fbo.draw( 0 , 0 ) ; 
+    
+    fbo.end() ;
+    
+    ofEnableAlphaBlending() ;
+    ofSetColor( 255 , 255 , 255 );
+    ofPushMatrix() ;
+        fbo.draw( 0 , 0 ) ;
+    ofPopMatrix( ) ;
+    
  
 }
 
 //--------------------------------------------------------------
-void AlienTunnelScene::drawDebug() {
+void TriangleTunnelScene::drawDebug() {
     
 }
 

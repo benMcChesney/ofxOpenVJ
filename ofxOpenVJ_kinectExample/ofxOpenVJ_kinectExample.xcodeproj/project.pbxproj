@@ -39,14 +39,6 @@
 		D91F400F16BDA466006ACC97 /* ofxFft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D91F400716BDA466006ACC97 /* ofxFft.cpp */; };
 		D91F401016BDA466006ACC97 /* ofxFftBasic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D91F400916BDA466006ACC97 /* ofxFftBasic.cpp */; };
 		D91F401116BDA466006ACC97 /* ofxFftw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D91F400B16BDA466006ACC97 /* ofxFftw.cpp */; };
-		D94D764316B8CB1C0006BD71 /* AlienTunnel.frag in Sources */ = {isa = PBXBuildFile; fileRef = D94D763B16B8CB1C0006BD71 /* AlienTunnel.frag */; };
-		D94D764416B8CB1C0006BD71 /* AlienTunnel.vert in Sources */ = {isa = PBXBuildFile; fileRef = D94D763C16B8CB1C0006BD71 /* AlienTunnel.vert */; };
-		D94D764516B8CB1C0006BD71 /* CircleNoise.frag in Sources */ = {isa = PBXBuildFile; fileRef = D94D763D16B8CB1C0006BD71 /* CircleNoise.frag */; };
-		D94D764616B8CB1C0006BD71 /* CircleNoise.vert in Sources */ = {isa = PBXBuildFile; fileRef = D94D763E16B8CB1C0006BD71 /* CircleNoise.vert */; };
-		D94D764716B8CB1C0006BD71 /* HexTunnel.frag in Sources */ = {isa = PBXBuildFile; fileRef = D94D763F16B8CB1C0006BD71 /* HexTunnel.frag */; };
-		D94D764816B8CB1C0006BD71 /* HexTunnel.vert in Sources */ = {isa = PBXBuildFile; fileRef = D94D764016B8CB1C0006BD71 /* HexTunnel.vert */; };
-		D94D764916B8CB1C0006BD71 /* removeBlack.frag in Sources */ = {isa = PBXBuildFile; fileRef = D94D764116B8CB1C0006BD71 /* removeBlack.frag */; };
-		D94D764A16B8CB1C0006BD71 /* removeBlack.vert in Sources */ = {isa = PBXBuildFile; fileRef = D94D764216B8CB1C0006BD71 /* removeBlack.vert */; };
 		D94D764D16B8CFBE0006BD71 /* ImageSpringParticles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D94D764B16B8CFBD0006BD71 /* ImageSpringParticles.cpp */; };
 		D95DF18716B7B35500EB01EF /* ofxParticle2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D95DF18316B7B35500EB01EF /* ofxParticle2D.cpp */; };
 		D95DF18816B7B35500EB01EF /* ofxParticle3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D95DF18516B7B35500EB01EF /* ofxParticle3D.cpp */; };
@@ -62,6 +54,18 @@
 		D95DF1B416B7B3F200EB01EF /* TestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D95DF1A516B7B3F200EB01EF /* TestScene.cpp */; };
 		D95DF1B516B7B3F200EB01EF /* testApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D95DF1A716B7B3F200EB01EF /* testApp.cpp */; };
 		D95DF1B816B7B4D100EB01EF /* KinectManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D95DF1B616B7B4D100EB01EF /* KinectManager.cpp */; };
+		D9D6633816D608E5000EC2D5 /* AlienTunnel.frag in Sources */ = {isa = PBXBuildFile; fileRef = D9D6632F16D608E5000EC2D5 /* AlienTunnel.frag */; };
+		D9D6633916D608E5000EC2D5 /* basic.vert in Sources */ = {isa = PBXBuildFile; fileRef = D9D6633016D608E5000EC2D5 /* basic.vert */; };
+		D9D6633A16D608E5000EC2D5 /* CircleNoise.frag in Sources */ = {isa = PBXBuildFile; fileRef = D9D6633116D608E5000EC2D5 /* CircleNoise.frag */; };
+		D9D6633B16D608E5000EC2D5 /* HexTunnel.frag in Sources */ = {isa = PBXBuildFile; fileRef = D9D6633216D608E5000EC2D5 /* HexTunnel.frag */; };
+		D9D6633C16D608E5000EC2D5 /* HuePointCloud.frag in Sources */ = {isa = PBXBuildFile; fileRef = D9D6633316D608E5000EC2D5 /* HuePointCloud.frag */; };
+		D9D6633D16D608E5000EC2D5 /* PointCloud.frag in Sources */ = {isa = PBXBuildFile; fileRef = D9D6633416D608E5000EC2D5 /* PointCloud.frag */; };
+		D9D6633E16D608E5000EC2D5 /* removeBlack.frag in Sources */ = {isa = PBXBuildFile; fileRef = D9D6633516D608E5000EC2D5 /* removeBlack.frag */; };
+		D9D6633F16D608E5000EC2D5 /* removeBlack.vert in Sources */ = {isa = PBXBuildFile; fileRef = D9D6633616D608E5000EC2D5 /* removeBlack.vert */; };
+		D9D6634016D608E5000EC2D5 /* rippleTunnel.frag in Sources */ = {isa = PBXBuildFile; fileRef = D9D6633716D608E5000EC2D5 /* rippleTunnel.frag */; };
+		D9D6634416D609C1000EC2D5 /* triangleLightTunnel.frag in Sources */ = {isa = PBXBuildFile; fileRef = D9D6634316D609C0000EC2D5 /* triangleLightTunnel.frag */; };
+		D9D6634916D60A10000EC2D5 /* RippleTunnelScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9D6634516D60A10000EC2D5 /* RippleTunnelScene.cpp */; };
+		D9D6634A16D60A10000EC2D5 /* TriangleTunnelScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9D6634716D60A10000EC2D5 /* TriangleTunnelScene.cpp */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9710E8CC7DD009D7055 /* AGL.framework */; };
 		E45BE97C0E8CC7DD009D7055 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9720E8CC7DD009D7055 /* ApplicationServices.framework */; };
@@ -260,14 +264,6 @@
 		D91F400A16BDA466006ACC97 /* ofxFftBasic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxFftBasic.h; sourceTree = "<group>"; };
 		D91F400B16BDA466006ACC97 /* ofxFftw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxFftw.cpp; sourceTree = "<group>"; };
 		D91F400C16BDA466006ACC97 /* ofxFftw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxFftw.h; sourceTree = "<group>"; };
-		D94D763B16B8CB1C0006BD71 /* AlienTunnel.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = AlienTunnel.frag; sourceTree = "<group>"; };
-		D94D763C16B8CB1C0006BD71 /* AlienTunnel.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = AlienTunnel.vert; sourceTree = "<group>"; };
-		D94D763D16B8CB1C0006BD71 /* CircleNoise.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = CircleNoise.frag; sourceTree = "<group>"; };
-		D94D763E16B8CB1C0006BD71 /* CircleNoise.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = CircleNoise.vert; sourceTree = "<group>"; };
-		D94D763F16B8CB1C0006BD71 /* HexTunnel.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = HexTunnel.frag; sourceTree = "<group>"; };
-		D94D764016B8CB1C0006BD71 /* HexTunnel.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = HexTunnel.vert; sourceTree = "<group>"; };
-		D94D764116B8CB1C0006BD71 /* removeBlack.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = removeBlack.frag; sourceTree = "<group>"; };
-		D94D764216B8CB1C0006BD71 /* removeBlack.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = removeBlack.vert; sourceTree = "<group>"; };
 		D94D764B16B8CFBD0006BD71 /* ImageSpringParticles.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImageSpringParticles.cpp; sourceTree = "<group>"; };
 		D94D764C16B8CFBE0006BD71 /* ImageSpringParticles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageSpringParticles.h; sourceTree = "<group>"; };
 		D95DF18316B7B35500EB01EF /* ofxParticle2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxParticle2D.cpp; sourceTree = "<group>"; };
@@ -297,6 +293,20 @@
 		D95DF1A816B7B3F200EB01EF /* testApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testApp.h; sourceTree = "<group>"; };
 		D95DF1B616B7B4D100EB01EF /* KinectManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = KinectManager.cpp; path = ../src/KinectManager.cpp; sourceTree = "<group>"; };
 		D95DF1B716B7B4D100EB01EF /* KinectManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KinectManager.h; path = ../src/KinectManager.h; sourceTree = "<group>"; };
+		D9D6632F16D608E5000EC2D5 /* AlienTunnel.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = AlienTunnel.frag; sourceTree = "<group>"; };
+		D9D6633016D608E5000EC2D5 /* basic.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = basic.vert; sourceTree = "<group>"; };
+		D9D6633116D608E5000EC2D5 /* CircleNoise.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = CircleNoise.frag; sourceTree = "<group>"; };
+		D9D6633216D608E5000EC2D5 /* HexTunnel.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = HexTunnel.frag; sourceTree = "<group>"; };
+		D9D6633316D608E5000EC2D5 /* HuePointCloud.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = HuePointCloud.frag; sourceTree = "<group>"; };
+		D9D6633416D608E5000EC2D5 /* PointCloud.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = PointCloud.frag; sourceTree = "<group>"; };
+		D9D6633516D608E5000EC2D5 /* removeBlack.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = removeBlack.frag; sourceTree = "<group>"; };
+		D9D6633616D608E5000EC2D5 /* removeBlack.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = removeBlack.vert; sourceTree = "<group>"; };
+		D9D6633716D608E5000EC2D5 /* rippleTunnel.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = rippleTunnel.frag; sourceTree = "<group>"; };
+		D9D6634316D609C0000EC2D5 /* triangleLightTunnel.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = triangleLightTunnel.frag; sourceTree = "<group>"; };
+		D9D6634516D60A10000EC2D5 /* RippleTunnelScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RippleTunnelScene.cpp; sourceTree = "<group>"; };
+		D9D6634616D60A10000EC2D5 /* RippleTunnelScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RippleTunnelScene.h; sourceTree = "<group>"; };
+		D9D6634716D60A10000EC2D5 /* TriangleTunnelScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TriangleTunnelScene.cpp; sourceTree = "<group>"; };
+		D9D6634816D60A10000EC2D5 /* TriangleTunnelScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriangleTunnelScene.h; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E45BE9710E8CC7DD009D7055 /* AGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGL.framework; path = /System/Library/Frameworks/AGL.framework; sourceTree = "<absolute>"; };
 		E45BE9720E8CC7DD009D7055 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = /System/Library/Frameworks/ApplicationServices.framework; sourceTree = "<absolute>"; };
@@ -926,14 +936,16 @@
 		D94D763A16B8CB1C0006BD71 /* shaders */ = {
 			isa = PBXGroup;
 			children = (
-				D94D763B16B8CB1C0006BD71 /* AlienTunnel.frag */,
-				D94D763C16B8CB1C0006BD71 /* AlienTunnel.vert */,
-				D94D763D16B8CB1C0006BD71 /* CircleNoise.frag */,
-				D94D763E16B8CB1C0006BD71 /* CircleNoise.vert */,
-				D94D763F16B8CB1C0006BD71 /* HexTunnel.frag */,
-				D94D764016B8CB1C0006BD71 /* HexTunnel.vert */,
-				D94D764116B8CB1C0006BD71 /* removeBlack.frag */,
-				D94D764216B8CB1C0006BD71 /* removeBlack.vert */,
+				D9D6632F16D608E5000EC2D5 /* AlienTunnel.frag */,
+				D9D6633016D608E5000EC2D5 /* basic.vert */,
+				D9D6633116D608E5000EC2D5 /* CircleNoise.frag */,
+				D9D6633216D608E5000EC2D5 /* HexTunnel.frag */,
+				D9D6633316D608E5000EC2D5 /* HuePointCloud.frag */,
+				D9D6633416D608E5000EC2D5 /* PointCloud.frag */,
+				D9D6633516D608E5000EC2D5 /* removeBlack.frag */,
+				D9D6633616D608E5000EC2D5 /* removeBlack.vert */,
+				D9D6633716D608E5000EC2D5 /* rippleTunnel.frag */,
+				D9D6634316D609C0000EC2D5 /* triangleLightTunnel.frag */,
 			);
 			name = shaders;
 			path = ../shaders;
@@ -962,6 +974,10 @@
 		D95DF19016B7B3F200EB01EF /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				D9D6634516D60A10000EC2D5 /* RippleTunnelScene.cpp */,
+				D9D6634616D60A10000EC2D5 /* RippleTunnelScene.h */,
+				D9D6634716D60A10000EC2D5 /* TriangleTunnelScene.cpp */,
+				D9D6634816D60A10000EC2D5 /* TriangleTunnelScene.h */,
 				D94D764B16B8CFBD0006BD71 /* ImageSpringParticles.cpp */,
 				D94D764C16B8CFBE0006BD71 /* ImageSpringParticles.h */,
 				D95DF19116B7B3F200EB01EF /* AlienTunnelScene.cpp */,
@@ -1431,20 +1447,24 @@
 				D95DF1B416B7B3F200EB01EF /* TestScene.cpp in Sources */,
 				D95DF1B516B7B3F200EB01EF /* testApp.cpp in Sources */,
 				D95DF1B816B7B4D100EB01EF /* KinectManager.cpp in Sources */,
-				D94D764316B8CB1C0006BD71 /* AlienTunnel.frag in Sources */,
-				D94D764416B8CB1C0006BD71 /* AlienTunnel.vert in Sources */,
-				D94D764516B8CB1C0006BD71 /* CircleNoise.frag in Sources */,
-				D94D764616B8CB1C0006BD71 /* CircleNoise.vert in Sources */,
-				D94D764716B8CB1C0006BD71 /* HexTunnel.frag in Sources */,
-				D94D764816B8CB1C0006BD71 /* HexTunnel.vert in Sources */,
-				D94D764916B8CB1C0006BD71 /* removeBlack.frag in Sources */,
-				D94D764A16B8CB1C0006BD71 /* removeBlack.vert in Sources */,
 				D94D764D16B8CFBE0006BD71 /* ImageSpringParticles.cpp in Sources */,
 				D91F400D16BDA466006ACC97 /* kiss_fft.c in Sources */,
 				D91F400E16BDA466006ACC97 /* kiss_fftr.c in Sources */,
 				D91F400F16BDA466006ACC97 /* ofxFft.cpp in Sources */,
 				D91F401016BDA466006ACC97 /* ofxFftBasic.cpp in Sources */,
 				D91F401116BDA466006ACC97 /* ofxFftw.cpp in Sources */,
+				D9D6633816D608E5000EC2D5 /* AlienTunnel.frag in Sources */,
+				D9D6633916D608E5000EC2D5 /* basic.vert in Sources */,
+				D9D6633A16D608E5000EC2D5 /* CircleNoise.frag in Sources */,
+				D9D6633B16D608E5000EC2D5 /* HexTunnel.frag in Sources */,
+				D9D6633C16D608E5000EC2D5 /* HuePointCloud.frag in Sources */,
+				D9D6633D16D608E5000EC2D5 /* PointCloud.frag in Sources */,
+				D9D6633E16D608E5000EC2D5 /* removeBlack.frag in Sources */,
+				D9D6633F16D608E5000EC2D5 /* removeBlack.vert in Sources */,
+				D9D6634016D608E5000EC2D5 /* rippleTunnel.frag in Sources */,
+				D9D6634416D609C1000EC2D5 /* triangleLightTunnel.frag in Sources */,
+				D9D6634916D60A10000EC2D5 /* RippleTunnelScene.cpp in Sources */,
+				D9D6634A16D60A10000EC2D5 /* TriangleTunnelScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,6 +17,8 @@
 #include "KinectShaderScene.h"
 #include "SeizureCentralScene.h"
 #include "ImageSpringParticles.h"
+#include "TriangleTunnelScene.h"
+#include "RippleTunnelScene.h"
 
 
 class Scenes {

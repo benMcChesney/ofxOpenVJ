@@ -22,7 +22,7 @@ HexTunnelScene::~HexTunnelScene() {
 void HexTunnelScene::setup() {
     
     string path = ofToDataPath( "../../../../ofxOpenVJ/shaders/" ) ;
-    shader.load( path + "HexTunnel.vert", path + "HexTunnel.frag" ) ;
+    shader.load( path + "basic.vert", path + "HexTunnel.frag" ) ;
 
 }
 

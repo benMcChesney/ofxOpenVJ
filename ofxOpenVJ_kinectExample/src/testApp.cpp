@@ -61,7 +61,8 @@ void testApp::setup() {
     scenes.push_back( new KinectShaderScene((int)scenes.size(), "KinectShaderScene") );
     scenes.push_back( new SeizureCentralScene((int)scenes.size(), "SeizureCentralScene") );
     scenes.push_back( new ImageSpringParticles((int)scenes.size(), "ImageSpringParticles") );
-    
+    scenes.push_back( new RippleTunnelScene((int)scenes.size(), "RippleTunnelScene") );
+    scenes.push_back( new TriangleTunnelScene((int)scenes.size(), "TriangleTunnelScene") );
     setSceneBounds();
     
     for(int i = 0; i < scenes.size(); i++) {

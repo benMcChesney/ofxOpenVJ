@@ -32,7 +32,7 @@ void HuePointCloudScene::setup() {
     sceneScale = 0.0f ; 
 
      string path = ofToDataPath( "../../../../ofxOpenVJ/shaders/" ) ;
-    shader.load( path + "HuePointCloud.vert", path + "HuePointCloud.frag" ) ;
+    shader.load( path + "basic.vert", path + "HuePointCloud.frag" ) ;
 }
 
 //--------------------------------------------------------------

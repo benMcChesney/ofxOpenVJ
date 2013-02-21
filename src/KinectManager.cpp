@@ -22,7 +22,7 @@ KinectManager::KinectManager() {
     
     kinectFOV       = 70;
     maxTriDiff      = 100.f;
-    bUseVideoColor  = false;
+    bUseVideoColor  = true ;
     bThreshWithOpenCV = false;
 }
 
