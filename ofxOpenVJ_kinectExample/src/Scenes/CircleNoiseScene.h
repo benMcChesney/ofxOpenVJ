@@ -9,6 +9,7 @@
 #pragma once 
 #include "BaseScene.h"
 #include "Tweenzor.h"
+#include "ofxSimpleMask.h"
 
 class CircleNoiseScene : public BaseScene {
 public:
@@ -28,5 +29,10 @@ public:
     void deactivate();
     
     ofShader shader ; 
-    ofFbo fbo ; 
+    ofFbo fbo ;
+    
+    ofFbo maskFbo ;
+    ofxSimpleMask simpleMask  ;
 };
+
+

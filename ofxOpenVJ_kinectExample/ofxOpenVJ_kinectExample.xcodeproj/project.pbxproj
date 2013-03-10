@@ -66,6 +66,11 @@
 		D9D6634416D609C1000EC2D5 /* triangleLightTunnel.frag in Sources */ = {isa = PBXBuildFile; fileRef = D9D6634316D609C0000EC2D5 /* triangleLightTunnel.frag */; };
 		D9D6634916D60A10000EC2D5 /* RippleTunnelScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9D6634516D60A10000EC2D5 /* RippleTunnelScene.cpp */; };
 		D9D6634A16D60A10000EC2D5 /* TriangleTunnelScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9D6634716D60A10000EC2D5 /* TriangleTunnelScene.cpp */; };
+		D9E7300816E2C5F500117A68 /* composite.frag in Sources */ = {isa = PBXBuildFile; fileRef = D9E7300116E2C5F500117A68 /* composite.frag */; };
+		D9E7300916E2C5F500117A68 /* composite.vert in Sources */ = {isa = PBXBuildFile; fileRef = D9E7300216E2C5F500117A68 /* composite.vert */; };
+		D9E7300A16E2C5F500117A68 /* composite_rgb.frag in Sources */ = {isa = PBXBuildFile; fileRef = D9E7300316E2C5F500117A68 /* composite_rgb.frag */; };
+		D9E7300B16E2C5F500117A68 /* composite_rgb.vert in Sources */ = {isa = PBXBuildFile; fileRef = D9E7300416E2C5F500117A68 /* composite_rgb.vert */; };
+		D9E7300C16E2C5F500117A68 /* ofxSimpleMask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9E7300616E2C5F500117A68 /* ofxSimpleMask.cpp */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9710E8CC7DD009D7055 /* AGL.framework */; };
 		E45BE97C0E8CC7DD009D7055 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9720E8CC7DD009D7055 /* ApplicationServices.framework */; };
@@ -307,6 +312,13 @@
 		D9D6634616D60A10000EC2D5 /* RippleTunnelScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RippleTunnelScene.h; sourceTree = "<group>"; };
 		D9D6634716D60A10000EC2D5 /* TriangleTunnelScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TriangleTunnelScene.cpp; sourceTree = "<group>"; };
 		D9D6634816D60A10000EC2D5 /* TriangleTunnelScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriangleTunnelScene.h; sourceTree = "<group>"; };
+		D9E72FFF16E2C5F500117A68 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		D9E7300116E2C5F500117A68 /* composite.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = composite.frag; sourceTree = "<group>"; };
+		D9E7300216E2C5F500117A68 /* composite.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = composite.vert; sourceTree = "<group>"; };
+		D9E7300316E2C5F500117A68 /* composite_rgb.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = composite_rgb.frag; sourceTree = "<group>"; };
+		D9E7300416E2C5F500117A68 /* composite_rgb.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = composite_rgb.vert; sourceTree = "<group>"; };
+		D9E7300616E2C5F500117A68 /* ofxSimpleMask.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxSimpleMask.cpp; sourceTree = "<group>"; };
+		D9E7300716E2C5F500117A68 /* ofxSimpleMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxSimpleMask.h; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E45BE9710E8CC7DD009D7055 /* AGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGL.framework; path = /System/Library/Frameworks/AGL.framework; sourceTree = "<absolute>"; };
 		E45BE9720E8CC7DD009D7055 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = /System/Library/Frameworks/ApplicationServices.framework; sourceTree = "<absolute>"; };
@@ -764,6 +776,7 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				D9E72FFE16E2C5F500117A68 /* ofxSimpleMask */,
 				D91F3FF116BDA466006ACC97 /* ofxFft */,
 				D95DF18116B7B35500EB01EF /* ofxParticles */,
 				a0b90d3b0adb9c1716816714bf7f212b /* ofxOpenCv */,
@@ -1000,6 +1013,37 @@
 				D95DF1A616B7B3F200EB01EF /* TestScene.h */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		D9E72FFE16E2C5F500117A68 /* ofxSimpleMask */ = {
+			isa = PBXGroup;
+			children = (
+				D9E72FFF16E2C5F500117A68 /* README.md */,
+				D9E7300016E2C5F500117A68 /* shaders */,
+				D9E7300516E2C5F500117A68 /* src */,
+			);
+			name = ofxSimpleMask;
+			path = ../../ofxSimpleMask;
+			sourceTree = "<group>";
+		};
+		D9E7300016E2C5F500117A68 /* shaders */ = {
+			isa = PBXGroup;
+			children = (
+				D9E7300116E2C5F500117A68 /* composite.frag */,
+				D9E7300216E2C5F500117A68 /* composite.vert */,
+				D9E7300316E2C5F500117A68 /* composite_rgb.frag */,
+				D9E7300416E2C5F500117A68 /* composite_rgb.vert */,
+			);
+			path = shaders;
+			sourceTree = "<group>";
+		};
+		D9E7300516E2C5F500117A68 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				D9E7300616E2C5F500117A68 /* ofxSimpleMask.cpp */,
+				D9E7300716E2C5F500117A68 /* ofxSimpleMask.h */,
+			);
+			path = src;
 			sourceTree = "<group>";
 		};
 		E4328144138ABC890047C5CB /* Products */ = {
@@ -1465,6 +1509,11 @@
 				D9D6634416D609C1000EC2D5 /* triangleLightTunnel.frag in Sources */,
 				D9D6634916D60A10000EC2D5 /* RippleTunnelScene.cpp in Sources */,
 				D9D6634A16D60A10000EC2D5 /* TriangleTunnelScene.cpp in Sources */,
+				D9E7300816E2C5F500117A68 /* composite.frag in Sources */,
+				D9E7300916E2C5F500117A68 /* composite.vert in Sources */,
+				D9E7300A16E2C5F500117A68 /* composite_rgb.frag in Sources */,
+				D9E7300B16E2C5F500117A68 /* composite_rgb.vert in Sources */,
+				D9E7300C16E2C5F500117A68 /* ofxSimpleMask.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

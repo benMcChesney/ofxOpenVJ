@@ -16,12 +16,12 @@
 <Widget>
     <Kind>4</Kind>
     <Name>CAM_DISTANCE</Name>
-    <Value>209.787445068</Value>
+    <Value>45.343421936</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>CAM_MIN_DISTANCE</Name>
-    <Value>17.600000381</Value>
+    <Value>1.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -31,14 +31,14 @@
 <Widget>
     <Kind>6</Kind>
     <Name>CAM_LONGITUDE</Name>
-    <HighValue>17.900009155</HighValue>
+    <HighValue>16.706665039</HighValue>
     <LowValue>-19.093338013</LowValue>
 </Widget>
 <Widget>
     <Kind>6</Kind>
     <Name>CAM_LATITUDE</Name>
-    <HighValue>23.866668701</HighValue>
-    <LowValue>-21.479995728</LowValue>
+    <HighValue>9.546661377</HighValue>
+    <LowValue>-4.773330688</LowValue>
 </Widget>
 <Widget>
     <Kind>4</Kind>

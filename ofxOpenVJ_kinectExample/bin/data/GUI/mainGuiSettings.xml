@@ -11,7 +11,7 @@
 <Widget>
     <Kind>2</Kind>
     <Name>FULLSCREEN</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -36,12 +36,12 @@
 <Widget>
     <Kind>2</Kind>
     <Name>B_AUTO_SCENE_SWITCH</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>25</Kind>
     <Name>SCENE DELAY TIME</Name>
-    <Value>5.000000000</Value>
+    <Value>16.320001602</Value>
 </Widget>
 <Widget>
     <Kind>25</Kind>

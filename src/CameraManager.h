@@ -43,6 +43,9 @@ public:
     ofxUIScrollableCanvas* gui;
     void updateFft( float _low , float _mid , float _high ) ;
     
+    float zOffset ;
+    float cameraTargetZ ; 
+    float camMovementFactor ; 
 private:
     
     

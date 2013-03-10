@@ -1,13 +1,13 @@
 <Widget>
     <Kind>6</Kind>
     <Name>POINT CLOUD Z RANGE</Name>
-    <HighValue>2147.435791016</HighValue>
-    <LowValue>0.000000000</LowValue>
+    <HighValue>2083.333251953</HighValue>
+    <LowValue>544.871826172</LowValue>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>MESH TIME HUE MULTIPLIER</Name>
-    <Value>49.855766296</Value>
+    <Value>75.355766296</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -42,5 +42,5 @@
 <Widget>
     <Kind>4</Kind>
     <Name>TRIANGLE MIN</Name>
-    <Value>11.506410599</Value>
+    <Value>18.192308426</Value>
 </Widget>

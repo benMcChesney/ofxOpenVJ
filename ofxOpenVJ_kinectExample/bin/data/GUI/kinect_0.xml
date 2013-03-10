@@ -1,7 +1,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>KINECT_CAMERA_ANGLE</Name>
-    <Value>10.799999237</Value>
+    <Value>13.800003052</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -11,13 +11,13 @@
 <Widget>
     <Kind>6</Kind>
     <Name>CV_ThreshSlider</Name>
-    <HighValue>21.250000000</HighValue>
-    <LowValue>0.000000000</LowValue>
+    <HighValue>110.500000000</HighValue>
+    <LowValue>5.099999905</LowValue>
 </Widget>
 <Widget>
     <Kind>6</Kind>
     <Name>ThreshSlider</Name>
-    <HighValue>6825.000000000</HighValue>
+    <HighValue>7475.000000000</HighValue>
     <LowValue>0.000000000</LowValue>
 </Widget>
 <Widget>

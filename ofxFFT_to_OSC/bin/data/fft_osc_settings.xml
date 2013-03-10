@@ -4,21 +4,21 @@
 <Trigger>
     <name>low</name>
     <low_band>0</low_band>
-    <high_band>14</high_band>
-    <height>0.150390625</height>
-    <maxFreq>0.259765625</maxFreq>
+    <high_band>17</high_band>
+    <height>0.140625000</height>
+    <maxFreq>0.556640625</maxFreq>
 </Trigger>
 <Trigger>
     <name>mid</name>
-    <low_band>23</low_band>
-    <high_band>35</high_band>
-    <height>0.080078125</height>
-    <maxFreq>0.240234375</maxFreq>
+    <low_band>26</low_band>
+    <high_band>38</high_band>
+    <height>0.117187500</height>
+    <maxFreq>0.697265625</maxFreq>
 </Trigger>
 <Trigger>
     <name>high</name>
     <low_band>54</low_band>
     <high_band>67</high_band>
     <height>0.136718750</height>
-    <maxFreq>0.267578125</maxFreq>
+    <maxFreq>0.644531250</maxFreq>
 </Trigger>

@@ -23,7 +23,14 @@ void CircleNoiseScene::setup() {
     
     string path = ofToDataPath( "../../../../ofxOpenVJ/shaders/" ) ;
     shader.load( path+"basic.vert", path+"CircleNoise.frag" ) ;
-
+    
+    
+    maskFbo.allocate( ofGetWidth() , ofGetHeight() ) ;
+    maskFbo.begin() ;
+    ofClear( 1 , 1 ,1 , 0 ) ;
+    maskFbo.end() ; 
+    simpleMask.setup("shaders/composite" , ofRectangle( 0 , 0, ofGetWidth() , ofGetHeight() ) ) ;
+                     
 }
 
 //--------------------------------------------------------------
@@ -58,7 +65,15 @@ void CircleNoiseScene::deactivate() {
 
 //--------------------------------------------------------------
 void CircleNoiseScene::update() {
-
+        kinectMan->update();
+    if(kinectMan->isFrameNew()) {
+        kinectMan->calculateCVOperations();
+        
+     //   if( ( ofGetElapsedTimeMillis() - lastAddTime  ) > millisDelay ) {
+     //       addContour();
+            //cout << "lines.size() = " << lines.size() << " particles.size() = " << particles.size() << endl;
+    
+    }
 }
 
 //--------------------------------------------------------------
@@ -85,9 +100,17 @@ void CircleNoiseScene::draw() {
     
     fbo.end() ;
     
+    
+    maskFbo.begin() ;
+    ofSetColor( 255 , 255 , 255 ) ;
+    kinectMan->grayImage.draw( 0 , 0, ofGetWidth() , ofGetHeight() ) ;
+    maskFbo.end() ;
+
+    
     ofEnableAlphaBlending() ;
     ofSetColor( 255 , 255 , 255 );
     ofPushMatrix() ;
+  //  simpleMask.drawMask( maskFbo.getTextureReference() , fbo.getTextureReference() ,  0, 0, 1.0f) ;
         fbo.draw( 0 , 0 ) ;
     ofPopMatrix( ) ;
     

@@ -25,7 +25,8 @@ public:
         gui=NULL;
         low = 0 ;
         mid = 0 ;
-        high = 0 ; 
+        high = 0 ;
+        shaderDirectory = ofToDataPath( "../../../../../addons/ofxOpenVJ/shaders/" ) ;
     }
     virtual ~BaseScene() {
         if(gui != NULL) { delete gui; gui = NULL;}
@@ -78,6 +79,9 @@ public:
     CameraManager* cameraMan;
     
     float low , mid , high ;
+
+    //Global folder where all shaders are
+    string shaderDirectory ;
     
 protected:
     float _width, _height;

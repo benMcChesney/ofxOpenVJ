@@ -33,7 +33,6 @@
 		D952521E16B66027008451BE /* CameraManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D952515116B66024008451BE /* CameraManager.cpp */; };
 		D952521F16B66027008451BE /* FftManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D952515416B66024008451BE /* FftManager.cpp */; };
 		D952522016B66027008451BE /* FftTrigger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D952515616B66024008451BE /* FftTrigger.cpp */; };
-		D952522216B66027008451BE /* SquareBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D952515A16B66024008451BE /* SquareBar.cpp */; };
 		D952524116B6605A008451BE /* ofxParticle2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D952523D16B6605A008451BE /* ofxParticle2D.cpp */; };
 		D952524216B6605A008451BE /* ofxParticle3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D952523F16B6605A008451BE /* ofxParticle3D.cpp */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
@@ -184,8 +183,6 @@
 		D952515516B66024008451BE /* FftManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FftManager.h; sourceTree = "<group>"; };
 		D952515616B66024008451BE /* FftTrigger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FftTrigger.cpp; sourceTree = "<group>"; };
 		D952515716B66024008451BE /* FftTrigger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FftTrigger.h; sourceTree = "<group>"; };
-		D952515A16B66024008451BE /* SquareBar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SquareBar.cpp; sourceTree = "<group>"; };
-		D952515B16B66024008451BE /* SquareBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SquareBar.h; sourceTree = "<group>"; };
 		D952515C16B66024008451BE /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		D952523D16B6605A008451BE /* ofxParticle2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxParticle2D.cpp; sourceTree = "<group>"; };
 		D952523E16B6605A008451BE /* ofxParticle2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxParticle2D.h; sourceTree = "<group>"; };
@@ -572,8 +569,6 @@
 				D952515516B66024008451BE /* FftManager.h */,
 				D952515616B66024008451BE /* FftTrigger.cpp */,
 				D952515716B66024008451BE /* FftTrigger.h */,
-				D952515A16B66024008451BE /* SquareBar.cpp */,
-				D952515B16B66024008451BE /* SquareBar.h */,
 				D952515C16B66024008451BE /* Utils.h */,
 			);
 			path = src;
@@ -759,7 +754,6 @@
 				D952521E16B66027008451BE /* CameraManager.cpp in Sources */,
 				D952521F16B66027008451BE /* FftManager.cpp in Sources */,
 				D952522016B66027008451BE /* FftTrigger.cpp in Sources */,
-				D952522216B66027008451BE /* SquareBar.cpp in Sources */,
 				D952524116B6605A008451BE /* ofxParticle2D.cpp in Sources */,
 				D952524216B6605A008451BE /* ofxParticle3D.cpp in Sources */,
 			);

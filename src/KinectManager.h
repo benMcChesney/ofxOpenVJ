@@ -76,6 +76,11 @@ public:
     
     ofVec3f             offsetVec;
     
+    float               pointCloudMaxZ , pointCloudMinZ ;
+    float               pointCloudZOffset ;
+    bool                bFindHoles ;
+    float               minBlobSize , maxBlobSize ;
+    
 protected:
     ofVec3f inverseAxes;
     // in degrees //

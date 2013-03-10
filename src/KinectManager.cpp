@@ -540,7 +540,7 @@ void KinectManager::calculateCVOperations() {
 //                 bool bUseApproximation)
     
     
-    contourFinder.findContours(grayImage, 30*30, (kinect.width*kinect.height)/2, 3, false);
+    contourFinder.findContours(grayImage, minBlobSize , maxBlobSize , 6, bFindHoles );
 }
 
 //--------------------------------------------------------------
@@ -647,8 +647,29 @@ void KinectManager::guiEvent(ofxUIEventArgs &e) {
         ofxUIRangeSlider* slider = (ofxUIRangeSlider*) e.widget;
         nearThreshCV    = 255-slider->getScaledValueLow();
         farThreshCV     = 255-slider->getScaledValueHigh();
+    } else if (ename == "POINT CLOUD RANGE") {
+        ofxUIRangeSlider* slider = (ofxUIRangeSlider*) e.widget;
+        pointCloudMinZ    = slider->getScaledValueLow();
+        pointCloudMaxZ     = slider->getScaledValueHigh();
+    } else if (e.widget->getName() == "POINT CLOUD Z") {
+        pointCloudZOffset = ((ofxUISlider *) e.widget)->getScaledValue() ;
+    } else if (e.widget->getName() == "FIND HOLES")
+    {
+        ofxUILabelToggle* toggle = (ofxUILabelToggle*) e.widget;
+        bFindHoles = toggle->getValue() ;
+    } else if (e.widget->getName() == "BLOB SIZE" )
+    {
+       ofxUIRangeSlider* slider = (ofxUIRangeSlider*) e.widget;
+        minBlobSize = slider->getScaledValueLow() ;
+        maxBlobSize = slider->getScaledValueHigh() ; 
     }
-
+    
+    /*
+    gui->addWidgetDown( new ofxUIRangeSlider( "BLOB SIZE" , 30 * 30 , ( kinect.width * kinect.height ) * .75 , minBlobSize , maxBlobSize ,  GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT ) )  ;
+     gui->addWidgetDown( new ofxUIToggle("FIND HOLES", false, 16, 16) );
+     //bFindHoles
+     */
+    //gui->addSlider("POINT CLOUD Z", -2000 , 2000 , 4, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
 }
 
 //--------------------------------------------------------------
@@ -673,6 +694,8 @@ void KinectManager::setupGui(float a_x, float a_y) {
     gui->addWidgetRight( new ofxUIBaseDraws(128, 96, ((ofxCvGrayscaleImage*) &grayImage), "Open CV Texture") );
     
     gui->addWidgetDown( new ofxUIToggle("BTHRESH_WITH_CV", false, 16, 16) );
+    gui->addWidgetDown( new ofxUIToggle("FIND HOLES", false, 16, 16) );
+   
     gui->addRangeSlider("CV_ThreshSlider", 0.0, 255, 0, 255, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
     
     gui->addRangeSlider("ThreshSlider", 0.0, 7500.0, 50.0, 1000.0, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
@@ -685,6 +708,10 @@ void KinectManager::setupGui(float a_x, float a_y) {
     gui->addSlider("Mesh Offset Z", -3000.f, 3000.f, 0.0, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
     gui->addSlider("Mesh Step", 1, 20, 4, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
     
+    gui->addRangeSlider("POINT CLOUD RANGE", 0.0 , 10000.0 , pointCloudMinZ , pointCloudMaxZ ) ;
+    gui->addSlider("POINT CLOUD Z", -2000 , 2000 , 4, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
+
+    
     gui->addSpacer( GUI_WIDGET_WIDTH, 1);
     gui->addWidgetDown(new ofxUILabel("INVERT AXES", OFX_UI_FONT_MEDIUM));
     gui->addWidgetDown( new ofxUILabelToggle("X AXIS", false, 90, 30, 0, 0) );
@@ -692,6 +719,11 @@ void KinectManager::setupGui(float a_x, float a_y) {
     gui->addWidgetRight( new ofxUILabelToggle("Z AXIS", false, 90, 30, 0, 0) );
     
     gui->addWidgetDown(new ofxUIRotarySlider(64, -180.f, 180.f, 0.f, "Y AXIS ROT"));
+    
+    //float               minBlobSize , maxBlobSize ;
+    gui->addWidgetDown( new ofxUIRangeSlider( "BLOB SIZE" , 30 * 30 , ( kinect.width * kinect.height ) * .75 , minBlobSize , maxBlobSize ,  GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT ) )  ;
+    
+    
     
     gui->addSpacer( GUI_WIDGET_WIDTH, 1);
     

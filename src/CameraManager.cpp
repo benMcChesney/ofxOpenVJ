@@ -21,6 +21,8 @@ void CameraManager::setup() {
     _nextLatitude   = 1.f;
     
     _distance = _maxDistance;
+    
+    
 }
 
 //--------------------------------------------------------------
@@ -50,7 +52,12 @@ void CameraManager::update() {
         }
     }
     
-    ofVec3f tar(_center);
+    ofVec3f c = _center ;
+    c.x = sin ( ofGetElapsedTimef() ) * camMovementFactor ;
+    c.y = cos ( ofGetElapsedTimef() * 0.75 ) * camMovementFactor ;
+    
+    c.z =  cameraTargetZ ; //zOffset ;
+    ofVec3f tar( c );
     _target.xeno( tar, _targetSpring);
     
     //distance		= maxDistance;
@@ -215,6 +222,25 @@ void CameraManager::guiEvent(ofxUIEventArgs &e) {
         _minLatitude = ((ofxUIRangeSlider*)e.widget)->getScaledValueLow() ;
         _maxLatitude = ((ofxUIRangeSlider*)e.widget)->getScaledValueHigh() ;
     }
+    
+    else if (ename == "Z OFFSET" ) {
+        zOffset = ((ofxUISlider*)e.widget)->getScaledValue();
+    }
+    else if (ename == "CAM MOVEMENT" ) {
+        camMovementFactor = ((ofxUISlider*)e.widget)->getScaledValue();
+    }
+    else if (ename == "CAMERA TARGET Z" ) {
+        cameraTargetZ = ((ofxUISlider*)e.widget)->getScaledValue();
+    }
+
+    
+
+    
+    /*
+     gui->addSlider( "CAMERA TARGET Z", -1000 , 1000 , &cameraTargetZ ,  GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );
+     gui->addSlider( "Z OFFSET", -3000 , 3000 , &zOffset ,  GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );
+     gui->addSlider( "CAM MOVEMENT", 0 , 50 , &camMovementFactor ,  GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );
+     */
 }
 
 //--------------------------------------------------------------
@@ -223,7 +249,7 @@ void CameraManager::setupGui( float a_x, float a_y ) {
     
     float GUI_WIDGET_WIDTH = 300;
     float GUI_SLIDER_HEIGHT = 16;
-    
+     gui->addSpacer( GUI_WIDGET_WIDTH, 1);
     gui->addWidgetDown(new ofxUILabel("Camera Settings", OFX_UI_FONT_LARGE));
     gui->addSpacer(GUI_WIDGET_WIDTH, 2);
     
@@ -250,6 +276,12 @@ void CameraManager::setupGui( float a_x, float a_y ) {
     gui->addSlider( "STEER", .0, 10.f, &_steer, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );
     gui->addSlider( "PARTICLE_DAMPING", .0, 3.f, &_camParticle.DAMPING, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );
     
+    gui->addSlider( "Z OFFSET", -3000 , 3000 , &zOffset ,  GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );
+    gui->addSlider( "CAM MOVEMENT", 0 , 500 , &camMovementFactor ,  GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );
+    
+    gui->addSlider( "CAMERA TARGET Z", -1000 , 1000 , &cameraTargetZ ,  GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );
+    
+    //cameraTargetZ
     gui->setScrollArea(a_x, a_y, 320, ofGetHeight() - 10 - a_y);
     
     ofAddListener( gui->newGUIEvent, this, &CameraManager::guiEvent );
