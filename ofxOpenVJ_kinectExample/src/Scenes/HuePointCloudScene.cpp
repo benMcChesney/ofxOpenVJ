@@ -20,9 +20,7 @@ HuePointCloudScene::~HuePointCloudScene() {
 
 //--------------------------------------------------------------
 void HuePointCloudScene::setup() {
-    pointCloudMinZ = -100 ;
-    pointCloudMaxZ = 100 ;
-    
+
     meshHueTimeMultiplier = 0.0f ;
     bToggleTrails = false ;
     extrudeDepth = 100.0f ;
@@ -44,19 +42,16 @@ void HuePointCloudScene::setupGui(float a_x, float a_y) {
 	float xInit = OFX_UI_GLOBAL_WIDGET_SPACING;
     float length = 320-xInit;
     
-   // gui = new ofxUICanvas(0, 0, length+xInit, getHeight());
-//gui->addWidgetDown(new ofxUILabel("KINECT PARAMS", OFX_UI_FONT_MEDIUM ));
+    int width = 300 ;
+    int height = 25 ;
+    gui->addWidgetDown(new ofxUILabel("KINECT PARAMS", OFX_UI_FONT_MEDIUM ));
   
-    gui->addWidgetDown(new ofxUIRangeSlider(length, dim, 0 , 10000 , pointCloudMinZ , pointCloudMaxZ, "POINT CLOUD Z RANGE")) ;
-    gui->addWidgetDown(new ofxUISlider(length, dim, 0.0f , 255.0f , meshHueTimeMultiplier , "MESH TIME HUE MULTIPLIER")) ;
-    gui->addWidgetDown(new ofxUISlider(length, dim, 0.0f , 255.0f , fboFadeAmount , "FBO FADE AMOUNT")) ;
-    gui->addWidgetDown(new ofxUIToggle(dim, dim, bToggleTrails , "TOGGLE TRAILS")) ;
-    gui->addWidgetDown(new ofxUISlider(length, dim, 0.0f , 10.0f , extrudeDepth , "EXTRUDE DEPTH")) ;
-    gui->addWidgetDown(new ofxUISlider(length, dim, 0.0f , 500.0f , extrudeNoiseStrength , "EXTRUDE NOISE STRENGTH")) ;
-    //gui->addWidgetDown(new ofxUISlider(length, dim, -2000.0f , 2000.0f ,     pointCloudOffset.z , "PC Z")) ;
-    gui->addWidgetDown(new ofxUISlider(length, dim, 0.0f, 255.0f , redrawAlpha , "REDRAW ALPHA")) ;
-    gui->addWidgetDown(new ofxUISlider(length, dim, -5.0f , 5.0f , sceneScale , "SCENE SCALE")) ;
-
+    gui->addSlider( "MESH TIME HUE MULTIPLIER"  ,  0.0f , 255.0f , meshHueTimeMultiplier , width , height ) ;
+    gui->addSlider( "FBO FADE AMOUNT"  , 0.0f , 255.0f , fboFadeAmount , width , height) ;
+    gui->addSlider( "EXTRUDE DEPTH"  , 0.0f , 10.0f , extrudeDepth , width , height) ;
+    gui->addSlider( "EXTRUDE NOISE STRENGTH"  , 0.0f , 500.0f , extrudeNoiseStrength , width , height) ;
+    gui->addSlider( "REDRAW ALPHA"  , 0.0f, 255.0f , redrawAlpha , width , height) ;
+    gui->addSlider( "SCENE SCALE"  , -5.0f , 5.0f , sceneScale , width , height) ;
 
     ofAddListener( gui->newGUIEvent, this, &HuePointCloudScene::guiEvent );
 }
@@ -65,13 +60,6 @@ void HuePointCloudScene::setupGui(float a_x, float a_y) {
 void HuePointCloudScene::guiEvent(ofxUIEventArgs &e) {
     string name = e.widget->getName();
 	int kind = e.widget->getKind();
-    
-    if(name == "POINT CLOUD Z RANGE" )
-	{
-		ofxUIRangeSlider *slider = (ofxUIRangeSlider *) e.widget;
-        pointCloudMinZ = slider->getScaledValueLow() ;
-        pointCloudMaxZ = slider->getScaledValueHigh() ;
-	}
     
     if(name == "MESH TIME HUE MULTIPLIER" )
 	{
@@ -216,7 +204,10 @@ void HuePointCloudScene::drawPointCloud( )
     ofColor hueOffset = ofColor::fromHsb( timeHue , 600.0f , 600.0f ) ;
 	
     float _time = ofGetElapsedTimef() ; 
-    float theta = sin ( ofGetElapsedTimef() ) + ofNoise( ofGetElapsedTimef() ) ; 
+    float theta = sin ( ofGetElapsedTimef() ) + ofNoise( ofGetElapsedTimef() ) ;
+    
+    float maxZ = kinectMan->pointCloudMaxZ ;
+    float minZ = kinectMan->pointCloudMinZ ; 
     for(int y = 0; y < h; y += step)
     {
 		for(int x = 0; x < w; x += step)
@@ -230,7 +221,7 @@ void HuePointCloudScene::drawPointCloud( )
 			if( kinectMan->kinect.getDistanceAt(x, y) > 0)
             {
                 ofVec3f vertex = kinectMan->kinect.getWorldCoordinateAt(x, y) ;
-                if ( vertex.z > pointCloudMinZ && vertex.z < pointCloudMaxZ )
+                if ( vertex.z > minZ && vertex.z < maxZ )
                 {
                     float zOffset = noiseStep ;
                     //mesh.addVertex( vertex ) ;

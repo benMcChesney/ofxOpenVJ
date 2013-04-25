@@ -1,22 +1,22 @@
 <Widget>
     <Kind>4</Kind>
     <Name>FORCE RADIUS</Name>
-    <Value>900.000000000</Value>
+    <Value>760.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>FRICTION</Name>
-    <Value>0.419999987</Value>
+    <Value>0.973333359</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>SPRING FACTOR</Name>
-    <Value>0.800000012</Value>
+    <Value>0.183333337</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>FADE AMOUNT</Name>
-    <Value>7.649999619</Value>
+    <Value>17.850000381</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -26,7 +26,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>FORCE STRENGTH</Name>
-    <Value>166.666656494</Value>
+    <Value>74.666664124</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -36,7 +36,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>FRAMES UNTIL SWITCH</Name>
-    <Value>58.000000000</Value>
+    <Value>98.666671753</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>

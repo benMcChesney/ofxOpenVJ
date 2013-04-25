@@ -37,8 +37,35 @@ void SeizureCentralScene::setupGui(float a_x, float a_y) {
 	float xInit = OFX_UI_GLOBAL_WIDGET_SPACING;
     float length = 320-xInit;
 
-    gui->addWidgetDown(new ofxUISlider(length, dim, 50 , 2500 , millisDelay , "CONTOUR DELAY" ) ) ;
-     gui->addWidgetDown(new ofxUISlider(length, dim, 0.0 , 1.0 , contourSoundThreshold , "CONTOUR SOUND THRESHOLD" ) ) ;
+    /*
+     BaseScene::setupGui(a_x, a_y);
+     
+     
+     gui->addSlider("FORCE RADIUS", 0.0f , 1200.0f , forceRadius, width, height) ;
+     gui->addSlider("FRICTION", 0.0f , 1.0f , friction, width, height) ;
+     gui->addSlider("SPRING FACTOR", 0.0f , 1.0f , springFactor, width, height) ;
+     gui->addSlider("FADE AMOUNT", 0.0f , 255.0f , fadeAlpha, width, height) ;
+     gui->addSlider("PARTICLE ALPHA", 0.0f , 255.0f , particleAlpha, width, height) ;
+     gui->addSlider("FORCE STRENGTH", 0.0f , 400.0f , forceStrength, width, height) ;
+     gui->addSlider("SAMPLING", 0.0f , 16 , sampling, width, height) ;
+     gui->addSlider("FRAMES UNTIL SWITCH", 0.0 , 200 , numFramesUntilTransition, width, height) ;
+     
+     gui->addSlider("POINT CLOUD OFFSET X" , -3000.0 , 3000.0f , pointCloudOffset.x , width , height ) ;
+     gui->addSlider("POINT CLOUD OFFSET Y" , -3000.0 , 3000.0f , pointCloudOffset.y , width , height ) ;
+     gui->addSlider("POINT CLOUD OFFSET Z" , -3000.0 , 3000.0f , pointCloudOffset.z , width , height ) ;
+     
+     gui->addSlider("FORCE TARGET X" , -3000.0 , 3000.0f , forceTarget.x , width , height ) ;
+     gui->addSlider("FORCE TARGET Y" , -3000.0 , 3000.0f , forceTarget.y , width , height ) ;
+     gui->addSlider("FORCE TARGET Z" , -3000.0 , 3000.0f , forceTarget.z , width , height ) ;
+     
+     
+     gui->addToggle("SEEK", bSeekEnabled, height, height ) ;
+     gui->addToggle("SPRING ENABLED", bSpringEnabled, height, height ) ;
+*/
+    int width = 300 ;
+    int height = 25 ;
+    gui->addSlider(  "CONTOUR DELAY" ,  50.0f , 2500.0f , millisDelay , width , height) ;
+     gui->addSlider( "CONTOUR SOUND THRESHOLD" ,0.0f , 1.0f , contourSoundThreshold ,  width , height ) ;
    
     ofAddListener( gui->newGUIEvent, this, &SeizureCentralScene::guiEvent );
     

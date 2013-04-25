@@ -5,7 +5,7 @@
     <name>low</name>
     <low_band>0</low_band>
     <high_band>17</high_band>
-    <height>0.140625000</height>
+    <height>0.105468750</height>
     <maxFreq>0.556640625</maxFreq>
 </Trigger>
 <Trigger>

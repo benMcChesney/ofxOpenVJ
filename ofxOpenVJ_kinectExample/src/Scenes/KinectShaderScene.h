@@ -38,7 +38,6 @@ public:
     float extrudeNoiseStrength ;
     
     float zOffset ;
-    float pointCloudMinZ , pointCloudMaxZ ;
 
     float meshHueTimeMultiplier ;
     float meshHueRangeMin , meshHueRangeMax ;

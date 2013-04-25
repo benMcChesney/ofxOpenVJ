@@ -20,8 +20,6 @@ KinectShaderScene::~KinectShaderScene() {
 
 //--------------------------------------------------------------
 void KinectShaderScene::setup() {
-    pointCloudMinZ = -100 ;
-    pointCloudMaxZ = 100 ;
     
     meshHueTimeMultiplier = 0.0f ;
     bToggleTrails = false ;
@@ -46,16 +44,18 @@ void KinectShaderScene::setupGui(float a_x, float a_y) {
     
    // gui = new ofxUICanvas(0, 0, length+xInit, ofGetHeight());
   
-    gui->addWidgetDown(new ofxUIRangeSlider(length, dim, 0 , 10000 , pointCloudMinZ , pointCloudMaxZ, "POINT CLOUD Z RANGE")) ;
-    gui->addWidgetDown(new ofxUISlider(length, dim, 0.0f , 255.0f , meshHueTimeMultiplier , "MESH TIME HUE MULTIPLIER")) ;
-    gui->addWidgetDown(new ofxUISlider(length, dim, 0.0f , 255.0f , fboFadeAmount , "FBO FADE AMOUNT")) ;
-    gui->addWidgetDown(new ofxUIToggle(dim, dim, bToggleTrails , "TOGGLE TRAILS")) ;
-    gui->addWidgetDown(new ofxUISlider(length, dim, 0.0f , 10.0f , extrudeDepth , "EXTRUDE DEPTH")) ;
-    gui->addWidgetDown(new ofxUISlider(length, dim, 0.0f , 500.0f , extrudeNoiseStrength , "EXTRUDE NOISE STRENGTH")) ;
-    gui->addWidgetDown(new ofxUISlider(length, dim, -2000.0f, 2000.0f , zOffset , "Z OFFSET")) ;
-    gui->addWidgetDown(new ofxUISlider(length, dim, 1.0 ,150.0f  , triangleSizeMax , "TRIANGLE MAX")) ;
-    gui->addWidgetDown(new ofxUISlider(length, dim, 1.0 ,150.0f  , triangleSizeMin , "TRIANGLE MIN")) ;
+    int width = 300 ;
+    int height = 25 ;
     
+    // gui->addSlider("FORCE RADIUS", 0.0f , 1200.0f , forceRadius, width, height) ;
+    gui->addSlider(  "MESH TIME HUE MULTIPLIER" , 0.0f , 255.0f , meshHueTimeMultiplier , width , height) ;
+    gui->addSlider(  "FBO FADE AMOUNT" ,0.0f , 255.0f , fboFadeAmount , width , height) ;
+    gui->addSlider(  "EXTRUDE DEPTH" , 0.0f , 10.0f , extrudeDepth , width , height) ;
+    gui->addSlider(  "EXTRUDE NOISE STRENGTH" ,0.0f , 500.0f , extrudeNoiseStrength , width , height) ;
+    gui->addSlider(  "Z OFFSET" , 0.0f , 500.0f , extrudeNoiseStrength , width , height) ;
+    gui->addSlider(  "TRIANGLE MAX" , 1.0 ,150.0f , triangleSizeMax , width , height) ;
+    gui->addSlider(  "TRIANGLE MIN" , 1.0 ,150.0f , triangleSizeMin , width , height) ;
+       
     ofAddListener( gui->newGUIEvent, this, &KinectShaderScene::guiEvent );
 }
 
@@ -63,13 +63,6 @@ void KinectShaderScene::setupGui(float a_x, float a_y) {
 void KinectShaderScene::guiEvent(ofxUIEventArgs &e) {
     string name = e.widget->getName();
 	int kind = e.widget->getKind();
-    
-    if(name == "POINT CLOUD Z RANGE" )
-	{
-		ofxUIRangeSlider *slider = (ofxUIRangeSlider *) e.widget;
-        pointCloudMinZ = slider->getScaledValueLow() ;
-        pointCloudMaxZ = slider->getScaledValueHigh() ;
-	}
     
     if(name == "MESH TIME HUE MULTIPLIER" )
 	{
@@ -196,7 +189,9 @@ void KinectShaderScene::drawPointCloud( )
     float _time = ofGetElapsedTimef() ; 
     float theta = sin ( ofGetElapsedTimef() ) ;
     
-    float center = ( pointCloudMinZ + pointCloudMaxZ ) / 2.0f ;
+    float minZ = kinectMan->pointCloudMinZ ;
+    float maxZ = kinectMan->pointCloudMaxZ ; 
+    float center = ( minZ + maxZ ) / 2.0f ;
     
     int numTriangles = 0 ;
     ofPoint closestPoint = ofPoint ( 0 , 0 , 10000.0f ) ;
@@ -213,7 +208,7 @@ void KinectShaderScene::drawPointCloud( )
             {
                 ofVec3f vertex = kinectMan->kinect.getWorldCoordinateAt(x, y) ;
 
-                if ( vertex.z > pointCloudMinZ && vertex.z < pointCloudMaxZ )
+                if ( vertex.z > minZ && vertex.z < maxZ )
                 {
                     if ( vertex.z < closestPoint.z )
                         closestPoint = vertex ;
