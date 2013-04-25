@@ -16,7 +16,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>CAM_DISTANCE</Name>
-    <Value>45.343421936</Value>
+    <Value>314.275085449</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -54,4 +54,19 @@
     <Kind>4</Kind>
     <Name>PARTICLE_DAMPING</Name>
     <Value>0.379999995</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>Z OFFSET</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>CAM MOVEMENT</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>CAMERA TARGET Z</Name>
+    <Value>0.000000000</Value>
 </Widget>

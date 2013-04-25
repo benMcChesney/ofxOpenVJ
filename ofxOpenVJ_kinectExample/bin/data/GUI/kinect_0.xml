@@ -9,6 +9,11 @@
     <Value>0</Value>
 </Widget>
 <Widget>
+    <Kind>2</Kind>
+    <Name>FIND HOLES</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
     <Kind>6</Kind>
     <Name>CV_ThreshSlider</Name>
     <HighValue>110.500000000</HighValue>
@@ -46,6 +51,17 @@
     <Value>3.976666689</Value>
 </Widget>
 <Widget>
+    <Kind>6</Kind>
+    <Name>POINT CLOUD RANGE</Name>
+    <HighValue>0.000000000</HighValue>
+    <LowValue>0.000000000</LowValue>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>POINT CLOUD Z</Name>
+    <Value>4.000000000</Value>
+</Widget>
+<Widget>
     <Kind>17</Kind>
     <Name>X AXIS</Name>
     <Value>1</Value>
@@ -64,4 +80,10 @@
     <Kind>21</Kind>
     <Name>Y AXIS ROT</Name>
     <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>6</Kind>
+    <Name>BLOB SIZE</Name>
+    <HighValue>900.000000000</HighValue>
+    <LowValue>900.000000000</LowValue>
 </Widget>

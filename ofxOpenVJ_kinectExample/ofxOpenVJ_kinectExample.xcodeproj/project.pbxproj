@@ -39,9 +39,9 @@
 		D91F400F16BDA466006ACC97 /* ofxFft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D91F400716BDA466006ACC97 /* ofxFft.cpp */; };
 		D91F401016BDA466006ACC97 /* ofxFftBasic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D91F400916BDA466006ACC97 /* ofxFftBasic.cpp */; };
 		D91F401116BDA466006ACC97 /* ofxFftw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D91F400B16BDA466006ACC97 /* ofxFftw.cpp */; };
+		D9352AE61728DD5F0048C7DE /* ofxParticle2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9352AE21728DD5F0048C7DE /* ofxParticle2D.cpp */; };
+		D9352AE71728DD5F0048C7DE /* ofxParticle3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9352AE41728DD5F0048C7DE /* ofxParticle3D.cpp */; };
 		D94D764D16B8CFBE0006BD71 /* ImageSpringParticles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D94D764B16B8CFBD0006BD71 /* ImageSpringParticles.cpp */; };
-		D95DF18716B7B35500EB01EF /* ofxParticle2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D95DF18316B7B35500EB01EF /* ofxParticle2D.cpp */; };
-		D95DF18816B7B35500EB01EF /* ofxParticle3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D95DF18516B7B35500EB01EF /* ofxParticle3D.cpp */; };
 		D95DF1A916B7B3F200EB01EF /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D95DF18F16B7B3F200EB01EF /* main.cpp */; };
 		D95DF1AA16B7B3F200EB01EF /* AlienTunnelScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D95DF19116B7B3F200EB01EF /* AlienTunnelScene.cpp */; };
 		D95DF1AB16B7B3F200EB01EF /* BoxOffsetScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D95DF19316B7B3F200EB01EF /* BoxOffsetScene.cpp */; };
@@ -269,12 +269,12 @@
 		D91F400A16BDA466006ACC97 /* ofxFftBasic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxFftBasic.h; sourceTree = "<group>"; };
 		D91F400B16BDA466006ACC97 /* ofxFftw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxFftw.cpp; sourceTree = "<group>"; };
 		D91F400C16BDA466006ACC97 /* ofxFftw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxFftw.h; sourceTree = "<group>"; };
+		D9352AE21728DD5F0048C7DE /* ofxParticle2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxParticle2D.cpp; sourceTree = "<group>"; };
+		D9352AE31728DD5F0048C7DE /* ofxParticle2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxParticle2D.h; sourceTree = "<group>"; };
+		D9352AE41728DD5F0048C7DE /* ofxParticle3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxParticle3D.cpp; sourceTree = "<group>"; };
+		D9352AE51728DD5F0048C7DE /* ofxParticle3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxParticle3D.h; sourceTree = "<group>"; };
 		D94D764B16B8CFBD0006BD71 /* ImageSpringParticles.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImageSpringParticles.cpp; sourceTree = "<group>"; };
 		D94D764C16B8CFBE0006BD71 /* ImageSpringParticles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageSpringParticles.h; sourceTree = "<group>"; };
-		D95DF18316B7B35500EB01EF /* ofxParticle2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxParticle2D.cpp; sourceTree = "<group>"; };
-		D95DF18416B7B35500EB01EF /* ofxParticle2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxParticle2D.h; sourceTree = "<group>"; };
-		D95DF18516B7B35500EB01EF /* ofxParticle3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxParticle3D.cpp; sourceTree = "<group>"; };
-		D95DF18616B7B35500EB01EF /* ofxParticle3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxParticle3D.h; sourceTree = "<group>"; };
 		D95DF18F16B7B3F200EB01EF /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		D95DF19116B7B3F200EB01EF /* AlienTunnelScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AlienTunnelScene.cpp; sourceTree = "<group>"; };
 		D95DF19216B7B3F200EB01EF /* AlienTunnelScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlienTunnelScene.h; sourceTree = "<group>"; };
@@ -776,9 +776,9 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				D9352AE01728DD5F0048C7DE /* ofxParticles */,
 				D9E72FFE16E2C5F500117A68 /* ofxSimpleMask */,
 				D91F3FF116BDA466006ACC97 /* ofxFft */,
-				D95DF18116B7B35500EB01EF /* ofxParticles */,
 				a0b90d3b0adb9c1716816714bf7f212b /* ofxOpenCv */,
 				e6053ab7fec63d5f83825b880ce53c41 /* ofxOsc */,
 				1f4fb5c423662b96adfdcc0badec1cb0 /* ofxXmlSettings */,
@@ -946,6 +946,26 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		D9352AE01728DD5F0048C7DE /* ofxParticles */ = {
+			isa = PBXGroup;
+			children = (
+				D9352AE11728DD5F0048C7DE /* src */,
+			);
+			name = ofxParticles;
+			path = ../ofxParticles;
+			sourceTree = "<group>";
+		};
+		D9352AE11728DD5F0048C7DE /* src */ = {
+			isa = PBXGroup;
+			children = (
+				D9352AE21728DD5F0048C7DE /* ofxParticle2D.cpp */,
+				D9352AE31728DD5F0048C7DE /* ofxParticle2D.h */,
+				D9352AE41728DD5F0048C7DE /* ofxParticle3D.cpp */,
+				D9352AE51728DD5F0048C7DE /* ofxParticle3D.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
 		D94D763A16B8CB1C0006BD71 /* shaders */ = {
 			isa = PBXGroup;
 			children = (
@@ -962,26 +982,6 @@
 			);
 			name = shaders;
 			path = ../shaders;
-			sourceTree = "<group>";
-		};
-		D95DF18116B7B35500EB01EF /* ofxParticles */ = {
-			isa = PBXGroup;
-			children = (
-				D95DF18216B7B35500EB01EF /* src */,
-			);
-			name = ofxParticles;
-			path = ../../../addons/ofxParticles;
-			sourceTree = "<group>";
-		};
-		D95DF18216B7B35500EB01EF /* src */ = {
-			isa = PBXGroup;
-			children = (
-				D95DF18316B7B35500EB01EF /* ofxParticle2D.cpp */,
-				D95DF18416B7B35500EB01EF /* ofxParticle2D.h */,
-				D95DF18516B7B35500EB01EF /* ofxParticle3D.cpp */,
-				D95DF18616B7B35500EB01EF /* ofxParticle3D.h */,
-			);
-			path = src;
 			sourceTree = "<group>";
 		};
 		D95DF19016B7B3F200EB01EF /* Scenes */ = {
@@ -1477,8 +1477,6 @@
 				654cd98d7fb19c664e7d7be15848938b /* FftTrigger.cpp in Sources */,
 				6205df95c4d4cd36cc5a274c35e3899c /* Tween.cpp in Sources */,
 				124bb58efbc1472d607d739b448f711e /* Tweenzor.cpp in Sources */,
-				D95DF18716B7B35500EB01EF /* ofxParticle2D.cpp in Sources */,
-				D95DF18816B7B35500EB01EF /* ofxParticle3D.cpp in Sources */,
 				D95DF1A916B7B3F200EB01EF /* main.cpp in Sources */,
 				D95DF1AA16B7B3F200EB01EF /* AlienTunnelScene.cpp in Sources */,
 				D95DF1AB16B7B3F200EB01EF /* BoxOffsetScene.cpp in Sources */,
@@ -1514,6 +1512,8 @@
 				D9E7300A16E2C5F500117A68 /* composite_rgb.frag in Sources */,
 				D9E7300B16E2C5F500117A68 /* composite_rgb.vert in Sources */,
 				D9E7300C16E2C5F500117A68 /* ofxSimpleMask.cpp in Sources */,
+				D9352AE61728DD5F0048C7DE /* ofxParticle2D.cpp in Sources */,
+				D9352AE71728DD5F0048C7DE /* ofxParticle3D.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

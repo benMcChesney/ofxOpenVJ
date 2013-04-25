@@ -2,7 +2,7 @@
 //  TestScene.cpp
 //  KinectPerformanceV01
 //
-//  Created by Nick Hardeman on 11/6/12.
+//  Created by Ben Mcchesney on 11/6/12.
 //
 //
 
