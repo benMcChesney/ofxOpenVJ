@@ -10,11 +10,11 @@
 #include "BaseScene.h"
 #include "ofxTweenzor.h"
 
-class KinectShaderScene : public BaseScene {
+class TriangleKinectShader : public BaseScene {
 public:
-    KinectShaderScene();
-    KinectShaderScene( int a_index, string a_name ):BaseScene( a_index, a_name ) {}
-    ~KinectShaderScene();
+    TriangleKinectShader();
+    TriangleKinectShader( int a_index, string a_name ):BaseScene( a_index, a_name ) {}
+    ~TriangleKinectShader();
     
     void setup();
     void setupGui(float a_x=0, float a_y=0);
@@ -36,19 +36,14 @@ public:
     float fboFadeAmount ;
     float extrudeDepth ;
     float extrudeNoiseStrength ;
+    
+//    float zOffset ;
+//    float pointCloudMinZ , pointCloudMaxZ ;
 
     float meshHueTimeMultiplier ;
     float meshHueRangeMin , meshHueRangeMax ;
     
-    float triangleSizeMax ; 
-    float triangleSizeMin ; 
-    ofShader shader ;
-    
-    float yColorMultipler ;
-    float boxSize ;
-    float pixelSampling ;
-    float hueTimeMultiplier ;
-    float rotationTimeMultiplier ;
-    
-    
+    float triangleSizeMax ;
+    float triangleSizeMin ;
+    ofShader shader ; 
 };

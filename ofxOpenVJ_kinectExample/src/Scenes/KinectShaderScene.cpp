@@ -2,7 +2,7 @@
 //  TestScene.cpp
 //  KinectPerformanceV01
 //
-//  Created by Ben Mcchesney on 11/6/12.
+//  Created by Nick Hardeman on 11/6/12.
 //
 //
 
@@ -31,6 +31,8 @@ void KinectShaderScene::setup() {
     
      string path = ofToDataPath( "../../../../ofxOpenVJ/shaders/" ) ;
     shader.load( path + "basic.vert", path + "PointCloud.frag" ) ;
+    
+    pixelSampling = 5.0 ; 
 }
 
 //--------------------------------------------------------------
@@ -45,17 +47,18 @@ void KinectShaderScene::setupGui(float a_x, float a_y) {
    // gui = new ofxUICanvas(0, 0, length+xInit, ofGetHeight());
   
     int width = 300 ;
-    int height = 25 ;
-    
-    // gui->addSlider("FORCE RADIUS", 0.0f , 1200.0f , forceRadius, width, height) ;
-    gui->addSlider(  "MESH TIME HUE MULTIPLIER" , 0.0f , 255.0f , meshHueTimeMultiplier , width , height) ;
-    gui->addSlider(  "FBO FADE AMOUNT" ,0.0f , 255.0f , fboFadeAmount , width , height) ;
-    gui->addSlider(  "EXTRUDE DEPTH" , 0.0f , 10.0f , extrudeDepth , width , height) ;
-    gui->addSlider(  "EXTRUDE NOISE STRENGTH" ,0.0f , 500.0f , extrudeNoiseStrength , width , height) ;
-    gui->addSlider(  "Z OFFSET" , 0.0f , 500.0f , extrudeNoiseStrength , width , height) ;
-    gui->addSlider(  "TRIANGLE MAX" , 1.0 ,150.0f , triangleSizeMax , width , height) ;
-    gui->addSlider(  "TRIANGLE MIN" , 1.0 ,150.0f , triangleSizeMin , width , height) ;
-       
+    int height = 18 ;
+    gui->addSlider( "MESH TIME HUE MULTIPLIER" , 0.0f , 255.0f , meshHueTimeMultiplier , width, height) ;
+    gui->addSlider( "FBO FADE AMOUNT" , 0.0f , 255.0f , fboFadeAmount , width, height) ;
+     gui->addWidgetDown(new ofxUIToggle(dim, dim, bToggleTrails , "TOGGLE TRAILS")) ;
+    gui->addSlider( "EXTRUDE DEPTH" , 0.0f , 10.0f , extrudeDepth , width, height) ;
+    gui->addSlider( "EXTRUDE NOISE STRENGTH" , 0.0f , 500.0f , extrudeNoiseStrength , width, height) ;
+    gui->addSlider( "Y COLOR MULTIPLIER" , 0.0f , 6.5f  , yColorMultipler , width, height) ;
+    gui->addSlider( "BOX SIZE" , 1.0f , 15.0f  , boxSize , width, height) ;
+    gui->addSlider( "PIXEL SAMPLING" , 1.0f , 15.0f  , pixelSampling, width, height) ;
+    gui->addSlider( "HUE TIME MULTIPLIER" , 1.0f , 15.0f  , hueTimeMultiplier , width, height) ;
+    gui->addSlider(  "ROT TIME MULTIPLIER" , 1.0f , 15.0f  , rotationTimeMultiplier , width, height) ;
+ 
     ofAddListener( gui->newGUIEvent, this, &KinectShaderScene::guiEvent );
 }
 
@@ -99,11 +102,6 @@ void KinectShaderScene::guiEvent(ofxUIEventArgs &e) {
 		ofxUISlider *slider = (ofxUISlider *) e.widget;
 	}
     
-    if (name == "Z OFFSET" )
-	{
-		ofxUISlider *slider = (ofxUISlider *) e.widget;
-        zOffset = slider->getScaledValue() ;
-	}
     
     if (name ==  "TRIANGLE MAX" )
 	{
@@ -116,6 +114,20 @@ void KinectShaderScene::guiEvent(ofxUIEventArgs &e) {
 		ofxUISlider *slider = (ofxUISlider *) e.widget;
         triangleSizeMin = slider->getScaledValue() ;
 	}
+    
+    if (name == "Y COLOR MULTIPLIER" ) yColorMultipler = ((ofxUISlider *) e.widget)->getScaledValue() ;
+    if (name == "BOX SIZE" ) boxSize = ((ofxUISlider *) e.widget)->getScaledValue() ;
+    if (name == "PIXEL SAMPLING" ) pixelSampling = ((ofxUISlider *) e.widget)->getScaledValue() ;
+    //if (name == "TIME MULTIPLIER" ) timeMultiplier = ((ofxUISlider *) e.widget)->getScaledValue() ;
+    if (name == "HUE TIME MULTIPLIER" ) hueTimeMultiplier = ((ofxUISlider *) e.widget)->getScaledValue() ;
+    if (name == "ROT TIME MULTIPLIER" ) rotationTimeMultiplier = ((ofxUISlider *) e.widget)->getScaledValue() ;
+    
+    /*
+     gui->addWidgetDown(new ofxUISlider(length, dim, 1.0f , 15.0f  ,  , )) ;
+     gui->addWidgetDown(new ofxUISlider(length, dim, 1.0f , 15.0f  ,  , )) ;
+     */
+    //gui->addWidgetDown(new ofxUISlider(length, dim, 1.0f , 5.0f  , timeMultiplier , )) ;
+
 }
 
 //--------------------------------------------------------------
@@ -158,7 +170,10 @@ void KinectShaderScene::draw() {
     
     ofSetColor( 255 , 255 ,255 ) ;
     cameraMan->begin();
-    drawPointCloud();
+    ofPushMatrix() ;
+        ofTranslate(0 , 0 , cameraMan->zOffset ) ;
+        drawPointCloud();
+    ofPopMatrix();
     cameraMan->end();
     trailFbo.end() ;
     
@@ -177,81 +192,56 @@ void KinectShaderScene::drawPointCloud( )
 {
     int w = 640;
 	int h = 480;
-	ofMesh mesh;
-	mesh.setMode( OF_PRIMITIVE_TRIANGLES );
-	int step = 3;
-    //Get out hue offset
-    int timeHue = ofGetElapsedTimef() * meshHueTimeMultiplier ;
-    timeHue %= 255 ;
+    ofPushMatrix();
+    glEnable(GL_DEPTH_TEST);
+    ofScale(1, -1, -1);
+    //ofTranslate(0, 0, kinectMan->pointCloudZOffset ); // center the points a bit
+    ofEnableBlendMode( OF_BLENDMODE_ALPHA ) ; 
     
-    ofColor hueOffset = ofColor::fromHsb( timeHue , 255.0f , 255.0f ) ;
-	
-    float _time = ofGetElapsedTimef() ; 
-    float theta = sin ( ofGetElapsedTimef() ) ;
     
-    float minZ = kinectMan->pointCloudMinZ ;
-    float maxZ = kinectMan->pointCloudMaxZ ; 
-    float center = ( minZ + maxZ ) / 2.0f ;
-    
-    int numTriangles = 0 ;
-    ofPoint closestPoint = ofPoint ( 0 , 0 , 10000.0f ) ;
-    
-    for(int y = 0; y < h; y += step)
-    {
-		for(int x = 0; x < w; x += step)
-        {
-
-            float   noiseStep = 0 + ofSignedNoise( _time + x )*  extrudeNoiseStrength * extrudeDepth ;             
-            float diff = low ; 
-            
-			if( kinectMan->kinect.getDistanceAt(x, y) > 0)
-            {
+    ofColor offset = ofColor::fromHsb((ofGetFrameNum()/2  )%255, 255, 255 ) ;
+    // ofEnableBlendMode( OF_BLENDMODE_ADD ) ;
+	int step = pixelSampling ;
+    //float boxSize = step ;//16.5f ;
+	for(int y = 0; y < h; y += step) {
+		for(int x = 0; x < w; x += step) {
+			if(kinectMan->kinect.getDistanceAt(x, y) > 0) {
+                
                 ofVec3f vertex = kinectMan->kinect.getWorldCoordinateAt(x, y) ;
-
-                if ( vertex.z > minZ && vertex.z < maxZ )
+                if ( vertex.z >  kinectMan->pointCloudMinZ && vertex.z < kinectMan->pointCloudMaxZ )
                 {
-                    if ( vertex.z < closestPoint.z )
-                        closestPoint = vertex ;
-                    float zOffset = noiseStep ;
-                    vertex.z += zOffset ;
-                 
-                    float offset = -1 ;
-                    if ( numTriangles % 2 == 0 )
-                        offset = 1 ; 
+                    float normalizedZ = ofMap( vertex.z , kinectMan->pointCloudMinZ , kinectMan->pointCloudMaxZ , -360.0f , 360.0f ) ;
+                    //mesh.addVertex( vertex );
                     
-                    ofColor col = kinectMan->kinect.getColorAt( x , y ) + hueOffset ;
-                    ofVec3f _v = vertex ;
-                    mesh.addVertex( vertex );
-                    mesh.addColor( col );
-
-               
-                    vertex.x -= ofSignedNoise( _time ) * ( 1.0 + diff ) * triangleSizeMax + triangleSizeMin ;
-                    vertex.y += ofSignedNoise ( _time ) * ( offset * 1.0f + diff  ) * triangleSizeMax + triangleSizeMin ;
-                    mesh.addVertex( vertex );
-                    mesh.addColor( col );
+                    //Offset the color here
+                    int hue = ((int)(ofGetFrameNum()*hueTimeMultiplier)) % 255 + (float)y * yColorMultipler ;
+                    while ( hue >= 254 )
+                    {
+                        hue -= 255 ;
+                    }
                     
-                    _v.x += ofSignedNoise( _time ) * ( 1.0 + diff ) * triangleSizeMax + triangleSizeMin ;
-                    _v.y += ofSignedNoise ( _time ) * ( offset * 1.0f + diff ) * triangleSizeMax + triangleSizeMin ;
-                    mesh.addVertex( _v );
-                    mesh.addColor( ofColor::white - col );
-
-                    numTriangles++ ;
+                    ofColor col = ofColor::fromHsb( hue , ofNoise( ofGetElapsedTimef() ) * 20 + 220 , 255 ) ; 
+                    
+                    //mesh.addColor( col );
+                    ofSetColor( col ) ;
+                    ofPushMatrix() ;
+                    ofQuaternion rot ;
+                    ofQuaternion rotX = ofQuaternion( sin( ofGetElapsedTimef() + y + x * 2.5f ) * 360.0f * rotationTimeMultiplier , ofVec3f( 0.0f , 1.0f , 0.0f ) ) ;
+                    ofQuaternion rotY = ofQuaternion( normalizedZ , ofVec3f( 1.0f , 0.0f , 0.0f ) ) ;
+                    rot = rotX * rotY ;
+                    ofVec3f axis ;
+                    float angle ;
+                    rot.getRotate( angle , axis ) ;
+                    
+                    ofTranslate( vertex ) ;
+                    ofRotate( angle , axis.x , axis.y , axis.z ) ;
+                    ofBox( ofVec3f( )  , boxSize ) ;
+                    ofPopMatrix() ;
                 }
+                
 			}
 		}
 	}
-	glPointSize(3);
-    
-    
-    ofPushMatrix();
-    
-    // the projected points are 'upside down' and 'backwards'
-    ofEnableBlendMode(OF_BLENDMODE_ADD ) ; 
-    ofScale(1, -1, -1);
-        ofTranslate( 0.0f , 0.0f , zOffset ) ;
-        glEnable(GL_DEPTH_TEST);
-        mesh.draw( );
-        glDisable(GL_DEPTH_TEST);
-    ofPopMatrix();
-
+    glDisable(GL_DEPTH_TEST);
+    ofPopMatrix() ; 
 }

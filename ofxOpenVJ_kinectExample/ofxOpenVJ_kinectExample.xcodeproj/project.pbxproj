@@ -34,6 +34,8 @@
 		933a2227713c720ceff80fd967d0a8ee /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2b40eda85beb63e46785bc299a638898 /* tinyxml.cpp */; };
 		9d44dc88ef9e7991b4a09951e2e4769f /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 832bdc407620cdba568b713d2252c43c /* tinyxmlerror.cpp */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
+		D91BFBEA172C62E7009AF9AF /* KinectVertexShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D91BFBE8172C62E7009AF9AF /* KinectVertexShader.cpp */; };
+		D91BFC04172C65BB009AF9AF /* MSABPMTapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D91BFBFA172C65BB009AF9AF /* MSABPMTapper.cpp */; };
 		D91F400D16BDA466006ACC97 /* kiss_fft.c in Sources */ = {isa = PBXBuildFile; fileRef = D91F400216BDA466006ACC97 /* kiss_fft.c */; };
 		D91F400E16BDA466006ACC97 /* kiss_fftr.c in Sources */ = {isa = PBXBuildFile; fileRef = D91F400416BDA466006ACC97 /* kiss_fftr.c */; };
 		D91F400F16BDA466006ACC97 /* ofxFft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D91F400716BDA466006ACC97 /* ofxFft.cpp */; };
@@ -44,10 +46,8 @@
 		D94D764D16B8CFBE0006BD71 /* ImageSpringParticles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D94D764B16B8CFBD0006BD71 /* ImageSpringParticles.cpp */; };
 		D95DF1A916B7B3F200EB01EF /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D95DF18F16B7B3F200EB01EF /* main.cpp */; };
 		D95DF1AA16B7B3F200EB01EF /* AlienTunnelScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D95DF19116B7B3F200EB01EF /* AlienTunnelScene.cpp */; };
-		D95DF1AB16B7B3F200EB01EF /* BoxOffsetScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D95DF19316B7B3F200EB01EF /* BoxOffsetScene.cpp */; };
 		D95DF1AC16B7B3F200EB01EF /* CircleNoiseScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D95DF19516B7B3F200EB01EF /* CircleNoiseScene.cpp */; };
 		D95DF1AD16B7B3F200EB01EF /* HexTunnelScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D95DF19716B7B3F200EB01EF /* HexTunnelScene.cpp */; };
-		D95DF1AE16B7B3F200EB01EF /* HuePointCloudScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D95DF19916B7B3F200EB01EF /* HuePointCloudScene.cpp */; };
 		D95DF1B016B7B3F200EB01EF /* KinectShaderScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D95DF19D16B7B3F200EB01EF /* KinectShaderScene.cpp */; };
 		D95DF1B216B7B3F200EB01EF /* Scenes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D95DF1A116B7B3F200EB01EF /* Scenes.cpp */; };
 		D95DF1B316B7B3F200EB01EF /* SeizureCentralScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D95DF1A316B7B3F200EB01EF /* SeizureCentralScene.cpp */; };
@@ -66,6 +66,7 @@
 		D9D6634416D609C1000EC2D5 /* triangleLightTunnel.frag in Sources */ = {isa = PBXBuildFile; fileRef = D9D6634316D609C0000EC2D5 /* triangleLightTunnel.frag */; };
 		D9D6634916D60A10000EC2D5 /* RippleTunnelScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9D6634516D60A10000EC2D5 /* RippleTunnelScene.cpp */; };
 		D9D6634A16D60A10000EC2D5 /* TriangleTunnelScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9D6634716D60A10000EC2D5 /* TriangleTunnelScene.cpp */; };
+		D9E3685E172A586B002D3997 /* TriangleKinectShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9E3685C172A586B002D3997 /* TriangleKinectShader.cpp */; };
 		D9E7300816E2C5F500117A68 /* composite.frag in Sources */ = {isa = PBXBuildFile; fileRef = D9E7300116E2C5F500117A68 /* composite.frag */; };
 		D9E7300916E2C5F500117A68 /* composite.vert in Sources */ = {isa = PBXBuildFile; fileRef = D9E7300216E2C5F500117A68 /* composite.vert */; };
 		D9E7300A16E2C5F500117A68 /* composite_rgb.frag in Sources */ = {isa = PBXBuildFile; fileRef = D9E7300316E2C5F500117A68 /* composite_rgb.frag */; };
@@ -255,6 +256,17 @@
 		9f7986dc4eb05e75fce2c777500fdc01 /* ofxOscSender.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxOscSender.h; path = ../../../addons/ofxOsc/src/ofxOscSender.h; sourceTree = SOURCE_ROOT; };
 		9ff9126184dfbde8a912373ebe9d2f9d /* highgui.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = highgui.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv/highgui.h; sourceTree = SOURCE_ROOT; };
 		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
+		D91BFBE8172C62E7009AF9AF /* KinectVertexShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KinectVertexShader.cpp; sourceTree = "<group>"; };
+		D91BFBE9172C62E7009AF9AF /* KinectVertexShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KinectVertexShader.h; sourceTree = "<group>"; };
+		D91BFBED172C65BB009AF9AF /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		D91BFBF7172C65BB009AF9AF /* license.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = license.md; sourceTree = "<group>"; };
+		D91BFBF8172C65BB009AF9AF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		D91BFBFA172C65BB009AF9AF /* MSABPMTapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MSABPMTapper.cpp; sourceTree = "<group>"; };
+		D91BFBFB172C65BB009AF9AF /* MSABPMTapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSABPMTapper.h; sourceTree = "<group>"; };
+		D91BFBFD172C65BB009AF9AF /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		D91BFBFE172C65BB009AF9AF /* license.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = license.md; sourceTree = "<group>"; };
+		D91BFBFF172C65BB009AF9AF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		D91BFC01172C65BB009AF9AF /* MSATimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSATimer.h; sourceTree = "<group>"; };
 		D91F3FF316BDA466006ACC97 /* Instructions.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Instructions.txt; sourceTree = "<group>"; };
 		D91F3FFC16BDA466006ACC97 /* fftw3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fftw3.h; sourceTree = "<group>"; };
 		D91F3FFF16BDA466006ACC97 /* libfftw3f-3.dll */ = {isa = PBXFileReference; lastKnownFileType = file; path = "libfftw3f-3.dll"; sourceTree = "<group>"; };
@@ -278,14 +290,10 @@
 		D95DF18F16B7B3F200EB01EF /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		D95DF19116B7B3F200EB01EF /* AlienTunnelScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AlienTunnelScene.cpp; sourceTree = "<group>"; };
 		D95DF19216B7B3F200EB01EF /* AlienTunnelScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlienTunnelScene.h; sourceTree = "<group>"; };
-		D95DF19316B7B3F200EB01EF /* BoxOffsetScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BoxOffsetScene.cpp; sourceTree = "<group>"; };
-		D95DF19416B7B3F200EB01EF /* BoxOffsetScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxOffsetScene.h; sourceTree = "<group>"; };
 		D95DF19516B7B3F200EB01EF /* CircleNoiseScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CircleNoiseScene.cpp; sourceTree = "<group>"; };
 		D95DF19616B7B3F200EB01EF /* CircleNoiseScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleNoiseScene.h; sourceTree = "<group>"; };
 		D95DF19716B7B3F200EB01EF /* HexTunnelScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HexTunnelScene.cpp; sourceTree = "<group>"; };
 		D95DF19816B7B3F200EB01EF /* HexTunnelScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HexTunnelScene.h; sourceTree = "<group>"; };
-		D95DF19916B7B3F200EB01EF /* HuePointCloudScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HuePointCloudScene.cpp; sourceTree = "<group>"; };
-		D95DF19A16B7B3F200EB01EF /* HuePointCloudScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuePointCloudScene.h; sourceTree = "<group>"; };
 		D95DF19D16B7B3F200EB01EF /* KinectShaderScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KinectShaderScene.cpp; sourceTree = "<group>"; };
 		D95DF19E16B7B3F200EB01EF /* KinectShaderScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KinectShaderScene.h; sourceTree = "<group>"; };
 		D95DF1A116B7B3F200EB01EF /* Scenes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Scenes.cpp; sourceTree = "<group>"; };
@@ -312,6 +320,8 @@
 		D9D6634616D60A10000EC2D5 /* RippleTunnelScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RippleTunnelScene.h; sourceTree = "<group>"; };
 		D9D6634716D60A10000EC2D5 /* TriangleTunnelScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TriangleTunnelScene.cpp; sourceTree = "<group>"; };
 		D9D6634816D60A10000EC2D5 /* TriangleTunnelScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriangleTunnelScene.h; sourceTree = "<group>"; };
+		D9E3685C172A586B002D3997 /* TriangleKinectShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TriangleKinectShader.cpp; sourceTree = "<group>"; };
+		D9E3685D172A586B002D3997 /* TriangleKinectShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriangleKinectShader.h; sourceTree = "<group>"; };
 		D9E72FFF16E2C5F500117A68 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		D9E7300116E2C5F500117A68 /* composite.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = composite.frag; sourceTree = "<group>"; };
 		D9E7300216E2C5F500117A68 /* composite.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = composite.vert; sourceTree = "<group>"; };
@@ -776,6 +786,8 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				D91BFBEC172C65BB009AF9AF /* ofxMSABPMTapper */,
+				D91BFBFC172C65BB009AF9AF /* ofxMSATimer */,
 				D9352AE01728DD5F0048C7DE /* ofxParticles */,
 				D9E72FFE16E2C5F500117A68 /* ofxSimpleMask */,
 				D91F3FF116BDA466006ACC97 /* ofxFft */,
@@ -820,11 +832,51 @@
 			name = "3rd party frameworks";
 			sourceTree = "<group>";
 		};
+		D91BFBEC172C65BB009AF9AF /* ofxMSABPMTapper */ = {
+			isa = PBXGroup;
+			children = (
+				D91BFBED172C65BB009AF9AF /* .gitignore */,
+				D91BFBF7172C65BB009AF9AF /* license.md */,
+				D91BFBF8172C65BB009AF9AF /* README.md */,
+				D91BFBF9172C65BB009AF9AF /* src */,
+			);
+			name = ofxMSABPMTapper;
+			path = ../../ofxMSABPMTapper;
+			sourceTree = "<group>";
+		};
+		D91BFBF9172C65BB009AF9AF /* src */ = {
+			isa = PBXGroup;
+			children = (
+				D91BFBFA172C65BB009AF9AF /* MSABPMTapper.cpp */,
+				D91BFBFB172C65BB009AF9AF /* MSABPMTapper.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		D91BFBFC172C65BB009AF9AF /* ofxMSATimer */ = {
+			isa = PBXGroup;
+			children = (
+				D91BFBFD172C65BB009AF9AF /* .gitignore */,
+				D91BFBFE172C65BB009AF9AF /* license.md */,
+				D91BFBFF172C65BB009AF9AF /* README.md */,
+				D91BFC00172C65BB009AF9AF /* src */,
+			);
+			name = ofxMSATimer;
+			path = ../../ofxMSATimer;
+			sourceTree = "<group>";
+		};
+		D91BFC00172C65BB009AF9AF /* src */ = {
+			isa = PBXGroup;
+			children = (
+				D91BFC01172C65BB009AF9AF /* MSATimer.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
 		D91F3FF116BDA466006ACC97 /* ofxFft */ = {
 			isa = PBXGroup;
 			children = (
 				D91F3FF216BDA466006ACC97 /* docs */,
-				D91F3FF416BDA466006ACC97 /* examples */,
 				D91F3FF916BDA466006ACC97 /* libs */,
 				D91F400616BDA466006ACC97 /* src */,
 			);
@@ -838,45 +890,6 @@
 				D91F3FF316BDA466006ACC97 /* Instructions.txt */,
 			);
 			path = docs;
-			sourceTree = "<group>";
-		};
-		D91F3FF416BDA466006ACC97 /* examples */ = {
-			isa = PBXGroup;
-			children = (
-				D91F3FF516BDA466006ACC97 /* ofxFftEq */,
-				D91F3FF716BDA466006ACC97 /* ofxFftTest */,
-			);
-			path = examples;
-			sourceTree = "<group>";
-		};
-		D91F3FF516BDA466006ACC97 /* ofxFftEq */ = {
-			isa = PBXGroup;
-			children = (
-				D91F3FF616BDA466006ACC97 /* src */,
-			);
-			path = ofxFftEq;
-			sourceTree = "<group>";
-		};
-		D91F3FF616BDA466006ACC97 /* src */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = src;
-			sourceTree = "<group>";
-		};
-		D91F3FF716BDA466006ACC97 /* ofxFftTest */ = {
-			isa = PBXGroup;
-			children = (
-				D91F3FF816BDA466006ACC97 /* src */,
-			);
-			path = ofxFftTest;
-			sourceTree = "<group>";
-		};
-		D91F3FF816BDA466006ACC97 /* src */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = src;
 			sourceTree = "<group>";
 		};
 		D91F3FF916BDA466006ACC97 /* libs */ = {
@@ -987,6 +1000,10 @@
 		D95DF19016B7B3F200EB01EF /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				D91BFBE8172C62E7009AF9AF /* KinectVertexShader.cpp */,
+				D91BFBE9172C62E7009AF9AF /* KinectVertexShader.h */,
+				D9E3685C172A586B002D3997 /* TriangleKinectShader.cpp */,
+				D9E3685D172A586B002D3997 /* TriangleKinectShader.h */,
 				D9D6634516D60A10000EC2D5 /* RippleTunnelScene.cpp */,
 				D9D6634616D60A10000EC2D5 /* RippleTunnelScene.h */,
 				D9D6634716D60A10000EC2D5 /* TriangleTunnelScene.cpp */,
@@ -995,14 +1012,10 @@
 				D94D764C16B8CFBE0006BD71 /* ImageSpringParticles.h */,
 				D95DF19116B7B3F200EB01EF /* AlienTunnelScene.cpp */,
 				D95DF19216B7B3F200EB01EF /* AlienTunnelScene.h */,
-				D95DF19316B7B3F200EB01EF /* BoxOffsetScene.cpp */,
-				D95DF19416B7B3F200EB01EF /* BoxOffsetScene.h */,
 				D95DF19516B7B3F200EB01EF /* CircleNoiseScene.cpp */,
 				D95DF19616B7B3F200EB01EF /* CircleNoiseScene.h */,
 				D95DF19716B7B3F200EB01EF /* HexTunnelScene.cpp */,
 				D95DF19816B7B3F200EB01EF /* HexTunnelScene.h */,
-				D95DF19916B7B3F200EB01EF /* HuePointCloudScene.cpp */,
-				D95DF19A16B7B3F200EB01EF /* HuePointCloudScene.h */,
 				D95DF19D16B7B3F200EB01EF /* KinectShaderScene.cpp */,
 				D95DF19E16B7B3F200EB01EF /* KinectShaderScene.h */,
 				D95DF1A116B7B3F200EB01EF /* Scenes.cpp */,
@@ -1479,10 +1492,8 @@
 				124bb58efbc1472d607d739b448f711e /* Tweenzor.cpp in Sources */,
 				D95DF1A916B7B3F200EB01EF /* main.cpp in Sources */,
 				D95DF1AA16B7B3F200EB01EF /* AlienTunnelScene.cpp in Sources */,
-				D95DF1AB16B7B3F200EB01EF /* BoxOffsetScene.cpp in Sources */,
 				D95DF1AC16B7B3F200EB01EF /* CircleNoiseScene.cpp in Sources */,
 				D95DF1AD16B7B3F200EB01EF /* HexTunnelScene.cpp in Sources */,
-				D95DF1AE16B7B3F200EB01EF /* HuePointCloudScene.cpp in Sources */,
 				D95DF1B016B7B3F200EB01EF /* KinectShaderScene.cpp in Sources */,
 				D95DF1B216B7B3F200EB01EF /* Scenes.cpp in Sources */,
 				D95DF1B316B7B3F200EB01EF /* SeizureCentralScene.cpp in Sources */,
@@ -1514,6 +1525,9 @@
 				D9E7300C16E2C5F500117A68 /* ofxSimpleMask.cpp in Sources */,
 				D9352AE61728DD5F0048C7DE /* ofxParticle2D.cpp in Sources */,
 				D9352AE71728DD5F0048C7DE /* ofxParticle3D.cpp in Sources */,
+				D9E3685E172A586B002D3997 /* TriangleKinectShader.cpp in Sources */,
+				D91BFBEA172C62E7009AF9AF /* KinectVertexShader.cpp in Sources */,
+				D91BFC04172C65BB009AF9AF /* MSABPMTapper.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

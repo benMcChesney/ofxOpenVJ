@@ -13,7 +13,7 @@
 #include "ofxOsc.h"
 #include "FftTrigger.h"
 #include "ofxUI.h"
-
+#include "MSABPMTapper.h"
 
 #define MIC 0
 #define NOISE 1

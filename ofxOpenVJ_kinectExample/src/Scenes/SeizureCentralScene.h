@@ -30,7 +30,9 @@ public:
     void deactivate();
     
     vector<ofMesh> lines;
+    vector<ofVec3f> offsets ; 
     vector<ofxParticle2D> particles;
+    vector<ofColor> colors; 
     
     int lastAddTime;
     float hue;
@@ -41,4 +43,12 @@ public:
     float millisDelay ;
     float contourSoundThreshold ;
     
+    float hueIncrement ;
+    float hueNoiseOffset ;
+    float radiusTime ; 
+    float zForce ; 
+    float radius ;
+    float spiralFactor ;
+    
+    int numTooManyOffset ; 
 };

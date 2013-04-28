@@ -6,35 +6,35 @@
 <Widget>
     <Kind>4</Kind>
     <Name>HUE INCREMENT</Name>
-    <Value>0.023734177</Value>
+    <Value>0.058544304</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>HUE NOISE OFFSET</Name>
-    <Value>0.268987328</Value>
+    <Value>0.129746839</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>Z FORCE</Name>
-    <Value>-131.645568848</Value>
+    <Value>-158.227844238</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>RADIUS</Name>
-    <Value>632.278442383</Value>
+    <Value>216.455703735</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>RADIUS TIME</Name>
-    <Value>1.335189819</Value>
+    <Value>0.740506291</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>SPIRAL FACTOR</Name>
-    <Value>0.117721520</Value>
+    <Value>0.145898744</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>NUM MESHES</Name>
-    <Value>120.278472900</Value>
+    <Value>164.632415771</Value>
 </Widget>

@@ -9,16 +9,18 @@
 #pragma once
 
 #include "BaseScene.h"
-#include "TestScene.h"
-#include "HexTunnelScene.h"
-#include "AlienTunnelScene.h"
-#include "CircleNoiseScene.h"
-#include "HuePointCloudScene.h"
+#include "TriangleKinectShader.h"
 #include "KinectShaderScene.h"
 #include "SeizureCentralScene.h"
-#include "ImageSpringParticles.h"
-#include "TriangleTunnelScene.h"
+#include "CircleNoiseScene.h"
 #include "RippleTunnelScene.h"
+#include "ImageSpringParticles.h"
+#include "AlienTunnelScene.h"
+#include "KinectVertexShader.h"
+#include "HexTunnelScene.h"
+#include "TriangleTunnelScene.h"
+
+
 
 
 class Scenes {

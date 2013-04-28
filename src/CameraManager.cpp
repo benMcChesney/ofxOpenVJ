@@ -276,7 +276,7 @@ void CameraManager::setupGui( float a_x, float a_y ) {
     gui->addSlider( "STEER", .0, 10.f, &_steer, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );
     gui->addSlider( "PARTICLE_DAMPING", .0, 3.f, &_camParticle.DAMPING, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );
     
-    gui->addSlider( "Z OFFSET", -3000 , 3000 , &zOffset ,  GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );
+    gui->addSlider( "Z OFFSET", -4000 , 4000 , &zOffset ,  GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );
     gui->addSlider( "CAM MOVEMENT", 0 , 500 , &camMovementFactor ,  GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );
     
     gui->addSlider( "CAMERA TARGET Z", -1000 , 1000 , &cameraTargetZ ,  GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );

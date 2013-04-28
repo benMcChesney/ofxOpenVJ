@@ -36,6 +36,7 @@
 		D952521E16B66027008451BE /* CameraManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D952515116B66024008451BE /* CameraManager.cpp */; };
 		D952521F16B66027008451BE /* FftManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D952515416B66024008451BE /* FftManager.cpp */; };
 		D952522016B66027008451BE /* FftTrigger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D952515616B66024008451BE /* FftTrigger.cpp */; };
+		D9E368A8172AD37B002D3997 /* MSABPMTapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9E3689E172AD37B002D3997 /* MSABPMTapper.cpp */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9710E8CC7DD009D7055 /* AGL.framework */; };
 		E45BE97C0E8CC7DD009D7055 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9720E8CC7DD009D7055 /* ApplicationServices.framework */; };
@@ -200,6 +201,15 @@
 		D952515616B66024008451BE /* FftTrigger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FftTrigger.cpp; sourceTree = "<group>"; };
 		D952515716B66024008451BE /* FftTrigger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FftTrigger.h; sourceTree = "<group>"; };
 		D952515C16B66024008451BE /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		D9E36891172AD37B002D3997 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		D9E3689B172AD37B002D3997 /* license.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = license.md; sourceTree = "<group>"; };
+		D9E3689C172AD37B002D3997 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		D9E3689E172AD37B002D3997 /* MSABPMTapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MSABPMTapper.cpp; sourceTree = "<group>"; };
+		D9E3689F172AD37B002D3997 /* MSABPMTapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSABPMTapper.h; sourceTree = "<group>"; };
+		D9E368A1172AD37B002D3997 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		D9E368A2172AD37B002D3997 /* license.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = license.md; sourceTree = "<group>"; };
+		D9E368A3172AD37B002D3997 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		D9E368A5172AD37B002D3997 /* MSATimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSATimer.h; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E45BE9710E8CC7DD009D7055 /* AGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGL.framework; path = /System/Library/Frameworks/AGL.framework; sourceTree = "<absolute>"; };
 		E45BE9720E8CC7DD009D7055 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = /System/Library/Frameworks/ApplicationServices.framework; sourceTree = "<absolute>"; };
@@ -250,6 +260,8 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				D9E36890172AD37B002D3997 /* ofxMSABPMTapper */,
+				D9E368A0172AD37B002D3997 /* ofxMSATimer */,
 				D92D9B3F1728E4F6005B8C24 /* ofxParticles */,
 				D9352E891728E2DA0048C7DE /* ofxFft */,
 				D9352B601728E2580048C7DE /* ofxUI */,
@@ -601,6 +613,47 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		D9E36890172AD37B002D3997 /* ofxMSABPMTapper */ = {
+			isa = PBXGroup;
+			children = (
+				D9E36891172AD37B002D3997 /* .gitignore */,
+				D9E3689B172AD37B002D3997 /* license.md */,
+				D9E3689C172AD37B002D3997 /* README.md */,
+				D9E3689D172AD37B002D3997 /* src */,
+			);
+			name = ofxMSABPMTapper;
+			path = ../../ofxMSABPMTapper;
+			sourceTree = "<group>";
+		};
+		D9E3689D172AD37B002D3997 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				D9E3689E172AD37B002D3997 /* MSABPMTapper.cpp */,
+				D9E3689F172AD37B002D3997 /* MSABPMTapper.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		D9E368A0172AD37B002D3997 /* ofxMSATimer */ = {
+			isa = PBXGroup;
+			children = (
+				D9E368A1172AD37B002D3997 /* .gitignore */,
+				D9E368A2172AD37B002D3997 /* license.md */,
+				D9E368A3172AD37B002D3997 /* README.md */,
+				D9E368A4172AD37B002D3997 /* src */,
+			);
+			name = ofxMSATimer;
+			path = ../../ofxMSATimer;
+			sourceTree = "<group>";
+		};
+		D9E368A4172AD37B002D3997 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				D9E368A5172AD37B002D3997 /* MSATimer.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
 		E4328144138ABC890047C5CB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -764,6 +817,7 @@
 				D9352F021728E3120048C7DE /* ofxFftw.cpp in Sources */,
 				D92D9B451728E4F6005B8C24 /* ofxParticle2D.cpp in Sources */,
 				D92D9B461728E4F6005B8C24 /* ofxParticle3D.cpp in Sources */,
+				D9E368A8172AD37B002D3997 /* MSABPMTapper.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

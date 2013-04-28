@@ -53,16 +53,22 @@ void testApp::setup() {
     cameraManager.loadSettings();
     cameraManager.gui->setVisible(bDrawGui);
     
-    
-    scenes.push_back( new CircleNoiseScene((int)scenes.size(), "CircleNoiseScene") );
-    scenes.push_back( new HexTunnelScene((int)scenes.size(), "HexTunnelScene") );
-    scenes.push_back( new AlienTunnelScene((int)scenes.size(), "AlienTunnelScene") );
-    scenes.push_back( new HuePointCloudScene((int)scenes.size(), "HuePointCloudScene") );
+    //Point Cloud Scenes
+    scenes.push_back( new TriangleKinectShader((int)scenes.size(), "TriangleKinectShader") );
     scenes.push_back( new KinectShaderScene((int)scenes.size(), "KinectShaderScene") );
+    scenes.push_back( new KinectVertexShader((int)scenes.size(), "KinectVertexShader") );
+    
+    //2D Outline Scenes
     scenes.push_back( new SeizureCentralScene((int)scenes.size(), "SeizureCentralScene") );
-    scenes.push_back( new ImageSpringParticles((int)scenes.size(), "ImageSpringParticles") );
+    
+    //Fragment Shader Scenes
+    scenes.push_back( new CircleNoiseScene((int)scenes.size(), "CircleNoiseScene") );
     scenes.push_back( new RippleTunnelScene((int)scenes.size(), "RippleTunnelScene") );
-    scenes.push_back( new TriangleTunnelScene((int)scenes.size(), "TriangleTunnelScene") );
+    scenes.push_back( new AlienTunnelScene((int)scenes.size(), "AlienTunnelScene") );
+    
+    //Asset Scenes
+    scenes.push_back( new ImageSpringParticles((int)scenes.size(), "ImageSpringParticles") );
+    
     setSceneBounds();
     
     for(int i = 0; i < scenes.size(); i++) {
@@ -114,8 +120,8 @@ void testApp::update() {
        
     if ( bAutoSceneSwitch == true )
     {
-        cout << " is " << ofGetElapsedTimef() << " > " << ( lastSceneChangedTime ) << " + " <<  sceneDelayTime  << " ? " << endl ;
-        if ( ofGetElapsedTimef() > ( lastSceneChangedTime + sceneDelayTime ) )
+        //cout << " is " << ofGetElapsedTimef() << " > " << ( lastSceneChangedTime ) << " + " <<  sceneDelayTime  << " ? " << endl ;
+        if ( (int)ofGetFrameNum() % (int)sceneDelayTime == 0 ) // ofGetElapsedTimef() > ( lastSceneChangedTime + sceneDelayTime ) )
         {
             int lastSceneIndex = activeSceneIndex ; 
             activeSceneIndex++ ;
@@ -222,7 +228,7 @@ void testApp::guiEvent( ofxUIEventArgs& e ) {
         fftManager.lerpAmount =  ((ofxUIMinimalSlider*)gui->getWidget("FFT INTERPOLATION"))->getScaledValue() ;
     else if ( name == "SCENE DELAY TIME" )
     {
-        sceneDelayTime =  ((ofxUIMinimalSlider*)gui->getWidget("SCENE DELAY TIME"))->getScaledValue() ;
+        sceneDelayTime =  ((ofxUIMinimalSlider*)gui->getWidget("SCENE DELAY TIME"))->getScaledValue() * 30 ;
         //cout << "scene delay time is now : " << sceneDelayTime << endl ;
         lastSceneChangedTime = ofGetElapsedTimef() ; 
     }

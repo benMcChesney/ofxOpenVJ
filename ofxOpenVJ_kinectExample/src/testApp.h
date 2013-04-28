@@ -34,6 +34,7 @@ class testApp : public ofBaseApp{
 	void dragEvent(ofDragInfo dragInfo);
 	void gotMessage(ofMessage msg);
     
+    float zOffset ; 
     KinectManager   kinectMan;
     CameraManager   cameraManager ;
     FftManager      fftManager ;

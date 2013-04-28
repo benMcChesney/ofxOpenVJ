@@ -5,7 +5,7 @@
 //  Created by Ben McChesney on 10/30/12.
 //
 //
-#include <ofMain.h>
+#include "ofMain.h"
 
 #ifndef emptyExample_FftTrigger_h
 #define emptyExample_FftTrigger_h

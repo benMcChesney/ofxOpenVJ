@@ -10,11 +10,11 @@
 #include "BaseScene.h"
 #include "ofxTweenzor.h"
 
-class KinectShaderScene : public BaseScene {
+class KinectVertexShader : public BaseScene {
 public:
-    KinectShaderScene();
-    KinectShaderScene( int a_index, string a_name ):BaseScene( a_index, a_name ) {}
-    ~KinectShaderScene();
+    KinectVertexShader();
+    KinectVertexShader( int a_index, string a_name ):BaseScene( a_index, a_name ) {}
+    ~KinectVertexShader();
     
     void setup();
     void setupGui(float a_x=0, float a_y=0);
@@ -34,21 +34,15 @@ public:
 
     ofFbo trailFbo ;
     float fboFadeAmount ;
-    float extrudeDepth ;
-    float extrudeNoiseStrength ;
-
-    float meshHueTimeMultiplier ;
-    float meshHueRangeMin , meshHueRangeMax ;
-    
-    float triangleSizeMax ; 
-    float triangleSizeMin ; 
     ofShader shader ;
+    bool bDrawShader ;
     
-    float yColorMultipler ;
     float boxSize ;
     float pixelSampling ;
     float hueTimeMultiplier ;
     float rotationTimeMultiplier ;
     
+     float shaderVar1 , shaderVar2 , shaderVar3 , shaderVar4 ;
     
+    float boxStep ; 
 };
