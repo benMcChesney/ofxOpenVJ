@@ -59,6 +59,15 @@ public:
     
     ofVec3f pointCloudOffset ;
     ofVec3f forceTarget ;
+    ofVec3f forcePosition ;
     
-    int numFramesUntilTransition ; 
+    bool bShowSphere ;
+    bool bAdditiveBlend ;
+
+    
+    
+    int numFramesUntilTransition ;
+    float maxParticleSpeed ; 
+    float xWander, yWander , xWanderNoise , yWanderNoise , wanderTimeMultiplier , zWander ;
+    
 };

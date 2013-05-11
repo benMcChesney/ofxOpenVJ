@@ -1,22 +1,22 @@
 <Widget>
     <Kind>4</Kind>
     <Name>FORCE RADIUS</Name>
-    <Value>228.000000000</Value>
+    <Value>1084.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>FRICTION</Name>
-    <Value>0.910000026</Value>
+    <Value>0.963333309</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>SPRING FACTOR</Name>
-    <Value>0.059999999</Value>
+    <Value>0.013333334</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>FADE AMOUNT</Name>
-    <Value>34.850002289</Value>
+    <Value>26.350000381</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -26,7 +26,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>FORCE STRENGTH</Name>
-    <Value>1.333333373</Value>
+    <Value>0.193333328</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -40,41 +40,56 @@
 </Widget>
 <Widget>
     <Kind>4</Kind>
-    <Name>POINT CLOUD OFFSET X</Name>
-    <Value>-400.000000000</Value>
+    <Name>X WANDER</Name>
+    <Value>165.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
-    <Name>POINT CLOUD OFFSET Y</Name>
-    <Value>-360.000000000</Value>
+    <Name>X NOISE WANDER</Name>
+    <Value>21.666666031</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
-    <Name>POINT CLOUD OFFSET Z</Name>
-    <Value>-280.000000000</Value>
+    <Name>Y WANDER</Name>
+    <Value>175.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
-    <Name>FORCE TARGET X</Name>
-    <Value>220.000244141</Value>
+    <Name>Y NOISE WANDER</Name>
+    <Value>21.666666031</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
-    <Name>FORCE TARGET Y</Name>
-    <Value>139.999755859</Value>
+    <Name>WANDER TIME MULTIPLIER</Name>
+    <Value>2.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
-    <Name>FORCE TARGET Z</Name>
-    <Value>-20.000000000</Value>
+    <Name>Z WANDER</Name>
+    <Value>25.000001907</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>MAX PARTICLE SPEED</Name>
+    <Value>0.853333354</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>SHOW FORCE TARGET</Name>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
     <Name>SEEK</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
     <Name>SPRING ENABLED</Name>
     <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>USE ADDITIVE BLENDING</Name>
+    <Value>0</Value>
 </Widget>

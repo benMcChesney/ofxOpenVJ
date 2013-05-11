@@ -77,22 +77,33 @@ void ImageSpringParticles::setupGui(float a_x, float a_y) {
     gui->addSlider("SPRING FACTOR", 0.0f , 1.0f , springFactor, width, height) ;
     gui->addSlider("FADE AMOUNT", 0.0f , 255.0f , fadeAlpha, width, height) ;
     gui->addSlider("PARTICLE ALPHA", 0.0f , 255.0f , particleAlpha, width, height) ;
-    gui->addSlider("FORCE STRENGTH", 0.0f , 400.0f , forceStrength, width, height) ;
+    gui->addSlider("FORCE STRENGTH", 0.0f , 1.0f , forceStrength, width, height) ;
     gui->addSlider("SAMPLING", 0.0f , 16 , sampling, width, height) ;
     gui->addSlider("FRAMES UNTIL SWITCH", 0.0 , 200 , numFramesUntilTransition, width, height) ;
     
-    gui->addSlider("POINT CLOUD OFFSET X" , -3000.0 , 3000.0f , pointCloudOffset.x , width , height ) ;
-    gui->addSlider("POINT CLOUD OFFSET Y" , -3000.0 , 3000.0f , pointCloudOffset.y , width , height ) ;
-    gui->addSlider("POINT CLOUD OFFSET Z" , -3000.0 , 3000.0f , pointCloudOffset.z , width , height ) ;
+    //float xWander, yWander , xWanderNoise , yWanderNoise , wanderTimeMultiplier , zWander ; 
+    gui->addSlider("X WANDER" , 0.0 , 500.0f , xWander, width , height ) ;
+    gui->addSlider("X NOISE WANDER" , 0.0 , 500.0f , xWanderNoise , width , height ) ;
+    gui->addSlider("Y WANDER" , 0.0 , 500.0f , yWander , width , height ) ;
+    gui->addSlider("Y NOISE WANDER" , 0.0 , 500.0f , yWanderNoise , width , height ) ;
+    gui->addSlider("WANDER TIME MULTIPLIER" , 0.0 , 2.0f , wanderTimeMultiplier , width , height ) ;
+    gui->addSlider("Z WANDER", 0.0f, 1500.0f,  zWander , width , height );
+    gui->addSlider("MAX PARTICLE SPEED", 0.0f, 4.0f,  maxParticleSpeed , width , height );
+    //gui->addSlider("POINT CLOUD OFFSET X" , -3000.0 , 3000.0f , pointCloudOffset.x , width , height ) ;
+    //gui->addSlider("POINT CLOUD OFFSET Y" , -3000.0 , 3000.0f , pointCloudOffset.y , width , height ) ;
+    //gui->addSlider("POINT CLOUD OFFSET Z" , -3000.0 , 3000.0f , pointCloudOffset.z , width , height ) ;
 
-    gui->addSlider("FORCE TARGET X" , -3000.0 , 3000.0f , forceTarget.x , width , height ) ;
-    gui->addSlider("FORCE TARGET Y" , -3000.0 , 3000.0f , forceTarget.y , width , height ) ;
-    gui->addSlider("FORCE TARGET Z" , -3000.0 , 3000.0f , forceTarget.z , width , height ) ;
+    //gui->addSlider("FORCE TARGET X" , -3000.0 , 3000.0f , forceTarget.x , width , height ) ;
+    //gui->addSlider("FORCE TARGET Y" , -3000.0 , 3000.0f , forceTarget.y , width , height ) ;
+    //gui->addSlider("FORCE TARGET Z" , -3000.0 , 3000.0f , forceTarget.z , width , height ) ;
 
-    
+    gui->addToggle( "SHOW FORCE TARGET" , bShowSphere ) ;
     gui->addToggle("SEEK", bSeekEnabled, height, height ) ;
-    gui->addToggle("SPRING ENABLED", bSpringEnabled, height, height ) ; 
+    gui->addToggle("SPRING ENABLED", bSpringEnabled, height, height ) ;
+    gui->addToggle("USE ADDITIVE BLENDING", bAdditiveBlend, height, height ) ; 
 
+        //bAdditiveBlend
+    //maxParticleSpeed
     
     ofAddListener( gui->newGUIEvent, this, &ImageSpringParticles::guiEvent );
 }
@@ -104,6 +115,8 @@ void ImageSpringParticles::setupParticles()
         curImageIndex = 0 ;
     ofImage nextImage = images[curImageIndex] ;
 
+    forceTarget = ofVec3f ( images[curImageIndex].getWidth() / 2 , images[curImageIndex].getHeight() / 2 , 0 )  ; 
+    
     //Retrieve the pixels from the loaded image
     ofPixels pixelsRef = nextImage.getPixelsRef() ; 
     unsigned char * pixels = nextImage.getPixels() ;
@@ -147,14 +160,36 @@ void ImageSpringParticles::guiEvent(ofxUIEventArgs &e) {
     if ( name == "POINT CLOUD OFFSET Y" ) pointCloudOffset.y = (int)((ofxUISlider*)e.widget)->getScaledValue() ;
     if ( name == "POINT CLOUD OFFSET Z" ) pointCloudOffset.z = (int)((ofxUISlider*)e.widget)->getScaledValue() ;
 
-    if ( name == "FORCE TARGET X" ) forceTarget.x = (int)((ofxUISlider*)e.widget)->getScaledValue() ;
-    if ( name == "FORCE TARGET X" ) forceTarget.y = (int)((ofxUISlider*)e.widget)->getScaledValue() ;
-    if ( name == "FORCE TARGET X" ) forceTarget.z = (int)((ofxUISlider*)e.widget)->getScaledValue() ;
+    //if ( name == "FORCE TARGET X" ) forceTarget.x = (int)((ofxUISlider*)e.widget)->getScaledValue() ;
+    //if ( name == "FORCE TARGET X" ) forceTarget.y = (int)((ofxUISlider*)e.widget)->getScaledValue() ;
+    //if ( name == "SHOW FORCE TARGET") forceTarget.z = (int)((ofxUISlider*)e.widget)->getScaledValue() ;
 
     //toggles
     if ( name == "SEEK" ) bSeekEnabled = ((ofxUIToggle*)e.widget)->getValue() ;
     if ( name == "SPRING ENABLED" ) bSpringEnabled = ((ofxUIToggle*)e.widget)->getValue() ;
+    if ( name == "SHOW FORCE TARGET" ) bShowSphere = ((ofxUIToggle*)e.widget)->getValue() ;
+    if ( name == "USE ADDITIVE BLENDING" ) bAdditiveBlend = ((ofxUIToggle*)e.widget)->getValue() ;
+ 
+    if ( name == "X WANDER" ) xWander = ((ofxUISlider*)e.widget)->getScaledValue() ;
+    if ( name == "X NOISE WANDER" ) xWanderNoise = ((ofxUISlider*)e.widget)->getScaledValue() ;
+    if ( name == "Y WANDER" ) yWander = ((ofxUISlider*)e.widget)->getScaledValue() ;
+    if ( name == "Y NOISE WANDER" ) yWanderNoise = ((ofxUISlider*)e.widget)->getScaledValue() ;
+    if ( name == "WANDER TIME MULTIPLIER" ) wanderTimeMultiplier = ((ofxUISlider*)e.widget)->getScaledValue() ;
+    if ( name == "Z WANDER" ) zWander = ((ofxUISlider*)e.widget)->getScaledValue() ;
+    if ( name == "MAX PARTICLE SPEED" ) maxParticleSpeed = ((ofxUISlider*)e.widget)->getScaledValue() ;
+     
+    //gui->addSlider("MAX PARTICLE SPEED", 0.0f, 25.0f,  maxParticleSpeed , width , height );
+    //gui->addToggle( "SHOW FORCE TARGET" , bShowSphere ) ;
     
+    /*
+     gui->addToggle("USE ADDITIVE BLENDING", bAdditiveBlend, height, height ) ;
+     gui->addSlider("X WANDER" , 0.0 , 3000.0f , xWander, width , height ) ;
+     gui->addSlider("X NOISE WANDER" , 0.0 , 3000.0f , xWanderNoise , width , height ) ;
+     gui->addSlider("Y WANDER" , 0.0 , 3000.0f , yWander , width , height ) ;
+     gui->addSlider("Y NOISE WANDER" , 0.0 , 3000.0f , yWanderNoise , width , height ) ;
+     gui->addSlider("WANDER TIME MULTIPLIER" , 0.0 , 3000.0f , wanderTimeMultiplier , width , height ) ;
+     gui->addSlider("Z WANDER", 0.0f, 500.0f,  zWander , width , height );
+     */
 }
 
 //--------------------------------------------------------------
@@ -178,11 +213,15 @@ void ImageSpringParticles::update() {
     float dist ;            //distance from particle to mouse ( as the crow flies )
     float ratio ;           //Ratio of how strong the effect is = 1 + (-dist/maxDistance) ;
     
-    float xWander = 425.0f ;
-    float yWander = 250.0f ;
-    float zWander = 125.0f ;
+   
 
-    const ofVec3f mousePosition = forceTarget ; //ofVec3f()  ; //() ; // sin ( ofGetElapsedTimef() ) * xWander  , cos ( ofGetElapsedTimef() ) * yWander , 0 )  + center ;
+   // xWander, yWander , xWanderNoise , yWanderNoise , wanderTimeMultiplier , zWander ;
+    
+    float _time = ofGetElapsedTimef() * wanderTimeMultiplier ;
+    float _x = sin( _time ) * xWander + ofNoise ( _time * 0.12 ) * xWanderNoise ;
+    float _y = cos( _time * 0.35 ) * yWander + ofNoise ( _time ) * yWanderNoise ;
+    float _z = cos( _time ) * zWander ; 
+    forcePosition = forceTarget + ofVec3f( _x , _y , _z ) ; //ofVec3f()  ; //() ; // sin ( ofGetElapsedTimef() ) * xWander  , cos ( ofGetElapsedTimef() ) * yWander , 0 )  + center ;
     
     float _forceStrength = forceStrength * low ;
     //cout << "force Strength : " << _forceStrength << endl ;
@@ -192,6 +231,10 @@ void ImageSpringParticles::update() {
     //Allocate and retrieve mouse values once.
     const ofVec3f origin = ofVec3f(0,0,0);
     
+    if ( low < 0.15 )
+        bSeekEnabled = true ;
+    else
+        bSeekEnabled = false ;
     //Create an iterator to cycle through the vector
     std::vector<Particle>::iterator p ;
     for ( p = particles.begin() ; p != particles.end() ; p++ )
@@ -201,11 +244,11 @@ void ImageSpringParticles::update() {
         //reset acceleration every frame
         p->acceleration = ofVec3f() ;
         
-        diff = (mousePosition - p->position).normalize() ;
+        diff = (forcePosition - p->position).normalize() ;
         diff *= _forceStrength ; 
         
         
-        dist = mousePosition.distance( p->position ) ;
+        dist = forcePosition.distance( p->position ) ;
         
         //If within the zone of interaction
         if ( dist * .5 < _forceRadius )
@@ -213,18 +256,23 @@ void ImageSpringParticles::update() {
             ratio = -1. + dist / _forceRadius ;
             //Repulsion
             if ( bSeekEnabled )
-                p->acceleration -= ( diff * ratio) ;
+                p->acceleration -= ( diff * _forceStrength) ;
             //Attraction
             else
-                p->acceleration += ( diff * ratio ) ;
+                p->acceleration += ( diff * _forceStrength ) ;
         }
         if ( bSpringEnabled )
         {
             //Move back to the original position
-            p->acceleration += springFactor * (p->spawnPoint - p->position );
+            p->acceleration += (springFactor * (p->spawnPoint - p->position ));
         }
         
-        p->velocity += p->acceleration * ratio ;
+        ofVec3f v = p->acceleration * ratio ;
+        v.x = ofClamp( v.x , -maxParticleSpeed , maxParticleSpeed ) ;
+        v.y = ofClamp( v.y , -maxParticleSpeed , maxParticleSpeed ) ;
+        v.z = ofClamp( v.z , -maxParticleSpeed , maxParticleSpeed ) ;
+       
+        p->velocity += v; 
         p->position += p->velocity ;
     }
     
@@ -248,9 +296,11 @@ void ImageSpringParticles::draw()
     ofRect( -1000, -1000 , 3000, 3000 ) ;
     fadeFbo.begin() ;
     ofEnableAlphaBlending() ;
+    
     ofSetColor( 0 , 0 , 0 , fadeAlpha ) ;
     ofRect( -1000 , -1000 , 3000, 3000 ) ;
-
+    if ( bAdditiveBlend ) 
+    ofEnableBlendMode( OF_BLENDMODE_ADD ) ;
     cameraMan->begin() ; 
  
         
@@ -258,7 +308,7 @@ void ImageSpringParticles::draw()
         ofPushMatrix() ;
         //Offset by the center so that our openGL pivot point is in the center of the screen
         ofPoint center = ofPoint ( ofGetWidth() /2 , ofGetHeight() /2 ) ;
-        ofTranslate( pointCloudOffset ) ; 
+        ofTranslate( images[ curImageIndex ].getWidth() / -2 , images[ curImageIndex ].getHeight()/-2 , cameraMan->zOffset ) ;
       
         //Draw particles
         //Begin the openGL Drawing Mode
@@ -279,9 +329,16 @@ void ImageSpringParticles::draw()
         ofPopMatrix() ;
         glEnd();
 
-
+        ofEnableAlphaBlending() ;
+    
+        ofSetColor( 255 ) ;
+    if ( bShowSphere )
+        ofSphere( forcePosition , 5 ) ;
+    
         ofPopMatrix() ;
-    cameraMan->end() ; 
+    cameraMan->end() ;
+    
+   
 
     fadeFbo.end() ;
  
