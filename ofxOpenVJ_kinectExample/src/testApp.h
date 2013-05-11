@@ -7,7 +7,7 @@
 #include "CameraManager.h"
 #include "Tweenzor.h"
 #include "FftManager.h"
-
+#include "ofxSyphon.h"
 
 class testApp : public ofBaseApp{
 
@@ -55,4 +55,5 @@ class testApp : public ofBaseApp{
     
     ofFbo fbo;
     
+    ofxSyphonServer outputSyphonServer ;
 };

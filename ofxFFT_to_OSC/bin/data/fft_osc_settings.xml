@@ -1,5 +1,5 @@
 <prefs>
-    <Send_Full_Spectrum>true</Send_Full_Spectrum>
+    <Send_Full_Spectrum>false</Send_Full_Spectrum>
 </prefs>
 <Trigger>
     <name>low</name>

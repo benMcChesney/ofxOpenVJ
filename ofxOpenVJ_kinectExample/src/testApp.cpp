@@ -3,12 +3,14 @@
 //--------------------------------------------------------------
 void testApp::setup() {
 
-    Tweenzor::init( ) ; 
+    Tweenzor::init( ) ;
+    
 	ofBackground(255*.15);
 	ofSetFrameRate(60);
-    
 	ofSetVerticalSync(true);
 	ofSetEscapeQuitsApp(false);
+    
+    ofSetWindowTitle( "ofxOpenVJ Example" ) ; 
 	ofEnableSmoothing();
 	ofEnableAlphaBlending();
     
@@ -89,7 +91,7 @@ void testApp::setup() {
     // activate the first scene //
     scenes[activeSceneIndex]->activate();
     
-    
+    outputSyphonServer.setName( "ofxOpenVJ" ) ; 
 }
 
 //--------------------------------------------------------------
@@ -168,6 +170,8 @@ void testApp::draw() {
     if(bShoveOver) fbo.draw(fboShoveX, 0);
     else fbo.draw(0, 0);
     ofEnableAlphaBlending();
+    
+    outputSyphonServer.publishScreen() ; 
 
 }
 

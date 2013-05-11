@@ -29,5 +29,9 @@ Community addons :
 Contributors : 
 	Ben McChesney	
 	Nick Hardemann
+	
+If you have questions, please contact ben.mcchesney@gmail.com 
+
+If you find a bug / have a feature request please add an issue here on github.
 
 

@@ -1,7 +1,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>KINECT_CAMERA_ANGLE</Name>
-    <Value>-0.200000763</Value>
+    <Value>0.399999619</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -16,14 +16,14 @@
 <Widget>
     <Kind>6</Kind>
     <Name>CV_ThreshSlider</Name>
-    <HighValue>80.750000000</HighValue>
-    <LowValue>22.100000381</LowValue>
+    <HighValue>76.500000000</HighValue>
+    <LowValue>0.000000000</LowValue>
 </Widget>
 <Widget>
     <Kind>6</Kind>
     <Name>ThreshSlider</Name>
     <HighValue>7500.000000000</HighValue>
-    <LowValue>2425.000000000</LowValue>
+    <LowValue>700.000000000</LowValue>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -59,7 +59,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>POINT CLOUD Z</Name>
-    <Value>-146.666625977</Value>
+    <Value>213.333251953</Value>
 </Widget>
 <Widget>
     <Kind>17</Kind>
@@ -85,5 +85,5 @@
     <Kind>6</Kind>
     <Name>BLOB SIZE</Name>
     <HighValue>194445.000000000</HighValue>
-    <LowValue>22320.000000000</LowValue>
+    <LowValue>6255.000000000</LowValue>
 </Widget>
