@@ -28,7 +28,9 @@ void TriangleKinectShader::setup() {
     redrawAlpha = 0.0f ; 
     
     trailFbo.allocate( getWidth() , getHeight() , GL_RGBA ) ;
-    
+    trailFbo.begin() ;
+    ofClear( 0 , 0, 0, 1 ) ;
+    trailFbo.end() ; 
      string path = ofToDataPath( "../../../../ofxOpenVJ/shaders/" ) ;
     shader.load( path + "basic.vert", path + "PointCloud.frag" ) ;
 }
@@ -141,25 +143,27 @@ void TriangleKinectShader::update() {
 //--------------------------------------------------------------
 void TriangleKinectShader::draw() {
 
-    trailFbo.begin () ;
-    
+        
     if ( bToggleTrails )
     {
-        
-        ofEnableBlendMode(OF_BLENDMODE_ADD ) ;
-        ofSetColor( 255 , 255 , 255 , redrawAlpha ) ;
-        trailFbo.draw( 0 , 0 );
-        
-        ofEnableAlphaBlending() ; 
-        ofSetColor( 0 , 0 , 0, fboFadeAmount ) ;
-        ofRect( 0 , 0,  getWidth() , getHeight() ) ;
+        glDisable( GL_DEPTH_TEST ) ; 
+        ofSetColor( 0 , 0 , 0 ) ;
+        ofRect( -1000, -1000 , 3000, 3000 ) ;
+        trailFbo.begin () ;
+
+        ofEnableAlphaBlending() ;
+        ofSetColor( 0 , 0 , 0 , fboFadeAmount ) ;
+        ofRect( -1000 , -1000 , 3000, 3000 ) ;
+
     }
     else
     {
+        trailFbo.begin () ;
         ofClear( 1 , 1 , 1 , 0 ) ;
     }
     
     ofSetColor( 255 , 255 ,255 ) ;
+    glEnable( GL_DEPTH_TEST ) ;
     cameraMan->begin();
     ofPushMatrix() ;
     ofTranslate(0 , 0 , cameraMan->zOffset ) ;
@@ -174,9 +178,10 @@ void TriangleKinectShader::draw() {
         ofTranslate( 0 , ofGetHeight() ) ;
         ofScale( 1 , -1 , 1 ) ;
         trailFbo.draw(0 , 0 ) ;
+    /*
         ofEnableBlendMode(OF_BLENDMODE_ADD ) ;
         ofSetColor( 255 , 255 , 255 , redrawAlpha ) ;
-        trailFbo.draw( 0 , 0 );
+        trailFbo.draw( 0 , 0 );*/
     ofPopMatrix( ) ;
 }
 

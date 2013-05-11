@@ -3,6 +3,10 @@
 
 //--------------------------------------------------------------
 void testApp::setup(){
+
+    
+    ofBackground( 80 , 80 , 80 ) ;
+    
 	int bufferSize = 512;
 	ofSoundStreamSetup(0, 1, this, 44100, bufferSize, 4);
     fftManager.setup ( ) ;

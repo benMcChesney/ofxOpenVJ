@@ -1,37 +1,37 @@
 <Widget>
     <Kind>4</Kind>
     <Name>HUE TIME MULTIPLIER</Name>
-    <Value>0.783333302</Value>
+    <Value>0.266666681</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>FBO FADE AMOUNT</Name>
-    <Value>62.050003052</Value>
+    <Value>133.449996948</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>SHADER FLOAT 1</Name>
-    <Value>6.000000000</Value>
+    <Value>3.333333492</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>SHADER FLOAT 2</Name>
-    <Value>22.000000000</Value>
+    <Value>18.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>SHADER FLOAT 3</Name>
-    <Value>0.000000000</Value>
+    <Value>17.333332062</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>SHADER FLOAT 4</Name>
-    <Value>33.333335876</Value>
+    <Value>0.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>BOX SIZE</Name>
-    <Value>11.743333817</Value>
+    <Value>4.092000008</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -46,5 +46,5 @@
 <Widget>
     <Kind>2</Kind>
     <Name>USE SHADER</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>

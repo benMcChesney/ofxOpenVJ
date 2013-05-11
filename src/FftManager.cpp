@@ -51,8 +51,6 @@ void FftManager::setup ( bool bListen )
     midRange = 0.0f ;
     highRange = 0.0f ;
     
-    ofBackground(0, 0, 0);
-    
     loadSettings();
     
     ofSetFrameRate(30);
@@ -195,7 +193,6 @@ void FftManager::loadSettings(){
             newTrigger.setup( lowBand , highBand ) ;
 			newTrigger.name = XML.getValue("Trigger:name", "error", i);
 			newTrigger.height = XML.getValue("Trigger:height", 0.5f, i);
-            //newTrigger.minFreq = XML.getValue("Trigger:minFreq", 0.0f, i ) ;
             newTrigger.maxFreq = XML.getValue("Trigger:maxFreq", 10.0f, i ) ;
             
 			newTrigger.hit = false;
@@ -752,22 +749,19 @@ void FftManager::setupOfxUI()
 	float xInit = OFX_UI_GLOBAL_WIDGET_SPACING;
     float length = 200 ;
 	
-    gui = new ofxUICanvas(0, 0, ofGetWidth() , 400 );
+    gui = new ofxUICanvas(0, 0, ofGetWidth() , 300 );
 	
-    gui->addWidgetDown(new ofxUIToggle(50,50,bClearXml, "CLEAR XML" ) );
-    gui->addWidgetRight(new ofxUIToggle(50,50,sendFullSpectrum, "SEND FULL FFT" ) );
-    gui->addWidgetRight(new ofxUIToggle(50,50,bListenToOsc, "LISTEN TO OSC" ) );
+    gui->addToggle( "CLEAR XML" , bClearXml );
+    gui->addToggle( "SEND FULL FFT" , sendFullSpectrum );
+    gui->addToggle( "LISTEN TO OSC" , bListenToOsc );
+    gui->addToggle( "USE EQ" , useEQ );
+    gui->addToggle( "EDIT TRIGGERS" , bEditable );
     
-    gui->addWidgetRight(new ofxUIToggle(50,50,useEQ, "USE EQ" ) );
+    gui->addSlider("AMPLITUDE SCALE" , 0.0 , 10.0f , amplitudeScale, length , dim ) ; 
+    gui->addSlider("TRIGGER DELAY" , 0.0, 0.50f , triggerDelay, length , dim ) ;
+    //gui->addWidgetDown(new ofxUISlider(length-xInit,dim, 0.0,20.0f, amplitudeScale , "AMPLITUDE SCALE"));
+    //gui->addWidgetRight(new ofxUISlider(length-xInit,dim, 0.0,1.20f, triggerDelay , "TRIGGER DELAY"));
     
-    
-    
-    gui->addWidgetDown(new ofxUISlider(length-xInit,dim, 0.0,20.0f, amplitudeScale , "AMPLITUDE SCALE"));
-    gui->addWidgetRight(new ofxUISlider(length-xInit,dim, 0.0,1.20f, triggerDelay , "TRIGGER DELAY"));
-    
-    gui->addWidgetRight(new ofxUIToggle(50,50,bEditable, "EDIT TRIGGERS" ) ) ; 
-  
-    //    amplitudeScale = 1.0f ;
     ofAddListener(gui->newGUIEvent,this,&FftManager::guiEvent);
     gui->loadSettings("GUI/fft.xml") ;
     
