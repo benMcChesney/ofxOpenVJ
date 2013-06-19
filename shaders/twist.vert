@@ -9,7 +9,7 @@ uniform float time ;
 
 vec4 calcLight() {
 	vec3 normal, lightDir;
-	vec4 diffuse;
+	vec4 diffuse = vec4( 1.0 , 1.0 , 1.0 , 1.0 ) ; 
     
 	float NdotL;
     
@@ -29,7 +29,7 @@ vec4 calcLight() {
     
 	NdotL = max(dot(normal, lightDir), 0.0);
     
-	return vec4(NdotL * gl_LightSource[0].diffuse.rgb,1.);
+	return vec4(NdotL * vec3( 0.9 , 0.9 , 1.9 ) ,1.);
 }
 
 float weird(float t) {
@@ -38,8 +38,8 @@ float weird(float t) {
 
 vec4 tentacle(float amount, float freq, float offset,  vec4 v)
 {	vec4 oldV = v;
-	offset=offset*0.05;
-	v.x*=tan(sin(oldV.y*freq+offset)*0.07);
+	offset =offset*0.05;
+	v.x*=tan(sin(oldV.y*freq+offset)*0.17);
 	v.z*=weird(v.x*freq+offset*0.17);
 	v.y*=weird(v.z*freq+offset*0.27);
 	return mix(oldV, v,amount);
@@ -49,7 +49,7 @@ void main () {
 	vec4 light = calcLight();
 	float lightAmount=length(light.rgb);
     
-	gl_FrontColor =  light * gl_Color;
+	gl_FrontColor =  light * 5.0 * gl_Color;
     
 	vec4 objSpace = tentacle(var1,var2,var3,gl_Vertex);
 	//objSpace *= objSpaceScale;

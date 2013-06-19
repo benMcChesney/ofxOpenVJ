@@ -50,5 +50,7 @@ public:
     float hueTimeMultiplier ;
     float rotationTimeMultiplier ;
     
+    float hueOffsetRange ;
+    float yColorOffset ; 
     
 };

@@ -13,7 +13,7 @@ void CameraManager::setup() {
     _latitude   = 1.f;
     setCenter(0, 0, 0);
     
-    disableMouseInput();
+    cam.disableMouseInput();
     
     _numBeatHits    = 0;
     
@@ -22,6 +22,7 @@ void CameraManager::setup() {
     
     _distance = _maxDistance;
     
+
     
 }
 
@@ -33,6 +34,16 @@ void CameraManager::loadSettings() {
 //--------------------------------------------------------------
 void CameraManager::saveSettings() {
     gui->saveSettings("GUI/camera_.xml");
+}
+
+void CameraManager::begin()
+{
+    cam.begin() ;
+}
+
+void CameraManager::end()
+{
+    cam.end() ; 
 }
 
 //--------------------------------------------------------------
@@ -85,9 +96,9 @@ void CameraManager::update() {
     _camParticle.acc.set(0,0,0);
 	//target.acc.set(0, 0, 0);
 	
-	setPosition(_camParticle);
+	cam.setPosition(_camParticle);
 	
-	lookAt( _target, ofVec3f(0,1,0) );
+	cam.lookAt( _target, ofVec3f(0,1,0) );
 }
 
 //--------------------------------------------------------------
@@ -281,6 +292,7 @@ void CameraManager::setupGui( float a_x, float a_y ) {
     
     gui->addSlider( "CAMERA TARGET Z", -1000 , 1000 , &cameraTargetZ ,  GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );
     
+ 
     //cameraTargetZ
     gui->setScrollArea(a_x, a_y, 320, ofGetHeight() - 10 - a_y);
     

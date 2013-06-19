@@ -1,7 +1,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>KINECT_CAMERA_ANGLE</Name>
-    <Value>0.399999619</Value>
+    <Value>-12.800001144</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -16,50 +16,35 @@
 <Widget>
     <Kind>6</Kind>
     <Name>CV_ThreshSlider</Name>
-    <HighValue>76.500000000</HighValue>
+    <HighValue>60.349998474</HighValue>
     <LowValue>0.000000000</LowValue>
 </Widget>
 <Widget>
     <Kind>6</Kind>
     <Name>ThreshSlider</Name>
     <HighValue>7500.000000000</HighValue>
-    <LowValue>700.000000000</LowValue>
+    <LowValue>0.000000000</LowValue>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>Kinect FOV</Name>
-    <Value>74.573333740</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>Mesh Offset X</Name>
-    <Value>3000.000000000</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>Mesh Offset Y</Name>
-    <Value>0.000000000</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>Mesh Offset Z</Name>
-    <Value>720.000000000</Value>
+    <Value>81.693328857</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>Mesh Step</Name>
-    <Value>4.356666565</Value>
+    <Value>4.166666508</Value>
 </Widget>
 <Widget>
     <Kind>6</Kind>
     <Name>POINT CLOUD RANGE</Name>
-    <HighValue>1346.153808594</HighValue>
+    <HighValue>1634.615356445</HighValue>
     <LowValue>0.000000000</LowValue>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>POINT CLOUD Z</Name>
-    <Value>213.333251953</Value>
+    <Value>-1026.666625977</Value>
 </Widget>
 <Widget>
     <Kind>17</Kind>
@@ -72,18 +57,53 @@
     <Value>0</Value>
 </Widget>
 <Widget>
-    <Kind>17</Kind>
-    <Name>Z AXIS</Name>
-    <Value>1</Value>
-</Widget>
-<Widget>
     <Kind>21</Kind>
     <Name>Y AXIS ROT</Name>
-    <Value>34.152389526</Value>
+    <Value>5.355819702</Value>
 </Widget>
 <Widget>
     <Kind>6</Kind>
     <Name>BLOB SIZE</Name>
-    <HighValue>194445.000000000</HighValue>
-    <LowValue>6255.000000000</LowValue>
+    <HighValue>142425.000000000</HighValue>
+    <LowValue>900.000000000</LowValue>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>MIN PIXEL BRIGHTNESS</Name>
+    <Value>225.250000000</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>FXAA PASS</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>BLOOM PASS</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>DOF PASS</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>KALEIDOSCOPE PASS</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>NOISE WARP PASS</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>PIXELATE PASS</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>EDGE PASS</Name>
+    <Value>0</Value>
 </Widget>

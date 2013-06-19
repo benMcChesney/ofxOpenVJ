@@ -18,8 +18,11 @@
 #include "AlienTunnelScene.h"
 #include "KinectVertexShader.h"
 #include "HexTunnelScene.h"
+#include "KinectVertexShader_other.h"
 #include "TriangleTunnelScene.h"
-
+#include "SimpleMaskScene.h"
+#include "CircleMaskScene.h"
+#include "AlienTunnelMaskScene.h"
 
 
 

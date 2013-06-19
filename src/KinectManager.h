@@ -12,7 +12,7 @@
 #include "ofxKinect.h"
 #include "ofxUI.h"
 #include "ofxOpenCv.h"
-
+#include "ofxPostProcessing.h"
 class KinectManager {
 public:
     KinectManager();
@@ -76,10 +76,19 @@ public:
     
     ofVec3f             offsetVec;
     
+    //Global settings for point clouds
     float               pointCloudMaxZ , pointCloudMinZ ;
     float               pointCloudZOffset ;
     bool                bFindHoles ;
     float               minBlobSize , maxBlobSize ;
+    
+    //In dark rooms the colors don't get picked up as well so we have to adjust
+    //the raw RGB color
+    unsigned char       minimumPixBrightness ;
+    
+    //ofxPostProcessing post ;
+    
+    void disableAllPostProcessing() ; 
     
 protected:
     ofVec3f inverseAxes;

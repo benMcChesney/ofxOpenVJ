@@ -49,6 +49,9 @@ public:
     float zForce ; 
     float radius ;
     float spiralFactor ;
+    float specialZOffset ;
+    float noiseZMultiplier ;
     
+    int resampleLineAmount ;
     int numTooManyOffset ; 
 };

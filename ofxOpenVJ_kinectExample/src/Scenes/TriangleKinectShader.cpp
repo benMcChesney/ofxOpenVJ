@@ -164,13 +164,16 @@ void TriangleKinectShader::draw() {
     
     ofSetColor( 255 , 255 ,255 ) ;
     glEnable( GL_DEPTH_TEST ) ;
+//    kinectMan->post.begin( cameraMan->cam ) ;
     cameraMan->begin();
     ofPushMatrix() ;
     ofTranslate(0 , 0 , cameraMan->zOffset ) ;
     drawPointCloud();
     ofPopMatrix();
 
-    cameraMan->end();
+    cameraMan->end() ; 
+    //kinectMan->post.end() ;
+
     trailFbo.end() ;
     
     ofSetColor( 255 , 255 , 255 ) ;
@@ -216,7 +219,7 @@ void TriangleKinectShader::drawPointCloud( )
             
 			if( kinectMan->kinect.getDistanceAt(x, y) > 0)
             {
-                ofVec3f vertex = kinectMan->kinect.getWorldCoordinateAt(x, y) ;
+                ofVec3f vertex = kinectMan->getWorldCoordAt(x, y) ;
 
                 if ( vertex.z > kinectMan->pointCloudMinZ && vertex.z < kinectMan->pointCloudMaxZ )
                 {
@@ -224,31 +227,51 @@ void TriangleKinectShader::drawPointCloud( )
                         closestPoint = vertex ;
                     float zOffset = noiseStep ;
                    // vertex.z += zOffset ;
-                 
-                    float offset = -1 ;
-                    if ( numTriangles % 2 == 0 )
-                        offset = 1 ; 
                     
-                    offset *= low ; 
-                    ofColor _col = kinectMan->kinect.getColorAt( x , y ) ;
-                    float hue = _col.getHue() + hueOffset.getHue() ;
-                    if ( hue > 255 ) hue -= 255 ; 
-                    ofColor col = ofColor::fromHsb( hue  , 255 , 255 ) ;
-
+                    float index = x + y * h ;
+                    float offset = ofSignedNoise( ofGetElapsedTimef() + index ) ;
+                    if ( numTriangles % 2 == 0 )
+                        offset *= -1 ; 
+                    
+                    offset *= low ;
+                    
+                    float kinectHue = kinectMan->kinect.getColorAt( x , y ).getHue() ;
+                    //float ofMap(float value, float inputMin, float inputMax, float outputMin, float outputMax, bool clamp) {
+                    float hue = ((int)(ofGetElapsedTimef() * meshHueTimeMultiplier )) % 255  + kinectHue ; 
+                    
+                    float zHueOffset = ofMap( vertex.z , kinectMan->pointCloudMinZ , kinectMan->pointCloudMaxZ ,  0 , 254.0f ) ;
+                    hue += zHueOffset ; 
+                    
+                    while ( hue > 254 )
+                    {
+                        hue -= 255.0f ;
+                    }
+                
+                    
+//                    unsigned char _b = _col.getBrightness() ;
+                    //ofColor col = ofColor::fromHsb( hue  , _col.getSaturation() ,  _b  ) ;
+                  //  if ( _b < kinectMan->minimumPixBrightness )
+                  //      _col.setBrightness( kinectMan->minimumPixBrightness ) ;
+                   
+                    //_col.setHue( zHueOffset ) ;
+                    //_col.setSaturation( 255 ) ;
+                    
+                    ofColor _col = ofColor::fromHsb( hue , 255 , kinectMan->minimumPixBrightness ) ;
+                    //cout << "hue : " << hue << endl ;
                     ofVec3f _v = vertex ;
                     mesh.addVertex( vertex );
-                    mesh.addColor( col );
+                    mesh.addColor( _col );
 
                
-                    vertex.x -= ofSignedNoise( _time ) * ( 1.0 + diff ) * triangleSizeMax + triangleSizeMin ;
-                    vertex.y += ofSignedNoise ( _time ) * ( offset * 1.0f + diff  ) * triangleSizeMax + triangleSizeMin ;
+                    vertex.x -= offset * ( 1.0 + diff ) * triangleSizeMax + triangleSizeMin ;
+                    vertex.y += offset * ( 1.0f + diff  ) * triangleSizeMax + triangleSizeMin ;
                     mesh.addVertex( vertex );
-                    mesh.addColor( col );
+                    mesh.addColor( _col );
                     
-                    _v.x += ofSignedNoise( _time ) * ( 1.0 + diff ) * triangleSizeMax + triangleSizeMin ;
-                    _v.y += ofSignedNoise ( _time ) * ( offset * 1.0f + diff ) * triangleSizeMax + triangleSizeMin ;
+                    _v.x += offset * ( 1.0 + diff ) * triangleSizeMax + triangleSizeMin ;
+                    _v.y += offset * ( 1.0f + diff ) * triangleSizeMax + triangleSizeMin ;
                     mesh.addVertex( _v );
-                    mesh.addColor( col );
+                    mesh.addColor( _col );
 
                     numTriangles++ ;
                 }

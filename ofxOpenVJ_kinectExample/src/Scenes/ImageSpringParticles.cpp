@@ -89,14 +89,9 @@ void ImageSpringParticles::setupGui(float a_x, float a_y) {
     gui->addSlider("WANDER TIME MULTIPLIER" , 0.0 , 2.0f , wanderTimeMultiplier , width , height ) ;
     gui->addSlider("Z WANDER", 0.0f, 1500.0f,  zWander , width , height );
     gui->addSlider("MAX PARTICLE SPEED", 0.0f, 4.0f,  maxParticleSpeed , width , height );
-    //gui->addSlider("POINT CLOUD OFFSET X" , -3000.0 , 3000.0f , pointCloudOffset.x , width , height ) ;
-    //gui->addSlider("POINT CLOUD OFFSET Y" , -3000.0 , 3000.0f , pointCloudOffset.y , width , height ) ;
-    //gui->addSlider("POINT CLOUD OFFSET Z" , -3000.0 , 3000.0f , pointCloudOffset.z , width , height ) ;
-
-    //gui->addSlider("FORCE TARGET X" , -3000.0 , 3000.0f , forceTarget.x , width , height ) ;
-    //gui->addSlider("FORCE TARGET Y" , -3000.0 , 3000.0f , forceTarget.y , width , height ) ;
-    //gui->addSlider("FORCE TARGET Z" , -3000.0 , 3000.0f , forceTarget.z , width , height ) ;
-
+    gui->addSlider("SPECIAL Z OFFSET", -1000.0f, 1000.0f,  specialZOffset , width , height );
+    
+    
     gui->addToggle( "SHOW FORCE TARGET" , bShowSphere ) ;
     gui->addToggle("SEEK", bSeekEnabled, height, height ) ;
     gui->addToggle("SPRING ENABLED", bSpringEnabled, height, height ) ;
@@ -155,15 +150,8 @@ void ImageSpringParticles::guiEvent(ofxUIEventArgs &e) {
     if ( name == "SAMPLING" ) sampling = (int)((ofxUISlider*)e.widget)->getScaledValue() ;
     if ( name == "FRAMES UNTIL SWITCH" ) numFramesUntilTransition = (int)((ofxUISlider*)e.widget)->getScaledValue() ;
 
-    
-    if ( name == "POINT CLOUD OFFSET X" ) pointCloudOffset.x = (int)((ofxUISlider*)e.widget)->getScaledValue() ;
-    if ( name == "POINT CLOUD OFFSET Y" ) pointCloudOffset.y = (int)((ofxUISlider*)e.widget)->getScaledValue() ;
-    if ( name == "POINT CLOUD OFFSET Z" ) pointCloudOffset.z = (int)((ofxUISlider*)e.widget)->getScaledValue() ;
-
-    //if ( name == "FORCE TARGET X" ) forceTarget.x = (int)((ofxUISlider*)e.widget)->getScaledValue() ;
-    //if ( name == "FORCE TARGET X" ) forceTarget.y = (int)((ofxUISlider*)e.widget)->getScaledValue() ;
-    //if ( name == "SHOW FORCE TARGET") forceTarget.z = (int)((ofxUISlider*)e.widget)->getScaledValue() ;
-
+    if ( name == "SPECIAL Z OFFSET" ) specialZOffset = ((ofxUISlider*)e.widget)->getScaledValue() ;
+    //gui->addSlider("SPECIAL Z OFFSET", -1000.0f, 1000.0f,   , width , height );
     //toggles
     if ( name == "SEEK" ) bSeekEnabled = ((ofxUIToggle*)e.widget)->getValue() ;
     if ( name == "SPRING ENABLED" ) bSpringEnabled = ((ofxUIToggle*)e.widget)->getValue() ;
@@ -301,14 +289,14 @@ void ImageSpringParticles::draw()
     ofRect( -1000 , -1000 , 3000, 3000 ) ;
     if ( bAdditiveBlend ) 
     ofEnableBlendMode( OF_BLENDMODE_ADD ) ;
-    cameraMan->begin() ; 
- 
+    cameraMan->begin() ;
+    //kinectMan->post.begin( cameraMan->cam )  ;
         
     ofPushMatrix() ;
         ofPushMatrix() ;
         //Offset by the center so that our openGL pivot point is in the center of the screen
         ofPoint center = ofPoint ( ofGetWidth() /2 , ofGetHeight() /2 ) ;
-        ofTranslate( images[ curImageIndex ].getWidth() / -2 , images[ curImageIndex ].getHeight()/-2 , cameraMan->zOffset ) ;
+        ofTranslate( images[ curImageIndex ].getWidth() / -2 , images[ curImageIndex ].getHeight()/-2 , specialZOffset ) ;
       
         //Draw particles
         //Begin the openGL Drawing Mode
@@ -337,7 +325,7 @@ void ImageSpringParticles::draw()
     
         ofPopMatrix() ;
     cameraMan->end() ;
-    
+    //kinectMan->post.end( ) ;
    
 
     fadeFbo.end() ;

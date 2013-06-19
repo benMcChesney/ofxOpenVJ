@@ -9,8 +9,10 @@
 #include "ofMain.h"
 #include "ofxParticle3D.h"
 #include "ofxUI.h"
+#include "ofxPostProcessing.h"
 
-class CameraManager : public ofEasyCam {
+class CameraManager
+{
 public:
     
     void setup();
@@ -44,7 +46,13 @@ public:
     
     float zOffset ;
     float cameraTargetZ ; 
-    float camMovementFactor ; 
+    float camMovementFactor ;
+    
+    ofEasyCam cam ;
+    
+    void begin() ;
+    void end() ; 
+    
 private:
     
     

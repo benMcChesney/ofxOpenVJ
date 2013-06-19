@@ -55,7 +55,7 @@ void main(void)
     float d=.0;
     
     //First raymarching
-    for(int i=0;i<4;i++)
+    for(int i=0;i<25;i++)
     {
         d=o(q);
         q+=d*dir ;
@@ -63,6 +63,7 @@ void main(void)
     pp=q;
     float f=length(q-org)*0.02;
     
+    /*
     //Second raymarching (reflection)
     dir=reflect(dir,gn(q));
     q+=dir;
@@ -70,11 +71,11 @@ void main(void)
     {
         d=o(q);
         q+=d*dir;
-    }
+    }*/
     c=max(dot(gn(q),vec3(.1,.1,.0)),.0)+vec4(.3,cos(time*.5)*.5+.5,sin(time*.5)*.5+.5,1.)*min(length(q-org)*.04,1.);
     
     //Ribbon Color
-    if(oa(pp)>ob(pp))c=mix(c,vec4(cos(time*.3)*.5+.5,cos(time*.2)*.5+.5,tan(time*.3)*.5+.5,1.),.3);
+   // if(oa(pp)>ob(pp))c=mix(c,vec4(cos(time*.3)*.5+.5,cos(time*.2)*.5+.5,tan(time*.3)*.5+.5,1.),.3);
     
     //Final Color
     vec4 fcolor = ((c+vec4(f))+(1.-min(pp.y+ cos ( time ) * .25 + 1.9,1.))*vec4(1.,.8,.7,1.))*min( (( time) * .1 ) + time* ( 0.2 + low ) ,1.);

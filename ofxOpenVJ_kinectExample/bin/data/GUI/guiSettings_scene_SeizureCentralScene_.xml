@@ -6,17 +6,17 @@
 <Widget>
     <Kind>4</Kind>
     <Name>HUE INCREMENT</Name>
-    <Value>0.008333334</Value>
+    <Value>0.011666667</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>HUE NOISE OFFSET</Name>
-    <Value>0.076666668</Value>
+    <Value>0.050000001</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>Z FORCE</Name>
-    <Value>-131.645568848</Value>
+    <Value>-172.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -26,15 +26,30 @@
 <Widget>
     <Kind>4</Kind>
     <Name>RADIUS TIME</Name>
-    <Value>1.335189819</Value>
+    <Value>0.100000009</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>SPIRAL FACTOR</Name>
-    <Value>0.117721520</Value>
+    <Value>0.070000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>NUM MESHES</Name>
-    <Value>120.278472900</Value>
+    <Value>156.886657715</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>SPECIAL Z OFFSET</Name>
+    <Value>-633.333312988</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>NOISE Z MULTIPLIER</Name>
+    <Value>13.333312988</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>RESAMPLE LINE AMOUNT</Name>
+    <Value>39.893333435</Value>
 </Widget>

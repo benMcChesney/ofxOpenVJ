@@ -6,7 +6,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>FBO FADE AMOUNT</Name>
-    <Value>15.332279205</Value>
+    <Value>37.399997711</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -16,35 +16,45 @@
 <Widget>
     <Kind>4</Kind>
     <Name>EXTRUDE DEPTH</Name>
-    <Value>0.000000000</Value>
+    <Value>3.400000095</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>EXTRUDE NOISE STRENGTH</Name>
-    <Value>123.417716980</Value>
+    <Value>61.666667938</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>Y COLOR MULTIPLIER</Name>
-    <Value>1.542721510</Value>
+    <Value>1.733333468</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>BOX SIZE</Name>
-    <Value>3.613924026</Value>
+    <Value>8.466667175</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>PIXEL SAMPLING</Name>
-    <Value>6.183544636</Value>
+    <Value>5.480000019</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>HUE TIME MULTIPLIER</Name>
-    <Value>5.134429932</Value>
+    <Value>6.506666660</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>ROT TIME MULTIPLIER</Name>
-    <Value>11.544303894</Value>
+    <Value>10.053333282</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>HUE OFFSET RANGE</Name>
+    <Value>213.349990845</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>Y COLOR OFFSET</Name>
+    <Value>0.239999995</Value>
 </Widget>

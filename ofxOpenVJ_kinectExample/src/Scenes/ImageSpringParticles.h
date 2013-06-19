@@ -64,7 +64,7 @@ public:
     bool bShowSphere ;
     bool bAdditiveBlend ;
 
-    
+    float specialZOffset ; 
     
     int numFramesUntilTransition ;
     float maxParticleSpeed ; 

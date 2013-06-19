@@ -140,6 +140,7 @@ void KinectVertexShader::update() {
 //--------------------------------------------------------------
 void KinectVertexShader::draw() {
 
+    
     trailFbo.begin () ;
     
     if ( bToggleTrails )
@@ -158,6 +159,7 @@ void KinectVertexShader::draw() {
         ofClear( 1 , 1 , 1 , 0 ) ;
     }
     
+    ofBackground( 255 , 255 , 255 ) ; //, <#int b#>)
     ofSetColor( 255 , 255 ,255 ) ;
     
     if ( bDrawShader )
@@ -165,18 +167,20 @@ void KinectVertexShader::draw() {
         shader.begin() ;
         //shader.setUniform1f("time", ofGetElapsedTimef() ) ;
         shader.setUniform1f("time", ofGetElapsedTimef() ) ;
-        shader.setUniform1f("var1", shaderVar1 ) ;
-        shader.setUniform1f("var2", shaderVar2 ) ;
+        shader.setUniform1f("var1", shaderVar1 ) ; //+ sin ( ofGetElapsedTimef() ) * .2f ) ;
+        shader.setUniform1f("var2", shaderVar2 ) ; //* mid ) ;
         shader.setUniform1f("var3", shaderVar3 ) ;
-        shader.setUniform1f("var4", shaderVar4 ) ;
+        shader.setUniform1f("var4", shaderVar4 * low ) ;
     }
     
-    cameraMan->begin();
+   // kinectMan->post.begin( cameraMan->cam )  ;
+   cameraMan->begin();
     ofPushMatrix() ;
         ofTranslate(0 , 0 , cameraMan->zOffset ) ;
         drawPointCloud();
     ofPopMatrix();
     cameraMan->end();
+    //kinectMan->post.end( ) ;
     trailFbo.end() ;
     
     if ( bDrawShader )
@@ -227,7 +231,7 @@ void KinectVertexShader::drawPointCloud( )
 		for(int x = 0; x < w; x += step) {
 			if(kinectMan->kinect.getDistanceAt(x, y) > 0) {
 				
-                ofVec3f vertex = kinectMan->kinect.getWorldCoordinateAt(x, y) ;
+                ofVec3f vertex = kinectMan->getWorldCoordAt(x, y) ;
                 if ( vertex.z > kinectMan->pointCloudMinZ && vertex.z < kinectMan->pointCloudMaxZ )
                 {
                     float normalizedZ = ofMap( vertex.z , kinectMan->pointCloudMinZ , kinectMan->pointCloudMaxZ , -360.0f , 360.0f ) ;
@@ -236,7 +240,23 @@ void KinectVertexShader::drawPointCloud( )
                     //Offset the color here
                     ofColor col = kinectMan->kinect.getColorAt(x,y) + offset ; // + offset ;
                     
+                    if ( col.getBrightness() < kinectMan->minimumPixBrightness )
+                        col.setBrightness( kinectMan->minimumPixBrightness );
+                    
+                    //float kinectHue = kinectMan->kinect.getColorAt( x , y ).getHue() ;
+                    //float ofMap(float value, float inputMin, float inputMax, float outputMin, float outputMax, bool clamp) {
+                    float hue = ((int)(ofGetElapsedTimef() * hueTimeMultiplier )) % 255  + col.getHue() ;
+                    
+                    float zHueOffset = ofMap( vertex.z , kinectMan->pointCloudMinZ , kinectMan->pointCloudMaxZ ,  0 , 254.0f ) ;
+                    hue+= zHueOffset ;
+                    
+                    
+                    while ( hue > 254 )
+                    {
+                        hue -= 255.0f ;
+                    }
                     //mesh.addColor( col );
+                    col.setHue( hue ) ; 
                     ofSetColor( col ) ;
                     ofPushMatrix() ;
                     ofQuaternion rot ;

@@ -50,17 +50,11 @@ void SeizureCentralScene::setupGui(float a_x, float a_y) {
     gui->addSlider( "RADIUS TIME" ,  0.0 , 6.0f , radius , width, height) ;
     gui->addSlider( "SPIRAL FACTOR" , 0.0 , 0.6f , spiralFactor , width, height) ;
     gui->addSlider( "NUM MESHES" , 1.0 , 350.0f , numTooManyOffset , width, height) ;
-    
-    //spiralZOffset
-    /*
-     numTooManyOffset
-     radiusTime
-     float zForce ;
-     float radiusTime ;
-     float radius ;
+    gui->addSlider( "SPECIAL Z OFFSET" , -1000 , 1000 , specialZOffset , width , height ) ;
+    gui->addSlider( "NOISE Z MULTIPLIER" , -1000 , 1000 , noiseZMultiplier , width , height ) ; 
 
-     */
-   
+    gui->addSlider ( "RESAMPLE LINE AMOUNT"  , 2 , 60 , resampleLineAmount , width , height ) ; 
+    //resampleLineAmount
     ofAddListener( gui->newGUIEvent, this, &SeizureCentralScene::guiEvent );
     
 }
@@ -91,16 +85,11 @@ void SeizureCentralScene::guiEvent(ofxUIEventArgs &e) {
     if(name == "SPIRAL FACTOR" ) spiralFactor = ((ofxUISlider *) e.widget)->getScaledValue() ;
     if(name == "NUM MESHES" ) numTooManyOffset = ((ofxUISlider *) e.widget)->getScaledValue() ;
 
-        /*
-         gui->addWidgetDown(new ofxUISlider(length, dim, -500.0 , 500.0f , spiralZOffset , "SPIRAL Z OFFSET" ) ) ;
-         gui->addWidgetDown(new ofxUISlider(length, dim, 1.0 , 150.0f , numTooManyOffset , "NUM MESHES" ) ) ;
-         gui->addWidgetDown(new ofxUISlider(length, dim, 0.0 , 6.0f , spiralFactor , "SPIRAL FACTOR" ) ) ;
-          gui->addWidgetDown(new ofxUISlider(length, dim, 0.0 , 3.0f , radius , "RADIUS TIME" ) ) ;
-         gui->addWidgetDown(new ofxUISlider(length, dim, -60.0 , 60.0 , zForce , "Z FORCE" ) ) ;
-         gui->addWidgetDown(new ofxUISlider(length, dim, 0.0 , 1800.0 , radius , "RADIUS" ) ) ;
+    if ( name == "SPECIAL Z OFFSET" )  specialZOffset = ((ofxUISlider *) e.widget)->getScaledValue() ;
+    if ( name == "NOISE Z MULTIPLIER"  )  noiseZMultiplier = ((ofxUISlider *) e.widget)->getScaledValue() ;
     
-         */
-    
+    //    gui->addSlider ( "RESAMPLE LINE AMOUNT"  , 2 , 60 , resampleLineAmount , width , height ) ;
+    if ( name ==  "RESAMPLE LINE AMOUNT" )  resampleLineAmount = ((ofxUISlider *) e.widget)->getScaledValue() ;
 }
 
 //--------------------------------------------------------------
@@ -134,7 +123,7 @@ void SeizureCentralScene::addContour() {
     //else color.set(0);
     
     for(int i = 0; i < newLines.size(); i++ ) {
-        ofPolyline resampled = newLines[i].getResampledByCount(30);
+        ofPolyline resampled = newLines[i].getResampledByCount(resampleLineAmount);
         
         ofPath path;
         for( int j = 0; j < resampled.getVertices().size(); j++) {
@@ -147,7 +136,7 @@ void SeizureCentralScene::addContour() {
         }
         
         path.close();
-        path.simplify();
+        path.simplify() ;
         path.setUseShapeColor(false);
         
         path.tessellate();
@@ -158,7 +147,7 @@ void SeizureCentralScene::addContour() {
         offsets.push_back( ofVec3f() ) ;
         ofxParticle2D particle;
         particle.color = color;
-        particle.radius = .5f; // store the scale in here //
+        particle.radius = 0.5f ; + low  * 0.35f; // store the scale in here //
         particles.push_back( particle );
         
         /*
@@ -192,7 +181,7 @@ void SeizureCentralScene::update() {
     //if ( low > contourSoundThreshold )
     //hue += (.3f * hueDir);
     
-    hue += ( hueIncrement * hueDir ) + ofNoise( ofGetElapsedTimef() ) * hueNoiseOffset ;
+    hue += ( hueIncrement * hueDir + ofNoise( ofGetElapsedTimef() ) * hueNoiseOffset ) ;
     
     if(hue <= 0) {
         hueDir = 1; hue += 1 ;
@@ -223,7 +212,7 @@ void SeizureCentralScene::update() {
     
     for(int i = 0; i < particles.size(); i++) {
         ofxParticle2D& p = particles[i];
-        p.radius += .03f;
+        p.radius += .03f + low * .6 ;
         
     }
     
@@ -236,14 +225,30 @@ void SeizureCentralScene::update() {
     
     float t = ofGetElapsedTimef() * radiusTime ;
     float r = radius + sin ( ofGetElapsedTimef() ) * (radius * .1) ;
+    //offsets[ (offsets.size() - 1 ) ] ;
     for ( int i = 0 ; i < lines.size() ; i++ )
     {
         float fi = (float) i * spiralFactor ;
-        offsets[ i ].x = 320 + sin ( fi  + t ) * r  ;//+ ( r / 2 ) ;
-        offsets[ i ].y = 240 + cos ( fi  + t ) * r ; //- ( r / 2 ) ;
-        offsets[ i ].z += zForce * (0.6 + ofSignedNoise( ofGetElapsedTimef() )) ;
+        offsets[ i ].x = 320 + sin ( fi  + t ) * r - r/2 ;//+ ( r / 2 ) ;
+        offsets[ i ].y = 240 + cos ( fi  + t ) * r - r/2 ; //- ( r / 2 ) ;
+        offsets[ i ].z += ( zForce * (0.1 + ofNoise( ofGetElapsedTimef() * noiseZMultiplier ))) ;
     }
     
+    ofVec3f first = offsets[ ( offsets.size() - 1) ] ;
+    for ( int i = 0 ; i < lines.size() ; i++ )
+    {
+        offsets[i].x -= first.x ;
+        offsets[i].y -= first.y ;
+    }
+
+    
+    /*
+    offsets[ i ].x = 320 + sin ( fi  + t ) * r  ;//+ ( r / 2 ) ;
+    offsets[ i ].y = 240 + cos ( fi  + t ) * r ; //- ( r / 2 ) ;
+    offsets[ i ].z += ( zForce * (0.1 + ofNoise( ofGetElapsedTimef() * noiseZMultiplier ))) ;
+     */
+    
+                           
 }
 
 //--------------------------------------------------------------
@@ -259,8 +264,9 @@ void SeizureCentralScene::draw() {
     
     
     cameraMan->begin() ;
+//    kinectMan->post.begin( cameraMan->cam )  ;
     
-    ofTranslate( -ofGetWidth() / 2 , -ofGetHeight() / 2 , cameraMan->zOffset ) ;
+    ofTranslate( -ofGetWidth() / 2 , -ofGetHeight() / 2 , specialZOffset ) ;
     float pct = 1.f;
     
     ofSetLineWidth(2);
@@ -291,7 +297,8 @@ void SeizureCentralScene::draw() {
         ofPopMatrix() ; 
     }
     ofSetLineWidth(1);
-    cameraMan->end( ) ; 
+    cameraMan->end( ) ;
+   // kinectMan->post.end() ;
 }
 
 //--------------------------------------------------------------

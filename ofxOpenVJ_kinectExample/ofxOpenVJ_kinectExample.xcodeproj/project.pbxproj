@@ -59,6 +59,15 @@
 		D95DF1B416B7B3F200EB01EF /* TestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D95DF1A516B7B3F200EB01EF /* TestScene.cpp */; };
 		D95DF1B516B7B3F200EB01EF /* testApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D95DF1A716B7B3F200EB01EF /* testApp.cpp */; };
 		D95DF1B816B7B4D100EB01EF /* KinectManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D95DF1B616B7B4D100EB01EF /* KinectManager.cpp */; };
+		D992075F174812C3007579A7 /* twist.frag in Sources */ = {isa = PBXBuildFile; fileRef = D992075D174812C3007579A7 /* twist.frag */; };
+		D9920760174812C3007579A7 /* twist.vert in Sources */ = {isa = PBXBuildFile; fileRef = D992075E174812C3007579A7 /* twist.vert */; };
+		D992076317482204007579A7 /* pointCloud_other.frag in Sources */ = {isa = PBXBuildFile; fileRef = D992076117482204007579A7 /* pointCloud_other.frag */; };
+		D992076417482204007579A7 /* pointCloud_other.vert in Sources */ = {isa = PBXBuildFile; fileRef = D992076217482204007579A7 /* pointCloud_other.vert */; };
+		D99207671748223B007579A7 /* KinectVertexShader_other.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D99207651748223A007579A7 /* KinectVertexShader_other.cpp */; };
+		D992076A174841DE007579A7 /* SimpleMaskScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9920768174841DD007579A7 /* SimpleMaskScene.cpp */; };
+		D992077517484887007579A7 /* hexagon.frag in Sources */ = {isa = PBXBuildFile; fileRef = D992077417484887007579A7 /* hexagon.frag */; };
+		D992077817486497007579A7 /* CircleMaskScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D992077617486495007579A7 /* CircleMaskScene.cpp */; };
+		D992077B17486DF1007579A7 /* AlienTunnelMaskScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D992077917486DF0007579A7 /* AlienTunnelMaskScene.cpp */; };
 		D9D6633816D608E5000EC2D5 /* AlienTunnel.frag in Sources */ = {isa = PBXBuildFile; fileRef = D9D6632F16D608E5000EC2D5 /* AlienTunnel.frag */; };
 		D9D6633916D608E5000EC2D5 /* basic.vert in Sources */ = {isa = PBXBuildFile; fileRef = D9D6633016D608E5000EC2D5 /* basic.vert */; };
 		D9D6633A16D608E5000EC2D5 /* CircleNoise.frag in Sources */ = {isa = PBXBuildFile; fileRef = D9D6633116D608E5000EC2D5 /* CircleNoise.frag */; };
@@ -77,6 +86,17 @@
 		D9E7300A16E2C5F500117A68 /* composite_rgb.frag in Sources */ = {isa = PBXBuildFile; fileRef = D9E7300316E2C5F500117A68 /* composite_rgb.frag */; };
 		D9E7300B16E2C5F500117A68 /* composite_rgb.vert in Sources */ = {isa = PBXBuildFile; fileRef = D9E7300416E2C5F500117A68 /* composite_rgb.vert */; };
 		D9E7300C16E2C5F500117A68 /* ofxSimpleMask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9E7300616E2C5F500117A68 /* ofxSimpleMask.cpp */; };
+		D9F56FCC17475E3E00B1657C /* BloomPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9F56FAE17475E3E00B1657C /* BloomPass.cpp */; };
+		D9F56FCD17475E3E00B1657C /* ConvolutionPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9F56FB017475E3E00B1657C /* ConvolutionPass.cpp */; };
+		D9F56FCE17475E3E00B1657C /* DofAltPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9F56FB217475E3E00B1657C /* DofAltPass.cpp */; };
+		D9F56FCF17475E3E00B1657C /* DofPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9F56FB417475E3E00B1657C /* DofPass.cpp */; };
+		D9F56FD017475E3E00B1657C /* EdgePass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9F56FB617475E3E00B1657C /* EdgePass.cpp */; };
+		D9F56FD117475E3E00B1657C /* FxaaPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9F56FB817475E3E00B1657C /* FxaaPass.cpp */; };
+		D9F56FD217475E3E00B1657C /* KaleidoscopePass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9F56FBA17475E3E00B1657C /* KaleidoscopePass.cpp */; };
+		D9F56FD317475E3E00B1657C /* NoiseWarpPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9F56FBC17475E3E00B1657C /* NoiseWarpPass.cpp */; };
+		D9F56FD417475E3E00B1657C /* PixelatePass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9F56FBF17475E3E00B1657C /* PixelatePass.cpp */; };
+		D9F56FD517475E3E00B1657C /* PostProcessing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9F56FC117475E3E00B1657C /* PostProcessing.cpp */; };
+		D9F56FD617475E3E00B1657C /* RenderPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9F56FC317475E3E00B1657C /* RenderPass.cpp */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9710E8CC7DD009D7055 /* AGL.framework */; };
 		E45BE97C0E8CC7DD009D7055 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9720E8CC7DD009D7055 /* ApplicationServices.framework */; };
@@ -322,6 +342,19 @@
 		D95DF1A816B7B3F200EB01EF /* testApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testApp.h; sourceTree = "<group>"; };
 		D95DF1B616B7B4D100EB01EF /* KinectManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = KinectManager.cpp; path = ../src/KinectManager.cpp; sourceTree = "<group>"; };
 		D95DF1B716B7B4D100EB01EF /* KinectManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KinectManager.h; path = ../src/KinectManager.h; sourceTree = "<group>"; };
+		D992075D174812C3007579A7 /* twist.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = twist.frag; sourceTree = "<group>"; };
+		D992075E174812C3007579A7 /* twist.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = twist.vert; sourceTree = "<group>"; };
+		D992076117482204007579A7 /* pointCloud_other.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = pointCloud_other.frag; sourceTree = "<group>"; };
+		D992076217482204007579A7 /* pointCloud_other.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = pointCloud_other.vert; sourceTree = "<group>"; };
+		D99207651748223A007579A7 /* KinectVertexShader_other.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KinectVertexShader_other.cpp; sourceTree = "<group>"; };
+		D99207661748223A007579A7 /* KinectVertexShader_other.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KinectVertexShader_other.h; sourceTree = "<group>"; };
+		D9920768174841DD007579A7 /* SimpleMaskScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleMaskScene.cpp; sourceTree = "<group>"; };
+		D9920769174841DD007579A7 /* SimpleMaskScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleMaskScene.h; sourceTree = "<group>"; };
+		D992077417484887007579A7 /* hexagon.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = hexagon.frag; sourceTree = "<group>"; };
+		D992077617486495007579A7 /* CircleMaskScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CircleMaskScene.cpp; sourceTree = "<group>"; };
+		D992077717486496007579A7 /* CircleMaskScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleMaskScene.h; sourceTree = "<group>"; };
+		D992077917486DF0007579A7 /* AlienTunnelMaskScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AlienTunnelMaskScene.cpp; sourceTree = "<group>"; };
+		D992077A17486DF1007579A7 /* AlienTunnelMaskScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlienTunnelMaskScene.h; sourceTree = "<group>"; };
 		D9D6632F16D608E5000EC2D5 /* AlienTunnel.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = AlienTunnel.frag; sourceTree = "<group>"; };
 		D9D6633016D608E5000EC2D5 /* basic.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = basic.vert; sourceTree = "<group>"; };
 		D9D6633116D608E5000EC2D5 /* CircleNoise.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = CircleNoise.frag; sourceTree = "<group>"; };
@@ -345,6 +378,31 @@
 		D9E7300416E2C5F500117A68 /* composite_rgb.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = composite_rgb.vert; sourceTree = "<group>"; };
 		D9E7300616E2C5F500117A68 /* ofxSimpleMask.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxSimpleMask.cpp; sourceTree = "<group>"; };
 		D9E7300716E2C5F500117A68 /* ofxSimpleMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxSimpleMask.h; sourceTree = "<group>"; };
+		D9F56FA017475E3E00B1657C /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		D9F56FAC17475E3E00B1657C /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.md; sourceTree = "<group>"; };
+		D9F56FAE17475E3E00B1657C /* BloomPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BloomPass.cpp; sourceTree = "<group>"; };
+		D9F56FAF17475E3E00B1657C /* BloomPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BloomPass.h; sourceTree = "<group>"; };
+		D9F56FB017475E3E00B1657C /* ConvolutionPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConvolutionPass.cpp; sourceTree = "<group>"; };
+		D9F56FB117475E3E00B1657C /* ConvolutionPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConvolutionPass.h; sourceTree = "<group>"; };
+		D9F56FB217475E3E00B1657C /* DofAltPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DofAltPass.cpp; sourceTree = "<group>"; };
+		D9F56FB317475E3E00B1657C /* DofAltPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DofAltPass.h; sourceTree = "<group>"; };
+		D9F56FB417475E3E00B1657C /* DofPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DofPass.cpp; sourceTree = "<group>"; };
+		D9F56FB517475E3E00B1657C /* DofPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DofPass.h; sourceTree = "<group>"; };
+		D9F56FB617475E3E00B1657C /* EdgePass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EdgePass.cpp; sourceTree = "<group>"; };
+		D9F56FB717475E3E00B1657C /* EdgePass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EdgePass.h; sourceTree = "<group>"; };
+		D9F56FB817475E3E00B1657C /* FxaaPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FxaaPass.cpp; sourceTree = "<group>"; };
+		D9F56FB917475E3E00B1657C /* FxaaPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FxaaPass.h; sourceTree = "<group>"; };
+		D9F56FBA17475E3E00B1657C /* KaleidoscopePass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KaleidoscopePass.cpp; sourceTree = "<group>"; };
+		D9F56FBB17475E3E00B1657C /* KaleidoscopePass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KaleidoscopePass.h; sourceTree = "<group>"; };
+		D9F56FBC17475E3E00B1657C /* NoiseWarpPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NoiseWarpPass.cpp; sourceTree = "<group>"; };
+		D9F56FBD17475E3E00B1657C /* NoiseWarpPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoiseWarpPass.h; sourceTree = "<group>"; };
+		D9F56FBE17475E3E00B1657C /* ofxPostProcessing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxPostProcessing.h; sourceTree = "<group>"; };
+		D9F56FBF17475E3E00B1657C /* PixelatePass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PixelatePass.cpp; sourceTree = "<group>"; };
+		D9F56FC017475E3E00B1657C /* PixelatePass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PixelatePass.h; sourceTree = "<group>"; };
+		D9F56FC117475E3E00B1657C /* PostProcessing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PostProcessing.cpp; sourceTree = "<group>"; };
+		D9F56FC217475E3E00B1657C /* PostProcessing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostProcessing.h; sourceTree = "<group>"; };
+		D9F56FC317475E3E00B1657C /* RenderPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderPass.cpp; sourceTree = "<group>"; };
+		D9F56FC417475E3E00B1657C /* RenderPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderPass.h; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E45BE9710E8CC7DD009D7055 /* AGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGL.framework; path = /System/Library/Frameworks/AGL.framework; sourceTree = "<absolute>"; };
 		E45BE9720E8CC7DD009D7055 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = /System/Library/Frameworks/ApplicationServices.framework; sourceTree = "<absolute>"; };
@@ -803,6 +861,7 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				D9F56F9F17475E3E00B1657C /* ofxPostProcessing */,
 				D9454506173EDF2700B3F3B3 /* ofxSyphon */,
 				D91BFBEC172C65BB009AF9AF /* ofxMSABPMTapper */,
 				D91BFBFC172C65BB009AF9AF /* ofxMSATimer */,
@@ -1066,8 +1125,13 @@
 		D94D763A16B8CB1C0006BD71 /* shaders */ = {
 			isa = PBXGroup;
 			children = (
+				D992077417484887007579A7 /* hexagon.frag */,
+				D992075D174812C3007579A7 /* twist.frag */,
+				D992075E174812C3007579A7 /* twist.vert */,
 				D9D6632F16D608E5000EC2D5 /* AlienTunnel.frag */,
 				D9D6633016D608E5000EC2D5 /* basic.vert */,
+				D992076117482204007579A7 /* pointCloud_other.frag */,
+				D992076217482204007579A7 /* pointCloud_other.vert */,
 				D9D6633116D608E5000EC2D5 /* CircleNoise.frag */,
 				D9D6633216D608E5000EC2D5 /* HexTunnel.frag */,
 				D9D6633316D608E5000EC2D5 /* HuePointCloud.frag */,
@@ -1084,6 +1148,14 @@
 		D95DF19016B7B3F200EB01EF /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				D992077917486DF0007579A7 /* AlienTunnelMaskScene.cpp */,
+				D992077A17486DF1007579A7 /* AlienTunnelMaskScene.h */,
+				D992077617486495007579A7 /* CircleMaskScene.cpp */,
+				D992077717486496007579A7 /* CircleMaskScene.h */,
+				D9920768174841DD007579A7 /* SimpleMaskScene.cpp */,
+				D9920769174841DD007579A7 /* SimpleMaskScene.h */,
+				D99207651748223A007579A7 /* KinectVertexShader_other.cpp */,
+				D99207661748223A007579A7 /* KinectVertexShader_other.h */,
 				D91BFBE8172C62E7009AF9AF /* KinectVertexShader.cpp */,
 				D91BFBE9172C62E7009AF9AF /* KinectVertexShader.h */,
 				D9E3685C172A586B002D3997 /* TriangleKinectShader.cpp */,
@@ -1139,6 +1211,47 @@
 			children = (
 				D9E7300616E2C5F500117A68 /* ofxSimpleMask.cpp */,
 				D9E7300716E2C5F500117A68 /* ofxSimpleMask.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		D9F56F9F17475E3E00B1657C /* ofxPostProcessing */ = {
+			isa = PBXGroup;
+			children = (
+				D9F56FA017475E3E00B1657C /* .gitignore */,
+				D9F56FAC17475E3E00B1657C /* readme.md */,
+				D9F56FAD17475E3E00B1657C /* src */,
+			);
+			name = ofxPostProcessing;
+			path = ../../ofxPostProcessing;
+			sourceTree = "<group>";
+		};
+		D9F56FAD17475E3E00B1657C /* src */ = {
+			isa = PBXGroup;
+			children = (
+				D9F56FAE17475E3E00B1657C /* BloomPass.cpp */,
+				D9F56FAF17475E3E00B1657C /* BloomPass.h */,
+				D9F56FB017475E3E00B1657C /* ConvolutionPass.cpp */,
+				D9F56FB117475E3E00B1657C /* ConvolutionPass.h */,
+				D9F56FB217475E3E00B1657C /* DofAltPass.cpp */,
+				D9F56FB317475E3E00B1657C /* DofAltPass.h */,
+				D9F56FB417475E3E00B1657C /* DofPass.cpp */,
+				D9F56FB517475E3E00B1657C /* DofPass.h */,
+				D9F56FB617475E3E00B1657C /* EdgePass.cpp */,
+				D9F56FB717475E3E00B1657C /* EdgePass.h */,
+				D9F56FB817475E3E00B1657C /* FxaaPass.cpp */,
+				D9F56FB917475E3E00B1657C /* FxaaPass.h */,
+				D9F56FBA17475E3E00B1657C /* KaleidoscopePass.cpp */,
+				D9F56FBB17475E3E00B1657C /* KaleidoscopePass.h */,
+				D9F56FBC17475E3E00B1657C /* NoiseWarpPass.cpp */,
+				D9F56FBD17475E3E00B1657C /* NoiseWarpPass.h */,
+				D9F56FBE17475E3E00B1657C /* ofxPostProcessing.h */,
+				D9F56FBF17475E3E00B1657C /* PixelatePass.cpp */,
+				D9F56FC017475E3E00B1657C /* PixelatePass.h */,
+				D9F56FC117475E3E00B1657C /* PostProcessing.cpp */,
+				D9F56FC217475E3E00B1657C /* PostProcessing.h */,
+				D9F56FC317475E3E00B1657C /* RenderPass.cpp */,
+				D9F56FC417475E3E00B1657C /* RenderPass.h */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -1615,6 +1728,26 @@
 				D945452F173EDF2700B3F3B3 /* SyphonNameboundClient.m in Sources */,
 				D9454530173EDF2700B3F3B3 /* ofxSyphonClient.mm in Sources */,
 				D9454531173EDF2700B3F3B3 /* ofxSyphonServer.mm in Sources */,
+				D9F56FCC17475E3E00B1657C /* BloomPass.cpp in Sources */,
+				D9F56FCD17475E3E00B1657C /* ConvolutionPass.cpp in Sources */,
+				D9F56FCE17475E3E00B1657C /* DofAltPass.cpp in Sources */,
+				D9F56FCF17475E3E00B1657C /* DofPass.cpp in Sources */,
+				D9F56FD017475E3E00B1657C /* EdgePass.cpp in Sources */,
+				D9F56FD117475E3E00B1657C /* FxaaPass.cpp in Sources */,
+				D9F56FD217475E3E00B1657C /* KaleidoscopePass.cpp in Sources */,
+				D9F56FD317475E3E00B1657C /* NoiseWarpPass.cpp in Sources */,
+				D9F56FD417475E3E00B1657C /* PixelatePass.cpp in Sources */,
+				D9F56FD517475E3E00B1657C /* PostProcessing.cpp in Sources */,
+				D9F56FD617475E3E00B1657C /* RenderPass.cpp in Sources */,
+				D992075F174812C3007579A7 /* twist.frag in Sources */,
+				D9920760174812C3007579A7 /* twist.vert in Sources */,
+				D992076317482204007579A7 /* pointCloud_other.frag in Sources */,
+				D992076417482204007579A7 /* pointCloud_other.vert in Sources */,
+				D99207671748223B007579A7 /* KinectVertexShader_other.cpp in Sources */,
+				D992076A174841DE007579A7 /* SimpleMaskScene.cpp in Sources */,
+				D992077517484887007579A7 /* hexagon.frag in Sources */,
+				D992077817486497007579A7 /* CircleMaskScene.cpp in Sources */,
+				D992077B17486DF1007579A7 /* AlienTunnelMaskScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

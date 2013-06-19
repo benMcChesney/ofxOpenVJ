@@ -58,7 +58,10 @@ void KinectShaderScene::setupGui(float a_x, float a_y) {
     gui->addSlider( "PIXEL SAMPLING" , 1.0f , 15.0f  , pixelSampling, width, height) ;
     gui->addSlider( "HUE TIME MULTIPLIER" , 1.0f , 15.0f  , hueTimeMultiplier , width, height) ;
     gui->addSlider(  "ROT TIME MULTIPLIER" , 1.0f , 15.0f  , rotationTimeMultiplier , width, height) ;
- 
+    gui->addSlider("HUE OFFSET RANGE", 0.0f , 255.0f , hueOffsetRange , width , height ) ;
+    gui->addSlider("Y COLOR OFFSET", 0.0f , 3.0f , yColorOffset , width , height ) ;
+    //
+    //hueOffsetRange
     ofAddListener( gui->newGUIEvent, this, &KinectShaderScene::guiEvent );
 }
 
@@ -122,6 +125,14 @@ void KinectShaderScene::guiEvent(ofxUIEventArgs &e) {
     if (name == "HUE TIME MULTIPLIER" ) hueTimeMultiplier = ((ofxUISlider *) e.widget)->getScaledValue() ;
     if (name == "ROT TIME MULTIPLIER" ) rotationTimeMultiplier = ((ofxUISlider *) e.widget)->getScaledValue() ;
     
+    if (name =="HUE OFFSET RANGE" ) hueOffsetRange = ((ofxUISlider *) e.widget)->getScaledValue() ;
+    if (name =="Y COLOR OFFSET" ) yColorOffset= ((ofxUISlider *) e.widget)->getScaledValue() ;
+        //, 0.0f , 100.0f , yColorOffset , width , height ) ;
+    //  gui->addSlider("HUE OFFSET R" ) hueOffsetRange = ((ofxUISlider *) e.widget)->getScaledValue() ;
+    
+    //gui->addSlider("Y COLOR OFFSET", 0.0f , 100.0f , yColorOffset , width , height ) ;
+    //  gui->addSlider("HUE OFFSET RANGE", 0.0f , 255.0f , hueOffsetRange , width , height ) ;
+    
     /*
      gui->addWidgetDown(new ofxUISlider(length, dim, 1.0f , 15.0f  ,  , )) ;
      gui->addWidgetDown(new ofxUISlider(length, dim, 1.0f , 15.0f  ,  , )) ;
@@ -169,12 +180,12 @@ void KinectShaderScene::draw() {
     }
     
     ofSetColor( 255 , 255 ,255 ) ;
-    cameraMan->begin();
+    cameraMan->cam.begin() ; 
     ofPushMatrix() ;
         ofTranslate(0 , 0 , cameraMan->zOffset ) ;
         drawPointCloud();
     ofPopMatrix();
-    cameraMan->end();
+    cameraMan->cam.end() ; 
     trailFbo.end() ;
     
     ofSetColor( 255 , 255 , 255 ) ;
@@ -207,27 +218,36 @@ void KinectShaderScene::drawPointCloud( )
 		for(int x = 0; x < w; x += step) {
 			if(kinectMan->kinect.getDistanceAt(x, y) > 0) {
                 
-                ofVec3f vertex = kinectMan->kinect.getWorldCoordinateAt(x, y) ;
+                ofVec3f vertex = kinectMan->getWorldCoordAt(x, y) ;
                 if ( vertex.z >  kinectMan->pointCloudMinZ && vertex.z < kinectMan->pointCloudMaxZ )
                 {
-                    float normalizedZ = ofMap( vertex.z , kinectMan->pointCloudMinZ , kinectMan->pointCloudMaxZ , -360.0f , 360.0f ) ;
+                    float normalizedZ = ofMap( vertex.z , kinectMan->pointCloudMinZ , kinectMan->pointCloudMaxZ , -360.0f , 360.0f ) + ofGetElapsedTimef() ;
                     //mesh.addVertex( vertex );
                     
                     //Offset the color here
-                    int hue = ((int)(ofGetFrameNum()*hueTimeMultiplier)) % 255 + (float)y * yColorMultipler ;
+                    float _yColor = yColorOffset *  ( low + 0.01 ) ; 
+                    int hue = ((int)(ofGetFrameNum()*hueTimeMultiplier)) % 255 + (float)y * _yColor  ;
+                     hue += ofSignedNoise ( ofGetElapsedTimef() + vertex.y * yColorOffset ) * hueOffsetRange ;
+                    
                     while ( hue >= 254 )
                     {
                         hue -= 255 ;
                     }
                     
-                    ofColor col = ofColor::fromHsb( hue , ofNoise( ofGetElapsedTimef() ) * 20 + 220 , 255 ) ; 
+                   
+                   // unsigned char _b =
+                   // ofColor col = ofColor::fromHsb( hue , ofNoise( ofGetElapsedTimef() ) * 20 + 220 , 255 ) ;
                     
+                     ofColor col = ofColor::fromHsb( hue  , 255 , 255 ) ;
+                   
+                    //if ( col.getBrightness() < kinectMan->minimumPixBrightness )
+                    //    col.setBrightness( kinectMan->minimumPixBrightness );
                     //mesh.addColor( col );
                     ofSetColor( col ) ;
                     ofPushMatrix() ;
                     ofQuaternion rot ;
-                    ofQuaternion rotX = ofQuaternion( sin( ofGetElapsedTimef() + y + x * 2.5f ) * 360.0f * rotationTimeMultiplier , ofVec3f( 0.0f , 1.0f , 0.0f ) ) ;
-                    ofQuaternion rotY = ofQuaternion( normalizedZ , ofVec3f( 1.0f , 0.0f , 0.0f ) ) ;
+                    ofQuaternion rotX = ofQuaternion( sin( ofGetElapsedTimef() + y + x * 5.5f ) * 360.0f * rotationTimeMultiplier , ofVec3f( 0.0f , 1.0f , 0.0f ) ) ;
+                    ofQuaternion rotY = ofQuaternion( normalizedZ , ofVec3f( 1.0f , 0.0f , 1.0f ) ) ;
                     rot = rotX * rotY ;
                     ofVec3f axis ;
                     float angle ;

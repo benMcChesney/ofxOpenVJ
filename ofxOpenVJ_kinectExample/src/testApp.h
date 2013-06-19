@@ -56,4 +56,6 @@ class testApp : public ofBaseApp{
     ofFbo fbo;
     
     ofxSyphonServer outputSyphonServer ;
+    
+    ofImage bug;
 };

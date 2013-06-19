@@ -57,16 +57,22 @@ void testApp::setup() {
     
     //Point Cloud Scenes
     scenes.push_back( new TriangleKinectShader((int)scenes.size(), "TriangleKinectShader") );
+    scenes.push_back( new SimpleMaskScene((int)scenes.size(), "SimpleMaskScene") );
     scenes.push_back( new KinectShaderScene((int)scenes.size(), "KinectShaderScene") );
     scenes.push_back( new KinectVertexShader((int)scenes.size(), "KinectVertexShader") );
+    scenes.push_back( new CircleMaskScene((int)scenes.size(), "CircleMaskScene" ) ) ;
     
     //2D Outline Scenes
     scenes.push_back( new SeizureCentralScene((int)scenes.size(), "SeizureCentralScene") );
-    
+    scenes.push_back( new KinectVertexShader_other((int)scenes.size(), "KinectVertexShader_Other") );
+    scenes.push_back( new AlienTunnelMaskScene((int)scenes.size(), "AlienTunnelMaskScene" ) ) ;
+    ///
+//    AlienTunnelMaskScene
+    //
     //Fragment Shader Scenes
-    scenes.push_back( new CircleNoiseScene((int)scenes.size(), "CircleNoiseScene") );
-    scenes.push_back( new RippleTunnelScene((int)scenes.size(), "RippleTunnelScene") );
-    scenes.push_back( new AlienTunnelScene((int)scenes.size(), "AlienTunnelScene") );
+    //scenes.push_back( new CircleNoiseScene((int)scenes.size(), "CircleNoiseScene") );
+    //scenes.push_back( new RippleTunnelScene((int)scenes.size(), "RippleTunnelScene") );
+    //scenes.push_back( new AlienTunnelScene((int)scenes.size(), "AlienTunnelScene") );
     
     //Asset Scenes
     scenes.push_back( new ImageSpringParticles((int)scenes.size(), "ImageSpringParticles") );
@@ -91,7 +97,10 @@ void testApp::setup() {
     // activate the first scene //
     scenes[activeSceneIndex]->activate();
     
-    outputSyphonServer.setName( "ofxOpenVJ" ) ; 
+    outputSyphonServer.setName( "ofxOpenVJ" ) ;
+
+    bug.loadImage( "bug.png" ) ;
+    bug.setAnchorPercent( 0.5 , 0.5 ) ;
 }
 
 //--------------------------------------------------------------
@@ -171,8 +180,10 @@ void testApp::draw() {
     else fbo.draw(0, 0);
     ofEnableAlphaBlending();
     
+    ofSetColor( 255 ) ; 
+    bug.draw( ofGetWidth() / 2  , 35 ) ;
     outputSyphonServer.publishScreen() ; 
-
+    
 }
 
 //--------------------------------------------------------------

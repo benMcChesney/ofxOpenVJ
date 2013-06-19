@@ -24,6 +24,20 @@ KinectManager::KinectManager() {
     maxTriDiff      = 100.f;
     bUseVideoColor  = true ;
     bThreshWithOpenCV = false;
+    
+    /*
+    post.init(ofGetWidth(), ofGetHeight());
+    
+
+    // Setup post-processing chain
+    post.createPass<FxaaPass>()->setEnabled(false);
+    post.createPass<BloomPass>()->setEnabled(false);
+    post.createPass<DofPass>()->setEnabled(false);
+    post.createPass<KaleidoscopePass>()->setEnabled(false);
+    post.createPass<NoiseWarpPass>()->setEnabled(false);
+    post.createPass<PixelatePass>()->setEnabled(false);
+    post.createPass<EdgePass>()->setEnabled(false);
+     */
 }
 
 //--------------------------------------------------------------
@@ -180,7 +194,7 @@ void KinectManager::setupMesh() {
     //cout << "KinectMesh :: setupMesh : step = " << step << endl;
     
     //bool bAddNormals = renderMode != OF_PRIMITIVE_POINTS ? true : false;
-    
+    mesh.clear() ; 
     ofColor borderColor(255, 0, 0);
     ofColor color(255, 255, 255);
     for(int y = 0; y < height; y++) {
@@ -384,6 +398,11 @@ void KinectManager::calculateTriangleMesh( ofVec3f mesh_offset, bool bCalcNormal
         int i = mesh.getIndex(j);
         mesh.setNormal(i, mesh.getNormal(i).normalize());
     }
+    
+}
+
+void KinectManager::disableAllPostProcessing( )
+{
     
 }
 
@@ -662,7 +681,69 @@ void KinectManager::guiEvent(ofxUIEventArgs &e) {
        ofxUIRangeSlider* slider = (ofxUIRangeSlider*) e.widget;
         minBlobSize = slider->getScaledValueLow() ;
         maxBlobSize = slider->getScaledValueHigh() ; 
+    } else if (e.widget->getName() == "MIN PIXEL BRIGHTNESS"  )
+    {
+        ofxUISlider* slider = (ofxUISlider*) e.widget;
+        minimumPixBrightness = slider->getScaledValue() ;
     }
+    /*
+    
+    else if ( ename == "FXAA PASS" )
+    {
+        disableAllPostProcessing() ;
+        post.getPasses()[0]->enable() ; 
+    }
+    else if ( ename == "BLOOM PASS" )
+    {
+        disableAllPostProcessing() ;
+        post.getPasses()[1]->enable() ;
+    }
+    else if ( ename == "DOF PASS" )
+    {
+        disableAllPostProcessing() ;
+        post.getPasses()[2]->enable() ;
+    }
+    else if ( ename == "KALEIDOSCOPE PASS" )
+    {
+        disableAllPostProcessing() ;
+        post.getPasses()[3]->enable() ;
+    }
+    else if ( ename == "NOISE WARP PASS" )
+    {
+        disableAllPostProcessing() ;
+        post.getPasses()[4]->enable() ;
+    }
+    else if ( ename == "PIXELATE PASS" )
+    {
+        disableAllPostProcessing() ;
+        post.getPasses()[5]->enable() ;
+    }
+    else if ( ename == "EDGE PASS" )
+    {
+        disableAllPostProcessing() ;
+        post.getPasses()[6]->enable() ;
+    }
+    */
+    /*
+     
+     
+     gui->addToggle("FXAA PASS", false ) ;
+     gui->addToggle("BLOOM PASS", false ) ;
+     gui->addToggle("DOF PASS", false ) ;
+     gui->addToggle("KALEIDOSCOPE PASS", false ) ;
+     gui->addToggle("NOISE WARP PASS", false ) ;
+     gui->addToggle("PIXELATE PASS", false ) ;
+     gui->addToggle("EDGE PASS", false ) ;
+     /*
+     post.createPass<FxaaPass>()->setEnabled(false);
+     post.createPass<BloomPass>()->setEnabled(false);
+     post.createPass<DofPass>()->setEnabled(false);
+     post.createPass<KaleidoscopePass>()->setEnabled(false);
+     post.createPass<NoiseWarpPass>()->setEnabled(false);
+     post.createPass<PixelatePass>()->setEnabled(false);
+     post.createPass<EdgePass>()->setEnabled(false);
+     */
+
     
     /*
     gui->addWidgetDown( new ofxUIRangeSlider( "BLOB SIZE" , 30 * 30 , ( kinect.width * kinect.height ) * .75 , minBlobSize , maxBlobSize ,  GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT ) )  ;
@@ -703,9 +784,9 @@ void KinectManager::setupGui(float a_x, float a_y) {
     gui->addSlider("Kinect FOV", 1, 179, 70, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
     
     gui->addSpacer( GUI_WIDGET_WIDTH, 1);
-    gui->addSlider("Mesh Offset X", -3000.f, 3000.f, 0.0, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
-    gui->addSlider("Mesh Offset Y", -3000.f, 3000.f, 0.0, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
-    gui->addSlider("Mesh Offset Z", -3000.f, 3000.f, 0.0, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
+  //  gui->addSlider("Mesh Offset X", -3000.f, 3000.f, 0.0, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
+  //  gui->addSlider("Mesh Offset Y", -3000.f, 3000.f, 0.0, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
+  //  gui->addSlider("Mesh Offset Z", -3000.f, 3000.f, 0.0, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
     gui->addSlider("Mesh Step", 1, 20, 4, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
     
     gui->addRangeSlider("POINT CLOUD RANGE", 0.0 , 10000.0 , pointCloudMinZ , pointCloudMaxZ ) ;
@@ -716,17 +797,30 @@ void KinectManager::setupGui(float a_x, float a_y) {
     gui->addWidgetDown(new ofxUILabel("INVERT AXES", OFX_UI_FONT_MEDIUM));
     gui->addWidgetDown( new ofxUILabelToggle("X AXIS", false, 90, 30, 0, 0) );
     gui->addWidgetRight( new ofxUILabelToggle("Y AXIS", false, 90, 30, 0, 0) );
-    gui->addWidgetRight( new ofxUILabelToggle("Z AXIS", false, 90, 30, 0, 0) );
+  //  gui->addWidgetRight( new ofxUILabelToggle("Z AXIS", false, 90, 30, 0, 0) );
     
     gui->addWidgetDown(new ofxUIRotarySlider(64, -180.f, 180.f, 0.f, "Y AXIS ROT"));
-    
-    //float               minBlobSize , maxBlobSize ;
     gui->addWidgetDown( new ofxUIRangeSlider( "BLOB SIZE" , 30 * 30 , ( kinect.width * kinect.height ) * .75 , minBlobSize , maxBlobSize ,  GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT ) )  ;
     
-    
-    
+    gui->addSlider( "MIN PIXEL BRIGHTNESS" , 0 , 255 , minimumPixBrightness , GUI_WIDGET_WIDTH , GUI_SLIDER_HEIGHT ) ;
     gui->addSpacer( GUI_WIDGET_WIDTH, 1);
     
+    gui->addToggle("FXAA PASS", false ) ;
+    gui->addToggle("BLOOM PASS", false ) ;
+    gui->addToggle("DOF PASS", false ) ;
+    gui->addToggle("KALEIDOSCOPE PASS", false ) ;
+    gui->addToggle("NOISE WARP PASS", false ) ;
+    gui->addToggle("PIXELATE PASS", false ) ;
+    gui->addToggle("EDGE PASS", false ) ; 
+    /*
+     post.createPass<FxaaPass>()->setEnabled(false);
+     post.createPass<BloomPass>()->setEnabled(false);
+     post.createPass<DofPass>()->setEnabled(false);
+     post.createPass<KaleidoscopePass>()->setEnabled(false);
+     post.createPass<NoiseWarpPass>()->setEnabled(false);
+     post.createPass<PixelatePass>()->setEnabled(false);
+     post.createPass<EdgePass>()->setEnabled(false);
+     */
     gui->setScrollArea(a_x, a_y, 320, ofGetHeight() - 10 - a_y);
     
     ofAddListener( gui->newGUIEvent, this, &KinectManager::guiEvent );
