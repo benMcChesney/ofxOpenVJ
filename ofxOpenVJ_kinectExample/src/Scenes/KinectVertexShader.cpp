@@ -27,7 +27,7 @@ void KinectVertexShader::setup() {
     
     trailFbo.allocate( getWidth() , getHeight() , GL_RGBA ) ;
     
-     string path = ofToDataPath( "../../../../ofxOpenVJ/shaders/" ) ;
+     string path = ofToDataPath( "shaders/" ) ;
     shader.load( path + "twist.vert", path + "twist.frag" ) ;
     
     pixelSampling = 5.0 ; 
@@ -45,6 +45,7 @@ void KinectVertexShader::setupGui(float a_x, float a_y) {
     int height = 18 ;
    // gui = new ofxUICanvas(0, 0, length+xInit, ofGetHeight());
   
+    gui->addLabel( name ) ; 
     gui->addSlider("HUE TIME MULTIPLIER", 0.0f , 5.0f , hueTimeMultiplier  , width, height) ;
     gui->addSlider("FBO FADE AMOUNT", 0.0f , 255.0f , fboFadeAmount  , width, height) ;
     gui->addSlider("SHADER FLOAT 1", 0.0f  , 200.0f  , shaderVar1  , width, height) ;
@@ -141,7 +142,7 @@ void KinectVertexShader::update() {
 void KinectVertexShader::draw() {
 
     
-    trailFbo.begin () ;
+    //trailFbo.begin () ;
     
     if ( bToggleTrails )
     {
@@ -156,7 +157,7 @@ void KinectVertexShader::draw() {
     }
     else
     {
-        ofClear( 1 , 1 , 1 , 0 ) ;
+     //   ofClear( 1 , 1 , 1 , 0 ) ;
     }
     
     ofBackground( 255 , 255 , 255 ) ; //, <#int b#>)
@@ -181,11 +182,12 @@ void KinectVertexShader::draw() {
     ofPopMatrix();
     cameraMan->end();
     //kinectMan->post.end( ) ;
-    trailFbo.end() ;
+   // trailFbo.end() ;
     
     if ( bDrawShader )
         shader.end( ) ;
     
+    /*
     ofSetColor( 255 , 255 , 255 ) ;
     ofPushMatrix( ) ;
         ofTranslate( 0 , ofGetHeight() ) ;
@@ -195,6 +197,7 @@ void KinectVertexShader::draw() {
         ofSetColor( 255 , 255 , 255 , redrawAlpha ) ;
         trailFbo.draw( 0 , 0 );
     ofPopMatrix( ) ;
+     */
 }
 
 void KinectVertexShader::drawPointCloud( )
@@ -217,7 +220,7 @@ void KinectVertexShader::drawPointCloud( )
     //ofColor offset = ?
     ofPushMatrix();
     glEnable(GL_DEPTH_TEST);
-    ofScale(1, -1, -1);
+    ofScale(1, 1, -1);
    
     ofEnableBlendMode( OF_BLENDMODE_ALPHA ) ;
     

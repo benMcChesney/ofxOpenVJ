@@ -51,7 +51,9 @@ public:
     ofEasyCam cam ;
     
     void begin() ;
-    void end() ; 
+    void end() ;
+    
+    ofxPostProcessing post ; 
     
 private:
     

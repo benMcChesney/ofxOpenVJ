@@ -52,6 +52,7 @@ class testApp : public ofBaseApp{
     bool bDrawGui;
     bool bAutoSceneSwitch;
     bool bKinectCamGui;
+    bool bAutoRandomSwitch ; 
     
     ofFbo fbo;
     

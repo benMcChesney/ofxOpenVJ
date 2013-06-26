@@ -29,7 +29,7 @@ void KinectShaderScene::setup() {
     
     trailFbo.allocate( getWidth() , getHeight() , GL_RGBA ) ;
     
-     string path = ofToDataPath( "../../../../ofxOpenVJ/shaders/" ) ;
+    string path = ofToDataPath( "shaders/" ) ;
     shader.load( path + "basic.vert", path + "PointCloud.frag" ) ;
     
     pixelSampling = 5.0 ; 
@@ -48,6 +48,7 @@ void KinectShaderScene::setupGui(float a_x, float a_y) {
   
     int width = 300 ;
     int height = 18 ;
+    gui->addLabel( name ) ; 
     gui->addSlider( "MESH TIME HUE MULTIPLIER" , 0.0f , 255.0f , meshHueTimeMultiplier , width, height) ;
     gui->addSlider( "FBO FADE AMOUNT" , 0.0f , 255.0f , fboFadeAmount , width, height) ;
      gui->addWidgetDown(new ofxUIToggle(dim, dim, bToggleTrails , "TOGGLE TRAILS")) ;
@@ -161,7 +162,8 @@ void KinectShaderScene::update() {
 //--------------------------------------------------------------
 void KinectShaderScene::draw() {
 
-    trailFbo.begin () ;
+  //  trailFbo.begin () ;
+    ofBackground ( 0 ) ;
     
     if ( bToggleTrails )
     {
@@ -180,14 +182,14 @@ void KinectShaderScene::draw() {
     }
     
     ofSetColor( 255 , 255 ,255 ) ;
-    cameraMan->cam.begin() ; 
-    ofPushMatrix() ;
-        ofTranslate(0 , 0 , cameraMan->zOffset ) ;
-        drawPointCloud();
-    ofPopMatrix();
-    cameraMan->cam.end() ; 
-    trailFbo.end() ;
-    
+    cameraMan->begin() ;
+        ofPushMatrix() ;
+            ofTranslate(0 , 0 , cameraMan->zOffset ) ;
+            drawPointCloud();
+        ofPopMatrix();
+    cameraMan->end() ;
+//    trailFbo.end() ;
+    /*
     ofSetColor( 255 , 255 , 255 ) ;
     ofPushMatrix( ) ;
         ofTranslate( 0 , ofGetHeight() ) ;
@@ -196,7 +198,7 @@ void KinectShaderScene::draw() {
         ofEnableBlendMode(OF_BLENDMODE_ADD ) ;
         ofSetColor( 255 , 255 , 255 , redrawAlpha ) ;
         trailFbo.draw( 0 , 0 );
-    ofPopMatrix( ) ;
+    ofPopMatrix( ) ;*/
 }
 
 void KinectShaderScene::drawPointCloud( )
@@ -205,7 +207,7 @@ void KinectShaderScene::drawPointCloud( )
 	int h = 480;
     ofPushMatrix();
     glEnable(GL_DEPTH_TEST);
-    ofScale(1, -1, -1);
+    ofScale(1, 1, -1);
     //ofTranslate(0, 0, kinectMan->pointCloudZOffset ); // center the points a bit
     ofEnableBlendMode( OF_BLENDMODE_ALPHA ) ; 
     

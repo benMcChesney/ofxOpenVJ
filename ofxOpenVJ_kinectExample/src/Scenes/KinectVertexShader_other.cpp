@@ -27,7 +27,7 @@ void KinectVertexShader_other::setup() {
     
     trailFbo.allocate( getWidth() , getHeight() , GL_RGBA ) ;
     
-     string path = ofToDataPath( "../../../../ofxOpenVJ/shaders/" ) ;
+     string path = ofToDataPath( "shaders/" ) ;
     shader.load( path + "pointCloud_other.vert", path + "pointCloud_other.frag" ) ;
     
     pixelSampling = 5.0 ; 
@@ -45,6 +45,8 @@ void KinectVertexShader_other::setupGui(float a_x, float a_y) {
     int height = 18 ;
    // gui = new ofxUICanvas(0, 0, length+xInit, ofGetHeight());
   
+    gui->addLabel( name ) ;
+    
     gui->addSlider("HUE TIME MULTIPLIER", 0.0f , 5.0f , hueTimeMultiplier  , width, height) ;
     gui->addSlider("FBO FADE AMOUNT", 0.0f , 255.0f , fboFadeAmount  , width, height) ;
     gui->addSlider("SHADER FLOAT 1", 0.0f  , 200.0f  , shaderVar1  , width, height) ;

@@ -4,6 +4,8 @@
 void testApp::setup() {
 
     Tweenzor::init( ) ;
+
+    ofSetWindowShape( ofGetScreenWidth() , ofGetScreenHeight() ) ;
     
 	ofBackground(255*.15);
 	ofSetFrameRate(60);
@@ -24,7 +26,7 @@ void testApp::setup() {
     bShoveOver  = false;
     bDrawGui    = false;
     bAutoSceneSwitch = false;
-    bKinectCamGui = true;
+    bKinectCamGui = false;
     activeSceneIndex = 0;
 
     lastSceneChangedTime = 0.0f ;
@@ -55,17 +57,22 @@ void testApp::setup() {
     cameraManager.loadSettings();
     cameraManager.gui->setVisible(bDrawGui);
     
+    
+    
     //Point Cloud Scenes
     scenes.push_back( new TriangleKinectShader((int)scenes.size(), "TriangleKinectShader") );
-    scenes.push_back( new SimpleMaskScene((int)scenes.size(), "SimpleMaskScene") );
+    
+    //scenes.push_back( new SimpleMaskScene((int)scenes.size(), "SimpleMaskScene") );
+    
     scenes.push_back( new KinectShaderScene((int)scenes.size(), "KinectShaderScene") );
     scenes.push_back( new KinectVertexShader((int)scenes.size(), "KinectVertexShader") );
-    scenes.push_back( new CircleMaskScene((int)scenes.size(), "CircleMaskScene" ) ) ;
+    //scenes.push_back( new CircleMaskScene((int)scenes.size(), "CircleMaskScene" ) ) ;
     
     //2D Outline Scenes
     scenes.push_back( new SeizureCentralScene((int)scenes.size(), "SeizureCentralScene") );
     scenes.push_back( new KinectVertexShader_other((int)scenes.size(), "KinectVertexShader_Other") );
-    scenes.push_back( new AlienTunnelMaskScene((int)scenes.size(), "AlienTunnelMaskScene" ) ) ;
+    
+    //scenes.push_back( new AlienTunnelMaskScene((int)scenes.size(), "AlienTunnelMaskScene" ) ) ;
     ///
 //    AlienTunnelMaskScene
     //
@@ -75,7 +82,7 @@ void testApp::setup() {
     //scenes.push_back( new AlienTunnelScene((int)scenes.size(), "AlienTunnelScene") );
     
     //Asset Scenes
-    scenes.push_back( new ImageSpringParticles((int)scenes.size(), "ImageSpringParticles") );
+    //scenes.push_back( new ImageSpringParticles((int)scenes.size(), "ImageSpringParticles") );
     
     setSceneBounds();
     
@@ -128,7 +135,45 @@ void testApp::exit() {
 
 //--------------------------------------------------------------
 void testApp::update() {
-       
+    
+    
+    if ( (int)ofGetFrameNum() % (int)sceneDelayTime == 0 ) // ofGetElapsedTimef() > ( lastSceneChangedTime + sceneDelayTime ) )
+    {
+        
+        if ( bAutoSceneSwitch == true )
+        {
+            int lastSceneIndex = activeSceneIndex ;
+            activeSceneIndex++ ;
+            if(activeSceneIndex > scenes.size()-1) activeSceneIndex=0;
+            
+            lastSceneChangedTime = ofGetElapsedTimef() ;
+            //cout << "new lastScene changed time "  << lastSceneChangedTime << endl ;
+            
+            scenes[lastSceneIndex]->deactivate();
+            
+            if(bDrawGui) scenes[activeSceneIndex]->gui->setVisible(true);
+            scenes[activeSceneIndex]->activate();
+        }
+        
+        else if ( bAutoRandomSwitch == true )
+        {
+            int lastSceneIndex = activeSceneIndex ;
+            activeSceneIndex = (int) ofRandom( scenes.size() -1 ) ;
+            
+            //if(activeSceneIndex > scenes.size()-1) activeSceneIndex=0;
+            
+            lastSceneChangedTime = ofGetElapsedTimef() ;
+            //cout << "new lastScene changed time "  << lastSceneChangedTime << endl ;
+            
+            scenes[lastSceneIndex]->deactivate();
+            
+            if(bDrawGui) scenes[activeSceneIndex]->gui->setVisible(true);
+            scenes[activeSceneIndex]->activate();
+        }
+
+    }
+    
+//    gui->addWidgetDown( new ofxUIToggle("AUTO RANDOM SWITCH", &bAutoRandomSwitch , guiW-50, 16.f ) );
     if ( bAutoSceneSwitch == true )
     {
         //cout << " is " << ofGetElapsedTimef() << " > " << ( lastSceneChangedTime ) << " + " <<  sceneDelayTime  << " ? " << endl ;
@@ -181,7 +226,7 @@ void testApp::draw() {
     ofEnableAlphaBlending();
     
     ofSetColor( 255 ) ; 
-    bug.draw( ofGetWidth() / 2  , 35 ) ;
+   // bug.draw( ofGetWidth() / 2  , 35 ) ;
     outputSyphonServer.publishScreen() ; 
     
 }
@@ -217,6 +262,10 @@ void testApp::setupMainGui() {
     gui->addWidgetDown( new ofxUIMinimalSlider("SCENE DELAY TIME", 0.0f , 120.0f, sceneDelayTime , guiW-50, 16.f ) );
     gui->addWidgetDown( new ofxUIMinimalSlider("FFT INTERPOLATION", 0.0f , 1.0f, fftManager.lerpAmount , guiW-50, 16.f ) );
 
+//    gui->addWidgetRight( new ofxUIToggle("B_AUTO_SAVE", false, 16, 16) );
+    bAutoRandomSwitch = false ; 
+    gui->addWidgetDown( new ofxUIToggle("AUTO RANDOM SWITCH", &bAutoRandomSwitch , 16 , 16  ) );
+    
     ofAddListener( gui->newGUIEvent, this, &testApp::guiEvent );
 }
 
@@ -230,7 +279,8 @@ void testApp::guiEvent( ofxUIEventArgs& e ) {
         bKinectCamGui   = ((ofxUIToggle*)gui->getWidget("B_DRAW_Kinect_Gui"))->getValue();
         setDrawGuis( bDrawGui );
     } else if (name == "B_SHOVE_OVER") {
-        bShoveOver = ((ofxUIToggle*)gui->getWidget("B_SHOVE_OVER"))->getValue();
+        bShoveOver = false ; 
+        //bShoveOver = ((ofxUIToggle*)gui->getWidget("B_SHOVE_OVER"))->getValue();
         setSceneBounds();
     } else if (name == "B_AUTO_SCENE_SWITCH") {
         bAutoSceneSwitch = ((ofxUIToggle*)gui->getWidget("B_AUTO_SCENE_SWITCH"))->getValue();
@@ -255,6 +305,7 @@ void testApp::setDrawGuis( bool bDraw ) {
     ((ofxUIToggle*)gui->getWidget("B_DRAW_GUI"))->setValue(bDraw);
     bDrawGui = ((ofxUIToggle*)gui->getWidget("B_DRAW_GUI"))->getValue();
     
+    
     if(Scenes::isValidIndex( activeSceneIndex )) {
         scenes[activeSceneIndex]->gui->setVisible(bDrawGui);
     }
@@ -264,7 +315,7 @@ void testApp::setDrawGuis( bool bDraw ) {
         kinectMan.gui->setVisible( bDrawGui );
     if(cameraManager.gui != NULL)
         cameraManager.gui->setVisible(bDrawGui);
-
+     
 }
 
 //--------------------------------------------------------------
@@ -276,7 +327,10 @@ void testApp::setSceneBounds() {
         pw = ofGetWidth();
         ph = ofGetHeight();
     }
-    fbo.allocate(pw, ph);
+    
+    pw = ofGetScreenWidth() ;
+    ph = ofGetScreenHeight() ;
+    fbo.allocate( pw , ph ) ;
     
     for(int i = 0; i < scenes.size(); i++ ) {
         scenes[i]->setBounds(pw, ph);

@@ -22,14 +22,14 @@ CircleNoiseScene::~CircleNoiseScene() {
 void CircleNoiseScene::setup() {
     
     string path = ofToDataPath( "../../../../ofxOpenVJ/shaders/" ) ;
-    shader.load( path+"basic.vert", path+"CircleNoise.frag" ) ;
+    shader.load( path+"basic.vert", path+"cubeWorld.frag" ) ;
     
     
-    maskFbo.allocate( ofGetWidth() , ofGetHeight() ) ;
+    maskFbo.allocate( ofGetScreenWidth() , ofGetScreenHeight() ) ;
     maskFbo.begin() ;
     ofClear( 1 , 1 ,1 , 0 ) ;
-    maskFbo.end() ; 
-    simpleMask.setup("shaders/composite" , ofRectangle( 0 , 0, ofGetWidth() , ofGetHeight() ) ) ;
+    maskFbo.end() ;
+    simpleMask.setup("shaders/composite" , ofRectangle( 0 , 0, ofGetScreenWidth() , ofGetScreenHeight() ) ) ;
                      
 }
 
@@ -50,7 +50,7 @@ void CircleNoiseScene::guiEvent(ofxUIEventArgs &e) {
 //--------------------------------------------------------------
 void CircleNoiseScene::activate() {
     if(fbo.getWidth() != getWidth() || fbo.getHeight() != getHeight()) {
-        fbo.allocate( getWidth() , getHeight(), GL_RGBA ) ;
+        fbo.allocate( ofGetScreenWidth() , ofGetScreenHeight(), GL_RGBA ) ;
         fbo.begin() ;
         ofClear( 1 , 1 , 1 , 0 ) ;
         fbo.end() ;
@@ -87,10 +87,10 @@ void CircleNoiseScene::draw() {
         shader.setUniform1f( "low" , low ) ;
         shader.setUniform1f( "mid" , mid ) ;
         shader.setUniform1f( "high" , high ) ;
-        shader.setUniform2f("resolution",getWidth() , getHeight() );
+        shader.setUniform2f("resolution", ofGetScreenWidth() , ofGetScreenHeight() );
         
         ofSetColor( 255 , 255 , 255 ) ;
-        ofRect( 0 ,0, getWidth() , getHeight() ) ;
+        ofRect( 0 ,0, ofGetScreenWidth() , ofGetScreenHeight() ) ;
     shader.end() ;
     
     ofEnableBlendMode( OF_BLENDMODE_ADD ) ;
@@ -103,7 +103,7 @@ void CircleNoiseScene::draw() {
     
     maskFbo.begin() ;
     ofSetColor( 255 , 255 , 255 ) ;
-    kinectMan->grayImage.draw( 0 , 0, ofGetWidth() , ofGetHeight() ) ;
+    kinectMan->grayImage.draw( 0 , 0, ofGetScreenWidth() , ofGetScreenHeight() ) ;
     maskFbo.end() ;
 
     

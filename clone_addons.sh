@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Dependencies for ofxOpenVJ
-# inspired by ObviousJim and ofxTimeline script
+# inspired by ObviousJim and ofxTimeline clone_addons script
 
 
 cd ../
@@ -21,3 +21,5 @@ git clone https://github.com/memo/ofxMSABPMTapper.git
 git clone https://github.com/memo/ofxMSATimer.git
 
 git clone https://github.com/astellato/ofxSyphon.git
+
+git clone https://github.com/neilmendoza/ofxPostProcessing.git

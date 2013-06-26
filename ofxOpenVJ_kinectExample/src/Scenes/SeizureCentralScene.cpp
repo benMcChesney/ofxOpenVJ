@@ -41,6 +41,7 @@ void SeizureCentralScene::setupGui(float a_x, float a_y) {
     int width = 300 ;
     int height = 18 ;
 
+    gui->addLabel( name ) ; 
     gui->addSlider( "CONTOUR DELAY" , 15 , 2500 , millisDelay , width, height) ;
     gui->addSlider( "HUE INCREMENT" , 0.0 , 0.5 , hueIncrement , width, height) ;
     gui->addSlider( "HUE NOISE OFFSET" , 0.0 , 1.0 , hueNoiseOffset , width, height) ;

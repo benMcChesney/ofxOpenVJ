@@ -11,12 +11,12 @@
 <Widget>
     <Kind>2</Kind>
     <Name>FULLSCREEN</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
     <Name>B_SHOVE_OVER</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>25</Kind>
@@ -41,10 +41,15 @@
 <Widget>
     <Kind>25</Kind>
     <Name>SCENE DELAY TIME</Name>
-    <Value>16.320001602</Value>
+    <Value>13.440000534</Value>
 </Widget>
 <Widget>
     <Kind>25</Kind>
     <Name>FFT INTERPOLATION</Name>
     <Value>0.500000000</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>AUTO RANDOM SWITCH</Name>
+    <Value>0</Value>
 </Widget>

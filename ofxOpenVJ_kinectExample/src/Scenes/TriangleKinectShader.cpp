@@ -31,7 +31,7 @@ void TriangleKinectShader::setup() {
     trailFbo.begin() ;
     ofClear( 0 , 0, 0, 1 ) ;
     trailFbo.end() ; 
-     string path = ofToDataPath( "../../../../ofxOpenVJ/shaders/" ) ;
+    string path = ofToDataPath( "shaders/" ) ;
     shader.load( path + "basic.vert", path + "PointCloud.frag" ) ;
 }
 
@@ -39,6 +39,8 @@ void TriangleKinectShader::setup() {
 void TriangleKinectShader::setupGui(float a_x, float a_y) {
     // creates new gui and adds the name to it //
     BaseScene::setupGui(a_x, a_y);
+    
+    gui->addLabel( name ) ;
     
     float dim = 24;
 	float xInit = OFX_UI_GLOBAL_WIDGET_SPACING;
@@ -143,49 +145,16 @@ void TriangleKinectShader::update() {
 //--------------------------------------------------------------
 void TriangleKinectShader::draw() {
 
-        
-    if ( bToggleTrails )
-    {
-        glDisable( GL_DEPTH_TEST ) ; 
-        ofSetColor( 0 , 0 , 0 ) ;
-        ofRect( -1000, -1000 , 3000, 3000 ) ;
-        trailFbo.begin () ;
-
-        ofEnableAlphaBlending() ;
-        ofSetColor( 0 , 0 , 0 , fboFadeAmount ) ;
-        ofRect( -1000 , -1000 , 3000, 3000 ) ;
-
-    }
-    else
-    {
-        trailFbo.begin () ;
-        ofClear( 1 , 1 , 1 , 0 ) ;
-    }
-    
+    ofBackground(0 ) ; //, <#int g#>, <#int b#>)
+   // ofClear( 1 , 1 , 1 , 0 ) ;
     ofSetColor( 255 , 255 ,255 ) ;
-    glEnable( GL_DEPTH_TEST ) ;
-//    kinectMan->post.begin( cameraMan->cam ) ;
+
     cameraMan->begin();
-    ofPushMatrix() ;
-    ofTranslate(0 , 0 , cameraMan->zOffset ) ;
-    drawPointCloud();
-    ofPopMatrix();
-
-    cameraMan->end() ; 
-    //kinectMan->post.end() ;
-
-    trailFbo.end() ;
-    
-    ofSetColor( 255 , 255 , 255 ) ;
-    ofPushMatrix( ) ;
-        ofTranslate( 0 , ofGetHeight() ) ;
-        ofScale( 1 , -1 , 1 ) ;
-        trailFbo.draw(0 , 0 ) ;
-    /*
-        ofEnableBlendMode(OF_BLENDMODE_ADD ) ;
-        ofSetColor( 255 , 255 , 255 , redrawAlpha ) ;
-        trailFbo.draw( 0 , 0 );*/
-    ofPopMatrix( ) ;
+        ofPushMatrix() ;
+            ofTranslate(0 , 0 , cameraMan->zOffset ) ;
+            drawPointCloud();
+        ofPopMatrix();
+    cameraMan->end() ;
 }
 
 void TriangleKinectShader::drawPointCloud( )
@@ -285,7 +254,7 @@ void TriangleKinectShader::drawPointCloud( )
     
     // the projected points are 'upside down' and 'backwards'
     ofEnableBlendMode(OF_BLENDMODE_ADD ) ; 
-    ofScale(1, -1, -1);
+    ofScale(1, 1, -1);
         //ofTranslate( 0.0f , 0.0f , zOffset ) ;
         glEnable(GL_DEPTH_TEST);
         mesh.draw( );

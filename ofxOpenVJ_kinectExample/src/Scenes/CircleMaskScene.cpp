@@ -27,14 +27,14 @@ void CircleMaskScene::setup() {
     
     //tring path = ofToDataPath( "../../../../ofxOpenVJ/shaders/" ) ;
     
-    simpleMask.setup( path+"composite_rgb", ofRectangle( 0 , 0 , ofGetWidth() , ofGetHeight() )) ;
+    simpleMask.setup( path+"composite_rgb", ofRectangle( 0 , 0 , ofGetScreenWidth() , ofGetScreenHeight() )) ;
    // shader.load( "shader/basicVertex.vert" , "shader/hexagon.frag" ) ;
-    fbo.allocate( ofGetWidth() , ofGetHeight() ) ;
+    fbo.allocate( ofGetScreenWidth() , ofGetScreenHeight() ) ;
     fbo.begin() ;
     ofClear( 1 , 1 , 1 , 0 ) ;
     fbo.end() ;
     
-    maskFbo.allocate( ofGetWidth() , ofGetHeight() ) ;
+    maskFbo.allocate( ofGetScreenWidth() , ofGetScreenHeight() ) ;
     maskFbo.begin() ;
     ofClear( 1 , 1 , 1 , 0 ) ;
     maskFbo.end() ;                     
@@ -111,7 +111,7 @@ void CircleMaskScene::draw() {
     fbo.begin() ;
     shader.begin() ;
     shader.setUniform1f("time", ofGetElapsedTimef() );
-    shader.setUniform2f("resolution", ofGetWidth()  , ofGetHeight() );
+    shader.setUniform2f("resolution", getWidth()  , getHeight() );
     shader.setUniform1f("low", low ) ;
     shader.setUniform1f("mid", mid ) ;
     shader.setUniform1f("high", high ) ;
@@ -126,7 +126,7 @@ void CircleMaskScene::draw() {
     ofSetColor( 255 , 255 , 255 ) ;
     ofEnableBlendMode(OF_BLENDMODE_ADD ) ;
     //ofClear( 1 , 1 , 1 , 0 ) ;
-    kinectMan->grayImage.draw( 0  , 0 , ofGetWidth() , ofGetHeight() ) ;
+    kinectMan->grayImage.draw( 0  , 0 , getWidth() , getHeight() ) ;
     ofEnableAlphaBlending() ;
     maskFbo.end() ;
     ofSetColor( 255 ) ;

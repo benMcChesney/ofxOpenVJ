@@ -22,7 +22,14 @@ void CameraManager::setup() {
     
     _distance = _maxDistance;
     
-
+    post.init(ofGetScreenWidth(), ofGetScreenHeight());
+    post.createPass<FxaaPass>()->setEnabled(false);
+    post.createPass<BloomPass>()->setEnabled(false);
+    post.createPass<DofPass>()->setEnabled(false);
+    post.createPass<KaleidoscopePass>()->setEnabled(false);
+    post.createPass<NoiseWarpPass>()->setEnabled(false);
+    post.createPass<PixelatePass>()->setEnabled(false);
+    post.createPass<EdgePass>()->setEnabled(false);
     
 }
 
@@ -38,12 +45,31 @@ void CameraManager::saveSettings() {
 
 void CameraManager::begin()
 {
-    cam.begin() ;
+   
+    // copy enable part of gl state
+    glPushAttrib(GL_ENABLE_BIT);
+    
+    // setup gl state
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_CULL_FACE);
+    
+    ofPushMatrix() ;
+    ofScale( 1 , -1 , 1 ) ;
+    ofTranslate( 0 , -ofGetScreenHeight() ) ;
+    post.begin( cam ) ;
+    //cam.begin() ;
 }
 
 void CameraManager::end()
 {
-    cam.end() ; 
+    
+    post.end() ;
+    
+    ofPopMatrix() ; 
+    // set gl state back to original
+    glPopAttrib();
+   
+    //cam.end() ;
 }
 
 //--------------------------------------------------------------
@@ -243,15 +269,63 @@ void CameraManager::guiEvent(ofxUIEventArgs &e) {
     else if (ename == "CAMERA TARGET Z" ) {
         cameraTargetZ = ((ofxUISlider*)e.widget)->getScaledValue();
     }
-
-    
-
-    
-    /*
-     gui->addSlider( "CAMERA TARGET Z", -1000 , 1000 , &cameraTargetZ ,  GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );
-     gui->addSlider( "Z OFFSET", -3000 , 3000 , &zOffset ,  GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );
-     gui->addSlider( "CAM MOVEMENT", 0 , 50 , &camMovementFactor ,  GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );
-     */
+     
+     else if ( ename == "FXAA PASS" )
+     {
+         bool bValue = (( ofxUIToggle * ) e.widget )->getValue() ; 
+         if ( !bValue )
+            post.getPasses()[0]->disable() ;
+         else
+            post.getPasses()[0]->enable() ;
+     }
+     else if ( ename == "BLOOM PASS" )
+     {
+         bool bValue = (( ofxUIToggle * ) e.widget )->getValue() ; 
+         if ( !bValue )
+            post.getPasses()[1]->disable() ;
+        else
+            post.getPasses()[1]->enable() ;
+     }
+     else if ( ename == "DOF PASS" )
+     {
+         bool bValue = (( ofxUIToggle * ) e.widget )->getValue() ; 
+         if ( !bValue )
+             post.getPasses()[2]->disable() ;
+         else
+             post.getPasses()[2]->enable() ;
+     }
+     else if ( ename == "KALEIDOSCOPE PASS" )
+     {
+         bool bValue = (( ofxUIToggle * ) e.widget )->getValue() ; 
+         if ( !bValue )
+             post.getPasses()[3]->disable() ;
+         else
+             post.getPasses()[3]->enable() ;
+     }
+     else if ( ename == "NOISE WARP PASS" )
+     {
+         bool bValue = (( ofxUIToggle * ) e.widget )->getValue() ;
+         if ( !bValue )
+             post.getPasses()[4]->disable() ;
+         else
+             post.getPasses()[4]->enable() ;
+     }
+     else if ( ename == "PIXELATE PASS" )
+     {
+         bool bValue = (( ofxUIToggle * ) e.widget )->getValue() ; 
+         if ( !bValue )
+             post.getPasses()[5]->disable() ;
+         else
+             post.getPasses()[5]->enable() ;
+     }
+     else if ( ename == "EDGE PASS" )
+     {
+         bool bValue = (( ofxUIToggle * ) e.widget )->getValue() ;
+         if ( !bValue )
+             post.getPasses()[6]->disable() ;
+         else
+             post.getPasses()[6]->enable() ;
+     }
 }
 
 //--------------------------------------------------------------
@@ -292,6 +366,15 @@ void CameraManager::setupGui( float a_x, float a_y ) {
     
     gui->addSlider( "CAMERA TARGET Z", -1000 , 1000 , &cameraTargetZ ,  GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );
     
+    gui->addSpacer() ;
+    gui->addToggle("FXAA PASS", false ) ;
+    gui->addToggle("BLOOM PASS", false ) ;
+    gui->addToggle("DOF PASS", false ) ;
+    gui->addToggle("KALEIDOSCOPE PASS", false ) ;
+    gui->addToggle("NOISE WARP PASS", false ) ;
+    gui->addToggle("PIXELATE PASS", false ) ;
+    gui->addToggle("EDGE PASS", false ) ;
+
  
     //cameraTargetZ
     gui->setScrollArea(a_x, a_y, 320, ofGetHeight() - 10 - a_y);

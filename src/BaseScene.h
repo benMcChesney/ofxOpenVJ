@@ -67,6 +67,7 @@ public:
     float getHeight() { return _height; }
     void setBounds( float w, float h) { _width = w; _height = h; }
     
+    
     string getXMLSettingsName() { return "GUI/guiSettings_scene_"+name+"_.xml"; }
     
     int index = -1;

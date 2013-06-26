@@ -16,7 +16,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>CAM_DISTANCE</Name>
-    <Value>450.453582764</Value>
+    <Value>363.556945801</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -31,8 +31,8 @@
 <Widget>
     <Kind>6</Kind>
     <Name>CAM_LONGITUDE</Name>
-    <HighValue>11.933349609</HighValue>
-    <LowValue>-3.580001831</LowValue>
+    <HighValue>9.546661377</HighValue>
+    <LowValue>-13.126663208</LowValue>
 </Widget>
 <Widget>
     <Kind>6</Kind>
@@ -43,7 +43,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>TARGET_SPRING</Name>
-    <Value>0.465007007</Value>
+    <Value>0.345030993</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -58,15 +58,50 @@
 <Widget>
     <Kind>4</Kind>
     <Name>Z OFFSET</Name>
-    <Value>933.333496094</Value>
+    <Value>720.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>CAM MOVEMENT</Name>
-    <Value>18.333332062</Value>
+    <Value>40.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>CAMERA TARGET Z</Name>
-    <Value>60.000000000</Value>
+    <Value>6.666687012</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>FXAA PASS</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>BLOOM PASS</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>DOF PASS</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>KALEIDOSCOPE PASS</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>NOISE WARP PASS</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>PIXELATE PASS</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>EDGE PASS</Name>
+    <Value>0</Value>
 </Widget>
