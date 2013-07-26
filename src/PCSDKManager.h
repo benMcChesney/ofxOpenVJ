@@ -1,8 +1,8 @@
 //
-//  KinectManager.h
-//  Double_Kinect_Tests
+//  PCSDKManager.h
+//  ofxOpenVJ
 //
-//  Created by Nick Hardeman on 11/5/12.
+//  Created by Ben McChesney on 6/5/12.
 //
 //
 
@@ -23,7 +23,7 @@
 //
 #include "ofxUI.h"
 #include "ofxOpenCv.h"
-//#include "ofxPostProcessing.h"
+
 class PCSDKManager {
 public:
     PCSDKManager();
@@ -105,10 +105,7 @@ public:
     //the raw RGB color
     unsigned char       minimumPixBrightness ;
     
-    //ofxPostProcessing post ;
-    
-    void disableAllPostProcessing() ; 
-
+  
 	/* PCSDK Stuff... */
 	bool mColor;
 	int mDW, mDH, mCW, mCH, mSkip, mTotal;
@@ -125,6 +122,7 @@ public:
 
 	ofImage depthImage ; 
 	vector<ofVec3f> pts ; 
+	float zScale ; 
 	//ofImage colorImage ; 
     
 protected:

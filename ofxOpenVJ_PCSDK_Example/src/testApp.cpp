@@ -41,6 +41,10 @@ void testApp::setup() {
     gui->loadSettings("GUI/mainGuiSettings.xml");
     gui->setVisible( bDrawGui );
    
+	 cameraManager.setup();
+    cameraManager.setupGui(670, guiY);
+    cameraManager.loadSettings();
+	//cameraManager.gui->setVisible( bDrawGui );
     
     // KinectManager //
     pcsdkMan.setupGui(340, guiY);
@@ -49,25 +53,15 @@ void testApp::setup() {
     pcsdkMan.loadSettings();
     pcsdkMan.gui->setVisible(bDrawGui);
     
-    
-    cameraManager.setup();
-    cameraManager.setupGui(670, guiY);
-    cameraManager.loadSettings();
+    //cameraManager//
+   
     //cameraManager.gui->setVisible(bDrawGui);
     
     //Point Cloud Scenes
     scenes.push_back( new PCSDK_Scene((int)scenes.size(), "PCSDK_Scene") );
-	scenes.push_back( new PCSDK_CV_Scene((int)scenes.size(), "BASIC CV PCSDK SCENE") );
-    ///
-//    AlienTunnelMaskScene
-    //
-    //Fragment Shader Scenes
-    //scenes.push_back( new CircleNoiseScene((int)scenes.size(), "CircleNoiseScene") );
-    //scenes.push_back( new RippleTunnelScene((int)scenes.size(), "RippleTunnelScene") );
-    //scenes.push_back( new AlienTunnelScene((int)scenes.size(), "AlienTunnelScene") );
-    
-    //Asset Scenes
-    //scenes.push_back( new ImageSpringParticles((int)scenes.size(), "ImageSpringParticles") );
+	//scenes.push_back( new PCSDK_CV_Scene((int)scenes.size(), "BASIC CV PCSDK SCENE") );
+	scenes.push_back( new PCSDK_TronLines((int)scenes.size(), "PCSDK_TronLines") );
+ 
     
     setSceneBounds();
     
@@ -88,11 +82,6 @@ void testApp::setup() {
     setDrawGuis( true );
     // activate the first scene //
     scenes[activeSceneIndex]->activate();
-    
-//    outputSyphonServer.setName( "ofxOpenVJ" ) ;
-
-    bug.loadImage( "bug.png" ) ;
-    bug.setAnchorPercent( 0.5 , 0.5 ) ;
 }
 
 //--------------------------------------------------------------
@@ -159,23 +148,16 @@ void testApp::update() {
 //--------------------------------------------------------------
 void testApp::draw() {
 
-  //  fbo.begin();
-    ofClear(0);
+
 	  ofSetColor(255);
     if(Scenes::isValidIndex( activeSceneIndex )) {
         scenes[activeSceneIndex]->draw();
     }
-    //fbo.end();
     
     ofSetColor(255);
-    ofDisableAlphaBlending();
-   // if(bShoveOver) fbo.draw(fboShoveX, 0);
-   // else fbo.draw(0, 0);
     ofEnableAlphaBlending();
     
-    ofSetColor( 255 ) ; 
-    //bug.draw( ofGetWidth() / 2  , 35 ) ;
-    //outputSyphonServer.publishScreen() ; 
+
     
 }
 
@@ -257,7 +239,7 @@ void testApp::setDrawGuis( bool bDraw ) {
     if ( pcsdkMan.gui != NULL )
         pcsdkMan.gui->setVisible( bDrawGui );
 
-   // if(cameraManager.gui != NULL)
+  //  if(cameraManager.gui != NULL)
    //     cameraManager.gui->setVisible(bDrawGui);
 
 }

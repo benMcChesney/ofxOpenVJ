@@ -1,10 +1,12 @@
 //
-//  TestScene.cpp
-//  KinectPerformanceV01
+//  PCSDK_Scene.h
+//  ofxOpenVJ
 //
-//  Created by Nick Hardeman on 11/6/12.
+//  Created by Ben McChesney on 6/5/12.
 //
 //
+
+
 
 #include "PCSDK_Scene.h"
 //--------------------------------------------------------------
@@ -235,7 +237,7 @@ void PCSDK_Scene::drawPointCloud( )
                    // vertex.z += zOffset ;
                     
                     float index = x + y * h ;
-                    float offset = ofSignedNoise( ofGetElapsedTimef() + index ) ;
+                    float offset = ofSignedNoise( ofGetElapsedTimef() + index ) * ( low * 10.0f ) ;  ;
                     if ( numTriangles % 2 == 0 )
                         offset *= -1 ; 
                     
@@ -291,7 +293,7 @@ void PCSDK_Scene::drawPointCloud( )
     
     // the projected points are 'upside down' and 'backwards'
     ofEnableBlendMode( OF_BLENDMODE_ADD ) ; 
-    ofScale(1, -1, -1);
+    ofScale(1, -1, -1 * pcsdkMan->zScale );
         //ofTranslate( 0.0f , 0.0f , zOffset ) ;
         glEnable(GL_DEPTH_TEST);
 		

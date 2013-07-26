@@ -1,10 +1,11 @@
 //
-//  TestScene.h
-//  KinectPerformanceV01
+//  PCSDK_CV_Scene.h
+//  ofxOpenVJ
 //
-//  Created by Ben Mcchesney on 11/6/12.
+//  Created by Ben McChesney on 6/6/12.
 //
 //
+
 
 #pragma once 
 #include "BaseScene.h"
@@ -36,9 +37,6 @@ public:
     float fboFadeAmount ;
     float extrudeDepth ;
     float extrudeNoiseStrength ;
-    
-//    float zOffset ;
-//    float pointCloudMinZ , pointCloudMaxZ ;
 
     float meshHueTimeMultiplier ;
     float meshHueRangeMin , meshHueRangeMax ;

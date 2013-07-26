@@ -11,7 +11,7 @@
 #include "BaseScene.h"
 #include "PCSDK_Scene.h"
 #include "PCSDK_CV_Scene.h"
-
+#include "PCSDK_TronLines.h"
 
 class Scenes {
 public:

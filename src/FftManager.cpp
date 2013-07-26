@@ -16,7 +16,7 @@ void FftManager::setup ( bool bListen )
     bufferSize = 512;
     
     bListenToOsc = bListen ; 
-	/*
+	
     //If we are listening from the OSC app we don't need any of this
     if ( bListenToOsc == false )
     {
@@ -47,7 +47,7 @@ void FftManager::setup ( bool bListen )
         // open an outgoing connection to HOST:PORT
         sender.setup( HOST, PORT );
     }
-    */
+    
     lowRange = 0.0f ;
     midRange = 0.0f ;
     highRange = 0.0f ;
@@ -67,12 +67,12 @@ void FftManager::setup ( bool bListen )
     
     //if ( bListenToOsc == false )
     //     setupOfxUI( ) ;
-    /*
+
     ofAddListener( ofEvents().mouseDragged, this, &FftManager::mouseDragged ) ;
     ofAddListener( ofEvents().mousePressed, this, &FftManager::mousePressed ) ;
     ofAddListener( ofEvents().mouseReleased, this, &FftManager::mouseReleased ) ;
     ofAddListener( ofEvents().keyPressed, this, &FftManager::keyPressed ) ;
-    */
+
    
 
 }
@@ -87,7 +87,7 @@ void FftManager::parseOSC()
 {
     if ( bListenToOsc == true )
     {
-//        cout << "waiting for message! " << endl ;
+        //cout << "waiting for message! " << endl ;
         while ( receiver.hasWaitingMessages() )
         {
             
@@ -153,6 +153,7 @@ void FftManager::update ( )
 
 void FftManager::draw ( )
 {
+	ofEnableAlphaBlending() ; 
     drawTriggers();
 	ofSetColor( 255 , 255 , 255 ) ;
 	
@@ -161,12 +162,12 @@ void FftManager::draw ( )
     if(useEQ)
     {
         ofDrawBitmapString("EQd FFT Output", 2, 13);
-       // plot(eqOutput, fft->getBinSize(), -512, 4, 0);
+        plot(eqOutput, fft->getBinSize(), -512, 4, 0);
     }
     else
     {
         ofDrawBitmapString("FFT Output", 2, 13);
-      //  plot(fftOutput, fft->getBinSize(), -512, 4, 0);
+        plot(fftOutput, fft->getBinSize(), -512, 4, 0);
     }
 	ofPopMatrix() ;
 }
@@ -253,7 +254,7 @@ void FftManager::drawTriggers()
 	}
 }
 
-/*
+
 void FftManager::plot(float* array, int length, float yScale, int xScale, float yOffset) {
 	ofNoFill();
 	ofSetColor(80,80,80);
@@ -297,7 +298,7 @@ void FftManager::audioReceived(float* input, int bufferSize, int nChannels)
     checkTriggers();
 
 }
-*/
+
 
 void FftManager::handleOSC()
 {
@@ -351,7 +352,7 @@ void FftManager::sendTriggers()
 	}
 }
 
-/*
+
 void FftManager::checkTriggers()
 {
 	for(int t=0;t<triggers.size();t++)
@@ -661,7 +662,7 @@ void FftManager::keyPressed(ofKeyEventArgs &args){
         
     }
 }
-*/
+
 void FftManager::createNewTrigger ( float x , float y )
 {
     if(y>ofGetHeight()-528 && triggerMode != TM_NAMING && y<ofGetHeight()-16)

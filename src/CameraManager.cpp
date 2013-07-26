@@ -22,9 +22,18 @@ void CameraManager::setup() {
     
     _distance = _maxDistance;
     
+     post.init(ofGetWidth(), ofGetHeight());
     
-}
 
+    // Setup post-processing chain
+    post.createPass<FxaaPass>()->setEnabled(false);
+    post.createPass<BloomPass>()->setEnabled(false);
+    post.createPass<DofPass>()->setEnabled(false);
+    post.createPass<KaleidoscopePass>()->setEnabled(false);
+    post.createPass<NoiseWarpPass>()->setEnabled(false);
+    post.createPass<PixelatePass>()->setEnabled(false);
+    post.createPass<EdgePass>()->setEnabled(false);
+}
 //--------------------------------------------------------------
 void CameraManager::loadSettings() {
     gui->loadSettings("GUI/camera_.xml");
@@ -37,12 +46,13 @@ void CameraManager::saveSettings() {
 
 void CameraManager::begin()
 {
-    cam.begin() ;
+    post.begin( cam ) ; //.begin() ;
 }
 
 void CameraManager::end()
 {
-    cam.end() ; 
+	post.end( ) ; 
+    //cam.end() ; 
 }
 
 //--------------------------------------------------------------
@@ -102,6 +112,7 @@ void CameraManager::update() {
 
 //--------------------------------------------------------------
 void CameraManager::draw() {
+	ofBackground ( 0 ,0 , 0 ) ; 
     ofSetColor(255, 0, 0);
     ofSphere(_target, 20);
     
@@ -245,48 +256,95 @@ void CameraManager::guiEvent(ofxUIEventArgs &e) {
     else if (ename == "CAMERA TARGET Z" ) {
         cameraTargetZ = ((ofxUISlider*)e.widget)->getScaledValue();
     }
-
-    
-
-    
-    /*
-     gui->addSlider( "CAMERA TARGET Z", -1000 , 1000 , &cameraTargetZ ,  GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );
-     gui->addSlider( "Z OFFSET", -3000 , 3000 , &zOffset ,  GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );
-     gui->addSlider( "CAM MOVEMENT", 0 , 50 , &camMovementFactor ,  GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );
-     */
+	else if ( ename == "FXAA PASS" )
+    {
+		bool value = ((ofxUIToggle*)e.widget)->getValue(); 
+		if ( value ) 
+			post.getPasses()[0]->enable() ; 
+		else
+			post.getPasses()[0]->disable() ; 
+    }
+    else if ( ename == "BLOOM PASS" )
+    {
+		bool value = ((ofxUIToggle*)e.widget)->getValue(); 
+		if ( value ) 
+			post.getPasses()[1]->enable() ; 
+		else
+			post.getPasses()[1]->disable() ; 
+    }
+    else if ( ename == "DOF PASS" )
+    {
+		bool value = ((ofxUIToggle*)e.widget)->getValue(); 
+		if ( value ) 
+			post.getPasses()[2]->enable() ; 
+		else
+			post.getPasses()[2]->disable() ; 
+    }
+    else if ( ename == "KALEIDOSCOPE PASS" )
+    {
+		bool value = ((ofxUIToggle*)e.widget)->getValue(); 
+		if ( value ) 
+			post.getPasses()[3]->enable() ; 
+		else
+			post.getPasses()[3]->disable() ; 
+    }
+    else if ( ename == "NOISE WARP PASS" )
+    {
+		bool value = ((ofxUIToggle*)e.widget)->getValue(); 
+		if ( value ) 
+			post.getPasses()[4]->enable() ; 
+		else
+			post.getPasses()[4]->disable() ; 
+    }
+    else if ( ename == "PIXELATE PASS" )
+    {
+		bool value = ((ofxUIToggle*)e.widget)->getValue(); 
+		if ( value ) 
+			post.getPasses()[5]->enable() ; 
+		else
+			post.getPasses()[5]->disable() ; 
+    }
+    else if ( ename == "EDGE PASS" )
+    {
+		bool value = ((ofxUIToggle*)e.widget)->getValue(); 
+		if ( value ) 
+			post.getPasses()[6]->enable() ; 
+		else
+			post.getPasses()[6]->disable() ; 
+    }
 }
+
+void CameraManager::disableAllPostProcessing( )
+{
+    
+}
+
 
 //--------------------------------------------------------------
 void CameraManager::setupGui( float a_x, float a_y ) 
 {
-
 	cout << "CameraMananger::setupGui() called ! " << endl ; 
 
     gui = new ofxUIScrollableCanvas( a_x, a_y, 320, ofGetHeight() + 300 - a_y );
     
     float GUI_WIDGET_WIDTH = 300;
     float GUI_SLIDER_HEIGHT = 16;
-     gui->addSpacer( GUI_WIDGET_WIDTH, 1);
+	
+   //  gui->addSpacer( GUI_WIDGET_WIDTH, 1);
     gui->addWidgetDown(new ofxUILabel("Camera Settings", OFX_UI_FONT_LARGE));
-    gui->addSpacer(GUI_WIDGET_WIDTH, 2);
     
     gui->addWidgetDown( new ofxUIToggle("Debug", false, 16, 16 ) );
     gui->addWidgetRight( new ofxUIToggle("CAMERA_AUTO", false, 16, 16 ) );
     
     gui->addSlider("MAX_BEAT_HITS", 1, 400, &_maxBeatHits, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );
     
-    gui->addSpacer( GUI_WIDGET_WIDTH, 1);
-    
+   
     gui->addSlider("CAM_DISTANCE", 1, 500, &_distance, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );
     gui->addSlider("CAM_MIN_DISTANCE", 1, 250, &_minDistance, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );
-    gui->addSlider("CAM_MAX_DISTANCE", 1, 500, &_maxDistance, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );
+    gui->addSlider("CAM_MAX_DISTANCE", 1, 1000, &_maxDistance, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );
     
     gui->addRangeSlider("CAM_LONGITUDE", -179 , 179, _minLongitude, _maxLongitude , GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT ) ;
     gui->addRangeSlider("CAM_LATITUDE", -179 , 179, _minLatitude, _maxLatitude , GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT ) ;
-    
-    //gui->addSlider("CAM_LONGITUDE", -179, 179, &_longitude, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );
-    //gui->addSlider("CAM_LATITUDE", -89, 89, &_latitude, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );
-    
     gui->addSpacer( GUI_WIDGET_WIDTH, 1);
     
     gui->addSlider( "TARGET_SPRING", .0001, .5f, &_targetSpring, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );
@@ -295,13 +353,16 @@ void CameraManager::setupGui( float a_x, float a_y )
     
     gui->addSlider( "Z OFFSET", -4000 , 4000 , &zOffset ,  GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );
     gui->addSlider( "CAM MOVEMENT", 0 , 500 , &camMovementFactor ,  GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );
-    
     gui->addSlider( "CAMERA TARGET Z", -1000 , 1000 , &cameraTargetZ ,  GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );
     
- 
-    //cameraTargetZ
-    gui->setScrollArea(a_x, a_y, 320, ofGetHeight() - 10 - a_y);
-    
+	 gui->addToggle("FXAA PASS", false ) ;
+    gui->addToggle("BLOOM PASS", false ) ;
+    gui->addToggle("DOF PASS", false ) ;
+    gui->addToggle("KALEIDOSCOPE PASS", false ) ;
+    gui->addToggle("NOISE WARP PASS", false ) ;
+    gui->addToggle("PIXELATE PASS", false ) ;
+    gui->addToggle("EDGE PASS", false ) ;
+
     ofAddListener( gui->newGUIEvent, this, &CameraManager::guiEvent );
 }
 

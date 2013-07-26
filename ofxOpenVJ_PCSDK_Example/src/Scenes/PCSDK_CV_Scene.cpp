@@ -1,10 +1,11 @@
 //
-//  TestScene.cpp
-//  KinectPerformanceV01
+//  PCSDK_CV_Scene.h
+//  ofxOpenVJ
 //
-//  Created by Nick Hardeman on 11/6/12.
+//  Created by Ben McChesney on 6/6/12.
 //
 //
+
 
 #include "PCSDK_CV_Scene.h"
 //--------------------------------------------------------------

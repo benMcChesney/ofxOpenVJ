@@ -1,10 +1,11 @@
 //
-//  KinectManager.cpp
-//  Double_Kinect_Tests
+//  PCSDKManager.h
+//  ofxOpenVJ
 //
-//  Created by Nick Hardeman on 11/5/12.
+//  Created by Ben McChesney on 6/5/12.
 //
 //
+
 
 #include "PCSDKManager.h"
 
@@ -53,19 +54,9 @@ PCSDKManager::PCSDKManager() {
 
 	setupGui();
 
-    /*
-    post.init(ofGetWidth(), ofGetHeight());
     
-
-    // Setup post-processing chain
-    post.createPass<FxaaPass>()->setEnabled(false);
-    post.createPass<BloomPass>()->setEnabled(false);
-    post.createPass<DofPass>()->setEnabled(false);
-    post.createPass<KaleidoscopePass>()->setEnabled(false);
-    post.createPass<NoiseWarpPass>()->setEnabled(false);
-    post.createPass<PixelatePass>()->setEnabled(false);
-    post.createPass<EdgePass>()->setEnabled(false);
-     */
+   
+     
 }
 
 //--------------------------------------------------------------
@@ -320,75 +311,27 @@ float* PCSDKManager::getDistancePixels() {
 //--------------------------------------------------------------
 ofColor PCSDKManager::getColorAt( int x, int y )
 {
-	/*
-	if ( x >= depthImage.getWidth() || y >= depthImage.getHeight() )
-	{
-		return ofColor::white ; 
-
-	}*/
-
-	//return ofColor::white  ;
-
 	int index = x + y * ( depthImage.getWidth() / ( int) step ) ;
 	
 	if ( index < mesh.getNumVertices() ) 
 	{
-		return mesh.getColors()[ index ] ; 
-		//cout << "index : " << index << " mVerts.size() " << mVerts.size() << endl ; 
-		//ofColor color =  mColors[ index ] ; 
-		//return color ; 
-
+		return mColors[ index ] ;
 	}
 	else
 	{
 		return ofColor::white ; 
 	}
-	//return cur;
-
-	//ofVec3f getWorldCoordAt( int x, int y );
-    //void setWorldCoord( int x, int y, ofVec3f& inVec );
-	//void getColorAt( int x , int y ) ; 
 }
 
 //--------------------------------------------------------------
 ofVec3f PCSDKManager::getWorldCoordAt( int x, int y ) {
 
-	/*
-	if ( x >= depthImage.getWidth() || y >= depthImage.getHeight() )
-	{
-		return ofVec3f() ; 
-
-	}*/
-	
-
 	int index = x + y * ( depthImage.getWidth() / step ) ; //depthImage.width ;
 	if ( index >= mVerts.size() ) 
 		return ofVec3f()  ; 
 
-	//if ( index < mVerts.size() ) 
-	//{
-		//cout << "@)" << x << " , " << y << " ) : [" << index << " ]" << index << " mVerts.size() " << mVerts.size() << endl ; 
-	ofVec3f cur = mVerts[index] ; //mesh.getVertex( index ) ; //mVerts[ index ] ; 
-		
-		//int index = (adjustedInput.x + adjustedInput.y * map.getWidth()) * 3 ;
-		
-		return cur ; 
-
-		/*
-		setWorldCoord(x, y, cur);
-		return cur ; 
-	*/
-
-	//}
-	//else
-	//{
-	//	return ofVec3f() ; 
-	//}
-	//return cur;
-
-	//ofVec3f getWorldCoordAt( int x, int y );
-    //void setWorldCoord( int x, int y, ofVec3f& inVec );
-	//void getColorAt( int x , int y ) ; 
+	ofVec3f cur = mVerts[index] ;
+	return cur ; 
 }
 
 //--------------------------------------------------------------
@@ -621,10 +564,6 @@ void PCSDKManager::calculateTriangleMesh( ofVec3f mesh_offset, bool bCalcNormals
     */
 }
 
-void PCSDKManager::disableAllPostProcessing( )
-{
-    
-}
 
 //--------------------------------------------------------------
 void PCSDKManager::calculateTriangleStripMesh( ofVec3f mesh_offset, bool bCalcNormals ) {
@@ -894,9 +833,10 @@ void PCSDKManager::guiEvent(ofxUIEventArgs &e) {
         ofxUIRangeSlider* slider = (ofxUIRangeSlider*) e.widget;
         pointCloudMinZ    = slider->getScaledValueLow();
         pointCloudMaxZ     = slider->getScaledValueHigh();
-    } else if (e.widget->getName() == "POINT CLOUD Z") {
-        pointCloudZOffset = ((ofxUISlider *) e.widget)->getScaledValue() ;
-    } else if (e.widget->getName() == "FIND HOLES")
+    //} else if (e.widget->getName() == "POINT CLOUD Z") {
+    //    pointCloudZOffset = ((ofxUISlider *) e.widget)->getScaledValue() ;
+    }
+	else if (e.widget->getName() == "FIND HOLES")
     {
         ofxUILabelToggle* toggle = (ofxUILabelToggle*) e.widget;
         bFindHoles = toggle->getValue() ;
@@ -932,65 +872,11 @@ void PCSDKManager::guiEvent(ofxUIEventArgs &e) {
 		mColor = sender->getValue();
 	}
     
-    /*
     
-    else if ( ename == "FXAA PASS" )
-    {
-        disableAllPostProcessing() ;
-        post.getPasses()[0]->enable() ; 
-    }
-    else if ( ename == "BLOOM PASS" )
-    {
-        disableAllPostProcessing() ;
-        post.getPasses()[1]->enable() ;
-    }
-    else if ( ename == "DOF PASS" )
-    {
-        disableAllPostProcessing() ;
-        post.getPasses()[2]->enable() ;
-    }
-    else if ( ename == "KALEIDOSCOPE PASS" )
-    {
-        disableAllPostProcessing() ;
-        post.getPasses()[3]->enable() ;
-    }
-    else if ( ename == "NOISE WARP PASS" )
-    {
-        disableAllPostProcessing() ;
-        post.getPasses()[4]->enable() ;
-    }
-    else if ( ename == "PIXELATE PASS" )
-    {
-        disableAllPostProcessing() ;
-        post.getPasses()[5]->enable() ;
-    }
-    else if ( ename == "EDGE PASS" )
-    {
-        disableAllPostProcessing() ;
-        post.getPasses()[6]->enable() ;
-    }
-    */
-    /*
-     
-     
-     gui->addToggle("FXAA PASS", false ) ;
-     gui->addToggle("BLOOM PASS", false ) ;
-     gui->addToggle("DOF PASS", false ) ;
-     gui->addToggle("KALEIDOSCOPE PASS", false ) ;
-     gui->addToggle("NOISE WARP PASS", false ) ;
-     gui->addToggle("PIXELATE PASS", false ) ;
-     gui->addToggle("EDGE PASS", false ) ;
-     /*
-     post.createPass<FxaaPass>()->setEnabled(false);
-     post.createPass<BloomPass>()->setEnabled(false);
-     post.createPass<DofPass>()->setEnabled(false);
-     post.createPass<KaleidoscopePass>()->setEnabled(false);
-     post.createPass<NoiseWarpPass>()->setEnabled(false);
-     post.createPass<PixelatePass>()->setEnabled(false);
-     post.createPass<EdgePass>()->setEnabled(false);
-     */
-
     
+ 
+   
+  
     /*
     gui->addWidgetDown( new ofxUIRangeSlider( "BLOB SIZE" , 30 * 30 , ( kinect.width * kinect.height ) * .75 , minBlobSize , maxBlobSize ,  GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT ) )  ;
      gui->addWidgetDown( new ofxUIToggle("FIND HOLES", false, 16, 16) );
@@ -1028,7 +914,7 @@ void PCSDKManager::setupGui(float a_x, float a_y) {
     
     gui->addRangeSlider("ThreshSlider", 0.0, 7500.0, 50.0, 1000.0, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
     
-    gui->addSlider("Kinect FOV", 1, 179, 70, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
+  // gui->addSlider("Kinect FOV", 1, 179, 70, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
     
     gui->addSpacer( GUI_WIDGET_WIDTH, 1);
   //  gui->addSlider("Mesh Offset X", -3000.f, 3000.f, 0.0, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
@@ -1037,8 +923,8 @@ void PCSDKManager::setupGui(float a_x, float a_y) {
     gui->addSlider("Mesh Step", 1, 20, 4, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
     
     gui->addRangeSlider("POINT CLOUD RANGE", 0.0 , 10000.0 , pointCloudMinZ , pointCloudMaxZ ) ;
-    gui->addSlider("POINT CLOUD Z", -2000 , 2000 , 4, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
-
+    //gui->addSlider("POINT CLOUD Z", -2000 , 2000 , 4, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
+	gui->addSlider( "SCALE Z" , -1.0f , 1.0f , &zScale ) ; 
     
     gui->addSpacer( GUI_WIDGET_WIDTH, 1);
     gui->addWidgetDown(new ofxUILabel("INVERT AXES", OFX_UI_FONT_MEDIUM));
@@ -1046,42 +932,26 @@ void PCSDKManager::setupGui(float a_x, float a_y) {
     gui->addWidgetRight( new ofxUILabelToggle("Y AXIS", false, 90, 30, 0, 0) );
   //  gui->addWidgetRight( new ofxUILabelToggle("Z AXIS", false, 90, 30, 0, 0) );
     
-    gui->addWidgetDown(new ofxUIRotarySlider(64, -180.f, 180.f, 0.f, "Y AXIS ROT"));
+    //gui->addWidgetDown(new ofxUIRotarySlider(64, -180.f, 180.f, 0.f, "Y AXIS ROT"));
     gui->addWidgetDown( new ofxUIRangeSlider( "BLOB SIZE" , 30 * 30 , ( depthImage.width * depthImage.height ) * .75 , minBlobSize , maxBlobSize ,  GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT ) )  ;
     
     gui->addSlider( "MIN PIXEL BRIGHTNESS" , 0 , 255 , minimumPixBrightness , GUI_WIDGET_WIDTH , GUI_SLIDER_HEIGHT ) ;
     gui->addSpacer( GUI_WIDGET_WIDTH, 1);
 
 	//gui = new ofxUICanvas(0,0,200,200);
-	gui->addFPS();
-	gui->addSpacer(150,2);
-	gui->addSlider("SCALE",0.1f,2,mScale,150,10);
-	gui->addSpacer(150,2);
+	//gui->addFPS();
+	//gui->addSpacer(150,2);
+	//gui->addSlider("SCALE",0.1f,2,mScale,150,10);
+	//gui->addSpacer(150,2);
 	gui->addLabelToggle("COLOR", false, 150,10);
 	//ofAddListener(mGUI->newGUIEvent,this,&testApp::guiEvent);	
-    /*
-    gui->addToggle("FXAA PASS", false ) ;
-    gui->addToggle("BLOOM PASS", false ) ;
-    gui->addToggle("DOF PASS", false ) ;
-    gui->addToggle("KALEIDOSCOPE PASS", false ) ;
-    gui->addToggle("NOISE WARP PASS", false ) ;
-    gui->addToggle("PIXELATE PASS", false ) ;
-    gui->addToggle("EDGE PASS", false ) ; */
-    /*
-     post.createPass<FxaaPass>()->setEnabled(false);
-     post.createPass<BloomPass>()->setEnabled(false);
-     post.createPass<DofPass>()->setEnabled(false);
-     post.createPass<KaleidoscopePass>()->setEnabled(false);
-     post.createPass<NoiseWarpPass>()->setEnabled(false);
-     post.createPass<PixelatePass>()->setEnabled(false);
-     post.createPass<EdgePass>()->setEnabled(false);
-     */
+    
 
 
 
     gui->setScrollArea(a_x, a_y, 320, ofGetHeight() - 10 - a_y);
     
-    ofAddListener( gui->newGUIEvent, this, &PCSDKManager::guiEvent );
+    ofAddListener( gui->newGUIEvent, this, &PCSDKManager::guiEvent ) ; 
 }
 
 

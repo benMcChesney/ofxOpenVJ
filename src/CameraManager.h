@@ -9,6 +9,7 @@
 #include "ofMain.h"
 #include "ofxParticle3D.h"
 #include "ofxUI.h"
+#include "ofxPostProcessing.h"
 
 class CameraManager
 {
@@ -51,6 +52,11 @@ public:
     
     void begin() ;
     void end() ; 
+
+	 ofxPostProcessing post ;
+    
+    void disableAllPostProcessing() ; 
+
     
 private:
     
