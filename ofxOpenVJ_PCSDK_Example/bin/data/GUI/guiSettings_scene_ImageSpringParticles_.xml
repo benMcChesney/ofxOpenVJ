@@ -1,0 +1,100 @@
+<Widget>
+    <Kind>4</Kind>
+    <Name>FORCE RADIUS</Name>
+    <Value>432.000030518</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>FRICTION</Name>
+    <Value>0.883333325</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>SPRING FACTOR</Name>
+    <Value>0.209999993</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>FADE AMOUNT</Name>
+    <Value>23.799999237</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>PARTICLE ALPHA</Name>
+    <Value>255.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>FORCE STRENGTH</Name>
+    <Value>0.406666666</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>SAMPLING</Name>
+    <Value>2.559999943</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>FRAMES UNTIL SWITCH</Name>
+    <Value>200.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>X WANDER</Name>
+    <Value>165.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>X NOISE WANDER</Name>
+    <Value>21.666666031</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>Y WANDER</Name>
+    <Value>175.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>Y NOISE WANDER</Name>
+    <Value>21.666666031</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>WANDER TIME MULTIPLIER</Name>
+    <Value>2.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>Z WANDER</Name>
+    <Value>25.000001907</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>MAX PARTICLE SPEED</Name>
+    <Value>2.880000114</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>SPECIAL Z OFFSET</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>SHOW FORCE TARGET</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>SEEK</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>SPRING ENABLED</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>USE ADDITIVE BLENDING</Name>
+    <Value>1</Value>
+</Widget>

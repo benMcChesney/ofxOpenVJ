@@ -9,7 +9,6 @@
 #include "ofMain.h"
 #include "ofxParticle3D.h"
 #include "ofxUI.h"
-#include "ofxPostProcessing.h"
 
 class CameraManager
 {

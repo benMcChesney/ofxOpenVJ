@@ -9,7 +9,7 @@
 #ifndef emptyExample_FftManager_h
 #define emptyExample_FftManager_h
 
-#include "ofxFft.h"
+//#include "ofxFft.h"
 #include "ofxOsc.h"
 #include "FftTrigger.h"
 #include "ofxUI.h"
@@ -39,17 +39,18 @@ class FftManager
         float lerpAmount ; 
 
         // ofxFft related
-        void plot(float* array, int length, float yScale, int xScale, float yOffset);
+        //void plot(float* array, int length, float yScale, int xScale, float yOffset);
     
-        void audioReceived(float* input, int bufferSize, int nChannels);
+        //void audioReceived(float* input, int bufferSize, int nChannels);
 
+		/*
         void keyPressed  ( ofKeyEventArgs &args );
         void mouseDragged( ofMouseEventArgs &args );
         void mousePressed( ofMouseEventArgs &args );
         void mouseReleased( ofMouseEventArgs &args );
-    
+    */
         int bufferSize;
-        ofxFft* fft;
+        //ofxFft* fft;
         float* audioInput;
         float* fftOutput;
         float* eqFunction;

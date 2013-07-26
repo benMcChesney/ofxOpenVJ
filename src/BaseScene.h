@@ -7,13 +7,22 @@
 //
 
 #pragma once
+
+#define INTEL_PCSDK 3
 #include "ofMain.h"
 #include "ofxUI.h"
 #include "Utils.h"
 #include "CameraManager.h"
 #include "Constants.h"
 #include "FftManager.h"
+
+#ifndef INTEL_PCSDK
 #include "KinectManager.h"
+#endif
+
+#ifdef INTEL_PCSDK
+#include "PCSDKManager.h"
+#endif
 
 class BaseScene {
 public:
@@ -26,6 +35,7 @@ public:
         low = 0 ;
         mid = 0 ;
         high = 0 ;
+		index = -1;
         shaderDirectory = ofToDataPath( "../../../../../addons/ofxOpenVJ/shaders/" ) ;
     }
     virtual ~BaseScene() {
@@ -69,12 +79,20 @@ public:
     
     string getXMLSettingsName() { return "GUI/guiSettings_scene_"+name+"_.xml"; }
     
-    int index = -1;
+    int index ;
     string name;
     
     ofxUIScrollableCanvas* gui;
     
-    KinectManager* kinectMan;
+	#ifndef INTEL_PCSDK
+	KinectManager* kinectMan;
+#endif
+
+#ifdef INTEL_PCSDK
+	PCSDKManager * pcsdkMan ; 
+#endif
+
+    
     FftManager* fft;
     CameraManager* cameraMan;
     

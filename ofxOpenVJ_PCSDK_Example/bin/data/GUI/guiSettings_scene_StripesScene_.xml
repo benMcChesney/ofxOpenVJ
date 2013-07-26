@@ -1,0 +1,30 @@
+<Widget>
+    <Kind>4</Kind>
+    <Name>STRIPE WIDTH</Name>
+    <Value>436.025634766</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>STRIPE CENTER X</Name>
+    <Value>1181.538330078</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>STRIPE CENTER Y</Name>
+    <Value>879.230712891</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>STRIPE ANGLE</Name>
+    <Value>1.012820482</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>STRIPE OFFSET SPEED</Name>
+    <Value>12.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>NUMBER OF STRIPES</Name>
+    <Value>88.461532593</Value>
+</Widget>

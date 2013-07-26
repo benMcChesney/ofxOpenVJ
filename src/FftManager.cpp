@@ -16,6 +16,7 @@ void FftManager::setup ( bool bListen )
     bufferSize = 512;
     
     bListenToOsc = bListen ; 
+	/*
     //If we are listening from the OSC app we don't need any of this
     if ( bListenToOsc == false )
     {
@@ -46,7 +47,7 @@ void FftManager::setup ( bool bListen )
         // open an outgoing connection to HOST:PORT
         sender.setup( HOST, PORT );
     }
-    
+    */
     lowRange = 0.0f ;
     midRange = 0.0f ;
     highRange = 0.0f ;
@@ -66,12 +67,12 @@ void FftManager::setup ( bool bListen )
     
     //if ( bListenToOsc == false )
     //     setupOfxUI( ) ;
-    
+    /*
     ofAddListener( ofEvents().mouseDragged, this, &FftManager::mouseDragged ) ;
     ofAddListener( ofEvents().mousePressed, this, &FftManager::mousePressed ) ;
     ofAddListener( ofEvents().mouseReleased, this, &FftManager::mouseReleased ) ;
     ofAddListener( ofEvents().keyPressed, this, &FftManager::keyPressed ) ;
-    
+    */
    
 
 }
@@ -160,12 +161,12 @@ void FftManager::draw ( )
     if(useEQ)
     {
         ofDrawBitmapString("EQd FFT Output", 2, 13);
-        plot(eqOutput, fft->getBinSize(), -512, 4, 0);
+       // plot(eqOutput, fft->getBinSize(), -512, 4, 0);
     }
     else
     {
         ofDrawBitmapString("FFT Output", 2, 13);
-        plot(fftOutput, fft->getBinSize(), -512, 4, 0);
+      //  plot(fftOutput, fft->getBinSize(), -512, 4, 0);
     }
 	ofPopMatrix() ;
 }
@@ -252,6 +253,7 @@ void FftManager::drawTriggers()
 	}
 }
 
+/*
 void FftManager::plot(float* array, int length, float yScale, int xScale, float yOffset) {
 	ofNoFill();
 	ofSetColor(80,80,80);
@@ -295,7 +297,7 @@ void FftManager::audioReceived(float* input, int bufferSize, int nChannels)
     checkTriggers();
 
 }
-
+*/
 
 void FftManager::handleOSC()
 {
@@ -313,9 +315,9 @@ void FftManager::sendSpectrum()
 	
 	m.clear();
 	m.setAddress( "/spectrum" );
-	for(int i=0;i<fft->getBinSize();i++)
-		m.addFloatArg(fftOutput[i]);
-	sender.sendMessage( m );
+//	for(int i=0;i<fft->getBinSize();i++)
+//		m.addFloatArg(fftOutput[i]);
+//	sender.sendMessage( m );
     
     
 }
@@ -349,6 +351,7 @@ void FftManager::sendTriggers()
 	}
 }
 
+/*
 void FftManager::checkTriggers()
 {
 	for(int t=0;t<triggers.size();t++)
@@ -411,7 +414,6 @@ void FftManager::checkTriggers()
 	}
 }
 
-
 //--------------------------------------------------------------
 void FftManager::mouseDragged(ofMouseEventArgs &args ){
     
@@ -457,12 +459,7 @@ void FftManager::mousePressed(ofMouseEventArgs &args ){
                     selTrigger = t;
 					break;
                 }
-                /*
-                 if(x>=triggers[t].lowBand*4-2 && x<=triggers[t].highBand*4+2 && fabs(y - (ofGetHeight()-triggers[t].height*512-16)) < 10)
-                 {
-                 selTrigger = t;
-                 break;
-                 }*/
+     
 			}
 			
 			
@@ -546,6 +543,7 @@ void FftManager::mouseReleased(ofMouseEventArgs &args )
 		}
 	}
 }
+
 
 //--------------------------------------------------------------
 void FftManager::keyPressed(ofKeyEventArgs &args){
@@ -663,7 +661,7 @@ void FftManager::keyPressed(ofKeyEventArgs &args){
         
     }
 }
-
+*/
 void FftManager::createNewTrigger ( float x , float y )
 {
     if(y>ofGetHeight()-528 && triggerMode != TM_NAMING && y<ofGetHeight()-16)

@@ -7,15 +7,26 @@
 //
 
 #pragma once
+
+#define INTEL_PCSDK 3
 #include "ofMain.h"
 #include "Constants.h"
+
+
+#ifdef INTEL_PCSDK
+#include "pxcupipeline.h"
+#endif
+
+#ifndef INTEL_PCSDK
 #include "ofxKinect.h"
+#endif
+//
 #include "ofxUI.h"
 #include "ofxOpenCv.h"
 //#include "ofxPostProcessing.h"
-class KinectManager {
+class PCSDKManager {
 public:
-    KinectManager();
+    PCSDKManager();
     
     void open();
     void close();
@@ -26,15 +37,19 @@ public:
     void drawDebug();
     
     bool isFrameNew();
-    float* getDistancePixels();
+    //float* getDistancePixels();
     ofVec3f getWorldCoordAt( int x, int y );
     void setWorldCoord( int x, int y, ofVec3f& inVec );
+	ofColor getColorAt( int x , int y ) ; 
     
     void setupMesh();
     void calculateMesh( ofVec3f mesh_offset );
     void calculatePoints( ofVec3f a_meshOffset );
     void calculateTriangleMesh( ofVec3f mesh_offset, bool bCalcNormals=true );
     void calculateTriangleStripMesh( ofVec3f mesh_offset, bool bCalcNormals=true );
+	void calculateCVOpertions( ) ; 
+	void calculatePointCloud( ) ; 
+
     ofVec3f getMeshCenter();
     
     ofVec3f& getOffsetVector();
@@ -52,6 +67,9 @@ public:
     //ofxKinect kinect;
 
     ofxUIScrollableCanvas* gui;
+
+	float getWidth() { return depthImage.getWidth() ; } 
+	float getHeight() { return depthImage.getHeight() ; } 
     
 
     // open cv work, for use with 2D elements //
@@ -90,6 +108,24 @@ public:
     //ofxPostProcessing post ;
     
     void disableAllPostProcessing() ; 
+
+	/* PCSDK Stuff... */
+	bool mColor;
+	int mDW, mDH, mCW, mCH, mSkip, mTotal;
+	float mScale, mXOffset, mYOffset;
+	short *mDepthMap;
+
+	float *mUVMap;
+	unsigned char *mRGBMap;
+	vector<ofVec3f> mVerts;
+	vector<ofFloatColor> mColors;
+//	vector<string> mSteps;
+
+	PXCUPipeline_Instance mSession;
+
+	ofImage depthImage ; 
+	vector<ofVec3f> pts ; 
+	//ofImage colorImage ; 
     
 protected:
     ofVec3f inverseAxes;

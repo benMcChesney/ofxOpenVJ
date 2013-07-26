@@ -22,7 +22,6 @@ void CameraManager::setup() {
     
     _distance = _maxDistance;
     
-
     
 }
 
@@ -202,6 +201,9 @@ void CameraManager::setCenter(ofVec3f a_center) {
 
 //--------------------------------------------------------------
 void CameraManager::guiEvent(ofxUIEventArgs &e) {
+
+
+
     string ename = e.widget->getName();
     
     if(ename == "Debug") {
@@ -255,7 +257,11 @@ void CameraManager::guiEvent(ofxUIEventArgs &e) {
 }
 
 //--------------------------------------------------------------
-void CameraManager::setupGui( float a_x, float a_y ) {
+void CameraManager::setupGui( float a_x, float a_y ) 
+{
+
+	cout << "CameraMananger::setupGui() called ! " << endl ; 
+
     gui = new ofxUIScrollableCanvas( a_x, a_y, 320, ofGetHeight() + 300 - a_y );
     
     float GUI_WIDGET_WIDTH = 300;
