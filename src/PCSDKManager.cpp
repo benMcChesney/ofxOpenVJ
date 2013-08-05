@@ -52,7 +52,7 @@ PCSDKManager::PCSDKManager() {
 	//	colorImage.allocate( mCW , mCH , OF_IMAGE_COLOR_ALPHA ) ; 
 	}
 
-	setupGui();
+	//setupGui();
 
     
    

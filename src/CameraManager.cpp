@@ -24,6 +24,7 @@ void CameraManager::setup() {
     
      post.init(ofGetWidth(), ofGetHeight());
     
+	 gui = NULL ; 
 
     // Setup post-processing chain
     post.createPass<FxaaPass>()->setEnabled(false);

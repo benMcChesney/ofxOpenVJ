@@ -1,62 +1,59 @@
 //
-//  KinectManager.h
-//  Double_Kinect_Tests
+//  DepthCameraManager.h
+//  ofxOpenVJ
 //
-//  Created by Nick Hardeman on 11/5/12.
-//
+//  Created by Ben McChesney 7/29/2013
+//	abstract class that allows for scenes to be cross-hardware
 //
 
 #pragma once
 #include "ofMain.h"
 #include "Constants.h"
-#include "ofxKinect.h"
 #include "ofxUI.h"
 #include "ofxOpenCv.h"
-//#include "ofxPostProcessing.h"
-class KinectManager {
+
+class DepthCameraManager {
 public:
-    KinectManager();
+    DepthCameraManager();
     
-    void open();
-    void close();
-    bool isConnected();
+    virtual void open();
+    virtual void close();
+    virtual bool isConnected();
     
-    void update();
-    void draw();
-    void drawDebug();
+    virtual void update();
+    virtual void draw();
+    virtual void drawDebug();
     
-    bool isFrameNew();
-    float* getDistancePixels();
-    ofVec3f getWorldCoordAt( int x, int y );
-    void setWorldCoord( int x, int y, ofVec3f& inVec );
+    virtual bool isFrameNew();
+    virtual float* getDistancePixels();
+    virtual ofVec3f getWorldCoordAt( int x, int y );
+    virtual void setWorldCoord( int x, int y, ofVec3f& inVec );
     
-    void setupMesh();
-    void calculateMesh( ofVec3f mesh_offset );
-    void calculatePoints( ofVec3f a_meshOffset );
-    void calculateTriangleMesh( ofVec3f mesh_offset, bool bCalcNormals=true );
-    void calculateTriangleStripMesh( ofVec3f mesh_offset, bool bCalcNormals=true );
-    ofVec3f getMeshCenter();
+    virtual void setupMesh();
+    virtual void calculateMesh( ofVec3f mesh_offset );
+    virtual void calculatePoints( ofVec3f a_meshOffset );
+    virtual void calculateTriangleMesh( ofVec3f mesh_offset, bool bCalcNormals=true );
+    virtual void calculateTriangleStripMesh( ofVec3f mesh_offset, bool bCalcNormals=true );
+    virtual ofVec3f getMeshCenter();
     
-    ofVec3f& getOffsetVector();
+    virtual ofVec3f& getOffsetVector();
     
-    void calculateCVOperations();
-    vector<ofPolyline> getScaledContourPolyline( float x, float y, float w, float h );
-    vector<ofRectangle> getScaledContourBoundingBoxes( float x, float y, float w, float h );
+    virtual void calculateCVOperations();
+    virtual vector<ofPolyline> getScaledContourPolyline( float x, float y, float w, float h );
+    virtual vector<ofRectangle> getScaledContourBoundingBoxes( float x, float y, float w, float h );
     
-    void guiEvent(ofxUIEventArgs &e);
-    void setupGui(float a_x=0, float a_y=0);
+    virtual void guiEvent(ofxUIEventArgs &e);
+    virtual void setupGui(float a_x=0, float a_y=0);
     
-    void loadSettings();
-    void saveSettings();
+    virtual void loadSettings();
+    virtual void saveSettings();
     
-    ofxKinect kinect;
 
     ofxUIScrollableCanvas* gui;
     
 
     // open cv work, for use with 2D elements //
     ofxCvGrayscaleImage grayImage; // grayscale depth image
-    //ofxCvGrayscaleImage grayImageSmall; // we don't need that big ass image //
 	ofxCvGrayscaleImage grayThreshNear; // the near thresholded image
 	ofxCvGrayscaleImage grayThreshFar; // the far thresholded image
 	ofxCvContourFinder contourFinder;
@@ -95,16 +92,5 @@ protected:
     ofVec3f inverseAxes;
     // in degrees //
     ofVec3f axesRotation;
-    float kinectFOV;
     bool bThreshWithOpenCV;
 };
-
-
-
-
-
-
-
-
-
-

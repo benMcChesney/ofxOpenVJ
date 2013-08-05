@@ -622,7 +622,7 @@ void KinectManager::guiEvent(ofxUIEventArgs &e) {
     if(e.widget->getName() == "KINECT_CAMERA_ANGLE") {
         ofxUISlider *slider = (ofxUISlider *) e.widget;
         cout << "kinect angle = " << slider->getScaledValue() << endl;
-        kinect.setCameraTiltAngle( (int)round(slider->getScaledValue()) );
+        kinect.setCameraTiltAngle( (int)(slider->getScaledValue()) );
     }
     if (e.widget->getName() == "Mesh Offset X") {
         ofxUISlider *slider = (ofxUISlider *) e.widget;
