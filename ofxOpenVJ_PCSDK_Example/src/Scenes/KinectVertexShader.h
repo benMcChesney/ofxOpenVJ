@@ -19,9 +19,7 @@ public:
     void setup();
     void setupGui(float a_x=0, float a_y=0);
     void guiEvent(ofxUIEventArgs &e);
-    
-    float redrawAlpha ; 
-    
+         
     void update();
     void draw();
     void drawPointCloud( ) ;
@@ -29,11 +27,6 @@ public:
     void activate();
     void deactivate();
 
-    bool bToggleTrails ;
-    float fadeAmount ;
-
-    ofFbo trailFbo ;
-    float fboFadeAmount ;
     ofShader shader ;
     bool bDrawShader ;
     

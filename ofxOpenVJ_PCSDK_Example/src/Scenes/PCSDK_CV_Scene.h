@@ -25,23 +25,10 @@ public:
     
     void update();
     void draw();
-    void drawPointCloud( ) ;
+  
     
     void activate();
-    void deactivate();
+    void deactivate( ) ; 
 
-    bool bToggleTrails ;
-    float fadeAmount ;
 
-    ofFbo trailFbo ;
-    float fboFadeAmount ;
-    float extrudeDepth ;
-    float extrudeNoiseStrength ;
-
-    float meshHueTimeMultiplier ;
-    float meshHueRangeMin , meshHueRangeMax ;
-    
-    float triangleSizeMax ;
-    float triangleSizeMin ;
-    ofShader shader ; 
 };

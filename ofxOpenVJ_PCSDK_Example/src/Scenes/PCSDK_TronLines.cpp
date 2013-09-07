@@ -83,49 +83,28 @@ void PCSDK_TronLines::deactivate() {
 
 //--------------------------------------------------------------
 void PCSDK_TronLines::update() {
-    pcsdkMan->update( );
-	pcsdkMan->calculatePointCloud( ) ; 
+    depthCameraManager->update( );
+	depthCameraManager->calculatePointCloud( ) ; 
 }
 
 //--------------------------------------------------------------
 void PCSDK_TronLines::draw() {
 
-
-    
     ofSetColor( 255 , 255 ,255 ) ;
 
-	
-//    kinectMan->post.begin( cameraMan->cam ) ;
     cameraMan->begin();
     ofPushMatrix() ;
     ofTranslate(0 , 0 , cameraMan->zOffset ) ;
-	
-		drawPointCloud();
-	
-
+		drawPointCloud() ;
 	ofPopMatrix();
 
     cameraMan->end() ; 
-    //kinectMan->post.end() ;
-
-  //  trailFbo.end() ;
-    /*
-    ofSetColor( 255 , 255 , 255 ) ;
-    ofPushMatrix( ) ;
-        ofTranslate( 0 , ofGetHeight() ) ;
-        ofScale( 1 , -1 , 1 ) ;
-        trailFbo.draw(0 , 0 ) ;
-    /*
-        ofEnableBlendMode(OF_BLENDMODE_ADD ) ;
-        ofSetColor( 255 , 255 , 255 , redrawAlpha ) ;
-        trailFbo.draw( 0 , 0 );
-    ofPopMatrix( ) ;*/
 }
 
 void PCSDK_TronLines::drawPointCloud( )
 {
-    int w = pcsdkMan->getWidth() ; 
-	int h = pcsdkMan->getHeight() ; 
+    int w = depthCameraManager->getWidth() ; 
+	int h = depthCameraManager->getHeight() ; 
 
 	cout << "low : " << low << endl ; 
 	ofMesh mesh;
@@ -144,13 +123,13 @@ void PCSDK_TronLines::drawPointCloud( )
     {
 		ofPath line ; 
 		bool bLastValid = false; 
-		for(int x = 0; x < w; x+= pcsdkMan->step ) //= pcsdkMan->step )
+		for(int x = 0; x < w; x+= depthCameraManager->step ) //= pcsdkMan->step )
         {
             float   noiseStep =  extrudeDepth * low ;             
             float diff = low ; 
             
-            ofVec3f vertex = pcsdkMan->getWorldCoordAt(x,y) ;
-			if ( vertex.z > pcsdkMan->pointCloudMinZ && vertex.z < pcsdkMan->pointCloudMaxZ )
+            ofVec3f vertex = depthCameraManager->getWorldCoordAt(x,y) ;
+			if ( vertex.z > depthCameraManager->pointCloudMinZ && vertex.z < depthCameraManager->pointCloudMaxZ )
             {
 				vertex.z += noiseStep ; 
 				if ( bLastValid == false ) 
@@ -170,7 +149,7 @@ void PCSDK_TronLines::drawPointCloud( )
 		}
 
 		ofPushMatrix() ; 
-		ofScale(1, -1, -1 * pcsdkMan->zScale);
+		ofScale(1, -1, -1 * depthCameraManager->zScale);
 		ofColor( 35 , 255 , 24 ) ; 
 		line.setColor( ofColor( 35 , 255 , 24 ) ) ; 
 		line.setFilled( false ) ;

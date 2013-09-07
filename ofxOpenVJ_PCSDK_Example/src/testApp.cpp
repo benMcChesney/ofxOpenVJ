@@ -5,7 +5,7 @@ void testApp::setup() {
 
     Tweenzor::init( ) ;
     
-	ofBackground(255*.15);
+	ofBackground( 0 );
 	ofSetFrameRate(60);
 	ofSetVerticalSync(true);
 	ofSetEscapeQuitsApp(false);
@@ -17,7 +17,7 @@ void testApp::setup() {
     ofSetSmoothLighting(true);
     
     //ofSetLogLevel(OF_LOG_SILENT);
-    ofSetLogLevel(OF_LOG_VERBOSE ) ; 
+    ofSetLogLevel(OF_LOG_WARNING ) ; 
 	
     // init reference vars before gui gets them //
     fboShoveX   = 0;
@@ -38,13 +38,13 @@ void testApp::setup() {
     float guiY = 0 ;
     gui = new ofxUICanvas( 10, guiY, 320, ofGetHeight() - guiY - 10 );
     setupMainGui();
-    gui->loadSettings("GUI/mainGuiSettings.xml");
+    
     gui->setVisible( bDrawGui );
    
 	 cameraManager.setup();
     cameraManager.setupGui(670, guiY);
     cameraManager.loadSettings();
-	//cameraManager.gui->setVisible( bDrawGui );
+	cameraManager.gui->setVisible( bDrawGui );
     
     // KinectManager //
     pcsdkMan.setupGui(340, guiY);
@@ -61,15 +61,16 @@ void testApp::setup() {
     scenes.push_back( new PCSDK_Scene((int)scenes.size(), "PCSDK_Scene") );
 	//scenes.push_back( new PCSDK_CV_Scene((int)scenes.size(), "BASIC CV PCSDK SCENE") );
 	scenes.push_back( new PCSDK_TronLines((int)scenes.size(), "PCSDK_TronLines") );
- 
+	scenes.push_back( new KinectVertexShader((int)scenes.size(), "KinectVertexShader") );
+ gui->loadSettings("GUI/mainGuiSettings.xml");
     
     setSceneBounds();
     
     for(int i = 0; i < scenes.size(); i++) {
         Scenes::registerScene(scenes[i]->index, scenes[i]->name);
-        scenes[i]->pcsdkMan    = &pcsdkMan;
-        scenes[i]->fft          = &fftManager;
-        scenes[i]->cameraMan    = &cameraManager;
+        scenes[i]->depthCameraManager    = &pcsdkMan;
+        scenes[i]->fft					 = &fftManager;
+        scenes[i]->cameraMan			 = &cameraManager;
         scenes[i]->setup();
         scenes[i]->setupGui(1000, guiY);
         scenes[i]->loadSettings();
@@ -148,6 +149,7 @@ void testApp::update() {
 //--------------------------------------------------------------
 void testApp::draw() {
 
+	ofBackground( 0 ) ; 
 
 	  ofSetColor(255);
     if(Scenes::isValidIndex( activeSceneIndex )) {
@@ -239,8 +241,8 @@ void testApp::setDrawGuis( bool bDraw ) {
     if ( pcsdkMan.gui != NULL )
         pcsdkMan.gui->setVisible( bDrawGui );
 
-  //  if(cameraManager.gui != NULL)
-   //     cameraManager.gui->setVisible(bDrawGui);
+    if(cameraManager.gui != NULL)
+        cameraManager.gui->setVisible(bDrawGui);
 
 }
 

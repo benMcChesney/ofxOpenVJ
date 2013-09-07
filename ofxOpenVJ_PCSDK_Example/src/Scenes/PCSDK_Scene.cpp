@@ -138,67 +138,28 @@ void PCSDK_Scene::deactivate() {
 
 //--------------------------------------------------------------
 void PCSDK_Scene::update() {
-    pcsdkMan->update( );
-	pcsdkMan->calculatePointCloud( ) ; 
+    depthCameraManager->update( );
+	depthCameraManager->calculatePointCloud( ) ; 
 }
 
 //--------------------------------------------------------------
 void PCSDK_Scene::draw() {
-
-        /*
-    if ( bToggleTrails )
-    {
-        glDisable( GL_DEPTH_TEST ) ; 
-        ofSetColor( 0 , 0 , 0 ) ;
-        ofRect( -1000, -1000 , 3000, 3000 ) ;
-        trailFbo.begin () ;
-
-        ofEnableAlphaBlending() ;
-        ofSetColor( 0 , 0 , 0 , fboFadeAmount ) ;
-        ofRect( -1000 , -1000 , 3000, 3000 ) ;
-
-    }
-    else
-    {
-        trailFbo.begin () ;
-        ofClear( 1 , 1 , 1 , 0 ) ;
-    }*/
     
     ofSetColor( 255 , 255 ,255 ) ;
-  //  glEnable( GL_DEPTH_TEST ) ;
-
-	
-//    kinectMan->post.begin( cameraMan->cam ) ;
+  
     cameraMan->begin();
     ofPushMatrix() ;
     ofTranslate(0 , 0 , cameraMan->zOffset ) ;
-	// pcsdkMan->draw( ); 
-		drawPointCloud();
-	//	pcsdkMan->mesh.setMode( OF_PRIMITIVE_POINTS ) ; 
-	//	pcsdkMan->mesh.draw() ; 
+		drawPointCloud( ) ; 
 	ofPopMatrix();
 
     cameraMan->end() ; 
-    //kinectMan->post.end() ;
-
-  //  trailFbo.end() ;
-    /*
-    ofSetColor( 255 , 255 , 255 ) ;
-    ofPushMatrix( ) ;
-        ofTranslate( 0 , ofGetHeight() ) ;
-        ofScale( 1 , -1 , 1 ) ;
-        trailFbo.draw(0 , 0 ) ;
-    /*
-        ofEnableBlendMode(OF_BLENDMODE_ADD ) ;
-        ofSetColor( 255 , 255 , 255 , redrawAlpha ) ;
-        trailFbo.draw( 0 , 0 );
-    ofPopMatrix( ) ;*/
 }
 
 void PCSDK_Scene::drawPointCloud( )
 {
-    int w = pcsdkMan->getWidth() ; 
-	int h = pcsdkMan->getHeight() ; 
+    int w = depthCameraManager->getWidth() ; 
+	int h = depthCameraManager->getHeight() ; 
 
 	ofMesh mesh;
 	mesh.setMode( OF_PRIMITIVE_TRIANGLES );
@@ -217,9 +178,9 @@ void PCSDK_Scene::drawPointCloud( )
     int numTriangles = 0 ;
     ofPoint closestPoint = ofPoint ( 0 , 0 , 10000.0f ) ;
     
-	for(int y = 0; y < h; y+= pcsdkMan->step ) //= pcsdkMan->step )
+	for(int y = 0; y < h; y+= depthCameraManager->step ) //= pcsdkMan->step )
     {
-		for(int x = 0; x < w; x+= pcsdkMan->step ) //= pcsdkMan->step )
+		for(int x = 0; x < w; x+= depthCameraManager->step ) //= pcsdkMan->step )
         {
 			
             float   noiseStep = 0 + ofSignedNoise( _time + x )*  extrudeNoiseStrength * extrudeDepth ;             
@@ -227,9 +188,9 @@ void PCSDK_Scene::drawPointCloud( )
             
 			//if( pcsdkMan->getDistanceAt(x, y) > 0)
            // {
-                ofVec3f vertex = pcsdkMan->getWorldCoordAt(x,y) ;
+                ofVec3f vertex = depthCameraManager->getWorldCoordAt(x,y) ;
 
-                if ( vertex.z > pcsdkMan->pointCloudMinZ && vertex.z < pcsdkMan->pointCloudMaxZ )
+                if ( vertex.z > depthCameraManager->pointCloudMinZ && vertex.z < depthCameraManager->pointCloudMaxZ )
                 {
                 //    if ( vertex.z < closestPoint.z )
                 //        closestPoint = vertex ;
@@ -243,11 +204,11 @@ void PCSDK_Scene::drawPointCloud( )
                     
                     offset *= low ;
                     
-                    float kinectHue = pcsdkMan->getColorAt( x , y ).getHue() ;
+                    float kinectHue = depthCameraManager->getColorAt( x , y ).getHue() ;
                     //float ofMap(float value, float inputMin, float inputMax, float outputMin, float outputMax, bool clamp) {
                     float hue = ((int)(ofGetElapsedTimef() * meshHueTimeMultiplier )) % 255  + kinectHue ; 
                     
-                    float zHueOffset = ofMap( vertex.z , pcsdkMan->pointCloudMinZ , pcsdkMan->pointCloudMaxZ ,  0 , 254.0f ) ;
+                    float zHueOffset = ofMap( vertex.z , depthCameraManager->pointCloudMinZ , depthCameraManager->pointCloudMaxZ ,  0 , 254.0f ) ;
                     hue += zHueOffset ; 
                     
                     while ( hue > 254 )
@@ -293,7 +254,7 @@ void PCSDK_Scene::drawPointCloud( )
     
     // the projected points are 'upside down' and 'backwards'
     ofEnableBlendMode( OF_BLENDMODE_ADD ) ; 
-    ofScale(1, -1, -1 * pcsdkMan->zScale );
+    ofScale(1, -1, -1 * depthCameraManager->zScale );
         //ofTranslate( 0.0f , 0.0f , zOffset ) ;
         glEnable(GL_DEPTH_TEST);
 		
