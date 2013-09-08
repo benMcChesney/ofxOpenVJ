@@ -208,6 +208,12 @@
     <ClCompile Include="..\..\ofxPostProcessing\src\RenderPass.cpp">
       <Filter>addons\ofxPostProcessing\src</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\DepthCameraManager.cpp">
+      <Filter>addons\ofxOpenVJ\src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scenes\KinectVertexShader.cpp">
+      <Filter>src\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -389,6 +395,9 @@
     </Filter>
     <Filter Include="addons\ofxPostProcessing\src">
       <UniqueIdentifier>{aad2e9ef-196a-4ef0-941b-45bb42e3f417}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxOpenVJ\shaders">
+      <UniqueIdentifier>{b73df03b-5d58-4ed9-a394-97e563be8e9e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1004,5 +1013,79 @@
     <ClInclude Include="..\..\ofxPostProcessing\src\RenderPass.h">
       <Filter>addons\ofxPostProcessing\src</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\DepthCameraManager.h">
+      <Filter>addons\ofxOpenVJ\src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scenes\KinectVertexShader.h">
+      <Filter>src\Scenes</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\shaders\AlienTunnel.frag">
+      <Filter>addons\ofxOpenVJ\shaders</Filter>
+    </None>
+    <None Include="..\shaders\basic.vert">
+      <Filter>addons\ofxOpenVJ\shaders</Filter>
+    </None>
+    <None Include="..\shaders\basicVertex.vert">
+      <Filter>addons\ofxOpenVJ\shaders</Filter>
+    </None>
+    <None Include="..\shaders\CircleNoise.frag">
+      <Filter>addons\ofxOpenVJ\shaders</Filter>
+    </None>
+    <None Include="..\shaders\circles.frag">
+      <Filter>addons\ofxOpenVJ\shaders</Filter>
+    </None>
+    <None Include="..\shaders\composite.frag">
+      <Filter>addons\ofxOpenVJ\shaders</Filter>
+    </None>
+    <None Include="..\shaders\composite.vert">
+      <Filter>addons\ofxOpenVJ\shaders</Filter>
+    </None>
+    <None Include="..\shaders\composite_rgb.frag">
+      <Filter>addons\ofxOpenVJ\shaders</Filter>
+    </None>
+    <None Include="..\shaders\composite_rgb.vert">
+      <Filter>addons\ofxOpenVJ\shaders</Filter>
+    </None>
+    <None Include="..\shaders\hexagon.frag">
+      <Filter>addons\ofxOpenVJ\shaders</Filter>
+    </None>
+    <None Include="..\shaders\HexTunnel.frag">
+      <Filter>addons\ofxOpenVJ\shaders</Filter>
+    </None>
+    <None Include="..\shaders\HuePointCloud.frag">
+      <Filter>addons\ofxOpenVJ\shaders</Filter>
+    </None>
+    <None Include="..\shaders\PointCloud.frag">
+      <Filter>addons\ofxOpenVJ\shaders</Filter>
+    </None>
+    <None Include="..\shaders\pointCloud_other.frag">
+      <Filter>addons\ofxOpenVJ\shaders</Filter>
+    </None>
+    <None Include="..\shaders\pointCloud_other.vert">
+      <Filter>addons\ofxOpenVJ\shaders</Filter>
+    </None>
+    <None Include="..\shaders\removeBlack.frag">
+      <Filter>addons\ofxOpenVJ\shaders</Filter>
+    </None>
+    <None Include="..\shaders\removeBlack.vert">
+      <Filter>addons\ofxOpenVJ\shaders</Filter>
+    </None>
+    <None Include="..\shaders\rippleTunnel copy.frag">
+      <Filter>addons\ofxOpenVJ\shaders</Filter>
+    </None>
+    <None Include="..\shaders\rippleTunnel.frag">
+      <Filter>addons\ofxOpenVJ\shaders</Filter>
+    </None>
+    <None Include="..\shaders\triangleLightTunnel.frag">
+      <Filter>addons\ofxOpenVJ\shaders</Filter>
+    </None>
+    <None Include="..\shaders\twist.frag">
+      <Filter>addons\ofxOpenVJ\shaders</Filter>
+    </None>
+    <None Include="..\shaders\twist.vert">
+      <Filter>addons\ofxOpenVJ\shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

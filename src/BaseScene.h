@@ -8,21 +8,13 @@
 
 #pragma once
 
-#define INTEL_PCSDK 3
 #include "ofMain.h"
 #include "ofxUI.h"
 #include "Utils.h"
 #include "CameraManager.h"
 #include "Constants.h"
 #include "FftManager.h"
-
-#ifndef INTEL_PCSDK
-#include "KinectManager.h"
-#endif
-
-#ifdef INTEL_PCSDK
-#include "PCSDKManager.h"
-#endif
+#include "DepthCameraManager.h"
 
 class BaseScene {
 public:
@@ -84,6 +76,7 @@ public:
     
     ofxUIScrollableCanvas* gui;
     
+	/*
 	#ifndef INTEL_PCSDK
 	KinectManager* kinectMan;
 #endif
@@ -91,7 +84,8 @@ public:
 #ifdef INTEL_PCSDK
 	PCSDKManager * pcsdkMan ; 
 #endif
-
+	*/
+	DepthCameraManager * depthCameraManager ;
     
     FftManager* fft;
     CameraManager* cameraMan;

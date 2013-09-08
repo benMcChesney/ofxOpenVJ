@@ -122,7 +122,9 @@
     <ClCompile Include="..\..\ofxPostProcessing\src\PixelatePass.cpp" />
     <ClCompile Include="..\..\ofxPostProcessing\src\PostProcessing.cpp" />
     <ClCompile Include="..\..\ofxPostProcessing\src\RenderPass.cpp" />
+    <ClCompile Include="..\src\DepthCameraManager.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Scenes\KinectVertexShader.cpp" />
     <ClCompile Include="src\Scenes\PCSDK_CV_Scene.cpp" />
     <ClCompile Include="src\Scenes\PCSDK_Scene.cpp" />
     <ClCompile Include="src\Scenes\PCSDK_TronLines.cpp" />
@@ -185,6 +187,8 @@
     <ClInclude Include="..\..\ofxPostProcessing\src\PixelatePass.h" />
     <ClInclude Include="..\..\ofxPostProcessing\src\PostProcessing.h" />
     <ClInclude Include="..\..\ofxPostProcessing\src\RenderPass.h" />
+    <ClInclude Include="..\src\DepthCameraManager.h" />
+    <ClInclude Include="src\Scenes\KinectVertexShader.h" />
     <ClInclude Include="src\Scenes\PCSDK_CV_Scene.h" />
     <ClInclude Include="src\Scenes\PCSDK_Scene.h" />
     <ClInclude Include="src\Scenes\PCSDK_TronLines.h" />
@@ -375,6 +379,30 @@
     <ProjectReference Include="..\..\..\libs\openFrameworksCompiled\project\vs2010\openframeworksLib.vcxproj">
       <Project>{5837595d-aca9-485c-8e76-729040ce4b0b}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\shaders\AlienTunnel.frag" />
+    <None Include="..\shaders\basic.vert" />
+    <None Include="..\shaders\basicVertex.vert" />
+    <None Include="..\shaders\CircleNoise.frag" />
+    <None Include="..\shaders\circles.frag" />
+    <None Include="..\shaders\composite.frag" />
+    <None Include="..\shaders\composite.vert" />
+    <None Include="..\shaders\composite_rgb.frag" />
+    <None Include="..\shaders\composite_rgb.vert" />
+    <None Include="..\shaders\hexagon.frag" />
+    <None Include="..\shaders\HexTunnel.frag" />
+    <None Include="..\shaders\HuePointCloud.frag" />
+    <None Include="..\shaders\PointCloud.frag" />
+    <None Include="..\shaders\pointCloud_other.frag" />
+    <None Include="..\shaders\pointCloud_other.vert" />
+    <None Include="..\shaders\removeBlack.frag" />
+    <None Include="..\shaders\removeBlack.vert" />
+    <None Include="..\shaders\rippleTunnel copy.frag" />
+    <None Include="..\shaders\rippleTunnel.frag" />
+    <None Include="..\shaders\triangleLightTunnel.frag" />
+    <None Include="..\shaders\twist.frag" />
+    <None Include="..\shaders\twist.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

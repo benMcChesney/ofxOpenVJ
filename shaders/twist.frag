@@ -1,3 +1,8 @@
+#version 120
+
+#ifdef GL_ES
+precision mediump float;
+#endif
 uniform float time ;
 uniform float var1;
 uniform float var2;

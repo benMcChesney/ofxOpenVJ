@@ -1,3 +1,8 @@
+#version 120
+
+#ifdef GL_ES
+precision mediump float;
+#endif
 //uniform vec4 objSpaceScale;
 //uniform vec4 eyeSpaceScale;
 //uniform vec4 clipSpaceScale;

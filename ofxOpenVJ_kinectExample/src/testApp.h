@@ -7,7 +7,10 @@
 #include "CameraManager.h"
 #include "Tweenzor.h"
 #include "FftManager.h"
+
+#ifndef WIN32
 #include "ofxSyphon.h"
+#endif
 
 class testApp : public ofBaseApp{
 
@@ -55,7 +58,7 @@ class testApp : public ofBaseApp{
     
     ofFbo fbo;
     
+	#ifndef WIN32
     ofxSyphonServer outputSyphonServer ;
-    
-    ofImage bug;
+	#endif
 };

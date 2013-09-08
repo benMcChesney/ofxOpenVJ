@@ -147,7 +147,7 @@ void SeizureCentralScene::addContour() {
         offsets.push_back( ofVec3f() ) ;
         ofxParticle2D particle;
         particle.color = color;
-        particle.radius = 0.5f ; + low  * 0.35f; // store the scale in here //
+        particle.radius = 0.5f ;// + low  * 0.35f; // store the scale in here //
         particles.push_back( particle );
         
         /*

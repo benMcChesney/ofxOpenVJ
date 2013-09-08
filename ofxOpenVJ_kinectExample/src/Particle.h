@@ -7,8 +7,7 @@
 //
 //  A Simple Particle Class
 
-#ifndef _PARTICLE
-#define _PARTICLE
+#pragma once
 
 #include "ofMain.h" 
 
@@ -30,4 +29,3 @@ class Particle
         ofColor color ; 
         
 };
-#endif

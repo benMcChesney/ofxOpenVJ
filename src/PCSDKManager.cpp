@@ -92,7 +92,7 @@ void PCSDKManager::open() {
     }
     
 
-    setupMesh();
+//    setupMesh();
 }
 
 //--------------------------------------------------------------
@@ -334,6 +334,7 @@ ofVec3f PCSDKManager::getWorldCoordAt( int x, int y ) {
 	return cur ; 
 }
 
+/*
 //--------------------------------------------------------------
 void PCSDKManager::setWorldCoord( int x, int y, ofVec3f& inVec ) {
 
@@ -373,7 +374,8 @@ void PCSDKManager::setupMesh() {
         }
     }
 }
-
+*/
+/*
 //--------------------------------------------------------------
 void PCSDKManager::calculateMesh( ofVec3f mesh_offset ) {
     
@@ -424,11 +426,11 @@ void PCSDKManager::calculateMesh( ofVec3f mesh_offset ) {
                 color = kinect.getColorAt(x, y);
                 mesh.setColor(i, color);
             }*/
-            
+           /* 
 		}
 	}
 }
-
+*//*
 //--------------------------------------------------------------
 void PCSDKManager::calculatePoints( ofVec3f a_meshOffset  ) {
 	int w = depthImage.width;
@@ -562,8 +564,9 @@ void PCSDKManager::calculateTriangleMesh( ofVec3f mesh_offset, bool bCalcNormals
         mesh.setNormal(i, mesh.getNormal(i).normalize());
     }
     */
-}
+//}
 
+/*
 
 //--------------------------------------------------------------
 void PCSDKManager::calculateTriangleStripMesh( ofVec3f mesh_offset, bool bCalcNormals ) {
@@ -649,8 +652,9 @@ void PCSDKManager::calculateTriangleStripMesh( ofVec3f mesh_offset, bool bCalcNo
         mesh.setNormal(i, mesh.getNormal(i).normalize());
     }
     */
-}
+//}
 
+/*
 //--------------------------------------------------------------
 ofVec3f PCSDKManager::getMeshCenter() {
 
@@ -666,6 +670,7 @@ ofVec3f PCSDKManager::getMeshCenter() {
 ofVec3f& PCSDKManager::getOffsetVector() {
     return offsetVec;
 }
+*/
 
 //--------------------------------------------------------------
 void PCSDKManager::calculateCVOperations() {
@@ -725,6 +730,7 @@ void PCSDKManager::calculateCVOperations() {
 	*/
 }
 
+/*
 //--------------------------------------------------------------
 vector<ofPolyline> PCSDKManager::getScaledContourPolyline(float x, float y, float w, float h ) {
     
@@ -777,6 +783,7 @@ vector<ofRectangle> PCSDKManager::getScaledContourBoundingBoxes(float x, float y
     
     return rects;
 }
+*/
 
 //--------------------------------------------------------------
 void PCSDKManager::guiEvent(ofxUIEventArgs &e) {
@@ -894,9 +901,7 @@ void PCSDKManager::setupGui(float a_x, float a_y) {
     
     gui->addWidgetDown(new ofxUILabel("PCSDK Settings", OFX_UI_FONT_LARGE));
     gui->addSpacer(GUI_WIDGET_WIDTH, 2);
-    
-    //gui->addSlider("KINECT_CAMERA_ANGLE", -30.0, 30.0, 0.0, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
-    
+   
     //ofTexture* rgbTex = ((ofTexture*) &colorImage.getTextureReference());
     //gui->addWidgetDown( new ofxUIBaseDraws(128, 96, rgbTex, "RGB Texture") );
 	
@@ -913,17 +918,9 @@ void PCSDKManager::setupGui(float a_x, float a_y) {
     gui->addRangeSlider("CV_ThreshSlider", 0.0, 255, 0, 255, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
     
     gui->addRangeSlider("ThreshSlider", 0.0, 7500.0, 50.0, 1000.0, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
-    
-  // gui->addSlider("Kinect FOV", 1, 179, 70, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
-    
     gui->addSpacer( GUI_WIDGET_WIDTH, 1);
-  //  gui->addSlider("Mesh Offset X", -3000.f, 3000.f, 0.0, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
-  //  gui->addSlider("Mesh Offset Y", -3000.f, 3000.f, 0.0, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
-  //  gui->addSlider("Mesh Offset Z", -3000.f, 3000.f, 0.0, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
     gui->addSlider("Mesh Step", 1, 20, 4, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
-    
     gui->addRangeSlider("POINT CLOUD RANGE", 0.0 , 10000.0 , pointCloudMinZ , pointCloudMaxZ ) ;
-    //gui->addSlider("POINT CLOUD Z", -2000 , 2000 , 4, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
 	gui->addSlider( "SCALE Z" , -1.0f , 1.0f , &zScale ) ; 
     
     gui->addSpacer( GUI_WIDGET_WIDTH, 1);
@@ -937,18 +934,8 @@ void PCSDKManager::setupGui(float a_x, float a_y) {
     
     gui->addSlider( "MIN PIXEL BRIGHTNESS" , 0 , 255 , minimumPixBrightness , GUI_WIDGET_WIDTH , GUI_SLIDER_HEIGHT ) ;
     gui->addSpacer( GUI_WIDGET_WIDTH, 1);
-
-	//gui = new ofxUICanvas(0,0,200,200);
-	//gui->addFPS();
-	//gui->addSpacer(150,2);
-	//gui->addSlider("SCALE",0.1f,2,mScale,150,10);
-	//gui->addSpacer(150,2);
 	gui->addLabelToggle("COLOR", false, 150,10);
-	//ofAddListener(mGUI->newGUIEvent,this,&testApp::guiEvent);	
     
-
-
-
     gui->setScrollArea(a_x, a_y, 320, ofGetHeight() - 10 - a_y);
     
     ofAddListener( gui->newGUIEvent, this, &PCSDKManager::guiEvent ) ; 

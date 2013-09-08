@@ -1,22 +1,22 @@
 <Widget>
     <Kind>4</Kind>
     <Name>MESH TIME HUE MULTIPLIER</Name>
-    <Value>244.799987793</Value>
+    <Value>170.850006104</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>FBO FADE AMOUNT</Name>
-    <Value>62.050003052</Value>
+    <Value>86.700004578</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
     <Name>TOGGLE TRAILS</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>EXTRUDE DEPTH</Name>
-    <Value>0.000000000</Value>
+    <Value>4.900000095</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -26,10 +26,10 @@
 <Widget>
     <Kind>4</Kind>
     <Name>TRIANGLE MAX</Name>
-    <Value>76.989997864</Value>
+    <Value>28.316667557</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>TRIANGLE MIN</Name>
-    <Value>4.476666451</Value>
+    <Value>2.986666679</Value>
 </Widget>

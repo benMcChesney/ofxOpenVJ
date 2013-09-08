@@ -97,10 +97,9 @@ void testApp::setup() {
     // activate the first scene //
     scenes[activeSceneIndex]->activate();
     
+	#ifndef WIN32
     outputSyphonServer.setName( "ofxOpenVJ" ) ;
-
-    bug.loadImage( "bug.png" ) ;
-    bug.setAnchorPercent( 0.5 , 0.5 ) ;
+	#endif 
 }
 
 //--------------------------------------------------------------
@@ -179,11 +178,10 @@ void testApp::draw() {
     if(bShoveOver) fbo.draw(fboShoveX, 0);
     else fbo.draw(0, 0);
     ofEnableAlphaBlending();
-    
-    ofSetColor( 255 ) ; 
-    bug.draw( ofGetWidth() / 2  , 35 ) ;
+
+	#ifndef WIN32
     outputSyphonServer.publishScreen() ; 
-    
+#endif
 }
 
 //--------------------------------------------------------------

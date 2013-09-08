@@ -12,7 +12,8 @@
 #include "ofxUI.h"
 #include "ofxOpenCv.h"
 
-class DepthCameraManager {
+class DepthCameraManager
+{
 public:
     DepthCameraManager();
     
@@ -25,22 +26,15 @@ public:
     virtual void drawDebug();
     
     virtual bool isFrameNew();
-    virtual float* getDistancePixels();
+   
     virtual ofVec3f getWorldCoordAt( int x, int y );
-    virtual void setWorldCoord( int x, int y, ofVec3f& inVec );
     
-    virtual void setupMesh();
-    virtual void calculateMesh( ofVec3f mesh_offset );
-    virtual void calculatePoints( ofVec3f a_meshOffset );
-    virtual void calculateTriangleMesh( ofVec3f mesh_offset, bool bCalcNormals=true );
-    virtual void calculateTriangleStripMesh( ofVec3f mesh_offset, bool bCalcNormals=true );
-    virtual ofVec3f getMeshCenter();
-    
-    virtual ofVec3f& getOffsetVector();
-    
+	virtual ofColor getColorAt( int x , int y ) ; 
+
+	
     virtual void calculateCVOperations();
-    virtual vector<ofPolyline> getScaledContourPolyline( float x, float y, float w, float h );
-    virtual vector<ofRectangle> getScaledContourBoundingBoxes( float x, float y, float w, float h );
+	virtual void calculatePointCloud( ) ; 
+    
     
     virtual void guiEvent(ofxUIEventArgs &e);
     virtual void setupGui(float a_x=0, float a_y=0);
@@ -48,10 +42,31 @@ public:
     virtual void loadSettings();
     virtual void saveSettings();
     
+	virtual float getWidth() { return depthImage.getWidth() ; } 
+	virtual float getHeight() { return depthImage.getHeight() ; } 
+
+	/* 
+	Planned additions 
+
+	virtual void setWorldCoord( int x, int y, ofVec3f& inVec );
+	virtual float* getDistancePixels();
+    virtual void setupMesh();
+    virtual void calculateMesh( ofVec3f mesh_offset );
+    virtual void calculatePoints( ofVec3f a_meshOffset );
+    virtual void calculateTriangleMesh( ofVec3f mesh_offset, bool bCalcNormals=true );
+    virtual void calculateTriangleStripMesh( ofVec3f mesh_offset, bool bCalcNormals=true );
+    virtual ofVec3f getMeshCenter();
+    virtual ofVec3f& getOffsetVector();
+	virtual vector<ofPolyline> getScaledContourPolyline( float x, float y, float w, float h );
+    virtual vector<ofRectangle> getScaledContourBoundingBoxes( float x, float y, float w, float h );
+
+    */
+
+	ofImage depthImage ; 
+	//ofImage colorImage ; 
 
     ofxUIScrollableCanvas* gui;
-    
-
+  
     // open cv work, for use with 2D elements //
     ofxCvGrayscaleImage grayImage; // grayscale depth image
 	ofxCvGrayscaleImage grayThreshNear; // the near thresholded image
@@ -83,10 +98,8 @@ public:
     //In dark rooms the colors don't get picked up as well so we have to adjust
     //the raw RGB color
     unsigned char       minimumPixBrightness ;
-    
-    //ofxPostProcessing post ;
-    
-    void disableAllPostProcessing() ; 
+    vector<ofVec3f> pts ; 
+	float zScale ; 
     
 protected:
     ofVec3f inverseAxes;
