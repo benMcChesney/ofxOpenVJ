@@ -31,8 +31,11 @@ void testApp::setup() {
     sceneDelayTime = 5.0f ;
     
     int bufferSize = 512;
-    fftManager.setup( true ) ;
-    fftManager.setupOSCReceiver( 12345 ) ; 
+	ofSoundStreamSetup(0, 1, this, 44100, bufferSize, 4);
+    fftManager.setup ( ) ;
+   // fftManager.setupOfxUI() ; 
+    ofSetFrameRate( 30 ) ; 
+  //  fftManager.setupOSCReceiver( 12345 ) ; 
 
     
     float guiY = 0 ;
@@ -53,16 +56,13 @@ void testApp::setup() {
     pcsdkMan.loadSettings();
     pcsdkMan.gui->setVisible(bDrawGui);
     
-    //cameraManager//
-   
-    //cameraManager.gui->setVisible(bDrawGui);
-    
     //Point Cloud Scenes
     scenes.push_back( new PCSDK_Scene((int)scenes.size(), "PCSDK_Scene") );
 	//scenes.push_back( new PCSDK_CV_Scene((int)scenes.size(), "BASIC CV PCSDK SCENE") );
 	scenes.push_back( new PCSDK_TronLines((int)scenes.size(), "PCSDK_TronLines") );
 	scenes.push_back( new KinectVertexShader((int)scenes.size(), "KinectVertexShader") );
- gui->loadSettings("GUI/mainGuiSettings.xml");
+	scenes.push_back( new PCSDK_HuePointCloud((int)scenes.size(), "PCSDK_HuePointCloud" ) ) ; 
+	gui->loadSettings("GUI/mainGuiSettings.xml");
     
     setSceneBounds();
     
@@ -83,6 +83,10 @@ void testApp::setup() {
     setDrawGuis( true );
     // activate the first scene //
     scenes[activeSceneIndex]->activate();
+
+	 ((ofxUIToggle*)gui->getWidget("B_DRAW_GUI"))->toggleValue();
+        bDrawGui = ((ofxUIToggle*)gui->getWidget("B_DRAW_GUI"))->getValue();
+        setDrawGuis( bDrawGui );
 }
 
 //--------------------------------------------------------------
@@ -107,6 +111,12 @@ void testApp::exit() {
     delete gui; gui = NULL;
     
 }
+
+void testApp::audioReceived(float* input, int bufferSize, int nChannels)
+{
+    fftManager.audioReceived( input , bufferSize , nChannels ) ;
+}
+
 
 //--------------------------------------------------------------
 void testApp::update() {
@@ -136,13 +146,13 @@ void testApp::update() {
     fftManager.update() ;
     pcsdkMan.update();
     cameraManager.update();
-    cameraManager.updateFft( fftManager.lowRange , fftManager.midRange , fftManager.highRange ) ; 
+    cameraManager.updateFft( fftManager.lowRange , 0.0f , 0.0f ) ; //, fftManager.midRange , fftManager.highRange ) ; 
 	if(Scenes::isValidIndex( activeSceneIndex ))
     {
         scenes[activeSceneIndex]->update();
-        scenes[activeSceneIndex]->low = fftManager.lowRange ;
-        scenes[activeSceneIndex]->mid = fftManager.midRange ;
-        scenes[activeSceneIndex]->high = fftManager.highRange ;
+		scenes[activeSceneIndex]->low = fftManager.lowRange ;
+//       scenes[activeSceneIndex]->mid = fftManager.midRange ;
+//        scenes[activeSceneIndex]->high = fftManager.highRange ;
     }
 }
 
@@ -158,9 +168,13 @@ void testApp::draw() {
     
     ofSetColor(255);
     ofEnableAlphaBlending();
-    
+ 
 
-    
+    if ( bDrawFft ) 
+	{
+		ofSetColor ( 255 ) ; 
+		 fftManager.draw( ) ; 
+	}
 }
 
 //--------------------------------------------------------------
@@ -190,19 +204,52 @@ void testApp::setupMainGui() {
     
     gui->addSpacer(guiW, 1);
     gui->addWidgetDown( new ofxUIToggle("B_AUTO_SCENE_SWITCH", false, 16, 16) );
-    
-    gui->addWidgetDown( new ofxUIMinimalSlider("SCENE DELAY TIME", 0.0f , 120.0f, sceneDelayTime , guiW-50, 16.f ) );
-    gui->addWidgetDown( new ofxUIMinimalSlider("FFT INTERPOLATION", 0.0f , 1.0f, fftManager.lerpAmount , guiW-50, 16.f ) );
+    gui->addSlider("SCENE DELAY TIME", 0.0f , 120.0f, sceneDelayTime ) ;
+	gui->addLabel( "FFT SETTINGS" ) ; 
+	gui->addToggle( "DRAW FFT" , &bDrawFft ) ;
+   gui->addSpectrum( "FFT" , fftManager.fftOutput , 256 , 0 , 1.0f ) ; 
+	gui->addSlider("FFT INTERPOLATION", 0.0f , 1.0f, &fftManager.lerpAmount  );
+	gui->addSlider( "FFT SCALING" , 0.1f , 10.0f , &fftManager.amplitudeScale ) ; 
+	gui->addSlider( "FFT FRICTION" , 0.0f, 0.99999f , &fftManager.amplitudeFriction ) ; 
+	gui->addToggle( "EQ FFT" , &fftManager.useEQ ) ;
+	gui->addSlider( "MIN TRIGGER TIME" , 0.0f , 0.4f , &fftManager.triggerDelay ) ; 
 
+	for ( int i = 0 ; i < fftManager.triggers.size() ; i++ ) 
+	{
+		gui->addRangeSlider( fftManager.triggers[i].name , 0.0f , 256 , &fftManager.triggers[i].lowBand , &fftManager.triggers[i].highBand ) ; 
+		gui->addSlider( fftManager.triggers[i].name + " height" , 0.0f , 1.0f , &fftManager.triggers[i].height ) ; 
+	}
+	
+	//gui->addSlider( "HIGH BAND" , 0.0f , 1.0f , &fftManager.lowTrigger.highBand ) ; 
+
+
+	//gui->addBaseDraws( "FFT MANAGER" , &fftManager.renderFbo, true ) ; 
+	// gui->addSpectrum( "FFT" , fftManager.fftOutput , 256 , 0 , 1.0f ) ; 
     ofAddListener( gui->newGUIEvent, this, &testApp::guiEvent );
 }
 
 //--------------------------------------------------------------
 void testApp::guiEvent( ofxUIEventArgs& e ) {
     string name = e.widget->getName();
-    if(name == "B_SAVE" ) {
+    if(name == "B_SAVE" )
+	{
         gui->saveSettings( "GUI/mainGuiSettings.xml" );
-    } else if (name == "B_DRAW_GUI" || name == "B_DRAW_Kinect_Gui") {
+		cameraManager.saveSettings() ; 
+		//depthCameraManager.saveSettings() ; 
+
+		pcsdkMan.saveSettings() ; 
+		cameraManager.saveSettings() ; 
+		fftManager.saveSettings() ; 
+		/*
+		 PCSDKManager   pcsdkMan;
+    CameraManager   cameraManager ;
+    FftManager      fftManager ;
+	*/
+		if( Scenes::isValidIndex( activeSceneIndex ))
+	    {
+			scenes[activeSceneIndex]->saveSettings();
+		}
+	} else if (name == "B_DRAW_GUI" || name == "B_DRAW_Kinect_Gui") {
         bDrawGui        = ((ofxUIToggle*)gui->getWidget("B_DRAW_GUI"))->getValue();
         bKinectCamGui   = ((ofxUIToggle*)gui->getWidget("B_DRAW_Kinect_Gui"))->getValue();
         setDrawGuis( bDrawGui );

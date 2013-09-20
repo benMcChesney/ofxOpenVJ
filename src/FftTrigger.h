@@ -27,8 +27,8 @@ class FftTrigger
         float value ;
         ofColor color ;
     
-        int lowBand;
-        int highBand;
+        float lowBand;
+        float highBand;
         float height;
         string name;
 	

@@ -45,6 +45,7 @@ public:
 	virtual float getWidth() { return depthImage.getWidth() ; } 
 	virtual float getHeight() { return depthImage.getHeight() ; } 
 
+
 	/* 
 	Planned additions 
 

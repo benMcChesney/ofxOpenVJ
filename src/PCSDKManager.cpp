@@ -311,6 +311,8 @@ float* PCSDKManager::getDistancePixels() {
 //--------------------------------------------------------------
 ofColor PCSDKManager::getColorAt( int x, int y )
 {
+	return ofColor::white ; 
+
 	int index = x + y * ( depthImage.getWidth() / ( int) step ) ;
 	
 	if ( index < mesh.getNumVertices() ) 
@@ -905,36 +907,36 @@ void PCSDKManager::setupGui(float a_x, float a_y) {
     //ofTexture* rgbTex = ((ofTexture*) &colorImage.getTextureReference());
     //gui->addWidgetDown( new ofxUIBaseDraws(128, 96, rgbTex, "RGB Texture") );
 	
-	ofTexture* depthTex = (ofTexture*) &depthImage.getTextureReference();
-    gui->addWidgetDown( new ofxUIBaseDraws(128, 96, depthTex, "Depth Texture") );
+	//ofTexture* depthTex = (ofTexture*) &depthImage.getTextureReference();
+   // gui->addWidgetDown( new ofxUIBaseDraws(128, 96, depthTex, "Depth Texture") );
     
     //ofTexture* cvTex = ((ofTexture*)&grayImage.getTextureReference());
 //    ofxCvGrayscaleImage* ((ofxCvGrayscaleImage*) &grayImage);
-    gui->addWidgetRight( new ofxUIBaseDraws(128, 96, ((ofxCvGrayscaleImage*) &grayImage), "Open CV Texture") );
+  //  gui->addWidgetRight( new ofxUIBaseDraws(128, 96, ((ofxCvGrayscaleImage*) &grayImage), "Open CV Texture") );
     
-    gui->addWidgetDown( new ofxUIToggle("BTHRESH_WITH_CV", false, 16, 16) );
-    gui->addWidgetDown( new ofxUIToggle("FIND HOLES", false, 16, 16) );
+   // gui->addWidgetDown( new ofxUIToggle("BTHRESH_WITH_CV", false, 16, 16) );
+ //   gui->addWidgetDown( new ofxUIToggle("FIND HOLES", false, 16, 16) );
    
-    gui->addRangeSlider("CV_ThreshSlider", 0.0, 255, 0, 255, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
+  //  gui->addRangeSlider("CV_ThreshSlider", 0.0, 255, 0, 255, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
     
-    gui->addRangeSlider("ThreshSlider", 0.0, 7500.0, 50.0, 1000.0, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
+   // gui->addRangeSlider("ThreshSlider", 0.0, 7500.0, 50.0, 1000.0, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
     gui->addSpacer( GUI_WIDGET_WIDTH, 1);
     gui->addSlider("Mesh Step", 1, 20, 4, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
     gui->addRangeSlider("POINT CLOUD RANGE", 0.0 , 10000.0 , pointCloudMinZ , pointCloudMaxZ ) ;
 	gui->addSlider( "SCALE Z" , -1.0f , 1.0f , &zScale ) ; 
     
     gui->addSpacer( GUI_WIDGET_WIDTH, 1);
-    gui->addWidgetDown(new ofxUILabel("INVERT AXES", OFX_UI_FONT_MEDIUM));
-    gui->addWidgetDown( new ofxUILabelToggle("X AXIS", false, 90, 30, 0, 0) );
-    gui->addWidgetRight( new ofxUILabelToggle("Y AXIS", false, 90, 30, 0, 0) );
+ //   gui->addWidgetDown(new ofxUILabel("INVERT AXES", OFX_UI_FONT_MEDIUM));
+ //   gui->addWidgetDown( new ofxUILabelToggle("X AXIS", false, 90, 30, 0, 0) );
+ //   gui->addWidgetRight( new ofxUILabelToggle("Y AXIS", false, 90, 30, 0, 0) );
   //  gui->addWidgetRight( new ofxUILabelToggle("Z AXIS", false, 90, 30, 0, 0) );
     
     //gui->addWidgetDown(new ofxUIRotarySlider(64, -180.f, 180.f, 0.f, "Y AXIS ROT"));
-    gui->addWidgetDown( new ofxUIRangeSlider( "BLOB SIZE" , 30 * 30 , ( depthImage.width * depthImage.height ) * .75 , minBlobSize , maxBlobSize ,  GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT ) )  ;
+ //   gui->addWidgetDown( new ofxUIRangeSlider( "BLOB SIZE" , 30 * 30 , ( depthImage.width * depthImage.height ) * .75 , minBlobSize , maxBlobSize ,  GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT ) )  ;
     
     gui->addSlider( "MIN PIXEL BRIGHTNESS" , 0 , 255 , minimumPixBrightness , GUI_WIDGET_WIDTH , GUI_SLIDER_HEIGHT ) ;
     gui->addSpacer( GUI_WIDGET_WIDTH, 1);
-	gui->addLabelToggle("COLOR", false, 150,10);
+	//gui->addLabelToggle("COLOR", false, 150,10);
     
     gui->setScrollArea(a_x, a_y, 320, ofGetHeight() - 10 - a_y);
     

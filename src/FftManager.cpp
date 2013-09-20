@@ -16,7 +16,6 @@ void FftManager::setup ( bool bListen )
     bufferSize = 512;
     
     bListenToOsc = bListen ; 
-	
     //If we are listening from the OSC app we don't need any of this
     if ( bListenToOsc == false )
     {
@@ -65,6 +64,25 @@ void FftManager::setup ( bool bListen )
     triggerDelay = 0.1f ;
     bListenToOsc = false ; 
     
+	/*
+	
+plot(eqOutput, fft->getBinSize(), -512, 4, 0);
+void FftManager::plot(float* array, int length, float yScale, int xScale, float yOffset) {
+	ofNoFill();
+	ofSetColor(80,80,80);
+	ofRect(0, 0, length*xScale, yScale);
+	ofSetColor(255,255,255);
+	
+	glPushMatrix();
+	glTranslatef(0,yOffset,0);
+	
+	ofBeginShape();
+	for (int i = 0; i < length; i++) {
+		ofVertex(i*xScale, array[i] * yScale);
+	}
+	*/
+
+	
     //if ( bListenToOsc == false )
     //     setupOfxUI( ) ;
 
@@ -85,6 +103,7 @@ void FftManager::setupOSCReceiver( int port )
 
 void FftManager::parseOSC()
 {
+	/*
     if ( bListenToOsc == true )
     {
         //cout << "waiting for message! " << endl ;
@@ -96,12 +115,7 @@ void FftManager::parseOSC()
             
            //cout << "receiveer::address : " << m.getAddress() << endl ;
             
-            /*
-             lowRange = 0.0f ;
-             mediumRange = 0.0f ;
-             highRange = 0.0f ;
-             */
-            
+        
             int isTriggered = m.getArgAsInt32(0) ;
             float friction = 0.85f ;
             
@@ -130,30 +144,33 @@ void FftManager::parseOSC()
                     highRange *= friction ; 
             }
         }
-    }
+    }*/
 }
 
 void FftManager::update ( )
 {
+	/*
     if ( bListenToOsc )
     {
         parseOSC( ) ;
     }
     else
-    {
+    {*/
         handleOSC( ) ;
         for ( int t = 0 ; t < triggers.size() ; t++ )
         {
             triggers[t].update() ;
         }
-    }
+   // }
 
 }
 
 
 void FftManager::draw ( )
 {
-	ofEnableAlphaBlending() ; 
+	ofPushStyle() ; 
+	ofEnableAlphaBlending() ;
+	//renderFbo.begin() ; 
     drawTriggers();
 	ofSetColor( 255 , 255 , 255 ) ;
 	
@@ -162,14 +179,17 @@ void FftManager::draw ( )
     if(useEQ)
     {
         ofDrawBitmapString("EQd FFT Output", 2, 13);
-        plot(eqOutput, fft->getBinSize(), -512, 4, 0);
+        plot(eqOutput, fft->getBinSize(), -512, 1, 0);
     }
     else
     {
         ofDrawBitmapString("FFT Output", 2, 13);
-        plot(fftOutput, fft->getBinSize(), -512, 4, 0);
+        plot(fftOutput, fft->getBinSize(), -512, 1, 0);
     }
 	ofPopMatrix() ;
+	ofPopStyle() ; 
+	ofFill() ;
+//	renderFbo.end() ; 
 }
 
 
@@ -329,13 +349,15 @@ void FftManager::sendTriggers()
 	
 	for(int t=0;t<triggers.size();t++)
 	{
-        ofxOscMessage m;
+       /*
+		ofxOscMessage m;
         
         m.clear();
         
         m.setAddress( "/"+triggers[t].name );
+        */
         
-        
+		/*
 		if(triggers[t].hit)
 		{
 			m.addIntArg(1);
@@ -345,10 +367,42 @@ void FftManager::sendTriggers()
         {
             m.addIntArg( 0 ) ; 
         }
-        
-        m.addFloatArg( triggers[t].averageAmplitude ) ;
+        */
+
+		if ( (ofGetElapsedTimef() - triggers[t].lastTriggerTime ) > triggerDelay ) 
+		{
+			bool bHit = triggers[t].hit ; 
+
+
+			if ( bHit ) 
+				triggers[t].sent = true ; 
+
+			if ( triggers[t].name == "low" ) 
+			{
+				if ( bHit ) 
+					lowRange = ofLerp( lowRange , triggers[t].averageAmplitude , lerpAmount ) ; 
+				else
+					lowRange *= amplitudeFriction ; 
+			}
+			if ( triggers[t].name == "mid" ) 
+			{
+				if ( bHit ) 
+					midRange = ofLerp( midRange , triggers[t].averageAmplitude , lerpAmount ) ; 
+				else
+					midRange *= amplitudeFriction ; 
+			}
+			if ( triggers[t].name == "high" ) 
+			{
+				if ( bHit ) 
+					highRange = ofLerp( highRange , triggers[t].averageAmplitude , lerpAmount ) ; 
+				else
+					highRange *= amplitudeFriction ; 
+			}
+
+		}
+       // m.addFloatArg( triggers[t].averageAmplitude ) ;
             
-        sender.sendMessage( m );
+      //  sender.sendMessage( m );
 	}
 }
 

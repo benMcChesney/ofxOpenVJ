@@ -77,7 +77,8 @@ class FftManager
         bool bClearXml ;
         bool bGuiEnabled ;
         
-        float amplitudeScale ;
+        float amplitudeScale ; 
+		float amplitudeFriction ; 
         float triggerDelay ;
         
         void createNewTrigger ( float x , float y ) ;

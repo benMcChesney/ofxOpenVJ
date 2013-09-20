@@ -32,8 +32,8 @@ void PCSDK_Scene::setup() {
     trailFbo.begin() ;
     ofClear( 0 , 0, 0, 1 ) ;
     trailFbo.end() ; 
-     string path = ofToDataPath( "../../../../ofxOpenVJ/shaders/" ) ;
-    shader.load( path + "basic.vert", path + "PointCloud.frag" ) ;
+  //   string path = ofToDataPath( "../../../../ofxOpenVJ/shaders/" ) ;
+    shader.load( shaderDirectory + "basic.vert", shaderDirectory + "PointCloud.frag" ) ;
 }
 
 //--------------------------------------------------------------
@@ -57,8 +57,8 @@ void PCSDK_Scene::setupGui(float a_x, float a_y) {
 
     gui->addSlider( "EXTRUDE DEPTH" , 0.0f , 10.0f , extrudeDepth , width, height) ;
     gui->addSlider( "EXTRUDE NOISE STRENGTH" , 0.0f , 500.0f , extrudeNoiseStrength , width, height) ;
-    gui->addSlider( "TRIANGLE MAX" , 1.0 ,150.0f  , triangleSizeMax , width, height) ;
-    gui->addSlider( "TRIANGLE MIN" , 1.0 ,150.0f  , triangleSizeMin , width, height) ;
+    gui->addSlider( "TRIANGLE MAX" , 1.0 ,25.0f  , triangleSizeMax , width, height) ;
+    gui->addSlider( "TRIANGLE MIN" , 0.001 ,25.0f  , triangleSizeMin , width, height) ;
       /*
     gui->addWidgetDown(new ofxUISlider(length, dim, 0.0f , 255.0f , meshHueTimeMultiplier , "MESH TIME HUE MULTIPLIER")) ;
     gui->addWidgetDown(new ofxUISlider(length, dim, 0.0f , 255.0f , fboFadeAmount , "FBO FADE AMOUNT")) ;

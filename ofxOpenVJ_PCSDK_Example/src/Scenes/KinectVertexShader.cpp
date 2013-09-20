@@ -21,8 +21,8 @@ KinectVertexShader::~KinectVertexShader() {
 //--------------------------------------------------------------
 void KinectVertexShader::setup() {
    
-    string path = ofToDataPath( "../../../../ofxOpenVJ/shaders/" ) ;
-    shader.load( path + "twist.vert", path + "twist.frag" ) ; 
+    //string path = ofToDataPath( "../../../../ofxOpenVJ/shaders/" ) ;
+    shader.load( shaderDirectory + "twist.vert", shaderDirectory + "twist.frag" ) ; 
     pixelSampling = 5.0 ; 
 }
 

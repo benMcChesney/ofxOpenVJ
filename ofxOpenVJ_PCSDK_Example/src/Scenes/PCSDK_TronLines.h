@@ -28,4 +28,14 @@ public:
 
     float extrudeDepth ; 
 	float lineRowSkip ; 
+	float noiseOffset ; 
+	float maxZConnectDist ; 
+
+	float hue ; 
+	float hueAdditionMultiplier ; 
+	float strokeWidth ; 
+	float xStep ; 
+	float lineAlpha ;
+	bool bStroke ; 
+	bool bFill ; 
 };

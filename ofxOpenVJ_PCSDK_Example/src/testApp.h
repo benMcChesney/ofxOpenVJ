@@ -69,7 +69,7 @@ class testApp : public ofBaseApp{
     ofImage bug;
 
 	int pixelStep ; 
+	bool bDrawFft ; 
 
-
-	
+	void audioReceived(float* input, int bufferSize, int nChannels);
 };

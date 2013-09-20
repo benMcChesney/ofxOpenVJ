@@ -25,10 +25,12 @@ public:
         name = a_name;
         gui=NULL;
         low = 0 ;
-        mid = 0 ;
-        high = 0 ;
+       // mid = 0 ;
+    //    high = 0 ;
 		index = -1;
-        shaderDirectory = ofToDataPath( "../../../../../addons/ofxOpenVJ/shaders/" ) ;
+
+        //shaderDirectory = ofToDataPath( "../../../../../addons/ofxOpenVJ/shaders/" ) ;
+		shaderDirectory = ofToDataPath( "shaders/" ) ;
     }
     virtual ~BaseScene() {
         if(gui != NULL) { delete gui; gui = NULL;}
@@ -90,7 +92,7 @@ public:
     FftManager* fft;
     CameraManager* cameraMan;
     
-    float low , mid , high ;
+    float low ; // , mid , high ;
 
     //Global folder where all shaders are
     string shaderDirectory ;

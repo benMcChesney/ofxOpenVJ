@@ -39,12 +39,43 @@
     <Value>0</Value>
 </Widget>
 <Widget>
-    <Kind>25</Kind>
+    <Kind>4</Kind>
     <Name>SCENE DELAY TIME</Name>
     <Value>16.320001602</Value>
 </Widget>
 <Widget>
-    <Kind>25</Kind>
+    <Kind>2</Kind>
+    <Name>DRAW FFT</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
     <Name>FFT INTERPOLATION</Name>
-    <Value>0.263999999</Value>
+    <Value>0.903846145</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>FFT SCALING</Name>
+    <Value>1.940384626</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>FFT FRICTION</Name>
+    <Value>0.955118656</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>EQ FFT</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>MIN TRIGGER TIME</Name>
+    <Value>0.006410257</Value>
+</Widget>
+<Widget>
+    <Kind>6</Kind>
+    <Name>low</Name>
+    <HighValue>18.871795654</HighValue>
+    <LowValue>0.000000000</LowValue>
 </Widget>

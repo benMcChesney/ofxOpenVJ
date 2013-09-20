@@ -13,6 +13,7 @@
 #include "PCSDK_CV_Scene.h"
 #include "PCSDK_TronLines.h"
 #include "KinectVertexShader.h"
+#include "PCSDK_HuePointCloud.h"
 
 class Scenes {
 public:

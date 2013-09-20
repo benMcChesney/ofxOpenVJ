@@ -1,0 +1,107 @@
+<Widget>
+    <Kind>2</Kind>
+    <Name>Debug</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>CAMERA_AUTO</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>MAX_BEAT_HITS</Name>
+    <Value>167.250000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>CAM_DISTANCE</Name>
+    <Value>294.392486572</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>CAM_MIN_DISTANCE</Name>
+    <Value>165.340011597</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>CAM_MAX_DISTANCE</Name>
+    <Value>383.949981689</Value>
+</Widget>
+<Widget>
+    <Kind>6</Kind>
+    <Name>CAM_LONGITUDE</Name>
+    <HighValue>21.480001450</HighValue>
+    <LowValue>-20.286668777</LowValue>
+</Widget>
+<Widget>
+    <Kind>6</Kind>
+    <Name>CAM_LATITUDE</Name>
+    <HighValue>8.353324890</HighValue>
+    <LowValue>-10.740000725</LowValue>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>TARGET_SPRING</Name>
+    <Value>0.135073006</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>STEER</Name>
+    <Value>1.199999928</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>PARTICLE_DAMPING</Name>
+    <Value>0.540000021</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>Z OFFSET</Name>
+    <Value>239.999771118</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>CAM MOVEMENT</Name>
+    <Value>3.333333492</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>CAMERA TARGET Z</Name>
+    <Value>-0.001311302</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>FXAA PASS</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>BLOOM PASS</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>DOF PASS</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>KALEIDOSCOPE PASS</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>NOISE WARP PASS</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>PIXELATE PASS</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>EDGE PASS</Name>
+    <Value>0</Value>
+</Widget>

@@ -27,7 +27,7 @@ void CameraManager::setup() {
 	 gui = NULL ; 
 
     // Setup post-processing chain
-    post.createPass<FxaaPass>()->setEnabled(false);
+    post.createPass<FxaaPass>()->setEnabled(true);
     post.createPass<BloomPass>()->setEnabled(false);
     post.createPass<DofPass>()->setEnabled(false);
     post.createPass<KaleidoscopePass>()->setEnabled(false);
@@ -37,16 +37,19 @@ void CameraManager::setup() {
 }
 //--------------------------------------------------------------
 void CameraManager::loadSettings() {
-    gui->loadSettings("GUI/camera_.xml");
+   gui->loadSettings("GUI/camera.xml");
+	cout << "CameraManager::loadSettings() : " << endl ; 
 }
 
 //--------------------------------------------------------------
 void CameraManager::saveSettings() {
-    gui->saveSettings("GUI/camera_.xml");
+	gui->saveSettings("GUI/camera.xml");
+	cout << "CameraManager::saveSettings() : " << endl ; 
 }
 
 void CameraManager::begin()
 {
+	//cam.begin() ; 
     post.begin( cam ) ; //.begin() ;
 }
 
@@ -87,10 +90,10 @@ void CameraManager::update() {
     _target.vel	+= _target.acc;
     _target += _target.vel;
     
-    //if(_bAuto) {
+    if(_bAuto) {
         ofVec3f orbitVec = getOrbitVec3f( _longitude, _latitude, _distance, _target);
         
-        //_camParticle.xeno(currHeading, particleTargetXeno);
+       // _camParticle.xeno(currHeading, particleTargetXeno);
 		_camParticle.steer(orbitVec, true, _steer, _distance*.6);
         
         _camParticle.addDamping( _camParticle.DAMPING );
@@ -98,7 +101,7 @@ void CameraManager::update() {
 		_camParticle	+= _camParticle.vel;
     //} else {
         
-    //}
+    }
     
     
     
