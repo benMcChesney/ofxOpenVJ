@@ -1,0 +1,50 @@
+<Widget>
+    <Kind>4</Kind>
+    <Name>HUE TIME MULTIPLIER</Name>
+    <Value>0.733333290</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>FBO FADE AMOUNT</Name>
+    <Value>10.199999809</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>SHADER FLOAT 1</Name>
+    <Value>3.333333492</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>SHADER FLOAT 2</Name>
+    <Value>14.666666031</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>SHADER FLOAT 3</Name>
+    <Value>6.666666985</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>SHADER FLOAT 4</Name>
+    <Value>190.666656494</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>BOX SIZE</Name>
+    <Value>7.085999966</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>BOX STEP</Name>
+    <Value>4.059999943</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>TOGGLE TRAILS</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>USE SHADER</Name>
+    <Value>1</Value>
+</Widget>

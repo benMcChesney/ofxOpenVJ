@@ -21,3 +21,5 @@ git clone https://github.com/memo/ofxMSABPMTapper.git
 git clone https://github.com/memo/ofxMSATimer.git
 
 git clone https://github.com/astellato/ofxSyphon.git
+
+git clone https://github.com/neilmendoza/ofxPostProcessing.git

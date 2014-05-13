@@ -1,0 +1,50 @@
+<Widget>
+    <Kind>2</Kind>
+    <Name>B_AUTO_SAVE</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>B_DRAW_Kinect_Gui</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>FULLSCREEN</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>B_SHOVE_OVER</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>25</Kind>
+    <Name>FBO SHOVE X</Name>
+    <Value>1416.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>12</Kind>
+    <Name>Projector Width</Name>
+    <Value>1920</Value>
+</Widget>
+<Widget>
+    <Kind>12</Kind>
+    <Name>Projector Height</Name>
+    <Value>1080</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>B_AUTO_SCENE_SWITCH</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>25</Kind>
+    <Name>SCENE DELAY TIME</Name>
+    <Value>16.320001602</Value>
+</Widget>
+<Widget>
+    <Kind>25</Kind>
+    <Name>FFT INTERPOLATION</Name>
+    <Value>0.500000000</Value>
+</Widget>

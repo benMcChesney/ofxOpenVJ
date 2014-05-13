@@ -24,6 +24,7 @@ Community addons :
 	ofxSimpleMask
 	ofxMSABPMTapper
 	ofxMSATimer
+	ofxPostProcessing
 	ofxSyphon
 
 Contributors : 
@@ -34,4 +35,28 @@ If you have questions, please contact ben.mcchesney@gmail.com
 
 If you find a bug / have a feature request please add an issue here on github.
 
+
+
+Instructions for beginners
+===========================================
+This project was built for OPEN FRAMEWORKS 0.8.1 
+If you are using another version I suggest you use the project generator and include all the addons located in the "clone_addons.sh" git script
+
+
+
+FFT Configuration
+===========================================
+You may have some initial errors with FFT depending on your platform
+
+
+XCODE
+
+Open "ofxFFT.h" with this addon you can only have one FFT library active at a time 
+comment out the line that reads "#define FFTW"
+remove "ofxFftw.h" and "ofxFftw.cpp" from the project
+
+VISUAL STUDIO
+(coming soon )
+
+  
 

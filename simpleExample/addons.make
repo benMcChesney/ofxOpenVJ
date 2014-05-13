@@ -1,0 +1,12 @@
+ofxKinect
+ofxOpenCv
+ofxOsc
+ofxXmlSettings
+ofxFft
+ofxMSABPMTapper
+ofxMSATimer
+ofxOpenVJ
+ofxSimpleMask
+ofxSyphon
+ofxTweenzor
+ofxUI
