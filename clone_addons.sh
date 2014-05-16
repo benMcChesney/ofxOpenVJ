@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Dependencies for ofxOpenVJ
-# inspired by ObviousJim and ofxTimeline script
+# inspired by ObviousJim and ofxTimeline "clone_addons" script
 
 
 cd ../
@@ -9,10 +9,6 @@ cd ../
 git clone https://github.com/HeliosInteractive/ofxSimpleMask.git
 
 #git clone https://github.com/HeliosInteractive/ofxSimpleTimer.git
-
-#git clone https://github.com/kylemcdonald/ofxFft.git
-
-git clone https://github.com/ofTheo/ofxKinect.git
 
 git clone https://github.com/NickHardeman/ofxTweenzor.git
 

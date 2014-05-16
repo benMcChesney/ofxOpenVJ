@@ -17,19 +17,22 @@ http://opensource.org/licenses/MIT
 Built using Open Frameworks version 0.74 on OS X ( for now ) 
 
 Community addons :
-	ofxFFT
-	ofxTweenzor
-	ofxKinect
-	ofxUI
-	ofxSimpleMask
-	ofxMSABPMTapper
-	ofxMSATimer
-	ofxPostProcessing
-	ofxSyphon
+	ofxTweenzor https://github.com/NickHardeman/ofxTweenzor
+	
+	ofxUI https://github.com/rezaali/ofxUI
+	
+	ofxSimpleMask https://github.com/HeliosInteractive/ofxSimpleMask
+	
+	ofxBeatDetector https://github.com/rezaali/ofxBeatDetector
+	
+	ofxPostProcessing https://github.com/neilmendoza/ofxPostProcessing
+	
+	ofxSyphon https://github.com/astellato/ofxSyphon
 
 Contributors : 
-	Ben McChesney	
-	Nick Hardemann
+	Ben McChesney
+		
+	Nick Hardemann ( now inactive ) 
 	
 If you have questions, please contact ben.mcchesney@gmail.com 
 
@@ -43,20 +46,9 @@ This project was built for OPEN FRAMEWORKS 0.8.1
 If you are using another version I suggest you use the project generator and include all the addons located in the "clone_addons.sh" git script
 
 
+Platform Specific Issues
+=============================================
+Xcode
 
-FFT Configuration
-===========================================
-You may have some initial errors with FFT depending on your platform
-
-
-XCODE
-
-Open "ofxFFT.h" with this addon you can only have one FFT library active at a time 
-comment out the line that reads "#define FFTW"
-remove "ofxFftw.h" and "ofxFftw.cpp" from the project
-
-VISUAL STUDIO
-(coming soon )
-
-  
+Visual Studio
 
