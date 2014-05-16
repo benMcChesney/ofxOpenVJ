@@ -22,7 +22,20 @@ void CameraManager::setup() {
     
     _distance = _maxDistance;
     
-
+    ofSetCoordHandedness(OF_RIGHT_HANDED);
+    
+    // Setup post-processing chain
+    post.init(ofGetWidth(), ofGetHeight());
+    post.createPass<FxaaPass>()->setEnabled(false);
+    post.createPass<BloomPass>()->setEnabled(false);
+    post.createPass<DofPass>()->setEnabled(false);
+    post.createPass<KaleidoscopePass>()->setEnabled(false);
+    post.createPass<NoiseWarpPass>()->setEnabled(false);
+    post.createPass<PixelatePass>()->setEnabled(false);
+    post.createPass<EdgePass>()->setEnabled(false);
+    post.createPass<VerticalTiltShifPass>()->setEnabled(false);
+    post.createPass<GodRaysPass>()->setEnabled(false);
+    bEnablePostFX = false ;
     
 }
 
@@ -38,12 +51,35 @@ void CameraManager::saveSettings() {
 
 void CameraManager::begin()
 {
-    cam.begin() ;
+    if ( !bEnablePostFX )
+        cam.begin() ;
+    else
+    {
+        // copy enable part of gl state
+        glPushAttrib(GL_ENABLE_BIT);
+        
+        // setup gl state
+        glEnable(GL_DEPTH_TEST);
+        glEnable(GL_CULL_FACE);
+        
+        post.begin(cam);
+    }
 }
 
 void CameraManager::end()
 {
-    cam.end() ; 
+    if ( !bEnablePostFX )
+        cam.end() ;
+    else
+    {
+        post.end() ;
+    
+        // restore gl state
+        glDisable(GL_CULL_FACE);
+        //glDisable(GL_DEPTH_TEST);
+        glPopAttrib() ; 
+       // glPopAttrib(GL_ENABLE_BIT);
+    }
 }
 
 //--------------------------------------------------------------
@@ -243,15 +279,80 @@ void CameraManager::guiEvent(ofxUIEventArgs &e) {
     else if (ename == "CAMERA TARGET Z" ) {
         cameraTargetZ = ((ofxUISlider*)e.widget)->getScaledValue();
     }
-
     
-
     
-    /*
-     gui->addSlider( "CAMERA TARGET Z", -1000 , 1000 , &cameraTargetZ ,  GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );
-     gui->addSlider( "Z OFFSET", -3000 , 3000 , &zOffset ,  GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );
-     gui->addSlider( "CAM MOVEMENT", 0 , 50 , &camMovementFactor ,  GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );
-     */
+     else if ( ename == "FXAA PASS" )
+     {
+         if ( e.getToggle()->getValue() )
+             post.getPasses()[0]->enable() ;
+         else
+             post.getPasses()[0]->disable() ;
+     }
+     else if ( ename == "BLOOM PASS" )
+     {
+         if ( e.getToggle()->getValue() )
+             post.getPasses()[1]->enable() ;
+         else
+             post.getPasses()[1]->disable() ;
+
+     }
+     else if ( ename == "DOF PASS" )
+     {
+         if ( e.getToggle()->getValue() )
+             post.getPasses()[2]->enable() ;
+         else
+             post.getPasses()[2]->disable() ;
+
+     }
+     else if ( ename == "KALEIDOSCOPE PASS" )
+     {
+         if ( e.getToggle()->getValue() )
+             post.getPasses()[3]->enable() ;
+         else
+             post.getPasses()[3]->disable() ;
+
+     }
+     else if ( ename == "NOISE WARP PASS" )
+     {
+         if ( e.getToggle()->getValue() )
+             post.getPasses()[4]->enable() ;
+         else
+             post.getPasses()[4]->disable() ;
+
+     }
+     else if ( ename == "PIXELATE PASS" )
+     {
+         if ( e.getToggle()->getValue() )
+             post.getPasses()[5]->enable() ;
+         else
+             post.getPasses()[5]->disable() ;
+
+     }
+     else if ( ename == "EDGE PASS" )
+     {
+         if ( e.getToggle()->getValue() )
+             post.getPasses()[6]->enable() ;
+         else
+             post.getPasses()[6]->disable() ;
+
+     }
+     else if ( ename == "VERTICAL TILT SHIFT" )
+     {
+         if ( e.getToggle()->getValue() )
+             post.getPasses()[7]->enable() ;
+         else
+             post.getPasses()[7]->disable() ;
+
+     }
+     else if ( ename == "GOD RAYS" )
+     {
+         if ( e.getToggle()->getValue() )
+             post.getPasses()[8]->enable() ;
+         else
+             post.getPasses()[8]->disable() ;
+
+     }
+
 }
 
 //--------------------------------------------------------------
@@ -291,11 +392,21 @@ void CameraManager::setupGui( float a_x, float a_y ) {
     gui->addSlider( "CAM MOVEMENT", 0 , 500 , &camMovementFactor ,  GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );
     
     gui->addSlider( "CAMERA TARGET Z", -1000 , 1000 , &cameraTargetZ ,  GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );
-    
- 
+    /*
+    gui->addToggle("ENABLE FX" , &bEnablePostFX ) ; 
+    gui->addToggle("FXAA PASS", false ) ;
+    gui->addToggle("BLOOM PASS", false ) ;
+    gui->addToggle("DOF PASS", false ) ;
+    gui->addToggle("KALEIDOSCOPE PASS", false ) ;
+    gui->addToggle("NOISE WARP PASS", false ) ;
+    gui->addToggle("PIXELATE PASS", false ) ;
+    gui->addToggle("EDGE PASS", false ) ;
+    gui->addToggle("VERTICAL TILT SHIFT" , false ) ; 
+    gui->addToggle("GOD RAYS", false) ; 
+     */
+
     //cameraTargetZ
     gui->setScrollArea(a_x, a_y, 320, ofGetHeight() - 10 - a_y);
-    
     ofAddListener( gui->newGUIEvent, this, &CameraManager::guiEvent );
 }
 

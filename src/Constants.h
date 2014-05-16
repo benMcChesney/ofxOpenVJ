@@ -8,6 +8,8 @@
 
 #pragma once
 
+#define USE_KINECT 3
+
 //--------------------------------------------------------------
 static ofVec3f getNoiseForce( const ofVec3f& a_loc, float a_mult, float a_off ) {
 	ofVec3f frc(

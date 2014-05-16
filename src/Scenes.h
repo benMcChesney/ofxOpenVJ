@@ -9,8 +9,6 @@
 #pragma once
 
 #include "BaseScene.h"
-#include "TestScene.h"
-#include "TriangleKinectShader.h"
 
 class Scenes {
 public:

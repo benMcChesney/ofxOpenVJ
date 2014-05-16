@@ -19,6 +19,9 @@ void testApp::setup() {
     //ofSetLogLevel(OF_LOG_SILENT);
     ofSetLogLevel(OF_LOG_VERBOSE ) ; 
 	
+    int bufferSize = 512;
+	ofSoundStreamSetup(0, 1, this, 44100, bufferSize, 4);
+    
     // init reference vars before gui gets them //
     fboShoveX   = 0;
     bShoveOver  = false;
@@ -29,43 +32,43 @@ void testApp::setup() {
 
     lastSceneChangedTime = 0.0f ;
     sceneDelayTime = 5.0f ;
-    
-    int bufferSize = 512;
-    fftManager.setup( true ) ;
-    fftManager.setupOSCReceiver( 12345 ) ; 
 
-    
+    beatDetector.enableBeatDetect() ;
+    beatDetector.setBeatValue( 120 ) ; 
     float guiY = 0 ;
     gui = new ofxUICanvas( 10, guiY, 320, ofGetHeight() - guiY - 10 );
     setupMainGui();
     gui->loadSettings("GUI/mainGuiSettings.xml");
     gui->setVisible( bDrawGui );
    
-    
+#ifdef USE_KINECT
     // KinectManager //
     kinectMan.setupGui(340, guiY);
     kinectMan.close();
     kinectMan.open();
     kinectMan.loadSettings();
     kinectMan.gui->setVisible(bDrawGui);
-    
+#endif
     
     cameraManager.setup();
     cameraManager.setupGui(670, guiY);
     cameraManager.loadSettings();
-    cameraManager.gui->setVisible(bDrawGui);
+    cameraManager.gui->setVisible( false );
     
     //Point Cloud Scenes
     
-    scenes.push_back( new TriangleKinectShader((int)scenes.size(), "TriangleKinectShader" ) ) ;
+    scenes.push_back( new SimpleScene((int)scenes.size(), "SimpleScene" ) ) ;
     scenes.push_back( new TestScene((int)scenes.size(), "TestScene" ) ) ;
+    scenes.push_back( new TriangleKinectShader((int)scenes.size(), "TriangleKinectShader" ) ) ;
     setSceneBounds();
     
     for(int i = 0; i < scenes.size(); i++) {
         Scenes::registerScene(scenes[i]->index, scenes[i]->name);
-        scenes[i]->kinectMan    = &kinectMan;
-        scenes[i]->fft          = &fftManager;
-        scenes[i]->cameraMan    = &cameraManager;
+#ifdef USE_KINECT
+        scenes[i]->kinectMan        = &kinectMan;
+#endif
+        scenes[i]->beatDetector     = &beatDetector;
+        scenes[i]->cameraMan        = &cameraManager;
         scenes[i]->setup();
         scenes[i]->setupGui(1000, guiY);
         scenes[i]->loadSettings();
@@ -82,9 +85,8 @@ void testApp::setup() {
 #ifdef USE_SYPHON
     outputSyphonServer.setName( "ofxOpenVJ" ) ;
 #endif
+
     
-    bug.loadImage( "bug.png" ) ;
-    bug.setAnchorPercent( 0.5 , 0.5 ) ;
 }
 
 //--------------------------------------------------------------
@@ -100,14 +102,24 @@ void testApp::exit() {
     
     if(bAutoSave) {
         gui->saveSettings( "GUI/mainGuiSettings.xml" );
+#ifdef USE_KINECT
         kinectMan.saveSettings();
+#endif
         cameraManager.saveSettings();
     }
-        
+    
+#ifdef USE_KINECT
     kinectMan.close();
+#endif
     
     delete gui; gui = NULL;
     
+}
+
+void testApp::audioReceived(float* input, int bufferSize, int nChannels)
+{
+    beatDetector.update( input ) ; 
+    //fftManager.audioReceived( input , bufferSize , nChannels ) ;
 }
 
 //--------------------------------------------------------------
@@ -134,18 +146,19 @@ void testApp::update() {
     }
     
     Tweenzor::update ( ofGetElapsedTimeMillis() ) ;
-
-    fftManager.update() ;
+#ifdef USE_KINECT
     kinectMan.update();
+#endif
     cameraManager.update();
-    cameraManager.updateFft( fftManager.lowRange , fftManager.midRange , fftManager.highRange ) ; 
 	if(Scenes::isValidIndex( activeSceneIndex ))
     {
         scenes[activeSceneIndex]->update();
-        scenes[activeSceneIndex]->low = fftManager.lowRange ;
-        scenes[activeSceneIndex]->mid = fftManager.midRange ;
-        scenes[activeSceneIndex]->high = fftManager.highRange ;
     }
+    
+    
+    ((ofxUIToggle*)gui->getWidget("LOW"))->setValue( beatDetector.isLow() ) ;
+    ((ofxUIToggle*)gui->getWidget("MID"))->setValue( beatDetector.isMid() ) ;
+    ((ofxUIToggle*)gui->getWidget("HIGH"))->setValue( beatDetector.isHigh() ) ;
 }
 
 //--------------------------------------------------------------
@@ -163,9 +176,6 @@ void testApp::draw() {
     if(bShoveOver) fbo.draw(fboShoveX, 0);
     else fbo.draw(0, 0);
     ofEnableAlphaBlending();
-    
-    ofSetColor( 255 ) ; 
-    bug.draw( ofGetWidth() / 2  , 35 ) ;
     
 #ifdef USE_SYPHON
     outputSyphonServer.publishScreen() ;
@@ -202,8 +212,12 @@ void testApp::setupMainGui() {
     gui->addWidgetDown( new ofxUIToggle("B_AUTO_SCENE_SWITCH", false, 16, 16) );
     
     gui->addWidgetDown( new ofxUIMinimalSlider("SCENE DELAY TIME", 0.0f , 120.0f, sceneDelayTime , guiW-50, 16.f ) );
-    gui->addWidgetDown( new ofxUIMinimalSlider("FFT INTERPOLATION", 0.0f , 1.0f, fftManager.lerpAmount , guiW-50, 16.f ) );
 
+    gui->addSpectrum("FFT" , beatDetector.getSmoothedFFT() , FFT_BINS ) ;
+    gui->addToggle( "LOW" , false ) ;
+    gui->addWidgetRight( new ofxUIToggle( "MID" , false , 16 , 16 ) ) ;
+    gui->addWidgetRight( new ofxUIToggle( "HIGH" , false , 16 , 16 ) ) ;
+    gui->addSlider( "BEAT VALUE" , 0 , 120 , &beatValue ) ;
     ofAddListener( gui->newGUIEvent, this, &testApp::guiEvent );
 }
 
@@ -226,13 +240,15 @@ void testApp::guiEvent( ofxUIEventArgs& e ) {
         ofSetFullscreen( bSetFullscreen );
     } else if (name == "Projector Width" || name == "Projector Height") {
         setSceneBounds();
-    } else if ( name == "FFT INTERPOLATION" )
-        fftManager.lerpAmount =  ((ofxUIMinimalSlider*)gui->getWidget("FFT INTERPOLATION"))->getScaledValue() ;
-    else if ( name == "SCENE DELAY TIME" )
+    } else if ( name == "SCENE DELAY TIME" )
     {
         sceneDelayTime =  ((ofxUIMinimalSlider*)gui->getWidget("SCENE DELAY TIME"))->getScaledValue() * 30 ;
         //cout << "scene delay time is now : " << sceneDelayTime << endl ;
         lastSceneChangedTime = ofGetElapsedTimef() ; 
+    } else if ( name == "BEAT VALUE" )
+    {
+        beatDetector.setBeatValue( e.getSlider()->getScaledValue() ) ;
+        cout << " setting BEAT Value to : "<< e.getSlider()->getScaledValue() << endl ; 
     }
     
 }
@@ -246,9 +262,11 @@ void testApp::setDrawGuis( bool bDraw ) {
         scenes[activeSceneIndex]->gui->setVisible(bDrawGui);
     }
     
+#ifdef USE_KINECT
     gui->setVisible(bDrawGui);
     if ( kinectMan.gui != NULL )
         kinectMan.gui->setVisible( bDrawGui );
+#endif
     if(cameraManager.gui != NULL)
         cameraManager.gui->setVisible(bDrawGui);
 

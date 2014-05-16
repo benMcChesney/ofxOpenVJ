@@ -138,6 +138,12 @@ void TriangleKinectShader::deactivate() {
 //--------------------------------------------------------------
 void TriangleKinectShader::update() {
     kinectMan->update( );
+    
+    if ( beatDetector->isLow() )
+        beat = 1.0f ;
+    else if ( beat > 0.01f )
+        beat -= 0.01f ;
+    
 }
 
 //--------------------------------------------------------------
@@ -215,7 +221,7 @@ void TriangleKinectShader::drawPointCloud( )
         {
 
             float   noiseStep = 0 + ofSignedNoise( _time + x )*  extrudeNoiseStrength * extrudeDepth ;             
-            float diff = low ; 
+            float diff = beat ; 
             
 			if( kinectMan->kinect.getDistanceAt(x, y) > 0)
             {
@@ -233,7 +239,7 @@ void TriangleKinectShader::drawPointCloud( )
                     if ( numTriangles % 2 == 0 )
                         offset *= -1 ; 
                     
-                    offset *= low ;
+                    offset *= beat ;
                     
                     float kinectHue = kinectMan->kinect.getColorAt( x , y ).getHue() ;
                     //float ofMap(float value, float inputMin, float inputMax, float outputMin, float outputMax, bool clamp) {

@@ -1,7 +1,7 @@
 <Widget>
     <Kind>2</Kind>
     <Name>Debug</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -11,22 +11,22 @@
 <Widget>
     <Kind>4</Kind>
     <Name>MAX_BEAT_HITS</Name>
-    <Value>75.480003357</Value>
+    <Value>148.630004883</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>CAM_DISTANCE</Name>
-    <Value>214.901550293</Value>
+    <Value>303.959503174</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>CAM_MIN_DISTANCE</Name>
-    <Value>42.500000000</Value>
+    <Value>25.069999695</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>CAM_MAX_DISTANCE</Name>
-    <Value>500.000000000</Value>
+    <Value>468.396667480</Value>
 </Widget>
 <Widget>
     <Kind>6</Kind>
@@ -43,30 +43,30 @@
 <Widget>
     <Kind>4</Kind>
     <Name>TARGET_SPRING</Name>
-    <Value>0.465007007</Value>
+    <Value>0.500000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>STEER</Name>
-    <Value>3.366666794</Value>
+    <Value>4.333333492</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>PARTICLE_DAMPING</Name>
-    <Value>0.359999985</Value>
+    <Value>0.230000004</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>Z OFFSET</Name>
-    <Value>159.999847412</Value>
+    <Value>133.333206177</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>CAM MOVEMENT</Name>
-    <Value>31.666666031</Value>
+    <Value>45.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>CAMERA TARGET Z</Name>
-    <Value>-386.666656494</Value>
+    <Value>-366.666687012</Value>
 </Widget>

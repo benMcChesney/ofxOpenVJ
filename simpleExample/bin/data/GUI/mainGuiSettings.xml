@@ -21,7 +21,7 @@
 <Widget>
     <Kind>25</Kind>
     <Name>FBO SHOVE X</Name>
-    <Value>1416.000000000</Value>
+    <Value>1485.119995117</Value>
 </Widget>
 <Widget>
     <Kind>12</Kind>
@@ -41,10 +41,25 @@
 <Widget>
     <Kind>25</Kind>
     <Name>SCENE DELAY TIME</Name>
-    <Value>16.320001602</Value>
+    <Value>33.599998474</Value>
 </Widget>
 <Widget>
-    <Kind>25</Kind>
-    <Name>FFT INTERPOLATION</Name>
-    <Value>0.500000000</Value>
+    <Kind>2</Kind>
+    <Name>LOW</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>MID</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>HIGH</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>BEAT VALUE</Name>
+    <Value>96.538459778</Value>
 </Widget>

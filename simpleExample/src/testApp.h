@@ -1,19 +1,9 @@
 #pragma once
 
 #include "ofMain.h"
-#include "Constants.h"
-#include "Scenes/Scenes.h"
-#include "KinectManager.h"
-#include "CameraManager.h"
+#include "ofxOpenVJ.h"
 #include "Tweenzor.h"
-#include "FftManager.h"
-
-//Untoggle this is you want to output to syphon on OS X
-//#define USE_SYPHON 3 ;
-
-#ifdef USE_SYPHON
-    #include "ofxSyphon.h"
-#endif 
+#include "SceneList.h"
 
 class testApp : public ofBaseApp{
 
@@ -40,10 +30,14 @@ class testApp : public ofBaseApp{
 	void dragEvent(ofDragInfo dragInfo);
 	void gotMessage(ofMessage msg);
     
-    float zOffset ; 
-    KinectManager   kinectMan;
-    CameraManager   cameraManager ;
-    FftManager      fftManager ;
+    float zOffset ;
+    
+    #ifdef USE_KINECT
+    KinectManager        kinectMan;
+    #endif
+    
+    CameraManager        cameraManager ;
+    ofxBeatDetector      beatDetector ;
     
     vector<BaseScene*> scenes;
 
@@ -59,11 +53,12 @@ class testApp : public ofBaseApp{
     bool bAutoSceneSwitch;
     bool bKinectCamGui;
     
+    void audioReceived(float* input, int bufferSize, int nChannels);
+    float beatValue ; 
     ofFbo fbo;
     
 #ifdef USE_SYPHON
     ofxSyphonServer outputSyphonServer ;
 #endif
-    
-    ofImage bug;
+
 };

@@ -12,9 +12,12 @@
 #include "Utils.h"
 #include "CameraManager.h"
 #include "Constants.h"
-#include "FftManager.h"
-#include "KinectManager.h"
+#include "ofxBeatDetector.h"
 
+
+#ifdef USE_KINECT
+#include "KinectManager.h"
+#endif
 class BaseScene {
 public:
     BaseScene() { gui = NULL; }
@@ -23,9 +26,6 @@ public:
         index = a_index;
         name = a_name;
         gui=NULL;
-        low = 0 ;
-        mid = 0 ;
-        high = 0 ;
         shaderDirectory = ofToDataPath( "../../../../../addons/ofxOpenVJ/shaders/" ) ;
     }
     virtual ~BaseScene() {
@@ -39,14 +39,15 @@ public:
         gui->addWidgetDown(new ofxUILabel(name+" Scene Settings", OFX_UI_FONT_LARGE));
         gui->addSpacer(300, 2);
     };
+    //virtual void guiEvent( ofxUIEventArgs & e ) { }
     
     virtual void update() = 0;
     virtual void draw() = 0;
     virtual void drawDebug() {};
 
     
-    virtual void activate() {};
-    virtual void deactivate() {if(gui != NULL) { gui->setVisible(false); } };
+    virtual void activate() {  };
+    virtual void deactivate() { if(gui != NULL) { gui->setVisible(false); } };
     
     void toggleGui() { if(gui!=NULL) {gui->toggleVisible();} };
     
@@ -74,11 +75,12 @@ public:
     
     ofxUIScrollableCanvas* gui;
     
+    #ifdef USE_KINECT
     KinectManager* kinectMan;
-    FftManager* fft;
-    CameraManager* cameraMan;
+    #endif
     
-    float low , mid , high ;
+    ofxBeatDetector * beatDetector ;
+    CameraManager* cameraMan;
 
     //Global folder where all shaders are
     string shaderDirectory ;

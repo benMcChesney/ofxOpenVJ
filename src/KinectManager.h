@@ -12,8 +12,9 @@
 #include "ofxKinect.h"
 #include "ofxUI.h"
 #include "ofxOpenCv.h"
-#include "ofxPostProcessing.h"
-class KinectManager {
+
+class KinectManager
+{
 public:
     KinectManager();
     
@@ -85,10 +86,6 @@ public:
     //In dark rooms the colors don't get picked up as well so we have to adjust
     //the raw RGB color
     unsigned char       minimumPixBrightness ;
-    
-    //ofxPostProcessing post ;
-    
-    void disableAllPostProcessing() ; 
     
 protected:
     ofVec3f inverseAxes;

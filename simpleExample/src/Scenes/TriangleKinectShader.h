@@ -36,14 +36,13 @@ public:
     float fboFadeAmount ;
     float extrudeDepth ;
     float extrudeNoiseStrength ;
-    
-//    float zOffset ;
-//    float pointCloudMinZ , pointCloudMaxZ ;
-
+ 
     float meshHueTimeMultiplier ;
     float meshHueRangeMin , meshHueRangeMax ;
     
     float triangleSizeMax ;
     float triangleSizeMin ;
-    ofShader shader ; 
+    ofShader shader ;
+    
+    float beat ; 
 };
