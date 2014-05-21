@@ -11,6 +11,6 @@
 
 #include "TestScene.h"
 #include "SimpleScene.h"
-#include "TriangleKinectShader.h"
+//#include "TriangleKinectShader.h"
 
 #endif

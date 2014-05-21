@@ -13,7 +13,7 @@
 #include "CameraManager.h"
 #include "Constants.h"
 #include "ofxBeatDetector.h"
-
+#include "Constants.h"
 
 #ifdef USE_KINECT
 #include "KinectManager.h"

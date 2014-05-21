@@ -56,13 +56,14 @@ void CameraManager::begin()
     else
     {
         // copy enable part of gl state
-        glPushAttrib(GL_ENABLE_BIT);
-        
+       // glPushAttrib(GL_ENABLE_BIT);
+     
         // setup gl state
-        glEnable(GL_DEPTH_TEST);
-        glEnable(GL_CULL_FACE);
-        
+       // glEnable(GL_DEPTH_TEST);
+        //glEnable(GL_CULL_FACE);
+       
         post.begin(cam);
+        //ofClear( 0 , 0 , 0 , 1 ) ;
     }
 }
 
@@ -75,9 +76,9 @@ void CameraManager::end()
         post.end() ;
     
         // restore gl state
-        glDisable(GL_CULL_FACE);
+        //glDisable(GL_CULL_FACE);
         //glDisable(GL_DEPTH_TEST);
-        glPopAttrib() ; 
+       // glPopAttrib() ;
        // glPopAttrib(GL_ENABLE_BIT);
     }
 }
@@ -392,7 +393,7 @@ void CameraManager::setupGui( float a_x, float a_y ) {
     gui->addSlider( "CAM MOVEMENT", 0 , 500 , &camMovementFactor ,  GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );
     
     gui->addSlider( "CAMERA TARGET Z", -1000 , 1000 , &cameraTargetZ ,  GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );
-    /*
+    
     gui->addToggle("ENABLE FX" , &bEnablePostFX ) ; 
     gui->addToggle("FXAA PASS", false ) ;
     gui->addToggle("BLOOM PASS", false ) ;
@@ -403,7 +404,7 @@ void CameraManager::setupGui( float a_x, float a_y ) {
     gui->addToggle("EDGE PASS", false ) ;
     gui->addToggle("VERTICAL TILT SHIFT" , false ) ; 
     gui->addToggle("GOD RAYS", false) ; 
-     */
+    
 
     //cameraTargetZ
     gui->setScrollArea(a_x, a_y, 320, ofGetHeight() - 10 - a_y);

@@ -53,7 +53,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>PARTICLE_DAMPING</Name>
-    <Value>0.230000004</Value>
+    <Value>0.900000036</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -63,10 +63,60 @@
 <Widget>
     <Kind>4</Kind>
     <Name>CAM MOVEMENT</Name>
-    <Value>45.000000000</Value>
+    <Value>116.666664124</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>CAMERA TARGET Z</Name>
     <Value>-366.666687012</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>ENABLE FX</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>FXAA PASS</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>BLOOM PASS</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>DOF PASS</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>KALEIDOSCOPE PASS</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>NOISE WARP PASS</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>PIXELATE PASS</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>EDGE PASS</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>VERTICAL TILT SHIFT</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>GOD RAYS</Name>
+    <Value>1</Value>
 </Widget>

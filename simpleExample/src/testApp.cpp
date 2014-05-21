@@ -3,6 +3,7 @@
 //--------------------------------------------------------------
 void testApp::setup() {
 
+    //Basic initialization of all components
     Tweenzor::init( ) ;
     
 	ofBackground(255*.15);
@@ -41,25 +42,30 @@ void testApp::setup() {
     gui->loadSettings("GUI/mainGuiSettings.xml");
     gui->setVisible( bDrawGui );
    
+    //A few ifdefs to make sure there's not a gap in the GUIs
+    float guiX = 340 ; 
 #ifdef USE_KINECT
     // KinectManager //
-    kinectMan.setupGui(340, guiY);
+    kinectMan.setupGui(guiX, guiY);
     kinectMan.close();
     kinectMan.open();
     kinectMan.loadSettings();
     kinectMan.gui->setVisible(bDrawGui);
+    guiX = 670 ; 
 #endif
     
     cameraManager.setup();
-    cameraManager.setupGui(670, guiY);
+    cameraManager.setupGui( guiX , guiY);
     cameraManager.loadSettings();
     cameraManager.gui->setVisible( false );
     
-    //Point Cloud Scenes
-    
+#ifndef USE_KINECT
+    guiX = 670 ; 
+#endif
+    //Add a new scene in one line of code
     scenes.push_back( new SimpleScene((int)scenes.size(), "SimpleScene" ) ) ;
     scenes.push_back( new TestScene((int)scenes.size(), "TestScene" ) ) ;
-    scenes.push_back( new TriangleKinectShader((int)scenes.size(), "TriangleKinectShader" ) ) ;
+    //scenes.push_back( new TriangleKinectShader((int)scenes.size(), "TriangleKinectShader" ) ) ;
     setSceneBounds();
     
     for(int i = 0; i < scenes.size(); i++) {
@@ -70,7 +76,7 @@ void testApp::setup() {
         scenes[i]->beatDetector     = &beatDetector;
         scenes[i]->cameraMan        = &cameraManager;
         scenes[i]->setup();
-        scenes[i]->setupGui(1000, guiY);
+        scenes[i]->setupGui(guiX, guiY);
         scenes[i]->loadSettings();
         scenes[i]->deactivate();
     }
@@ -217,7 +223,7 @@ void testApp::setupMainGui() {
     gui->addToggle( "LOW" , false ) ;
     gui->addWidgetRight( new ofxUIToggle( "MID" , false , 16 , 16 ) ) ;
     gui->addWidgetRight( new ofxUIToggle( "HIGH" , false , 16 , 16 ) ) ;
-    gui->addSlider( "BEAT VALUE" , 0 , 120 , &beatValue ) ;
+    gui->addSlider( "BEAT VALUE" , 0 , 255 , &beatValue ) ;
     ofAddListener( gui->newGUIEvent, this, &testApp::guiEvent );
 }
 
@@ -262,8 +268,9 @@ void testApp::setDrawGuis( bool bDraw ) {
         scenes[activeSceneIndex]->gui->setVisible(bDrawGui);
     }
     
-#ifdef USE_KINECT
+
     gui->setVisible(bDrawGui);
+#ifdef USE_KINECT
     if ( kinectMan.gui != NULL )
         kinectMan.gui->setVisible( bDrawGui );
 #endif
