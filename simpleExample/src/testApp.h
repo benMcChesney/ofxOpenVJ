@@ -30,8 +30,6 @@ class testApp : public ofBaseApp{
 	void dragEvent(ofDragInfo dragInfo);
 	void gotMessage(ofMessage msg);
     
-    float zOffset ;
-    
     #ifdef USE_KINECT
     KinectManager        kinectMan;
     #endif
@@ -47,15 +45,12 @@ class testApp : public ofBaseApp{
     // main gui vars - FPS, shove render FBO over, etc. //
     ofxUICanvas* gui;
     
-    float fboShoveX;
-    bool bShoveOver;
     bool bDrawGui;
     bool bAutoSceneSwitch;
     bool bKinectCamGui;
     
     void audioReceived(float* input, int bufferSize, int nChannels);
     float beatValue ; 
-    ofFbo fbo;
     
 #ifdef USE_SYPHON
     ofxSyphonServer outputSyphonServer ;

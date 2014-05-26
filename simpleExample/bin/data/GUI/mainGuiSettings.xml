@@ -11,17 +11,12 @@
 <Widget>
     <Kind>2</Kind>
     <Name>FULLSCREEN</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
     <Name>B_SHOVE_OVER</Name>
     <Value>0</Value>
-</Widget>
-<Widget>
-    <Kind>25</Kind>
-    <Name>FBO SHOVE X</Name>
-    <Value>1485.119995117</Value>
 </Widget>
 <Widget>
     <Kind>12</Kind>
@@ -41,7 +36,7 @@
 <Widget>
     <Kind>25</Kind>
     <Name>SCENE DELAY TIME</Name>
-    <Value>33.599998474</Value>
+    <Value>12.960000038</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -61,5 +56,5 @@
 <Widget>
     <Kind>4</Kind>
     <Name>BEAT VALUE</Name>
-    <Value>120.961540222</Value>
+    <Value>22.884616852</Value>
 </Widget>

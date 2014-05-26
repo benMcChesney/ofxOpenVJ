@@ -78,22 +78,22 @@
 <Widget>
     <Kind>2</Kind>
     <Name>FXAA PASS</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
     <Name>BLOOM PASS</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
     <Name>DOF PASS</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
     <Name>KALEIDOSCOPE PASS</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -108,15 +108,15 @@
 <Widget>
     <Kind>2</Kind>
     <Name>EDGE PASS</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
     <Name>VERTICAL TILT SHIFT</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
     <Name>GOD RAYS</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>

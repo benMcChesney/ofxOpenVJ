@@ -17,6 +17,13 @@ public :
     SimpleScene( ) ;
     SimpleScene( int a_index, string a_name ):BaseScene( a_index, a_name ) {}
    
+    struct ColorCube
+    {
+        ofPoint position  ;
+        ofColor color = ofColor::gray ;
+        float size = 50.0f ;
+    };
+
     void setup();
     void setupGui(float a_x=0, float a_y=0);
     void guiEvent(ofxUIEventArgs &e);
@@ -27,10 +34,16 @@ public :
     void activate();
     void deactivate();
    
-    vector< ofPoint > lowCubes ;
-    vector< ofPoint > midCubes ;
-    vector< ofPoint > highCubes ;
+    vector< ColorCube* > cubes ;
     
     float spawnRadius ;
+    float numCubes ;
+    float cubeSize ;
+    
+       
     ofPoint getRandomPointInSpawnRadius( ) ;
+    
+    void generateRandomCubes( ) ; 
+    
+    
 };

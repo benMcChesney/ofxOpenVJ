@@ -24,8 +24,6 @@ void testApp::setup() {
 	ofSoundStreamSetup(0, 1, this, 44100, bufferSize, 4);
     
     // init reference vars before gui gets them //
-    fboShoveX   = 0;
-    bShoveOver  = false;
     bDrawGui    = false;
     bAutoSceneSwitch = false;
     bKinectCamGui = true;
@@ -170,18 +168,12 @@ void testApp::update() {
 //--------------------------------------------------------------
 void testApp::draw() {
 
-    fbo.begin();
-    ofClear(0);
+
     if(Scenes::isValidIndex( activeSceneIndex )) {
         scenes[activeSceneIndex]->draw();
     }
-    fbo.end();
-    
+     
     ofSetColor(255);
-    ofDisableAlphaBlending();
-    if(bShoveOver) fbo.draw(fboShoveX, 0);
-    else fbo.draw(0, 0);
-    ofEnableAlphaBlending();
     
 #ifdef USE_SYPHON
     outputSyphonServer.publishScreen() ;
@@ -210,7 +202,6 @@ void testApp::setupMainGui() {
     gui->addSpacer(guiW, 1);
     gui->addWidgetDown( new ofxUIToggle("FULLSCREEN", false, 16, 16) );
     gui->addWidgetRight( new ofxUIToggle("B_SHOVE_OVER", false, 16, 16) );
-    gui->addWidgetDown( new ofxUIMinimalSlider("FBO SHOVE X", 1200.f, 1920.f, &fboShoveX, guiW-50, 16.f ) );
     gui->addWidgetDown( new ofxUITextInput( "Projector Width", "1920", 120, 16) );
     gui->addWidgetRight( new ofxUITextInput( "Projector Height", "1080", 120, 16) );
     
@@ -236,9 +227,6 @@ void testApp::guiEvent( ofxUIEventArgs& e ) {
         bDrawGui        = ((ofxUIToggle*)gui->getWidget("B_DRAW_GUI"))->getValue();
         bKinectCamGui   = ((ofxUIToggle*)gui->getWidget("B_DRAW_Kinect_Gui"))->getValue();
         setDrawGuis( bDrawGui );
-    } else if (name == "B_SHOVE_OVER") {
-        bShoveOver = ((ofxUIToggle*)gui->getWidget("B_SHOVE_OVER"))->getValue();
-        setSceneBounds();
     } else if (name == "B_AUTO_SCENE_SWITCH") {
         bAutoSceneSwitch = ((ofxUIToggle*)gui->getWidget("B_AUTO_SCENE_SWITCH"))->getValue();
     } else if (name == "FULLSCREEN" ) {
@@ -283,13 +271,7 @@ void testApp::setDrawGuis( bool bDraw ) {
 void testApp::setSceneBounds() {
     int pw = ofToInt( ((ofxUITextInput*)gui->getWidget("Projector Width"))->getTextString() );
     int ph = ofToInt( ((ofxUITextInput*)gui->getWidget("Projector Height"))->getTextString() );
-    
-    if(!bShoveOver) {
-        pw = ofGetWidth();
-        ph = ofGetHeight();
-    }
-    fbo.allocate(pw, ph);
-    
+      
     for(int i = 0; i < scenes.size(); i++ ) {
         scenes[i]->setBounds(pw, ph);
     }
