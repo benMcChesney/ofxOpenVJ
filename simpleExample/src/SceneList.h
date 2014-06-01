@@ -11,7 +11,7 @@
 
 #include "TestScene.h"
 #include "SimpleScene.h"
-#include "TriangleKinectShader.h"
+#include "SimplePointCloudScene.h"
 #include "SimpleOpenCVScene.h"
 
 #endif

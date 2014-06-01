@@ -53,6 +53,9 @@ public:
     void loadSettings();
     void saveSettings();
     
+    int getWidth( ) { return kinect.getWidth() ;  }
+    int getHeight( ) { return kinect.getHeight() ; }
+    
     ofxKinect kinect;
 
     ofxUIScrollableCanvas* gui;

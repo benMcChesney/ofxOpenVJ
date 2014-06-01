@@ -64,7 +64,7 @@ void testApp::setup() {
     //Add a new scene in one line of code
     scenes.push_back( new SimpleScene((int)scenes.size(), "SimpleScene" ) ) ;
     scenes.push_back( new TestScene((int)scenes.size(), "TestScene" ) ) ;
-    //scenes.push_back( new TriangleKinectShader((int)scenes.size(), "TriangleKinectShader" ) ) ;
+    scenes.push_back( new SimplePointCloudScene((int)scenes.size(), "SimplePointCloudScene" ) ) ;
     scenes.push_back( new SimpleOpenCVScene((int)scenes.size(), "SimpleOpenCVScene" ) ) ;
     setSceneBounds();
     

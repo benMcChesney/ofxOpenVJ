@@ -33,13 +33,13 @@
 <Widget>
     <Kind>6</Kind>
     <Name>POINT CLOUD RANGE</Name>
-    <HighValue>8942.307617188</HighValue>
+    <HighValue>1378.205078125</HighValue>
     <LowValue>0.000000000</LowValue>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>POINT CLOUD Z</Name>
-    <Value>3.999948502</Value>
+    <Value>-346.666687012</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>

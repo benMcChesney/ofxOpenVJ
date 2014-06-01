@@ -26,44 +26,44 @@
 <Widget>
     <Kind>6</Kind>
     <Name>CAM_LONGITUDE</Name>
-    <HighValue>20.286668777</HighValue>
-    <LowValue>-28.640005112</LowValue>
+    <HighValue>28.639993668</HighValue>
+    <LowValue>-53.700000763</LowValue>
 </Widget>
 <Widget>
     <Kind>6</Kind>
     <Name>CAM_LATITUDE</Name>
-    <HighValue>27.446660995</HighValue>
-    <LowValue>-19.093336105</LowValue>
+    <HighValue>41.766670227</HighValue>
+    <LowValue>-44.153335571</LowValue>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>TARGET_SPRING</Name>
-    <Value>0.055089001</Value>
+    <Value>0.023428667</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>STEER</Name>
-    <Value>0.099999994</Value>
+    <Value>0.966666639</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>PARTICLE_DAMPING</Name>
-    <Value>0.100000009</Value>
+    <Value>0.179999992</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>Z OFFSET</Name>
-    <Value>0.000000000</Value>
+    <Value>880.000122070</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>CAM MOVEMENT</Name>
-    <Value>8.333333969</Value>
+    <Value>0.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>CAMERA TARGET Z</Name>
-    <Value>0.000000000</Value>
+    <Value>-13.333320618</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>

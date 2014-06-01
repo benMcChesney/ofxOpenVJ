@@ -1,5 +1,5 @@
 //
-//  TestScene.h
+//  SimpleOpenCVScene
 //  KinectPerformanceV01
 //
 //  Created by Ben Mcchesney on 11/6/12.
