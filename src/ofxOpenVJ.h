@@ -14,5 +14,6 @@
 #include "CameraManager.h"
 #include "KinectManager.h"
 #include "Utils.h"
+#include "ofxOpenVJSet.h"
 
 #endif

@@ -15,12 +15,6 @@ class testApp : public ofBaseApp{
 	void update();
 	void draw();
     
-    void setupMainGui();
-    void guiEvent( ofxUIEventArgs& e );
-    
-    void setDrawGuis( bool bDraw );
-    void setSceneBounds();
-
 	void keyPressed  (int key);
 	void keyReleased(int key);
 	void mouseMoved(int x, int y );
@@ -31,31 +25,7 @@ class testApp : public ofBaseApp{
 	void dragEvent(ofDragInfo dragInfo);
 	void gotMessage(ofMessage msg);
     
-    #ifdef USE_KINECT
-    KinectManager        kinectMan;
-    #endif
+    void audioReceived(float* input, int bufferSize, int nChannels) ;
     
-    CameraManager        cameraManager ;
-    ofxBeatDetector      beatDetector ;
-    
-    vector<BaseScene*> scenes;
-
-    float lastSceneChangedTime ;
-    float sceneDelayTime ; 
-    int activeSceneIndex;
-    // main gui vars - FPS, shove render FBO over, etc. //
-    ofxUICanvas* gui;
-    
-    bool bDrawGui;
-    bool bAutoSceneSwitch;
-    bool bKinectCamGui;
-    
-    void audioReceived(float* input, int bufferSize, int nChannels);
-    float beatValue ; 
-    
-
-#ifdef USE_SYPHON
-    //ofxSyphonServer outputSyphonServer ;
-#endif
-
+    ofxOpenVJSet set ; 
 };

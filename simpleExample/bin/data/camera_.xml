@@ -58,7 +58,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>CAM MOVEMENT</Name>
-    <Value>0.000000000</Value>
+    <Value>10.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -68,7 +68,7 @@
 <Widget>
     <Kind>2</Kind>
     <Name>ENABLE FX</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
