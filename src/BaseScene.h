@@ -21,64 +21,25 @@
 
 class BaseScene {
 public:
-    BaseScene() { gui = NULL; }
-    BaseScene( int a_index, string a_name )
-    {
-        index = a_index;
-        name = a_name;
-        gui=NULL;
-        shaderDirectory = ofToDataPath( "../../../../../addons/ofxOpenVJ/shaders/" ) ;
-    }
-    virtual ~BaseScene() {
-        if(gui != NULL) { delete gui; gui = NULL;}
-        cout << "BaseScene " << name << "->deconstructor()" << endl;
-    };
+    BaseScene() ;
+    BaseScene( int a_index, string a_name ) ; 
+    virtual ~BaseScene() ;
     
     virtual void setup() {};
-    virtual void setupGui(float a_x=0, float a_y=0) {
-        gui = new ofxUIScrollableCanvas( a_x, a_y, 320, ofGetHeight() - 10 - a_y );
-        gui->addWidgetDown(new ofxUILabel(name+" Scene Settings", OFX_UI_FONT_LARGE));
-        gui->addButton( "SAVE SETTINGS" , false ) ;
-        gui->addButton( "LOAD SETTINGS" , false ) ;
-        gui->addSpacer(300, 2);
-    };
-    //virtual void guiEvent( ofxUIEventArgs & e ) { }
+    virtual void setupGui(float a_x=0, float a_y=0) ;
     
     virtual void update() = 0;
     virtual void draw() = 0;
     virtual void drawDebug() {};
 
-    
     virtual void activate() {  };
     virtual void deactivate() { if(gui != NULL) { gui->setVisible(false); } };
     
     void toggleGui() { if(gui!=NULL) {gui->toggleVisible();} };
+    virtual void guiEvent(ofxUIEventArgs &e) ; 
     
-    //--------------------------------------------------------------
-    virtual void guiEvent(ofxUIEventArgs &e) {
-        string name = e.widget->getName();
-        int kind = e.widget->getKind();
-        
-        if ( name == "LOAD SETTINGS" && e.getButton()->getValue() == true )
-            loadSettings() ;
-        
-        if ( name == "SAVE SETTINGS" && e.getButton()->getValue() == true )
-            saveSettings() ;
-        
-    }
-    
-    void loadSettings() {
-        if(gui!=NULL) {
-            gui->loadSettings( getXMLSettingsName() );
-        }
-    }
-    
-    void saveSettings() {
-        if(gui!=NULL) {
-            cout << "BaseScene :: saveSettings() : " << getXMLSettingsName() << endl;
-            gui->saveSettings( getXMLSettingsName() );
-        }
-    };
+    void loadSettings() ; 
+    void saveSettings() ;
     
     float getWidth() { return _width; }
     float getHeight() { return _height; }
@@ -97,9 +58,6 @@ public:
     
     ofxBeatDetector * beatDetector ;
     CameraManager* cameraMan;
-
-    //Global folder where all shaders are
-    string shaderDirectory ;
     
 protected:
     float _width, _height;

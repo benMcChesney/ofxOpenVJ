@@ -73,6 +73,7 @@
 		6B1CDF3A1921CE9C00C0982C /* ZoomBlurPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B1CDF1F1921CE9C00C0982C /* ZoomBlurPass.cpp */; };
 		6B51B7D9193BC48200DC5241 /* SimpleOpenCVScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B51B7D7193BC48200DC5241 /* SimpleOpenCVScene.cpp */; };
 		6B51B7DD193BD60200DC5241 /* SimplePointCloudScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B51B7DB193BD60200DC5241 /* SimplePointCloudScene.cpp */; };
+		6B51B7DF193BDDB400DC5241 /* BaseScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B51B7DE193BDDB400DC5241 /* BaseScene.cpp */; };
 		6B7AA3831925D5C80042801B /* ofxBeatDetector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B7AA3811925D5C80042801B /* ofxBeatDetector.cpp */; };
 		6B7AA3871925DADC0042801B /* SimpleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B7AA3851925DADC0042801B /* SimpleScene.cpp */; };
 		6B7AA38A1925E8450042801B /* Scenes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B7AA3881925E8450042801B /* Scenes.cpp */; };
@@ -351,6 +352,7 @@
 		6B51B7DA193BC4E100DC5241 /* ofxOpenVJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxOpenVJ.h; path = ../src/ofxOpenVJ.h; sourceTree = "<group>"; };
 		6B51B7DB193BD60200DC5241 /* SimplePointCloudScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimplePointCloudScene.cpp; sourceTree = "<group>"; };
 		6B51B7DC193BD60200DC5241 /* SimplePointCloudScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimplePointCloudScene.h; sourceTree = "<group>"; };
+		6B51B7DE193BDDB400DC5241 /* BaseScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BaseScene.cpp; path = ../src/BaseScene.cpp; sourceTree = "<group>"; };
 		6B65E6930994CC4B2D2B8B33 /* OscPacketListener.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = OscPacketListener.h; path = ../../../addons/ofxOsc/libs/oscpack/src/osc/OscPacketListener.h; sourceTree = SOURCE_ROOT; };
 		6B7AA37E1925D5C80042801B /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		6B7AA37F1925D5C80042801B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
@@ -1085,6 +1087,7 @@
 				6B7AA3881925E8450042801B /* Scenes.cpp */,
 				6B7AA3891925E8450042801B /* Scenes.h */,
 				73B8FF75147C985FBC88B05D /* BaseScene.h */,
+				6B51B7DE193BDDB400DC5241 /* BaseScene.cpp */,
 				7F4A08F8802E0430ADD1EF00 /* CameraManager.cpp */,
 				FE89FC8513DB7101E08C01D1 /* CameraManager.h */,
 				FED1021328DA5DA9558CD24F /* Constants.h */,
@@ -1680,6 +1683,7 @@
 				6B7AA38A1925E8450042801B /* Scenes.cpp in Sources */,
 				6B51B7D9193BC48200DC5241 /* SimpleOpenCVScene.cpp in Sources */,
 				6B51B7DD193BD60200DC5241 /* SimplePointCloudScene.cpp in Sources */,
+				6B51B7DF193BDDB400DC5241 /* BaseScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
