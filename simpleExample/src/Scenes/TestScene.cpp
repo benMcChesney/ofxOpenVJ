@@ -34,6 +34,12 @@ void TestScene::setupGui(float a_x, float a_y) {
 
 //--------------------------------------------------------------
 void TestScene::guiEvent(ofxUIEventArgs &e) {
+    name = e.getName() ; 
+    if ( name == "LOAD SETTINGS" && e.getButton()->getValue() == true )
+        loadSettings() ;
+    
+    if ( name == "SAVE SETTINGS" && e.getButton()->getValue() == true )
+        saveSettings() ;
     
 }
 

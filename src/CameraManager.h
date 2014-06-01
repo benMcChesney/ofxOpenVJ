@@ -56,6 +56,8 @@ public:
     bool bEnablePostFX ;
     ofxPostProcessing post ;
     
+
+    
 private:
     
     

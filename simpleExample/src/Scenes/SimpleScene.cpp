@@ -27,13 +27,20 @@ void SimpleScene::setupGui(float a_x, float a_y)
     gui->addButton("GENERATE CUBES" , false ) ;
     
     ofAddListener( gui->newGUIEvent , this , &SimpleScene::guiEvent ) ;
+    loadSettings() ; 
 }
 
 void SimpleScene::guiEvent(ofxUIEventArgs &e )
 {
     string name = e.getName() ;
     if ( name == "GENERATE CUBES" && e.getButton()->getValue() == true )
-        generateRandomCubes() ; 
+        generateRandomCubes() ;
+    
+    if ( name == "LOAD SETTINGS" && e.getButton()->getValue() == true )
+        loadSettings() ;
+    
+    if ( name == "SAVE SETTINGS" && e.getButton()->getValue() == true )
+        saveSettings() ;
 }
 
 void SimpleScene::generateRandomCubes( )

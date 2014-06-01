@@ -71,6 +71,7 @@
 		6B1CDF381921CE9C00C0982C /* ToonPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B1CDF1B1921CE9C00C0982C /* ToonPass.cpp */; };
 		6B1CDF391921CE9C00C0982C /* VerticalTiltShifPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B1CDF1D1921CE9C00C0982C /* VerticalTiltShifPass.cpp */; };
 		6B1CDF3A1921CE9C00C0982C /* ZoomBlurPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B1CDF1F1921CE9C00C0982C /* ZoomBlurPass.cpp */; };
+		6B51B7D9193BC48200DC5241 /* SimpleOpenCVScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B51B7D7193BC48200DC5241 /* SimpleOpenCVScene.cpp */; };
 		6B7AA3831925D5C80042801B /* ofxBeatDetector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B7AA3811925D5C80042801B /* ofxBeatDetector.cpp */; };
 		6B7AA3871925DADC0042801B /* SimpleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B7AA3851925DADC0042801B /* SimpleScene.cpp */; };
 		6B7AA38A1925E8450042801B /* Scenes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B7AA3881925E8450042801B /* Scenes.cpp */; };
@@ -344,6 +345,9 @@
 		6B1CDF1E1921CE9C00C0982C /* VerticalTiltShifPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerticalTiltShifPass.h; sourceTree = "<group>"; };
 		6B1CDF1F1921CE9C00C0982C /* ZoomBlurPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ZoomBlurPass.cpp; sourceTree = "<group>"; };
 		6B1CDF201921CE9C00C0982C /* ZoomBlurPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomBlurPass.h; sourceTree = "<group>"; };
+		6B51B7D7193BC48200DC5241 /* SimpleOpenCVScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleOpenCVScene.cpp; sourceTree = "<group>"; };
+		6B51B7D8193BC48200DC5241 /* SimpleOpenCVScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleOpenCVScene.h; sourceTree = "<group>"; };
+		6B51B7DA193BC4E100DC5241 /* ofxOpenVJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxOpenVJ.h; path = ../src/ofxOpenVJ.h; sourceTree = "<group>"; };
 		6B65E6930994CC4B2D2B8B33 /* OscPacketListener.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = OscPacketListener.h; path = ../../../addons/ofxOsc/libs/oscpack/src/osc/OscPacketListener.h; sourceTree = SOURCE_ROOT; };
 		6B7AA37E1925D5C80042801B /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		6B7AA37F1925D5C80042801B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
@@ -353,7 +357,6 @@
 		6B7AA3861925DADC0042801B /* SimpleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleScene.h; sourceTree = "<group>"; };
 		6B7AA3881925E8450042801B /* Scenes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Scenes.cpp; path = ../src/Scenes.cpp; sourceTree = "<group>"; };
 		6B7AA3891925E8450042801B /* Scenes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Scenes.h; path = ../src/Scenes.h; sourceTree = "<group>"; };
-		6B7AA38B1925E84E0042801B /* ofxOpenVJ.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxOpenVJ.h; sourceTree = "<group>"; };
 		6B7AA38F1925E9420042801B /* SceneList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneList.h; sourceTree = "<group>"; };
 		6B907CFBB1B0FEDE76C41AA0 /* heap.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = heap.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/heap.h; sourceTree = SOURCE_ROOT; };
 		6DD5A3CBB6D5BBA1C1354F1B /* flann.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = flann.hpp; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/flann.hpp; sourceTree = SOURCE_ROOT; };
@@ -806,6 +809,8 @@
 		6B1CDE981921CDB100C0982C /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				6B51B7D7193BC48200DC5241 /* SimpleOpenCVScene.cpp */,
+				6B51B7D8193BC48200DC5241 /* SimpleOpenCVScene.h */,
 				6B1CDEB71921CDB100C0982C /* TestScene.cpp */,
 				6B1CDEB81921CDB100C0982C /* TestScene.h */,
 				6B7AA3851925DADC0042801B /* SimpleScene.cpp */,
@@ -1071,6 +1076,7 @@
 		AA946C38CDDFCAE547A4143B /* src */ = {
 			isa = PBXGroup;
 			children = (
+				6B51B7DA193BC4E100DC5241 /* ofxOpenVJ.h */,
 				6B7AA3881925E8450042801B /* Scenes.cpp */,
 				6B7AA3891925E8450042801B /* Scenes.h */,
 				73B8FF75147C985FBC88B05D /* BaseScene.h */,
@@ -1080,7 +1086,6 @@
 				C40E2D31D4CF49DDC42D8CB3 /* KinectManager.cpp */,
 				03320FC6366B7F8E2F0F92B5 /* KinectManager.h */,
 				693CE376E7DD1175FD35FA96 /* Utils.h */,
-				6B7AA38B1925E84E0042801B /* ofxOpenVJ.h */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -1668,6 +1673,7 @@
 				6B7AA3831925D5C80042801B /* ofxBeatDetector.cpp in Sources */,
 				6B7AA3871925DADC0042801B /* SimpleScene.cpp in Sources */,
 				6B7AA38A1925E8450042801B /* Scenes.cpp in Sources */,
+				6B51B7D9193BC48200DC5241 /* SimpleOpenCVScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

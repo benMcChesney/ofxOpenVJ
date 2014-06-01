@@ -18,6 +18,7 @@
 #ifdef USE_KINECT
 #include "KinectManager.h"
 #endif
+
 class BaseScene {
 public:
     BaseScene() { gui = NULL; }
@@ -37,6 +38,8 @@ public:
     virtual void setupGui(float a_x=0, float a_y=0) {
         gui = new ofxUIScrollableCanvas( a_x, a_y, 320, ofGetHeight() - 10 - a_y );
         gui->addWidgetDown(new ofxUILabel(name+" Scene Settings", OFX_UI_FONT_LARGE));
+        gui->addButton( "SAVE SETTINGS" , false ) ;
+        gui->addButton( "LOAD SETTINGS" , false ) ;
         gui->addSpacer(300, 2);
     };
     //virtual void guiEvent( ofxUIEventArgs & e ) { }
@@ -50,6 +53,19 @@ public:
     virtual void deactivate() { if(gui != NULL) { gui->setVisible(false); } };
     
     void toggleGui() { if(gui!=NULL) {gui->toggleVisible();} };
+    
+    //--------------------------------------------------------------
+    virtual void guiEvent(ofxUIEventArgs &e) {
+        string name = e.widget->getName();
+        int kind = e.widget->getKind();
+        
+        if ( name == "LOAD SETTINGS" && e.getButton()->getValue() == true )
+            loadSettings() ;
+        
+        if ( name == "SAVE SETTINGS" && e.getButton()->getValue() == true )
+            saveSettings() ;
+        
+    }
     
     void loadSettings() {
         if(gui!=NULL) {

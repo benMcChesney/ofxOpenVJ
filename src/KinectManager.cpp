@@ -23,8 +23,8 @@ KinectManager::KinectManager() {
     kinectFOV       = 70;
     maxTriDiff      = 100.f;
     bUseVideoColor  = true ;
-    bThreshWithOpenCV = false;
-
+    maxBlobs = 3 ; 
+    
 }
 
 //--------------------------------------------------------------
@@ -48,7 +48,10 @@ void KinectManager::open() {
 	grayImage.allocate(kinect.width, kinect.height);
 	grayThreshNear.allocate(kinect.width, kinect.height);
 	grayThreshFar.allocate(kinect.width, kinect.height);
+
+    ofLogNotice() << "Kinect Manager textures allocated." ;
     
+    ofLogNotice() << "grayImage " << grayImage.getWidth() << " x " << grayImage.getHeight() ;
     if(bPointsActive == NULL)
         bPointsActive = new bool[width*height];
     
@@ -71,16 +74,23 @@ void KinectManager::close() {
     }
 }
 
+ofPoint KinectManager::cvPointToScreen( ofPoint p ,  float width , float height )
+{
+    float x = ofMap( p.x , 0 , grayImage.getWidth() , 0 , width , true ) ;
+    float y = ofMap( p.y , 0 , grayImage.getHeight() , 0 , height , true ) ;
+    return ofPoint( x , y ) ; 
+}
+
 //--------------------------------------------------------------
 void KinectManager::loadSettings() {
     if(kinect.isConnected())
-        gui->loadSettings("GUI/kinect_"+ofToString(kinect.getDeviceId(), 0)+".xml");
+        gui->loadSettings("kinect_"+ofToString(kinect.getDeviceId(), 0)+".xml");
 }
 
 //--------------------------------------------------------------
 void KinectManager::saveSettings() {
     if(kinect.isConnected())
-        gui->saveSettings("GUI/kinect_"+ofToString(kinect.getDeviceId(), 0)+".xml");
+        gui->saveSettings("kinect_"+ofToString(kinect.getDeviceId(), 0)+".xml");
 }
 
 //--------------------------------------------------------------
@@ -491,12 +501,7 @@ ofVec3f& KinectManager::getOffsetVector() {
 //--------------------------------------------------------------
 void KinectManager::calculateCVOperations() {
     // make sure to only call this if isFrameNew() == true //
-    
-    //cout << "KinectManager :: calculateCVOperations : nearThreshCV = " << nearThreshCV << " farThreshCV = " << farThreshCV << endl;
-    
     if(!kinect.isConnected()) return;
-    
-    
     
     // load grayscale depth image from the kinect source
     grayImage.setFromPixels(kinect.getDepthPixels(), kinect.width, kinect.height);
@@ -507,14 +512,16 @@ void KinectManager::calculateCVOperations() {
     
     // we do two thresholds - one for the far plane and one for the near plane
     // we then do a cvAnd to get the pixels which are a union of the two thresholds
-    if(bThreshWithOpenCV) {
-        grayThreshNear = grayImage;
-        grayThreshFar = grayImage;
-        grayThreshNear.threshold(nearThreshCV, true);
-        grayThreshFar.threshold(farThreshCV);
-        cvAnd(grayThreshNear.getCvImage(), grayThreshFar.getCvImage(), grayImage.getCvImage(), NULL);
-    } else {
-        
+    
+    grayThreshNear = grayImage;
+    grayThreshFar = grayImage;
+    grayThreshNear.threshold(nearThreshCV, true);
+    grayThreshFar.threshold(farThreshCV);
+    cvAnd(grayThreshNear.getCvImage(), grayThreshFar.getCvImage(), grayImage.getCvImage(), NULL);
+
+    
+    /* OpenCV is really the way to go
+     {
         // or we do it ourselves - show people how they can work with the pixels
         unsigned char * pix = grayImage.getPixels();
         
@@ -526,7 +533,7 @@ void KinectManager::calculateCVOperations() {
                 pix[i] = 0;
             }
         }
-    }
+    }*/ 
     
     // update the cv images
     grayImage.flagImageChanged();
@@ -541,7 +548,7 @@ void KinectManager::calculateCVOperations() {
 //                 bool bUseApproximation)
     
     
-    contourFinder.findContours(grayImage, minBlobSize , maxBlobSize , 6, bFindHoles );
+    contourFinder.findContours(grayImage, minBlobSize , maxBlobSize , maxBlobs , bFindHoles );
 }
 
 //--------------------------------------------------------------
@@ -601,6 +608,12 @@ vector<ofRectangle> KinectManager::getScaledContourBoundingBoxes(float x, float 
 void KinectManager::guiEvent(ofxUIEventArgs &e) {
     string ename = e.widget->getName();
     
+    if ( ename == "LOAD SETTINGS" && e.getButton()->getValue() == true )
+        loadSettings() ;
+    
+    if ( ename == "SAVE SETTINGS" && e.getButton()->getValue() == true )
+        saveSettings() ;
+    
     if(e.widget->getName() == "KINECT_CAMERA_ANGLE") {
         ofxUISlider *slider = (ofxUISlider *) e.widget;
         cout << "kinect angle = " << slider->getScaledValue() << endl;
@@ -642,9 +655,7 @@ void KinectManager::guiEvent(ofxUIEventArgs &e) {
     } else if (e.widget->getName() == "Y AXIS ROT" ) {
         ofxUIRotarySlider* slider = (ofxUIRotarySlider*) e.widget;
         axesRotation.y = slider->getScaledValue();
-    } else if (e.widget->getName() == "BTHRESH_WITH_CV") {
-        bThreshWithOpenCV = ((ofxUIToggle*)e.widget)->getValue();
-    } else if (ename == "CV_ThreshSlider") {
+    } else if (ename == "DEPTH RANGE") {
         ofxUIRangeSlider* slider = (ofxUIRangeSlider*) e.widget;
         nearThreshCV    = 255-slider->getScaledValueLow();
         farThreshCV     = 255-slider->getScaledValueHigh();
@@ -667,7 +678,8 @@ void KinectManager::guiEvent(ofxUIEventArgs &e) {
     {
         ofxUISlider* slider = (ofxUISlider*) e.widget;
         minimumPixBrightness = slider->getScaledValue() ;
-    }
+    } else if ( e.getName() == "MAX BLOBS" )
+        maxBlobs = (int)e.getSlider()->getScaledValue();
         //gui->addSlider("POINT CLOUD Z", -2000 , 2000 , 4, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
 }
 
@@ -681,44 +693,36 @@ void KinectManager::setupGui(float a_x, float a_y) {
     gui->addWidgetDown(new ofxUILabel("Kinect Settings", OFX_UI_FONT_LARGE));
     gui->addSpacer(GUI_WIDGET_WIDTH, 2);
     
-    gui->addSlider("KINECT_CAMERA_ANGLE", -30.0, 30.0, 0.0, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
+    gui->addButton( "SAVE SETTINGS" , false ) ;
+    gui->addButton( "LOAD SETTINGS" , false ) ;
     
-    //ofTexture* rgbTex = ((ofTexture*) &kinect.getTextureReference());
-    //gui->addWidgetDown( new ofxUIBaseDraws(128, 96, rgbTex, "RGB Texture") );
+    gui->addSlider("KINECT_CAMERA_ANGLE", -30.0, 30.0, 0.0 );
+    gui->addSlider("Kinect FOV", 1, 179, 70, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
+
+   
     ofTexture* depthTex = (ofTexture*) &kinect.getDepthTextureReference();
     gui->addWidgetDown( new ofxUIBaseDraws(128, 96, depthTex, "Depth Texture") );
-    
-    //ofTexture* cvTex = ((ofTexture*)&grayImage.getTextureReference());
-//    ofxCvGrayscaleImage* ((ofxCvGrayscaleImage*) &grayImage);
     gui->addWidgetRight( new ofxUIBaseDraws(128, 96, ((ofxCvGrayscaleImage*) &grayImage), "Open CV Texture") );
     
-    gui->addWidgetDown( new ofxUIToggle("BTHRESH_WITH_CV", false, 16, 16) );
+    gui->addLabel("CV SETTINGS") ;
+    gui->addSpacer() ;
     gui->addWidgetDown( new ofxUIToggle("FIND HOLES", false, 16, 16) );
-   
-    gui->addRangeSlider("CV_ThreshSlider", 0.0, 255, 0, 255, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
+    gui->addRangeSlider("DEPTH RANGE", 0.0, 255, 0, 255, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
+
+    gui->addWidgetDown( new ofxUIRangeSlider( "BLOB SIZE" , 30 * 30 , ( kinect.width * kinect.height ) * .75 , minBlobSize , maxBlobSize ,  GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT ) )  ;
+    gui->addSlider("MAX BLOBS", 1, 20, maxBlobs ) ;
     
-    gui->addRangeSlider("ThreshSlider", 0.0, 7500.0, 50.0, 1000.0, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
-    
-    gui->addSlider("Kinect FOV", 1, 179, 70, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
-    
-    gui->addSpacer( GUI_WIDGET_WIDTH, 1);
-  //  gui->addSlider("Mesh Offset X", -3000.f, 3000.f, 0.0, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
-  //  gui->addSlider("Mesh Offset Y", -3000.f, 3000.f, 0.0, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
-  //  gui->addSlider("Mesh Offset Z", -3000.f, 3000.f, 0.0, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
-    gui->addSlider("Mesh Step", 1, 20, 4, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
-    
+    gui->addLabel("POINT CLOUD SETTINGS");
+    gui->addSpacer() ; 
     gui->addRangeSlider("POINT CLOUD RANGE", 0.0 , 10000.0 , pointCloudMinZ , pointCloudMaxZ ) ;
     gui->addSlider("POINT CLOUD Z", -2000 , 2000 , 4, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
-
-    
+    gui->addSlider("Mesh Step", 1, 20, 4, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT);
     gui->addSpacer( GUI_WIDGET_WIDTH, 1);
     gui->addWidgetDown(new ofxUILabel("INVERT AXES", OFX_UI_FONT_MEDIUM));
     gui->addWidgetDown( new ofxUILabelToggle("X AXIS", false, 90, 30, 0, 0) );
     gui->addWidgetRight( new ofxUILabelToggle("Y AXIS", false, 90, 30, 0, 0) );
-  //  gui->addWidgetRight( new ofxUILabelToggle("Z AXIS", false, 90, 30, 0, 0) );
-    
     gui->addWidgetDown(new ofxUIRotarySlider(64, -180.f, 180.f, 0.f, "Y AXIS ROT"));
-    gui->addWidgetDown( new ofxUIRangeSlider( "BLOB SIZE" , 30 * 30 , ( kinect.width * kinect.height ) * .75 , minBlobSize , maxBlobSize ,  GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT ) )  ;
+
     
     gui->addSlider( "MIN PIXEL BRIGHTNESS" , 0 , 255 , minimumPixBrightness , GUI_WIDGET_WIDTH , GUI_SLIDER_HEIGHT ) ;
     gui->addSpacer( GUI_WIDGET_WIDTH, 1);

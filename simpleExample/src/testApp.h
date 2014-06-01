@@ -5,6 +5,7 @@
 #include "Tweenzor.h"
 #include "SceneList.h"
 
+
 class testApp : public ofBaseApp{
 
   public:
@@ -52,8 +53,9 @@ class testApp : public ofBaseApp{
     void audioReceived(float* input, int bufferSize, int nChannels);
     float beatValue ; 
     
+
 #ifdef USE_SYPHON
-    ofxSyphonServer outputSyphonServer ;
+    //ofxSyphonServer outputSyphonServer ;
 #endif
 
 };

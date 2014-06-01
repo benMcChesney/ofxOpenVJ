@@ -31,6 +31,9 @@ public:
     ofVec3f getWorldCoordAt( int x, int y );
     void setWorldCoord( int x, int y, ofVec3f& inVec );
     
+    ofPoint cvPointToScreen( ofPoint p , float width = ofGetWidth() , float height = ofGetHeight() );
+    ofPoint cvPointToScreen( float x , float y , float width = ofGetWidth() , float height = ofGetHeight() ) { return cvPointToScreen( ofPoint ( x , y ) , width , height  ) ; }
+    
     void setupMesh();
     void calculateMesh( ofVec3f mesh_offset );
     void calculatePoints( ofVec3f a_meshOffset );
@@ -82,6 +85,7 @@ public:
     float               pointCloudZOffset ;
     bool                bFindHoles ;
     float               minBlobSize , maxBlobSize ;
+    int                 maxBlobs ; 
     
     //In dark rooms the colors don't get picked up as well so we have to adjust
     //the raw RGB color
@@ -92,7 +96,7 @@ protected:
     // in degrees //
     ofVec3f axesRotation;
     float kinectFOV;
-    bool bThreshWithOpenCV;
+
 };
 
 

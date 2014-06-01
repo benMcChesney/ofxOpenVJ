@@ -44,12 +44,14 @@ void CameraManager::setup() {
 
 //--------------------------------------------------------------
 void CameraManager::loadSettings() {
-    gui->loadSettings("GUI/camera_.xml");
+    gui->loadSettings("camera_.xml");
 }
 
 //--------------------------------------------------------------
 void CameraManager::saveSettings() {
-    gui->saveSettings("GUI/camera_.xml");
+    gui->saveSettings("camera_.xml");
+    cout << " did save ? " << endl ;
+
 }
 
 void CameraManager::begin()
@@ -243,7 +245,15 @@ void CameraManager::setCenter(ofVec3f a_center) {
 //--------------------------------------------------------------
 void CameraManager::guiEvent(ofxUIEventArgs &e) {
     string ename = e.widget->getName();
+    //cout << " CAMEAR MANAGER GUI EVENT " << ename << endl ;
     
+
+    if ( ename == "LOAD SETTINGS" && e.getButton()->getValue() == true )
+        loadSettings() ;
+    
+    if ( ename == "SAVE SETTINGS" && e.getButton()->getValue() == true )
+        saveSettings() ;
+
     if(ename == "Debug") {
         _bDebug = ((ofxUIToggle*)e.widget)->getValue();
     } else if (ename == "CAMERA_AUTO") {
@@ -378,12 +388,14 @@ void CameraManager::setupGui( float a_x, float a_y ) {
     
     float GUI_WIDGET_WIDTH = 300;
     float GUI_SLIDER_HEIGHT = 16;
-     gui->addSpacer( GUI_WIDGET_WIDTH, 1);
+
     gui->addWidgetDown(new ofxUILabel("Camera Settings", OFX_UI_FONT_LARGE));
-    gui->addSpacer(GUI_WIDGET_WIDTH, 2);
-    
-    gui->addWidgetDown( new ofxUIToggle("Debug", false, 16, 16 ) );
-    gui->addWidgetRight( new ofxUIToggle("CAMERA_AUTO", false, 16, 16 ) );
+    gui->addSpacer( GUI_WIDGET_WIDTH, 1);
+    //gui->addSpacer(GUI_WIDGET_WIDTH, 2);
+    gui->addButton( "SAVE SETTINGS" , false ) ;
+    gui->addButton( "LOAD SETTINGS" , false ) ; 
+   // gui->addWidgetDown( new ofxUIToggle("Debug", false, 16, 16 ) );
+    gui->addToggle("CAMERA_AUTO", false );
     
     gui->addSlider("MAX_BEAT_HITS", 1, 400, &_maxBeatHits, GUI_WIDGET_WIDTH, GUI_SLIDER_HEIGHT );
     

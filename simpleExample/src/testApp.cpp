@@ -1,5 +1,6 @@
 #include "testApp.h"
 
+#define USE_KINECT 3
 //--------------------------------------------------------------
 void testApp::setup() {
 
@@ -42,39 +43,38 @@ void testApp::setup() {
    
     //A few ifdefs to make sure there's not a gap in the GUIs
     float guiX = 340 ; 
-#ifdef USE_KINECT
+//#ifdef USE_KINECT
     // KinectManager //
-    kinectMan.setupGui(guiX, guiY);
+    kinectMan.setupGui(340, guiY);
     kinectMan.close();
     kinectMan.open();
     kinectMan.loadSettings();
     kinectMan.gui->setVisible(bDrawGui);
-    guiX = 670 ; 
-#endif
+    //guiX = 670 ;
+//#endif
     
     cameraManager.setup();
-    cameraManager.setupGui( guiX , guiY);
+    cameraManager.setupGui( 670 , guiY);
     cameraManager.loadSettings();
     cameraManager.gui->setVisible( false );
     
 #ifndef USE_KINECT
-    guiX = 670 ; 
+   // guiX = 670 ;
 #endif
     //Add a new scene in one line of code
     scenes.push_back( new SimpleScene((int)scenes.size(), "SimpleScene" ) ) ;
     scenes.push_back( new TestScene((int)scenes.size(), "TestScene" ) ) ;
     //scenes.push_back( new TriangleKinectShader((int)scenes.size(), "TriangleKinectShader" ) ) ;
+    scenes.push_back( new SimpleOpenCVScene((int)scenes.size(), "SimpleOpenCVScene" ) ) ;
     setSceneBounds();
     
     for(int i = 0; i < scenes.size(); i++) {
         Scenes::registerScene(scenes[i]->index, scenes[i]->name);
-#ifdef USE_KINECT
         scenes[i]->kinectMan        = &kinectMan;
-#endif
         scenes[i]->beatDetector     = &beatDetector;
         scenes[i]->cameraMan        = &cameraManager;
         scenes[i]->setup();
-        scenes[i]->setupGui(guiX, guiY);
+        scenes[i]->setupGui( 340 + 670 , guiY);
         scenes[i]->loadSettings();
         scenes[i]->deactivate();
     }
@@ -86,8 +86,13 @@ void testApp::setup() {
     // activate the first scene //
     scenes[activeSceneIndex]->activate();
 
+
+    gui->loadSettings( "GUI/mainGuiSettings.xml" );
+    kinectMan.loadSettings();
+    cameraManager.loadSettings();
+    //}
 #ifdef USE_SYPHON
-    outputSyphonServer.setName( "ofxOpenVJ" ) ;
+//    outputSyphonServer.setName( "ofxOpenVJ" ) ;
 #endif
 
     
@@ -95,22 +100,20 @@ void testApp::setup() {
 
 //--------------------------------------------------------------
 void testApp::exit() {
-    bool bAutoSave = ((ofxUIToggle*)gui->getWidget("B_AUTO_SAVE"))->getValue();
+    //bool bAutoSave = ((ofxUIToggle*)gui->getWidget("B_AUTO_SAVE"))->getValue();
     
     for(int i = 0; i < scenes.size(); i++ ) {
-        if(bAutoSave) scenes[i]->saveSettings();
+    //    if(bAutoSave) scenes[i]->saveSettings();
         delete scenes[i];
         scenes[i] = NULL;
     }
     scenes.clear();
-    
+    /*
     if(bAutoSave) {
         gui->saveSettings( "GUI/mainGuiSettings.xml" );
-#ifdef USE_KINECT
         kinectMan.saveSettings();
-#endif
         cameraManager.saveSettings();
-    }
+    }*/
     
 #ifdef USE_KINECT
     kinectMan.close();
@@ -176,7 +179,7 @@ void testApp::draw() {
     ofSetColor(255);
     
 #ifdef USE_SYPHON
-    outputSyphonServer.publishScreen() ;
+ //   outputSyphonServer.publishScreen() ;
 #endif
     
 }
@@ -191,8 +194,10 @@ void testApp::setupMainGui() {
     
     gui->addSpacer(guiW, 2);
     
-    gui->addWidgetDown( new ofxUIButton("B_SAVE", false, 16, 16) );
-    gui->addWidgetRight( new ofxUIToggle("B_AUTO_SAVE", false, 16, 16) );
+    //gui->addWidgetDown( new ofxUIButton("B_SAVE", false, 16, 16) );
+    //gui->addWidgetRight( new ofxUIToggle("B_AUTO_SAVE", false, 16, 16) );
+    gui->addButton( "SAVE SETTINGS" , false ) ;
+    gui->addButton( "LOAD SETTINGS" , false ) ;
     
     gui->addSpacer(guiW, 1);
     gui->addWidgetDown(new ofxUIFPS(OFX_UI_FONT_SMALL));
@@ -216,11 +221,20 @@ void testApp::setupMainGui() {
     gui->addWidgetRight( new ofxUIToggle( "HIGH" , false , 16 , 16 ) ) ;
     gui->addSlider( "BEAT VALUE" , 0 , 255 , &beatValue ) ;
     ofAddListener( gui->newGUIEvent, this, &testApp::guiEvent );
+    
+    
 }
 
 //--------------------------------------------------------------
 void testApp::guiEvent( ofxUIEventArgs& e ) {
     string name = e.widget->getName();
+    
+    if ( name == "LOAD SETTINGS" && e.getButton()->getValue() == true )
+        gui->loadSettings("GUI/mainGuiSettings.xml");
+    
+    if ( name == "SAVE SETTINGS" && e.getButton()->getValue() == true )
+        gui->saveSettings( "GUI/mainGuiSettings.xml" );
+    
     if(name == "B_SAVE" ) {
         gui->saveSettings( "GUI/mainGuiSettings.xml" );
     } else if (name == "B_DRAW_GUI" || name == "B_DRAW_Kinect_Gui") {
