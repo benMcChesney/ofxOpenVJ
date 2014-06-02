@@ -8,7 +8,7 @@
 
 #pragma once
 #include "ofMain.h"
-#include "Constants.h"
+#include "ofxOpenVJConstants.h"
 #include "ofxKinect.h"
 #include "ofxUI.h"
 #include "ofxOpenCv.h"

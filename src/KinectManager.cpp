@@ -84,13 +84,13 @@ ofPoint KinectManager::cvPointToScreen( ofPoint p ,  float width , float height 
 //--------------------------------------------------------------
 void KinectManager::loadSettings() {
     if(kinect.isConnected())
-        gui->loadSettings("kinect_"+ofToString(kinect.getDeviceId(), 0)+".xml");
+        gui->loadSettings("GUI/kinect_"+ofToString(kinect.getDeviceId(), 0)+".xml");
 }
 
 //--------------------------------------------------------------
 void KinectManager::saveSettings() {
     if(kinect.isConnected())
-        gui->saveSettings("kinect_"+ofToString(kinect.getDeviceId(), 0)+".xml");
+        gui->saveSettings("GUI/kinect_"+ofToString(kinect.getDeviceId(), 0)+".xml");
 }
 
 //--------------------------------------------------------------

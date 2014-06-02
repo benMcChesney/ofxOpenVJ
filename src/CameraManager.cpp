@@ -44,14 +44,12 @@ void CameraManager::setup() {
 
 //--------------------------------------------------------------
 void CameraManager::loadSettings() {
-    gui->loadSettings("camera_.xml");
+    gui->loadSettings("GUI/camera_.xml");
 }
 
 //--------------------------------------------------------------
 void CameraManager::saveSettings() {
-    gui->saveSettings("camera_.xml");
-    cout << " did save ? " << endl ;
-
+    gui->saveSettings("GUI/camera_.xml");
 }
 
 void CameraManager::begin()

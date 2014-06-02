@@ -1,74 +1,69 @@
 <Widget>
     <Kind>2</Kind>
-    <Name>Debug</Name>
-    <Value>0</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
     <Name>CAMERA_AUTO</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>MAX_BEAT_HITS</Name>
-    <Value>148.630004883</Value>
+    <Value>180.549987793</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>CAM_DISTANCE</Name>
-    <Value>303.959503174</Value>
+    <Value>303.726684570</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>CAM_MIN_DISTANCE</Name>
-    <Value>25.069999695</Value>
+    <Value>115.540000916</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>CAM_MAX_DISTANCE</Name>
-    <Value>468.396667480</Value>
+    <Value>218.896667480</Value>
 </Widget>
 <Widget>
     <Kind>6</Kind>
     <Name>CAM_LONGITUDE</Name>
-    <HighValue>50.119995117</HighValue>
-    <LowValue>-42.960002899</LowValue>
+    <HighValue>28.639993668</HighValue>
+    <LowValue>-53.700000763</LowValue>
 </Widget>
 <Widget>
     <Kind>6</Kind>
     <Name>CAM_LATITUDE</Name>
-    <HighValue>46.539997101</HighValue>
-    <LowValue>-38.186660767</LowValue>
+    <HighValue>41.766670227</HighValue>
+    <LowValue>-44.153335571</LowValue>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>TARGET_SPRING</Name>
-    <Value>0.500000000</Value>
+    <Value>0.023428667</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>STEER</Name>
-    <Value>4.333333492</Value>
+    <Value>0.966666639</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>PARTICLE_DAMPING</Name>
-    <Value>0.900000036</Value>
+    <Value>0.179999992</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>Z OFFSET</Name>
-    <Value>133.333206177</Value>
+    <Value>880.000122070</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>CAM MOVEMENT</Name>
-    <Value>116.666664124</Value>
+    <Value>10.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>CAMERA TARGET Z</Name>
-    <Value>-366.666687012</Value>
+    <Value>-13.333320618</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -78,7 +73,7 @@
 <Widget>
     <Kind>2</Kind>
     <Name>FXAA PASS</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>

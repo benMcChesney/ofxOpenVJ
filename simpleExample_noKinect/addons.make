@@ -1,0 +1,8 @@
+ofxXmlSettings
+ofxBeatDetector
+ofxOpenVJ
+ofxParticles
+ofxPostProcessing
+ofxSimpleTimer
+ofxTweenzor
+ofxUI

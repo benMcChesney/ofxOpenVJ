@@ -9,10 +9,14 @@
 #ifndef simpleExample_ofxOpenVJ_h
 #define simpleExample_ofxOpenVJ_h
 
-#include "Constants.h"
+#include "ofxOpenVJConstants.h"
 #include "Scenes.h"
 #include "CameraManager.h"
+
+#ifdef USE_KINECT
 #include "KinectManager.h"
+#endif
+
 #include "Utils.h"
 #include "ofxOpenVJSet.h"
 

@@ -66,7 +66,9 @@ void ofxOpenVJSet::initialize( )
     setSceneBounds();
     for(int i = 0; i < scenes.size(); i++) {
         Scenes::registerScene(scenes[i]->index, scenes[i]->name);
+#ifdef USE_KINECT
         scenes[i]->kinectMan        = &kinectMan;
+#endif
         scenes[i]->beatDetector     = &beatDetector;
         scenes[i]->cameraMan        = &cameraManager;
         scenes[i]->setup();
@@ -83,7 +85,9 @@ void ofxOpenVJSet::initialize( )
     
     
     gui->loadSettings( "GUI/mainGuiSettings.xml" );
+#ifdef USE_KINECT
     kinectMan.loadSettings();
+#endif
     cameraManager.loadSettings();
 }
 
@@ -145,8 +149,7 @@ void ofxOpenVJSet::draw() {
 #ifdef USE_SYPHON
     //   outputSyphonServer.publishScreen() ;
 #endif
-    
-    sceneTimer.draw( 400 , 100 ) ; 
+
     
 }
 

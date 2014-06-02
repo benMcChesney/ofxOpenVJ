@@ -1,12 +1,12 @@
 <Widget>
     <Kind>4</Kind>
     <Name>KINECT_CAMERA_ANGLE</Name>
-    <Value>16.599998474</Value>
+    <Value>0.000000000</Value>
 </Widget>
 <Widget>
-    <Kind>2</Kind>
-    <Name>BTHRESH_WITH_CV</Name>
-    <Value>0</Value>
+    <Kind>4</Kind>
+    <Name>Kinect FOV</Name>
+    <Value>70.000000000</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -15,36 +15,36 @@
 </Widget>
 <Widget>
     <Kind>6</Kind>
-    <Name>CV_ThreshSlider</Name>
-    <HighValue>60.349998474</HighValue>
+    <Name>DEPTH RANGE</Name>
+    <HighValue>57.800003052</HighValue>
     <LowValue>0.000000000</LowValue>
 </Widget>
 <Widget>
     <Kind>6</Kind>
-    <Name>ThreshSlider</Name>
-    <HighValue>7500.000000000</HighValue>
-    <LowValue>0.000000000</LowValue>
+    <Name>BLOB SIZE</Name>
+    <HighValue>230400.000000000</HighValue>
+    <LowValue>7785.000000000</LowValue>
 </Widget>
 <Widget>
     <Kind>4</Kind>
-    <Name>Kinect FOV</Name>
-    <Value>81.693328857</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>Mesh Step</Name>
-    <Value>4.166666508</Value>
+    <Name>MAX BLOBS</Name>
+    <Value>3.000000000</Value>
 </Widget>
 <Widget>
     <Kind>6</Kind>
     <Name>POINT CLOUD RANGE</Name>
-    <HighValue>2115.384521484</HighValue>
+    <HighValue>1378.205078125</HighValue>
     <LowValue>0.000000000</LowValue>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>POINT CLOUD Z</Name>
-    <Value>-906.666625977</Value>
+    <Value>-346.666687012</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>Mesh Step</Name>
+    <Value>4.000000000</Value>
 </Widget>
 <Widget>
     <Kind>17</Kind>
@@ -54,21 +54,15 @@
 <Widget>
     <Kind>17</Kind>
     <Name>Y AXIS</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>21</Kind>
     <Name>Y AXIS ROT</Name>
-    <Value>5.355813503</Value>
-</Widget>
-<Widget>
-    <Kind>6</Kind>
-    <Name>BLOB SIZE</Name>
-    <HighValue>124830.007812500</HighValue>
-    <LowValue>900.000000000</LowValue>
+    <Value>0.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>MIN PIXEL BRIGHTNESS</Name>
-    <Value>225.250000000</Value>
+    <Value>255.000000000</Value>
 </Widget>
