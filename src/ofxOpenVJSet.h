@@ -9,6 +9,7 @@
 #pragma once
 
 #include "ofxOpenVJ.h"
+#include "ofxSimpleTimer.h"
 
 class ofxOpenVJSet
 {
@@ -18,6 +19,7 @@ class ofxOpenVJSet
     
     void setup();           //Defaults and other calls
     void initialize() ;     //This is called after the scenes have been added
+    void addScene( BaseScene * scene ) ;
     
     void exit();
     
@@ -30,17 +32,8 @@ class ofxOpenVJSet
     void setDrawGuis( bool bDraw );
     void setSceneBounds();
     void keyPressed ( int key ) ; 
-
-#ifdef USE_KINECT
-    KinectManager        kinectMan;
-#endif
     
-    CameraManager        cameraManager ;
-    ofxBeatDetector      beatDetector ;
-    
-    vector<BaseScene*> scenes;
-    int activeSceneIndex;
-    
+       
     // main gui vars - FPS, shove render FBO over, etc. //
     ofxUICanvas* gui;
 
@@ -50,5 +43,19 @@ class ofxOpenVJSet
     
     void audioReceived(float* input, int bufferSize, int nChannels);
     float beatValue ;
+    
+    ofxSimpleTimer sceneTimer ;
+    void sceneTimerComplete( int & args ) ;
+    
+    int getNumScenes( ) { return scenes.size() ; } 
+protected :
+#ifdef USE_KINECT
+    KinectManager        kinectMan;
+#endif
+    
+    CameraManager        cameraManager ;
+    ofxBeatDetector      beatDetector ;
+    vector<BaseScene*> scenes;
+    int activeSceneIndex;
 
 };

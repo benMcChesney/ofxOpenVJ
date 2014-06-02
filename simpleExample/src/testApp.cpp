@@ -24,13 +24,12 @@ void testApp::setup() {
     int bufferSize = 512;
 	ofSoundStreamSetup(0, 1, this, 44100, bufferSize, 4);
     
-    set.setup() ; 
-    //Add a new scene in one line of code
-    set.scenes.push_back( new SimpleScene((int)set.scenes.size(), "SimpleScene" ) ) ;
-    set.scenes.push_back( new TestScene((int)set.scenes.size(), "TestScene" ) ) ;
-    set.scenes.push_back( new SimplePointCloudScene((int)set.scenes.size(), "SimplePointCloudScene" ) ) ;
-    set.scenes.push_back( new SimpleOpenCVScene((int)set.scenes.size(), "SimpleOpenCVScene" ) ) ;
+    set.setup() ;
     
+    set.addScene( new SimpleScene((int)set.getNumScenes(), "SimpleScene" ) ) ;
+    set.addScene( new TestScene((int)set.getNumScenes(), "TestScene" ) ) ;
+    set.addScene( new SimplePointCloudScene((int)set.getNumScenes(), "SimplePointCloudScene" ) ) ;
+    set.addScene( new SimpleOpenCVScene((int)set.getNumScenes(), "SimpleOpenCVScene" ) ) ;
     
     set.initialize() ; 
     

@@ -50,6 +50,14 @@ void ofxOpenVJSet::setup() {
     cameraManager.loadSettings();
     cameraManager.gui->setVisible( false );
     
+    sceneTimer.setup( 5000 , "SCENE TIMER" ) ; 
+    ofAddListener( sceneTimer.TIMER_COMPLETE , this , &ofxOpenVJSet::sceneTimerComplete ) ; 
+}
+
+void ofxOpenVJSet::addScene( BaseScene * scene )
+{
+    scenes.push_back( scene );
+    ofLogVerbose() << "added scene # " << scenes.size()  << " - " << scene->name ;
 }
 
 void ofxOpenVJSet::initialize( )
@@ -107,26 +115,8 @@ void ofxOpenVJSet::audioReceived(float* input, int bufferSize, int nChannels)
 //--------------------------------------------------------------
 void ofxOpenVJSet::update() {
     
-    //if ( bAutoSceneSwitch == true )
-   
-        //cout << " is " << ofGetElapsedTimef() << " > " << ( lastSceneChangedTime ) << " + " <<  sceneDelayTime  << " ? " << endl ;
-    /*
-    if ( (int)ofGetFrameNum() % (int)sceneDelayTime == 0 ) // ofGetElapsedTimef() > ( lastSceneChangedTime + sceneDelayTime ) )
-        {
-            int lastSceneIndex = activeSceneIndex ;
-            activeSceneIndex++ ;
-            if(activeSceneIndex > scenes.size()-1) activeSceneIndex=0;
-            
-            lastSceneChangedTime = ofGetElapsedTimef() ;
-            //cout << "new lastScene changed time "  << lastSceneChangedTime << endl ;
-            
-            scenes[lastSceneIndex]->deactivate();
-            
-            if(bDrawGui) scenes[activeSceneIndex]->gui->setVisible(true);
-            scenes[activeSceneIndex]->activate();
-            
-        }*/
-   
+    sceneTimer.update() ; 
+      
 #ifdef USE_KINECT
     kinectMan.update();
 #endif
@@ -156,6 +146,24 @@ void ofxOpenVJSet::draw() {
     //   outputSyphonServer.publishScreen() ;
 #endif
     
+    sceneTimer.draw( 400 , 100 ) ; 
+    
+}
+
+void ofxOpenVJSet::sceneTimerComplete( int & args ) 
+{
+    if ( !bAutoSceneSwitch ) return ; 
+    
+    int lastSceneIndex = activeSceneIndex ;
+    //Handy ofWrap function 
+    activeSceneIndex = ofWrap( activeSceneIndex+1 , 0 , scenes.size()-1 ) ;
+    
+    scenes[lastSceneIndex]->deactivate();
+   
+    if(bDrawGui)
+        scenes[activeSceneIndex]->gui->setVisible(true);
+   
+    scenes[activeSceneIndex]->activate();
 }
 
 //--------------------------------------------------------------
@@ -167,9 +175,7 @@ void ofxOpenVJSet::setupMainGui() {
     gui->addWidgetDown(new ofxUILabel("Main Settings", OFX_UI_FONT_LARGE));
     
     gui->addSpacer(guiW, 2);
-    
-    //gui->addWidgetDown( new ofxUIButton("B_SAVE", false, 16, 16) );
-    //gui->addWidgetRight( new ofxUIToggle("B_AUTO_SAVE", false, 16, 16) );
+   
     gui->addButton( "SAVE SETTINGS" , false ) ;
     gui->addButton( "LOAD SETTINGS" , false ) ;
     
@@ -186,12 +192,12 @@ void ofxOpenVJSet::setupMainGui() {
     gui->addSpacer(guiW, 1);
     gui->addWidgetDown( new ofxUIToggle("B_AUTO_SCENE_SWITCH", false, 16, 16) );
     
-    //gui->addWidgetDown( new ofxUIMinimalSlider("SCENE DELAY TIME", 0.0f , 120.0f, sceneDelayTime , guiW-50, 16.f ) );
+    gui->addSlider("SCENE DELAY TIME", 0.0f , 120.0f, 30.0f  );
     
     gui->addSpectrum("FFT" , beatDetector.getSmoothedFFT() , FFT_BINS ) ;
     gui->addToggle( "LOW" , false ) ;
-    gui->addWidgetRight( new ofxUIToggle( "MID" , false , 16 , 16 ) ) ;
-    gui->addWidgetRight( new ofxUIToggle( "HIGH" , false , 16 , 16 ) ) ;
+    gui->addToggle( "MID" , false ) ;
+    gui->addToggle( "HIGH" , false ) ;
     gui->addSlider( "BEAT VALUE" , 0 , 255 , &beatValue ) ;
     ofAddListener( gui->newGUIEvent, this, &ofxOpenVJSet::guiEvent );
     
@@ -214,8 +220,12 @@ void ofxOpenVJSet::guiEvent( ofxUIEventArgs& e ) {
         bDrawGui        = ((ofxUIToggle*)gui->getWidget("B_DRAW_GUI"))->getValue();
         bKinectCamGui   = ((ofxUIToggle*)gui->getWidget("B_DRAW_Kinect_Gui"))->getValue();
         setDrawGuis( bDrawGui );
-    } else if (name == "B_AUTO_SCENE_SWITCH") {
-        bAutoSceneSwitch = ((ofxUIToggle*)gui->getWidget("B_AUTO_SCENE_SWITCH"))->getValue();
+    } else if (name == "B_AUTO_SCENE_SWITCH" ) {
+        bAutoSceneSwitch = e.getToggle()->getValue() ; 
+        if ( bAutoSceneSwitch )
+            sceneTimer.start( true , true ) ;
+        else
+            sceneTimer.stop() ; 
     } else if (name == "FULLSCREEN" ) {
         bool bSetFullscreen = ((ofxUIToggle*)gui->getWidget("FULLSCREEN"))->getValue();
         ofSetFullscreen( bSetFullscreen );
@@ -223,9 +233,10 @@ void ofxOpenVJSet::guiEvent( ofxUIEventArgs& e ) {
         setSceneBounds();
     } else if ( name == "SCENE DELAY TIME" )
     {
-        //sceneDelayTime =  ((ofxUIMinimalSlider*)gui->getWidget("SCENE DELAY TIME"))->getScaledValue() * 30 ;
-        //cout << "scene delay time is now : " << sceneDelayTime << endl ;
-        //lastSceneChangedTime = ofGetElapsedTimef() ;
+        float timeInSeconds = e.getSlider()->getScaledValue() ;
+        sceneTimer.delayMillis = timeInSeconds * 1000.0f ;
+        if ( sceneTimer.bIsRunning )
+            sceneTimer.start( true , true ) ; 
     } else if ( name == "BEAT VALUE" )
     {
         beatDetector.setBeatValue( e.getSlider()->getScaledValue() ) ;

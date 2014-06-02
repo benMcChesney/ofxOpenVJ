@@ -8,7 +8,7 @@ cd ../
 
 git clone https://github.com/HeliosInteractive/ofxSimpleMask.git
 
-#git clone https://github.com/HeliosInteractive/ofxSimpleTimer.git
+git clone https://github.com/HeliosInteractive/ofxSimpleTimer.git
 
 git clone https://github.com/NickHardeman/ofxTweenzor.git
 
@@ -22,3 +22,4 @@ git clone https://github.com/rezaali/ofxBeatDetector.git
 git clone https://github.com/astellato/ofxSyphon.git
 
 git clone https://github.com/neilmendoza/ofxPostProcessing.git
+
