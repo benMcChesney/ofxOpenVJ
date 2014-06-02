@@ -1,0 +1,68 @@
+<Widget>
+    <Kind>4</Kind>
+    <Name>KINECT_CAMERA_ANGLE</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>Kinect FOV</Name>
+    <Value>70.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>FIND HOLES</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>6</Kind>
+    <Name>DEPTH RANGE</Name>
+    <HighValue>57.800003052</HighValue>
+    <LowValue>0.000000000</LowValue>
+</Widget>
+<Widget>
+    <Kind>6</Kind>
+    <Name>BLOB SIZE</Name>
+    <HighValue>230400.000000000</HighValue>
+    <LowValue>7785.000000000</LowValue>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>MAX BLOBS</Name>
+    <Value>3.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>6</Kind>
+    <Name>POINT CLOUD RANGE</Name>
+    <HighValue>1378.205078125</HighValue>
+    <LowValue>0.000000000</LowValue>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>POINT CLOUD Z</Name>
+    <Value>-346.666687012</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>Mesh Step</Name>
+    <Value>4.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>17</Kind>
+    <Name>X AXIS</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>17</Kind>
+    <Name>Y AXIS</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>21</Kind>
+    <Name>Y AXIS ROT</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>MIN PIXEL BRIGHTNESS</Name>
+    <Value>255.000000000</Value>
+</Widget>

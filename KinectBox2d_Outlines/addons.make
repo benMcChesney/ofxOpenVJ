@@ -1,0 +1,11 @@
+ofxKinect
+ofxOpenCv
+ofxXmlSettings
+ofxBeatDetector
+ofxBox2d
+ofxOpenVJ
+ofxParticles
+ofxPostProcessing
+ofxSimpleTimer
+ofxTweenzor
+ofxUI
