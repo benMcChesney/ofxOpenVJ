@@ -50,12 +50,11 @@ This set of tools is meant to be extensible, more complicated or community gener
 
 The Gist
 =============================================
-There are [ofxOpenVJSet](src/ofxOpenVJSet.h) objets that contain a series of scenes. Scenes all inherit from the [BaseScene](src/BaseScene.h) which contains relevant pointers for shared resources such as : Kinect Point Cloud Data, Kinect openCV helpers, Beat Detection, and shared scene ofCamera
+There is a [ofxOpenVJSet](src/ofxOpenVJSet.h) object that contain a vector of scenes. Scenes all inherit from the [BaseScene](src/BaseScene.h) class which contains relevant pointers for shared resources such as : Kinect Point Cloud Data, Kinect openCV helpers, Beat Detection + FFT , and a shared ofCamera
 
+You create scenes and add them to the set. The scene is your creative sketch playground you shouldn't have to edit the set class itself.
 
- You create scenes and add them to the set. The scene is your creative playground you shouldn't have to edit the set class itself.
-
-If you are not planning on using a kinect and want to make compiling dependencies a little easier you can comment out
+If you are not planning on using a kinect you can comment out
 
 USE_KINECT 3 inside [ofxOpenVJConstants](src/ofxOpenVJConstants.h) and it will remove all mentions of the Kinect Manager , ofxOpenCV, and ofxKinect 
 
@@ -65,7 +64,7 @@ It is recommended that you copy [EmptyScene](src/EmptyScene.h) into your own loc
 
 1) call ofxOpenVJSet::setup( ) 
 
-2) call ofxOpenVJSet::addScene( ) with your custom scene class
+2) call ofxOpenVJSet::addScene( ) with your every scene you want to include in the set
 
 3) call ofxOpenVJ::initialize() 
 
