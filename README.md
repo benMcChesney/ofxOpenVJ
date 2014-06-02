@@ -57,7 +57,7 @@ There are [ofxOpenVJSet](src/ofxOpenVJSet.h) objets that contain a series of sce
 
 If you are not planning on using a kinect and want to make compiling dependencies a little easier you can comment out
 
-#define USE_KINECT 3 inside [ofxOpenVJConstants](src/ofxOpenVJConstants.h) and it will remove all mentions of the Kinect Manager , ofxOpenCV, and ofxKinect 
+USE_KINECT 3 inside [ofxOpenVJConstants](src/ofxOpenVJConstants.h) and it will remove all mentions of the Kinect Manager , ofxOpenCV, and ofxKinect 
 
 Creating your own scene
 =============================================
