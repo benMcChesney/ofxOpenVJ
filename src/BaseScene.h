@@ -12,7 +12,7 @@
 #include "ofxOpenVJConstants.h"
 #include "CameraManager.h"
 #include "ofxBeatDetector.h"
-
+#include "DepthCameraManager.h"
 
 #ifdef USE_KINECT
 #include "KinectManager.h"
@@ -46,17 +46,22 @@ public:
     
     string getXMLSettingsName() { return "GUI/guiSettings_scene_"+name+"_.xml"; }
     
-    int index = -1;
+    int index ;
     string name;
     
     ofxUIScrollableCanvas* gui;
     
     #ifdef USE_KINECT
-    KinectManager* kinectMan;
+    DepthCameraManager* depthManager;
     #endif
+
+
+#ifdef USE_KINECT_V2
+	DepthCameraManager * depthCameraManager ; 
+#endif
     
     ofxBeatDetector * beatDetector ;
-    CameraManager* cameraMan;
+    CameraManager* cameraManager;
     
 protected:
     float _width, _height;

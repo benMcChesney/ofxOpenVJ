@@ -32,15 +32,7 @@ void ofxOpenVJSet::setup() {
     
     //A few ifdefs to make sure there's not a gap in the GUIs
     float guiX = 340 ;
-    #ifdef USE_KINECT
-    // KinectManager //
-    kinectMan.setupGui(340, guiY);
-    kinectMan.close();
-    kinectMan.open();
-    kinectMan.loadSettings();
-    kinectMan.gui->setVisible(bDrawGui);
-    //guiX = 670 ;
-    #endif
+
     
     cameraManager.setup();
     cameraManager.setupGui( 670 , guiY);
@@ -49,6 +41,32 @@ void ofxOpenVJSet::setup() {
     
     sceneTimer.setup( 5000 , "SCENE TIMER" ) ; 
     ofAddListener( sceneTimer.TIMER_COMPLETE , this , &ofxOpenVJSet::sceneTimerComplete ) ; 
+}
+
+void ofxOpenVJSet::initKinectV1( )
+{
+	#ifdef USE_KINECT
+    // KinectManager //
+	depthCameraManager = new KinectManager() ; 
+    depthCameraManager->setupGui(340, guiY);
+    depthCameraManager->close();
+    depthCameraManager->open();
+    depthCameraManager->loadSettings();
+    depthCameraManager->gui->setVisible(bDrawGui);
+    //guiX = 670 ;
+    #endif
+}
+
+
+void ofxOpenVJSet::initKinectV2( ) 
+{
+	depthCameraManager = new KinectV2Manager() ; 
+	((KinectV2Manager*)depthCameraManager)->setup( ) ;
+	depthCameraManager->setupGui( 340 , 0 ) ;
+	depthCameraManager->loadSettings() ; 
+	//depthCameraManager->gui->setVisible( bDrawGui ) ; 
+	
+
 }
 
 void ofxOpenVJSet::addScene( BaseScene * scene )
@@ -64,10 +82,14 @@ void ofxOpenVJSet::initialize( )
     for(int i = 0; i < scenes.size(); i++) {
         Scenes::registerScene(scenes[i]->index, scenes[i]->name);
 #ifdef USE_KINECT
-        scenes[i]->kinectMan        = &kinectMan;
+        scenes[i]->depthCameraManager        = depthCameraManager;
+#endif
+
+#ifdef USE_KINECT_V2
+		scenes[i]->depthCameraManager = depthCameraManager ; 
 #endif
         scenes[i]->beatDetector     = &beatDetector;
-        scenes[i]->cameraMan        = &cameraManager;
+        scenes[i]->cameraManager        = &cameraManager;
         scenes[i]->setup();
         scenes[i]->setupGui( 340 + 670 , guiY);
         scenes[i]->loadSettings();

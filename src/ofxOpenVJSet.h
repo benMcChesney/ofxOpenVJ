@@ -33,6 +33,9 @@ class ofxOpenVJSet
     void setSceneBounds();
     void keyPressed ( int key ) ; 
     
+
+	void initKinectV1( ); 
+	void initKinectV2( ) ; 
        
     // main gui vars - FPS, shove render FBO over, etc. //
     ofxUICanvas* gui;
@@ -50,9 +53,13 @@ class ofxOpenVJSet
     int getNumScenes( ) { return scenes.size() ; } 
 protected :
 #ifdef USE_KINECT
-    KinectManager        kinectMan;
+    DepthCameraManager    *    depthCam;
 #endif
     
+#ifdef USE_KINECT_V2
+	DepthCameraManager	* depthCameraManager ; 
+#endif
+
     CameraManager        cameraManager ;
     ofxBeatDetector      beatDetector ;
     vector<BaseScene*> scenes;

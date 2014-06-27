@@ -1,8 +1,8 @@
 //
-//  KinectManager.h
-//  Double_Kinect_Tests
+//  Kinectv@Manager.h
+//  ofxOpenVJ
 //
-//  Created by Nick Hardeman on 11/5/12.
+//  Created by Ben McChesney on 6/12/14 @ #eyeo2014
 //
 //
 
@@ -10,33 +10,44 @@
 #include "ofMain.h"
 #include "ofxOpenVJConstants.h"
 #include "DepthCameraManager.h"
-#include "ofxKinect.h"
+#include "ofxKinectCommonBridge.h"
 #include "ofxUI.h"
 #include "ofxOpenCv.h"
 
-class KinectManager : public DepthCameraManager
+class KinectV2Manager : public DepthCameraManager
 {
 public:
-    KinectManager();
+	KinectV2Manager() { } 
     
-    void open();
-    void close();
-    bool isConnected();
-    
+    //void open();
+    //void close();
+    //bool isConnected();
+    void setup ( ) ; 
     void update();
     void draw();
-    void drawDebug();
-    
-    bool isFrameNew();
-    float* getDistancePixels();
-    void setWorldCoord( int x, int y, ofVec3f& inVec );
-    
-    ofPoint cvPointToScreen( ofPoint p , float width = ofGetWidth() , float height = ofGetHeight() );
-    ofPoint cvPointToScreen( float x , float y , float width = ofGetWidth() , float height = ofGetHeight() ) { return cvPointToScreen( ofPoint ( x , y ) , width , height  ) ; }
-    
-	ofVec3f getWorldCoordAt( int x, int y );
-	ofColor getColorAt( int x , int y ) ; 
+	void setupGui(float a_x, float a_y) ;
+	void guiEvent(ofxUIEventArgs &e) ; 
+	bool isConnected( ) ; 
+	void calculateCVOperations();
+	ofxKinectCommonBridge kinect;
+	ofShader yuvRGBShader;
+	ofPlanePrimitive plane;
 
+    //void drawDebug();
+    
+    //bool isFrameNew();
+    //float* getDistancePixels();
+    //ofVec3f getWorldCoordAt( int x, int y );
+    //void setWorldCoord( int x, int y, ofVec3f& inVec );
+    
+    //ofPoint cvPointToScreen( ofPoint p , float width = ofGetWidth() , float height = ofGetHeight() );
+    //ofPoint cvPointToScreen( float x , float y , float width = ofGetWidth() , float height = ofGetHeight() ) { return cvPointToScreen( ofPoint ( x , y ) , width , height  ) ; }
+    
+	//virtual ofVec3f getWorldCoordAt( int x, int y );
+	//virtual ofColor getColorAt( int x , int y ) ; 
+
+
+	/*
     void setupMesh();
     void calculateMesh( ofVec3f mesh_offset );
     void calculatePoints( ofVec3f a_meshOffset );
@@ -55,10 +66,10 @@ public:
     
     void loadSettings();
     void saveSettings();
-    
-    float getWidth( ) { return kinect.getWidth() ;  }
-    float getHeight( ) { return kinect.getHeight() ; }
-    
+    */
+    //float getWidth( ) { return kinect.getWidth() ;  }
+    //float getHeight( ) { return kinect.getHeight() ; }
+    /*
     ofxKinect kinect;
 
     ofxUIScrollableCanvas* gui;
@@ -72,6 +83,7 @@ public:
     
     bool* bPointsActive;
     
+
     int                 nearThreshold, farThreshold;
     int                 nearThreshCV, farThreshCV;
     
@@ -95,7 +107,7 @@ public:
     
     //In dark rooms the colors don't get picked up as well so we have to adjust
     //the raw RGB color
-    unsigned char       minimumPixBrightness ;
+    unsigned char       minimumPixBrightness ;*/
     
 protected:
     ofVec3f inverseAxes;

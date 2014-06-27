@@ -8,7 +8,7 @@
 
 #include "BaseScene.h"
 
-BaseScene::BaseScene() { gui = NULL; }
+BaseScene::BaseScene() { gui = NULL; index = -1 ;  }
 BaseScene::BaseScene( int a_index, string a_name )
 {
     index = a_index;
