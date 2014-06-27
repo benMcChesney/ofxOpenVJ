@@ -69,10 +69,20 @@ void SimpleScene::draw()
     cameraMan->begin() ;
     
     ofSetColor( 255 , 0 , 0 ) ;
+    int count = 0 ;
     for( auto cube = cubes.begin() ; cube != cubes.end() ; cube++ )
     {
-        ofSetColor( (*cube)->color ) ; 
+        int cubeGroup = count % 3 ;
+        if ( cubeGroup == 0 && beatDetector->isLow() == true )
+            ofSetColor( ofColor::red ) ;
+        else if ( cubeGroup == 1 && beatDetector->isMid() == true )
+            ofSetColor( ofColor::green ) ;
+        else if ( cubeGroup == 2 && beatDetector->isHigh() == true )
+            ofSetColor( ofColor::blue ) ;
+        else
+            ofSetColor( (*cube)->color ) ;
         ofDrawBox( (*cube)->position , (*cube)->size ) ;
+        count++ ; 
     }
     
     cameraMan->end() ; 

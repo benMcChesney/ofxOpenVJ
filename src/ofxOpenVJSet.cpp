@@ -16,9 +16,6 @@ void ofxOpenVJSet::setup() {
     
     ofSetSmoothLighting(true);
     
-    //ofSetLogLevel(OF_LOG_SILENT);
-    ofSetLogLevel(OF_LOG_VERBOSE ) ;
-    
     // init reference vars before gui gets them //
     bDrawGui    = false;
     bAutoSceneSwitch = false;
@@ -26,7 +23,7 @@ void ofxOpenVJSet::setup() {
     activeSceneIndex = 0;
     
     beatDetector.enableBeatDetect() ;
-    beatDetector.setBeatValue( 120 ) ;
+    //beatDetector.setBeatValue( 120 ) ;
     float guiY = 0 ;
     gui = new ofxUICanvas( 10, guiY, 320, ofGetHeight() - guiY - 10 );
     setupMainGui();
@@ -134,6 +131,11 @@ void ofxOpenVJSet::update() {
     ((ofxUIToggle*)gui->getWidget("LOW"))->setValue( beatDetector.isLow() ) ;
     ((ofxUIToggle*)gui->getWidget("MID"))->setValue( beatDetector.isMid() ) ;
     ((ofxUIToggle*)gui->getWidget("HIGH"))->setValue( beatDetector.isHigh() ) ;
+    
+   // ((ofxUIToggle*)gui->getWidget("SNARE"))->setValue( beatDetector.isSnare() ) ;
+   // ((ofxUIToggle*)gui->getWidget("KICK"))->setValue( beatDetector.isKick() );
+   // ((ofxUIToggle*)gui->getWidget("HAT"))->setValue( beatDetector.isHat() ) ;
+   // ((ofxUILabel*)gui->getWidget("BPM"))->setLabel( "BPM : " + ofToString( beatDetector.getBeatValue() ) ) ;
 }
 
 //--------------------------------------------------------------
@@ -198,10 +200,12 @@ void ofxOpenVJSet::setupMainGui() {
     gui->addSlider("SCENE DELAY TIME", 0.0f , 120.0f, 30.0f  );
     
     gui->addSpectrum("FFT" , beatDetector.getSmoothedFFT() , FFT_BINS ) ;
+    
     gui->addToggle( "LOW" , false ) ;
     gui->addToggle( "MID" , false ) ;
     gui->addToggle( "HIGH" , false ) ;
-    gui->addSlider( "BEAT VALUE" , 0 , 255 , &beatValue ) ;
+    gui->addNumberDialer("BPM", 30, 200, 120, 0 ) ; 
+    //gui->addLabel("BPM" , "NONE" ) ;
     ofAddListener( gui->newGUIEvent, this, &ofxOpenVJSet::guiEvent );
     
     
@@ -239,11 +243,10 @@ void ofxOpenVJSet::guiEvent( ofxUIEventArgs& e ) {
         float timeInSeconds = e.getSlider()->getScaledValue() ;
         sceneTimer.delayMillis = timeInSeconds * 1000.0f ;
         if ( sceneTimer.bIsRunning )
-            sceneTimer.start( true , true ) ; 
-    } else if ( name == "BEAT VALUE" )
+            sceneTimer.start( true , true ) ;
+    } else if ( name == "BPM" )
     {
-        beatDetector.setBeatValue( e.getSlider()->getScaledValue() ) ;
-        cout << " setting BEAT Value to : "<< e.getSlider()->getScaledValue() << endl ;
+        beatDetector.setBeatValue( ((ofxUINumberDialer* ) e.widget )->getValue() ) ;
     }
     
 }
