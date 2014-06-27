@@ -17,6 +17,10 @@
 #include "KinectManager.h"
 #endif
 
+#ifdef USE_KINECT_V2
+#include "KinectV2Manager.h"
+#endif
+
 #include "Utils.h"
 #include "ofxOpenVJSet.h"
 
