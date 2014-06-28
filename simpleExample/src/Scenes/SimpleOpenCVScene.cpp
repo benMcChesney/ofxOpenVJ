@@ -55,10 +55,10 @@ void SimpleOpenCVScene::deactivate() {
 
 //--------------------------------------------------------------
 void SimpleOpenCVScene::update() {
-    kinectMan->update( );
-    kinectMan->calculateCVOperations() ;
+    depthManager->update( );
+    depthManager->calculateCVOperations() ;
     
-    ofxCvContourFinder * c = &kinectMan->contourFinder ;
+    ofxCvContourFinder * c = &depthManager->contourFinder ;
     if ( c->nBlobs > 0 )
     {
         paths.clear() ;
@@ -71,7 +71,7 @@ void SimpleOpenCVScene::update() {
             for ( auto pt = (*blob).pts.begin() ; pt != (*blob).pts.end() ; pt++ )
             {
                 //Transform the CV points from pixel space to screenspace
-                line.addVertex( kinectMan->cvPointToScreen( (*pt) , ofGetWidth() , ofGetHeight() ) );  
+                line.addVertex( depthManager->cvPointToScreen( (*pt) , ofGetWidth() , ofGetHeight() ) );  
             }
            
             

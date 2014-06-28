@@ -57,7 +57,7 @@ void SimplePointCloudScene::deactivate() {
 
 //--------------------------------------------------------------
 void SimplePointCloudScene::update() {
-    kinectMan->update( );
+    depthManager->update( );
 }
 
 //--------------------------------------------------------------
@@ -66,10 +66,10 @@ void SimplePointCloudScene::draw() {
     ofSetColor( 255 , 255 ,255 ) ;
   
     ofPushMatrix() ;
-        cameraMan->begin();
+        cameraManager->begin();
         //Let's draw the point cloud
-        int w = kinectMan->getWidth() ;
-        int h = kinectMan->getHeight();
+        int w = depthManager->getWidth() ;
+        int h = depthManager->getHeight();
         ofMesh mesh;
         mesh.setMode( OF_PRIMITIVE_POINTS );
         int step = (int)pixelStep ;
@@ -80,19 +80,19 @@ void SimplePointCloudScene::draw() {
         {
             for(int x = 0; x < w; x += step)
             {
-                if( kinectMan->kinect.getDistanceAt(x, y) > 0)
+                ofPoint vertex = depthManager->getWorldCoordAt(x, y) ;
+                if( vertex.z > 0 )
                 {
-                    ofPoint vertex = kinectMan->getWorldCoordAt(x, y) ;
                     //only draw the points that are in range
-                    if ( vertex.z > kinectMan->pointCloudMinZ && vertex.z < kinectMan->pointCloudMaxZ )
+                    if ( vertex.z > depthManager->pointCloudMinZ && vertex.z < depthManager->pointCloudMaxZ )
                     {
                         //Some generative always changing offsets here
                         float noiseZOffset = ofSignedNoise( _time + x , _time + y ) *  zNoiseAmount ;
                         vertex.z += noiseZOffset ;
                         
                         //Adjusting the color a bit makes sure that it can be seen on the dark background
-                        ofColor pixelColor = kinectMan->kinect.getColorAt( x , y ) ; 
-                        ofColor col = ofColor::fromHsb( pixelColor.getHue() , pixelColor.getSaturation() , kinectMan->minimumPixBrightness ) ;
+                        ofColor pixelColor = depthManager->getColorAt( x , y ) ; 
+                        ofColor col = ofColor::fromHsb( pixelColor.getHue() , pixelColor.getSaturation() , depthManager->minimumPixBrightness ) ;
                         mesh.addVertex( vertex );
                         mesh.addColor( col );
                     }
@@ -104,14 +104,14 @@ void SimplePointCloudScene::draw() {
         
         ofPushMatrix();
             // the projected points are 'upside down' and 'backwards'
-            ofScale( kinectMan->scale , -kinectMan->scale, -kinectMan->scale );
-            ofTranslate( 0 , 0 , kinectMan->pointCloudZOffset ) ; 
+            ofScale( depthManager->scale , -depthManager->scale, -depthManager->scale );
+            ofTranslate( 0 , 0 , depthManager->pointCloudZOffset ) ; 
             glEnable(GL_DEPTH_TEST);
             mesh.draw( );
             glDisable(GL_DEPTH_TEST);
         ofPopMatrix();
 
-        cameraMan->end() ;
+        cameraManager->end() ;
     ofPopMatrix();
 
 }

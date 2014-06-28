@@ -58,44 +58,8 @@ public:
     
     float getWidth( ) { return kinect.getWidth() ;  }
     float getHeight( ) { return kinect.getHeight() ; }
-    
+    float getDistanceAt( int x , int y ) { return kinect.getDistanceAt( x ,y ) ; } 
     ofxKinect kinect;
-
-    ofxUIScrollableCanvas* gui;
-    
-    // open cv work, for use with 2D elements //
-    ofxCvGrayscaleImage grayImage; // grayscale depth image
-    //ofxCvGrayscaleImage grayImageSmall; // we don't need that big ass image //
-	ofxCvGrayscaleImage grayThreshNear; // the near thresholded image
-	ofxCvGrayscaleImage grayThreshFar; // the far thresholded image
-	ofxCvContourFinder contourFinder;
-    
-    bool* bPointsActive;
-    
-    int                 nearThreshold, farThreshold;
-    int                 nearThreshCV, farThreshCV;
-    
-    ofMesh              mesh;
-    int                 width, height;
-    
-    float               scale;
-    int                 step;
-    bool                bUseVideoColor;
-    // how far can the pixels be before it is considered fucked? //
-    float               maxTriDiff;
-    
-    ofVec3f             offsetVec;
-    
-    //Global settings for point clouds
-    float               pointCloudMaxZ , pointCloudMinZ ;
-    float               pointCloudZOffset ;
-    bool                bFindHoles ;
-    float               minBlobSize , maxBlobSize ;
-    int                 maxBlobs ; 
-    
-    //In dark rooms the colors don't get picked up as well so we have to adjust
-    //the raw RGB color
-    unsigned char       minimumPixBrightness ;
     
 protected:
     ofVec3f inverseAxes;

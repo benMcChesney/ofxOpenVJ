@@ -53,7 +53,7 @@ class ofxOpenVJSet
     int getNumScenes( ) { return scenes.size() ; } 
 protected :
 #ifdef USE_KINECT
-    DepthCameraManager    *    depthCam;
+    DepthCameraManager    *    depthCameraManager;
 #endif
     
 #ifdef USE_KINECT_V2

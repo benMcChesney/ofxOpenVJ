@@ -47,8 +47,9 @@ void ofxOpenVJSet::initKinectV1( )
 {
 	#ifdef USE_KINECT
     // KinectManager //
-	depthCameraManager = new KinectManager() ; 
-    depthCameraManager->setupGui(340, guiY);
+	depthCameraManager = new KinectManager() ;
+  //  depthCameraManage
+    depthCameraManager->setupGui(340, 0 );
     depthCameraManager->close();
     depthCameraManager->open();
     depthCameraManager->loadSettings();
@@ -60,12 +61,13 @@ void ofxOpenVJSet::initKinectV1( )
 
 void ofxOpenVJSet::initKinectV2( ) 
 {
-	depthCameraManager = new KinectV2Manager() ; 
+#ifdef USE_KINECT_V2
+	depthCameraManager = new KinectV2Manager() ;
 	((KinectV2Manager*)depthCameraManager)->setup( ) ;
 	depthCameraManager->setupGui( 340 , 0 ) ;
 	depthCameraManager->loadSettings() ; 
 	//depthCameraManager->gui->setVisible( bDrawGui ) ; 
-	
+#endif
 
 }
 
@@ -82,7 +84,7 @@ void ofxOpenVJSet::initialize( )
     for(int i = 0; i < scenes.size(); i++) {
         Scenes::registerScene(scenes[i]->index, scenes[i]->name);
 #ifdef USE_KINECT
-        scenes[i]->depthCameraManager        = depthCameraManager;
+        scenes[i]->depthManager        = depthCameraManager;
 #endif
 
 #ifdef USE_KINECT_V2
@@ -105,7 +107,7 @@ void ofxOpenVJSet::initialize( )
     
     gui->loadSettings( "GUI/mainGuiSettings.xml" );
 #ifdef USE_KINECT
-    kinectMan.loadSettings();
+    depthCameraManager->loadSettings();
 #endif
     cameraManager.loadSettings();
 }
@@ -122,7 +124,7 @@ void ofxOpenVJSet::exit() {
     scenes.clear();
     
 #ifdef USE_KINECT
-    kinectMan.close();
+    depthCameraManager->close();
 #endif
     
     delete gui; gui = NULL;
@@ -141,7 +143,7 @@ void ofxOpenVJSet::update() {
     sceneTimer.update() ; 
       
 #ifdef USE_KINECT
-    kinectMan.update();
+    depthCameraManager->update();
 #endif
     cameraManager.update();
 	if(Scenes::isValidIndex( activeSceneIndex ))
@@ -285,8 +287,8 @@ void ofxOpenVJSet::setDrawGuis( bool bDraw ) {
     
     gui->setVisible(bDrawGui);
 #ifdef USE_KINECT
-    if ( kinectMan.gui != NULL )
-        kinectMan.gui->setVisible( bDrawGui );
+    if ( depthCameraManager != NULL && depthCameraManager->gui != NULL )
+        depthCameraManager->gui->setVisible( bDrawGui );
 #endif
     if(cameraManager.gui != NULL)
         cameraManager.gui->setVisible(bDrawGui);

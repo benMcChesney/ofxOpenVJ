@@ -24,7 +24,9 @@ void testApp::setup() {
     int bufferSize = 512;
 	ofSoundStreamSetup(0, 1, this, 44100, bufferSize, 4);
     
+    set.initKinectV1( );
     set.setup() ;
+
     
     set.addScene( new SimpleScene((int)set.getNumScenes(), "SimpleScene" ) ) ;
     set.addScene( new TestScene((int)set.getNumScenes(), "TestScene" ) ) ;

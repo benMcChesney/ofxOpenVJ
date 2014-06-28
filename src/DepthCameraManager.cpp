@@ -68,10 +68,12 @@ void DepthCameraManager::guiEvent(ofxUIEventArgs &e)
 
 void DepthCameraManager::setupGui(float a_x, float a_y)
 {
-
+    ofLogError() << "DepthCameraManager::setupGUI... this is a mistake~" ;
 }
 
-void DepthCameraManager::loadSettings(){
+void DepthCameraManager::loadSettings()
+{
+    ofLogError() << "DepthCameraManager::loadSettings... this is a mistake~" ;
 }
 
 void DepthCameraManager::saveSettings(){ 

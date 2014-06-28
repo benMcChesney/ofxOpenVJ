@@ -1,5 +1,5 @@
 //
-//  Kinectv@Manager.h
+//  KinectßManager.h
 //  ofxOpenVJ
 //
 //  Created by Ben McChesney on 6/12/14 @ #eyeo2014
@@ -10,6 +10,7 @@
 #include "ofMain.h"
 #include "ofxOpenVJConstants.h"
 #include "DepthCameraManager.h"
+
 #include "ofxKinectCommonBridge.h"
 #include "ofxUI.h"
 #include "ofxOpenCv.h"

@@ -66,7 +66,7 @@ void SimpleScene::update()
 
 void SimpleScene::draw()
 {
-    cameraMan->begin() ;
+    cameraManager->begin() ;
     
     ofSetColor( 255 , 0 , 0 ) ;
     int count = 0 ;
@@ -85,7 +85,7 @@ void SimpleScene::draw()
         count++ ; 
     }
     
-    cameraMan->end() ; 
+    cameraManager->end() ; 
 }
 
 

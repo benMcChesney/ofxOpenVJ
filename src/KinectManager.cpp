@@ -165,9 +165,10 @@ float* KinectManager::getDistancePixels() {
 
 //--------------------------------------------------------------
 ofVec3f KinectManager::getWorldCoordAt( int x, int y ) {
-    ofVec3f cur;
-    setWorldCoord(x, y, cur);
-    return cur;
+    
+    //ofVec3f cur;
+    //setWorldCoord(x, y, cur);
+    return kinect.getWorldCoordinateAt( x , y ) ;
 }
 
 //--------------------------------------------------------------
@@ -749,6 +750,8 @@ void KinectManager::setupGui(float a_x, float a_y) {
     gui->setScrollArea(a_x, a_y, 320, ofGetHeight() - 10 - a_y);
     
     ofAddListener( gui->newGUIEvent, this, &KinectManager::guiEvent );
+    
+    ofLogNotice() << "KinectManager setupGUI" ; 
 }
 
 
