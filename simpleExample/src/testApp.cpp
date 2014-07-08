@@ -40,6 +40,7 @@ void testApp::setup() {
 //--------------------------------------------------------------
 void testApp::update()
 {
+    Tweenzor::update( ofGetElapsedTimeMillis() ) ; 
     set.update() ;
 }
 

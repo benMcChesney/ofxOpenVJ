@@ -22,8 +22,11 @@ public:
     
     void update();
     void draw();
+
+    float shapeAlpha ;
+    float shapeScale ; 
     
-    void activate();
-    void deactivate();
-    
+    bool transitionIn ( float delay, float transitionTime ) ;
+    bool transitionOut ( float delay, float transitionTime ) ;
+
 };

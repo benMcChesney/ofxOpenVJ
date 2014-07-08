@@ -33,6 +33,8 @@ void ofxOpenVJSet::setup() {
     //A few ifdefs to make sure there's not a gap in the GUIs
     float guiX = 340 ;
 
+    ofAddListener( ofxOpenVJEvents::Instance()->SCENE_TRANSITION_IN_COMPLETE , this , &ofxOpenVJSet::sceneTransitionInHandler ) ;
+    ofAddListener( ofxOpenVJEvents::Instance()->SCENE_TRANSITION_OUT_COMPLETE , this , &ofxOpenVJSet::sceneTransitionOutHandler ) ;
     
     cameraManager.setup();
     cameraManager.setupGui( 670 , guiY);
@@ -40,7 +42,8 @@ void ofxOpenVJSet::setup() {
     cameraManager.gui->setVisible( false );
     
     sceneTimer.setup( 5000 , "SCENE TIMER" ) ; 
-    ofAddListener( sceneTimer.TIMER_COMPLETE , this , &ofxOpenVJSet::sceneTimerComplete ) ; 
+    ofAddListener( sceneTimer.TIMER_COMPLETE , this , &ofxOpenVJSet::sceneTimerComplete ) ;
+  
 }
 
 void ofxOpenVJSet::initKinectV1( )
@@ -100,9 +103,10 @@ void ofxOpenVJSet::initialize( )
     
     Scenes::toString();
     
+    
     setDrawGuis( true );
     // activate the first scene //
-    scenes[activeSceneIndex]->activate();
+    scenes[activeSceneIndex]->transitionIn( setDelayTime , setTransitionTime );
     
     
     gui->loadSettings( "GUI/mainGuiSettings.xml" );
@@ -146,15 +150,19 @@ void ofxOpenVJSet::update() {
     depthCameraManager->update();
 #endif
     cameraManager.update();
-	if(Scenes::isValidIndex( activeSceneIndex ))
+    
+    for ( auto scene = scenes.begin() ; scene != scenes.end() ; scene++ )
     {
-        scenes[activeSceneIndex]->update();
+        if ( (*scene)->bVisible == true )
+            (*scene)->update();
+    
     }
     
+//    ((ofxUISpectrum*)gui->getWidget("FFT")))->set
     
-    ((ofxUIToggle*)gui->getWidget("LOW"))->setValue( beatDetector.isLow() ) ;
-    ((ofxUIToggle*)gui->getWidget("MID"))->setValue( beatDetector.isMid() ) ;
-    ((ofxUIToggle*)gui->getWidget("HIGH"))->setValue( beatDetector.isHigh() ) ;
+    ((ofxUIToggle*)gui->getWidget("KICK"))->setValue( beatDetector.isKick() ) ;
+    ((ofxUIToggle*)gui->getWidget("SNARE"))->setValue( beatDetector.isSnare() ) ;
+    ((ofxUIToggle*)gui->getWidget("HAT"))->setValue( beatDetector.isHat() ) ;
     
    // ((ofxUIToggle*)gui->getWidget("SNARE"))->setValue( beatDetector.isSnare() ) ;
    // ((ofxUIToggle*)gui->getWidget("KICK"))->setValue( beatDetector.isKick() );
@@ -166,8 +174,10 @@ void ofxOpenVJSet::update() {
 void ofxOpenVJSet::draw() {
     
     
-    if(Scenes::isValidIndex( activeSceneIndex )) {
-        scenes[activeSceneIndex]->draw();
+    for ( auto scene = scenes.begin() ; scene != scenes.end() ; scene++ )
+    {
+        if ( (*scene)->bVisible == true )
+            (*scene)->draw();
     }
     
     ofSetColor(255);
@@ -176,7 +186,14 @@ void ofxOpenVJSet::draw() {
     //   outputSyphonServer.publishScreen() ;
 #endif
 
-    
+    if ( bDrawDebug == true )
+    {
+        for ( auto scene = scenes.begin() ; scene != scenes.end() ; scene++ )
+        {
+           // if ( (*scene)->isVisible() == true )
+                (*scene)->drawDebug();
+        }
+    }
 }
 
 void ofxOpenVJSet::sceneTimerComplete( int & args ) 
@@ -185,14 +202,15 @@ void ofxOpenVJSet::sceneTimerComplete( int & args )
     
     int lastSceneIndex = activeSceneIndex ;
     //Handy ofWrap function 
-    activeSceneIndex = ofWrap( activeSceneIndex+1 , 0 , scenes.size()-1 ) ;
+    activeSceneIndex = ofWrap( activeSceneIndex+1 , 0 , scenes.size() ) ;
     
-    scenes[lastSceneIndex]->deactivate();
+    scenes[lastSceneIndex]->transitionOut( setDelayTime , setTransitionTime );
+    //scenes[lastSceneIndex]->deactivate();
    
     if(bDrawGui)
         scenes[activeSceneIndex]->gui->setVisible(true);
    
-    scenes[activeSceneIndex]->activate();
+    scenes[activeSceneIndex]->transitionIn( setDelayTime , setTransitionTime );
 }
 
 //--------------------------------------------------------------
@@ -217,18 +235,22 @@ void ofxOpenVJSet::setupMainGui() {
     gui->addWidgetRight( new ofxUIToggle("B_SHOVE_OVER", false, 16, 16) );
     gui->addWidgetDown( new ofxUITextInput( "Projector Width", "1920", 120, 16) );
     gui->addWidgetRight( new ofxUITextInput( "Projector Height", "1080", 120, 16) );
-    
+    gui->addToggle( "DRAW DEBUG INFO" , &bDrawDebug ) ; 
     gui->addSpacer(guiW, 1);
     gui->addWidgetDown( new ofxUIToggle("B_AUTO_SCENE_SWITCH", false, 16, 16) );
     
     gui->addSlider("SCENE DELAY TIME", 0.0f , 120.0f, 30.0f  );
+    gui->addSlider("SET TRANSITION TIME", 0.1f , 2.0f , &setTransitionTime ) ;
+    gui->addSlider("SET DELAY TIME", 0.1f , 4.0f , &setDelayTime ) ;
+
     
-    gui->addSpectrum("FFT" , beatDetector.getSmoothedFFT() , FFT_BINS ) ;
     
-    gui->addToggle( "LOW" , false ) ;
-    gui->addToggle( "MID" , false ) ;
-    gui->addToggle( "HIGH" , false ) ;
-    gui->addNumberDialer("BPM", 30, 200, 120, 0 ) ; 
+    gui->addSpectrum("FFT" , beatDetector.getSmoothedFFT() , 32 ) ;
+    
+    gui->addToggle( "KICK" , false ) ;
+    gui->addToggle( "SNARE" , false ) ;
+    gui->addToggle( "HAT" , false ) ;
+//    gui->addNumberDialer("BPM", 30, 200, 120, 0 ) ;
     //gui->addLabel("BPM" , "NONE" ) ;
     ofAddListener( gui->newGUIEvent, this, &ofxOpenVJSet::guiEvent );
     
@@ -268,10 +290,7 @@ void ofxOpenVJSet::guiEvent( ofxUIEventArgs& e ) {
         sceneTimer.delayMillis = timeInSeconds * 1000.0f ;
         if ( sceneTimer.bIsRunning )
             sceneTimer.start( true , true ) ;
-    } else if ( name == "BPM" )
-    {
-        beatDetector.setBeatValue( ((ofxUINumberDialer* ) e.widget )->getValue() ) ;
-    }
+    } 
     
 }
 
@@ -305,6 +324,35 @@ void ofxOpenVJSet::setSceneBounds() {
     }
 }
 
+void ofxOpenVJSet::sceneTransitionInHandler( ofxOpenVJEventArgs &args )
+{
+    //cout << " TOP LEVEL sceneTransitionInHandler " << args.name << endl ;
+    for ( auto scene = scenes.begin() ; scene != scenes.end() ; scene++ )
+    {
+        if ( args.name.compare( (*scene)->name ) == 0 )
+        {
+            cout << "sceneTransitionInHandler '" << args.name << "' " << endl ;
+            (*scene)->transitionInComplete() ;
+            break ; 
+        }
+    }
+}
+
+void ofxOpenVJSet::sceneTransitionOutHandler( ofxOpenVJEventArgs &args )
+{
+    //cout << " TOP LEVEL sceneTransitionOutHandler " << args.name << endl ;
+    for ( auto scene = scenes.begin() ; scene != scenes.end() ; scene++ )
+    {
+        if ( args.name.compare( (*scene)->name ) == 0 )
+        {
+            cout << "sceneTransitionOutHandler '" << args.name << "'" << endl ;
+            (*scene)->transitionOutComplete() ;
+            break ; 
+        }
+    }
+}
+
+
 //--------------------------------------------------------------
 void ofxOpenVJSet::keyPressed(int key)
 {	
@@ -330,12 +378,9 @@ void ofxOpenVJSet::keyPressed(int key)
     
         case OF_KEY_RIGHT :
         {
-            if(  !bAutoSceneSwitch ) {
-                scenes[activeSceneIndex]->deactivate();
-                activeSceneIndex++;
-                if(activeSceneIndex > scenes.size()-1) activeSceneIndex=0;
-                if(bDrawGui) scenes[activeSceneIndex]->gui->setVisible(true);
-                scenes[activeSceneIndex]->activate();
+            if(  !bAutoSceneSwitch )
+            {
+                transitionToRelativeIndex( 1 ) ; 
             }
         }
             break;
@@ -344,14 +389,31 @@ void ofxOpenVJSet::keyPressed(int key)
         {
             if(!bAutoSceneSwitch )
             {
-                scenes[activeSceneIndex]->deactivate();
-                activeSceneIndex--;
-                if(activeSceneIndex < 0) activeSceneIndex = scenes.size()-1;
-                if(bDrawGui) scenes[activeSceneIndex]->gui->setVisible(true);
-                scenes[activeSceneIndex]->activate();
+                transitionToRelativeIndex( -1 ) ;
             }
         }
             break;
+    }
+}
+
+void ofxOpenVJSet::transitionToRelativeIndex ( int indexOffset ) 
+{
+    if ( scenes[activeSceneIndex]->transitionOut( setDelayTime, setTransitionTime ) == true )
+    {
+        //Wrap it so the indices don't become invalid
+        ofLogNotice() << "[" << activeSceneIndex << "] is OUT" << endl ;
+        activeSceneIndex += indexOffset ; 
+        activeSceneIndex = ofWrap( activeSceneIndex , 0 , scenes.size() ) ;
+        
+        ofLogNotice() << "[" << activeSceneIndex << "] is IN" << endl ; 
+        
+        if(bDrawGui)
+            scenes[activeSceneIndex]->gui->setVisible(true);
+        scenes[activeSceneIndex]->transitionIn( setDelayTime, setTransitionTime ) ;
+    }
+    else
+    {
+        ofLogNotice() << "scene[" << activeSceneIndex << "] ( " << scenes[activeSceneIndex]->name << " ) cannot transitionOut ! " << endl ;
     }
 }
 

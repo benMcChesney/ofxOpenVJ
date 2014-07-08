@@ -12,8 +12,9 @@ void SimpleScene::setup()
 {
     spawnRadius = 500 ;
     numCubes = 60 ;
-    cubeSize = 50 ; 
-    generateRandomCubes() ; 
+    cubeSize = 50 ;
+    drawNumCubes = 0.0f ; 
+    generateRandomCubes() ;
 }
 
 void SimpleScene::setupGui(float a_x, float a_y)
@@ -61,7 +62,7 @@ void SimpleScene::generateRandomCubes( )
 
 void SimpleScene::update()
 {
-  
+    BaseScene::update( ) ; 
 }
 
 void SimpleScene::draw()
@@ -69,25 +70,57 @@ void SimpleScene::draw()
     cameraManager->begin() ;
     
     ofSetColor( 255 , 0 , 0 ) ;
+
     int count = 0 ;
     for( auto cube = cubes.begin() ; cube != cubes.end() ; cube++ )
     {
-        int cubeGroup = count % 3 ;
-        if ( cubeGroup == 0 && beatDetector->isLow() == true )
-            ofSetColor( ofColor::red ) ;
-        else if ( cubeGroup == 1 && beatDetector->isMid() == true )
-            ofSetColor( ofColor::green ) ;
-        else if ( cubeGroup == 2 && beatDetector->isHigh() == true )
-            ofSetColor( ofColor::blue ) ;
-        else
-            ofSetColor( (*cube)->color ) ;
-        ofDrawBox( (*cube)->position , (*cube)->size ) ;
+        if ( count < drawNumCubes )
+        {
+            int cubeGroup = count % 3 ;
+            if ( cubeGroup == 0 && beatDetector->isLow() == true )
+                ofSetColor( ofColor::red ) ;
+            else if ( cubeGroup == 1 && beatDetector->isMid() == true )
+                ofSetColor( ofColor::green ) ;
+            else if ( cubeGroup == 2 && beatDetector->isHigh() == true )
+                ofSetColor( ofColor::blue ) ;
+            else
+                ofSetColor( (*cube)->color ) ;
+            ofDrawBox( (*cube)->position , (*cube)->size ) ;
+        }
         count++ ; 
     }
     
-    cameraManager->end() ; 
+    cameraManager->end() ;
+    sceneTransitionTimer.draw( 50 , 50 ) ;
 }
 
+
+
+bool SimpleScene::transitionIn( float delay , float transitionTime )
+{
+    
+    if ( BaseScene::transitionIn( delay , transitionTime ) == false )
+        return false ;
+    else
+    {
+        cout << "simple scene transitionin ! " << endl ; 
+        //Build the scene out
+        Tweenzor::add( &drawNumCubes , 0.0f , (float)numCubes , delay , transitionTime , EASE_OUT_QUAD ) ;
+    }
+
+    return true ;
+}
+
+bool SimpleScene::transitionOut( float delay , float transitionTime )
+{
+    if ( BaseScene::transitionOut( delay , transitionTime ) == false )
+        return false ;
+    else
+    {
+        Tweenzor::add( &drawNumCubes , numCubes , 0.0f , delay , transitionTime , EASE_OUT_QUAD ) ;
+    }
+    return true ;
+}
 
 void SimpleScene::activate()
 {

@@ -20,7 +20,8 @@ SimplePointCloudScene::~SimplePointCloudScene() {
 
 //--------------------------------------------------------------
 void SimplePointCloudScene::setup() {
-    
+    worldScale = 1.0f ;
+    alpha = 255.0f ;
 }
 
 //--------------------------------------------------------------
@@ -44,20 +45,10 @@ void SimplePointCloudScene::guiEvent(ofxUIEventArgs &e) {
  }
 
 //--------------------------------------------------------------
-void SimplePointCloudScene::activate() {
-    
-}
-
-//--------------------------------------------------------------
-void SimplePointCloudScene::deactivate() {
-    
-    // turn off the gui //
-    BaseScene::deactivate();
-}
-
-//--------------------------------------------------------------
 void SimplePointCloudScene::update() {
+    BaseScene::update( ) ; 
     depthManager->update( );
+    
 }
 
 //--------------------------------------------------------------
@@ -93,6 +84,7 @@ void SimplePointCloudScene::draw() {
                         //Adjusting the color a bit makes sure that it can be seen on the dark background
                         ofColor pixelColor = depthManager->getColorAt( x , y ) ; 
                         ofColor col = ofColor::fromHsb( pixelColor.getHue() , pixelColor.getSaturation() , depthManager->minimumPixBrightness ) ;
+                        col.a = alpha ; 
                         mesh.addVertex( vertex );
                         mesh.addColor( col );
                     }
@@ -104,7 +96,7 @@ void SimplePointCloudScene::draw() {
         
         ofPushMatrix();
             // the projected points are 'upside down' and 'backwards'
-            ofScale( depthManager->scale , -depthManager->scale, -depthManager->scale );
+            ofScale( depthManager->scale * worldScale , -depthManager->scale * worldScale , -depthManager->scale * worldScale );
             ofTranslate( 0 , 0 , depthManager->pointCloudZOffset ) ; 
             glEnable(GL_DEPTH_TEST);
             mesh.draw( );
@@ -115,3 +107,36 @@ void SimplePointCloudScene::draw() {
     ofPopMatrix();
 
 }
+
+
+
+
+bool SimplePointCloudScene::transitionIn( float delay , float transitionTime )
+{
+    
+    if ( BaseScene::transitionIn( delay , transitionTime ) == false )
+        return false ;
+    else
+    {
+        cout << name << " transitionin ! " << endl ;
+        worldScale = 20.0f ;
+        //Build the scene out
+        Tweenzor::add( &alpha , 0.0f , 255.0f , delay , transitionTime , EASE_OUT_QUAD ) ;
+        Tweenzor::add( &worldScale, worldScale , 1.0f , delay, transitionTime, EASE_OUT_QUAD ) ; 
+    }
+    
+    return true ;
+}
+
+bool SimplePointCloudScene::transitionOut( float delay , float transitionTime )
+{
+    if ( BaseScene::transitionOut( delay , transitionTime ) == false )
+        return false ;
+    else
+    {
+        Tweenzor::add( &alpha , alpha , 0.0f , delay , transitionTime , EASE_OUT_QUAD ) ;
+        Tweenzor::add( &worldScale, worldScale , 20.0f , delay, transitionTime, EASE_OUT_QUAD ) ;
+    }
+    return true ;
+}
+

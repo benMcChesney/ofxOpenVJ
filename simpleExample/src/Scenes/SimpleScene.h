@@ -40,10 +40,14 @@ public :
     float numCubes ;
     float cubeSize ;
     
-       
+    bool transitionIn( float delay , float transitionTime );
+    bool transitionOut( float delay , float transitionTime ) ;
+    
     ofPoint getRandomPointInSpawnRadius( ) ;
     
-    void generateRandomCubes( ) ; 
+    void generateRandomCubes( ) ;
+    
+    float drawNumCubes ; 
     
     
 };

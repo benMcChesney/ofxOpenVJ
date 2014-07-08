@@ -10,6 +10,7 @@
 
 #include "ofxOpenVJ.h"
 #include "ofxSimpleTimer.h"
+#include "ofxOpenVJEvents.h"
 
 class ofxOpenVJSet
 {
@@ -50,7 +51,14 @@ class ofxOpenVJSet
     ofxSimpleTimer sceneTimer ;
     void sceneTimerComplete( int & args ) ;
     
-    int getNumScenes( ) { return scenes.size() ; } 
+    int getNumScenes( ) { return scenes.size() ; }
+    
+    void sceneTransitionInHandler( ofxOpenVJEventArgs &args ) ;
+    void sceneTransitionOutHandler( ofxOpenVJEventArgs &args ) ;
+    
+    void transitionToRelativeIndex ( int indexOffset ) ;
+    bool bDrawDebug ;
+    
 protected :
 #ifdef USE_KINECT
     DepthCameraManager    *    depthCameraManager;
@@ -64,5 +72,7 @@ protected :
     ofxBeatDetector      beatDetector ;
     vector<BaseScene*> scenes;
     int activeSceneIndex;
+    
+    float setTransitionTime , setDelayTime ; 
 
 };

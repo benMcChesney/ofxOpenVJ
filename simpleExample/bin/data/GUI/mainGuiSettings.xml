@@ -1,15 +1,5 @@
 <Widget>
     <Kind>2</Kind>
-    <Name>B_AUTO_SAVE</Name>
-    <Value>1</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
-    <Name>B_DRAW_Kinect_Gui</Name>
-    <Value>1</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
     <Name>FULLSCREEN</Name>
     <Value>0</Value>
 </Widget>
@@ -30,31 +20,41 @@
 </Widget>
 <Widget>
     <Kind>2</Kind>
+    <Name>DRAW DEBUG INFO</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
     <Name>B_AUTO_SCENE_SWITCH</Name>
     <Value>0</Value>
 </Widget>
 <Widget>
-    <Kind>25</Kind>
+    <Kind>4</Kind>
     <Name>SCENE DELAY TIME</Name>
     <Value>12.960000038</Value>
 </Widget>
 <Widget>
-    <Kind>2</Kind>
-    <Name>LOW</Name>
-    <Value>1</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
-    <Name>MID</Name>
-    <Value>1</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
-    <Name>HIGH</Name>
-    <Value>0</Value>
+    <Kind>4</Kind>
+    <Name>SET TRANSITION TIME</Name>
+    <Value>0.995192349</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
-    <Name>BEAT VALUE</Name>
-    <Value>22.884616852</Value>
+    <Name>SET DELAY TIME</Name>
+    <Value>0.100000001</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>KICK</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>SNARE</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>HAT</Name>
+    <Value>1</Value>
 </Widget>

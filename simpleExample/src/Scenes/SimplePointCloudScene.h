@@ -23,11 +23,14 @@ public:
     void update();
     void draw();
     
-    void activate();
-    void deactivate();
-    
     float zTimeMultiplier ;
     float zNoiseAmount ;
     float pixelStep ;
-    float pointSize ; 
+    float pointSize ;
+   
+    bool transitionIn( float delay , float transitionTime );
+    bool transitionOut( float delay , float transitionTime ) ;
+    
+    float worldScale ;
+    float alpha ; 
 };

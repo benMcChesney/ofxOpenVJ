@@ -44,36 +44,50 @@ void TestScene::guiEvent(ofxUIEventArgs &e) {
 }
 
 //--------------------------------------------------------------
-void TestScene::activate() {
-    
-}
-
-//--------------------------------------------------------------
-void TestScene::deactivate() {
-    // turn off the gui //
-    BaseScene::deactivate();
-}
-
-//--------------------------------------------------------------
 void TestScene::update() {
-    
+    BaseScene::update( ) ; 
 }
 
 //--------------------------------------------------------------
 void TestScene::draw() {
-    ofSetColor(100, 20, 190);
-    glPushMatrix();
+    ofSetColor(100, 20, 190, shapeAlpha * 255.0f );
+    ofPushMatrix();
     {
-        glTranslatef( ofGetWidth()*.5f, ofGetHeight()*.5f, 0 );
-        glRotatef( cos( ofGetFrameNum()*.1 ) * 3, 0, 0, 1);
+
+        ofTranslate( ofGetWidth()*.5f, ofGetHeight()*.5f, 0 );
+        ofScale( shapeScale , shapeScale , shapeScale  ); 
+        ofRotate( cos( ofGetFrameNum()*.1 ) * 40 , 0, 0, 1);
         ofRect(-300, -200, 600, 400);
     }
-    glPopMatrix();
+    ofPopMatrix() ; 
 }
 
+bool TestScene::transitionIn( float delay , float transitionTime )
+{
+    
+    if ( BaseScene::transitionIn( delay , transitionTime ) == false )
+        return false ;
+    else
+    {
+        //Build the scene out
+        Tweenzor::add( &shapeAlpha , 0.0f , 1.0f , delay , transitionTime , EASE_OUT_QUAD ) ;
+        Tweenzor::add( &shapeScale , 0.0f , 1.0f , delay , transitionTime , EASE_OUT_QUAD ) ;
+    }
+    
+    return true ;
+}
 
-
-
+bool TestScene::transitionOut( float delay , float transitionTime )
+{
+    if ( BaseScene::transitionOut( delay , transitionTime ) == false )
+        return false ;
+    else
+    {
+        Tweenzor::add( &shapeAlpha , shapeAlpha , 0.0f , delay , transitionTime , EASE_OUT_QUAD ) ;
+        Tweenzor::add( &shapeScale , shapeScale , 0.0f , delay , transitionTime , EASE_OUT_QUAD ) ;
+    }
+    return true ;
+}
 
 
 

@@ -23,9 +23,12 @@ public:
     void update();
     void draw();
     
-    void activate();
-    void deactivate();
-    
     float outlineSmoothing ;
     vector< ofPath > paths ;
+    
+    bool transitionIn( float delay , float transitionTime );
+    bool transitionOut( float delay , float transitionTime ) ;
+    
+    ofRectangle boundingBox ; 
+    float completion ; 
 };

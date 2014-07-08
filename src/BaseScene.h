@@ -9,10 +9,14 @@
 #pragma once
 #include "ofMain.h"
 #include "ofxUI.h"
+#include "ofxOpenVJEvents.h"
 #include "ofxOpenVJConstants.h"
 #include "CameraManager.h"
 #include "ofxBeatDetector.h"
 #include "DepthCameraManager.h"
+#include "Tweenzor.h"
+#include "ofxSimpleTimer.h"
+
 
 #ifdef USE_KINECT
 #include "KinectManager.h"
@@ -27,12 +31,16 @@ public:
     virtual void setup() {};
     virtual void setupGui(float a_x=0, float a_y=0) ;
     
-    virtual void update() = 0;
+    virtual void update()
+    {
+        sceneTransitionTimer.update() ; 
+    }
+    
     virtual void draw() = 0;
-    virtual void drawDebug() {};
+    virtual void drawDebug() ; 
 
-    virtual void activate() {  };
-    virtual void deactivate() { if(gui != NULL) { gui->setVisible(false); } };
+    virtual void activate();
+    virtual void deactivate(); 
     
     void toggleGui() { if(gui!=NULL) {gui->toggleVisible();} };
     virtual void guiEvent(ofxUIEventArgs &e) ; 
@@ -55,16 +63,29 @@ public:
     DepthCameraManager* depthManager;
     #endif
 
-
+    bool bTransitionIn , bTransitionOut ;
+    float tweenArgs ;
+    //float baseTweenArgs ;
+    virtual bool transitionIn( float delay , float transitionTime ) ;
+    virtual void transitionInComplete ( ) ; 
+    virtual bool transitionOut( float delay , float transitionTime ) ;
+    virtual void transitionOutComplete( ) ;
+    
 #ifdef USE_KINECT_V2
 	DepthCameraManager * depthCameraManager ; 
 #endif
     
     ofxBeatDetector * beatDetector ;
     CameraManager* cameraManager;
+    bool bVisible ;
+    
+    void sceneTransitionTimerComplete ( int & args ) ;
+    ofxSimpleTimer sceneTransitionTimer ;
     
 protected:
+    
     float _width, _height;
+
 };
 
 

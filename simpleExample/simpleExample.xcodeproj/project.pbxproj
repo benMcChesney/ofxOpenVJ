@@ -349,6 +349,7 @@
 		6B1CDF1E1921CE9C00C0982C /* VerticalTiltShifPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerticalTiltShifPass.h; sourceTree = "<group>"; };
 		6B1CDF1F1921CE9C00C0982C /* ZoomBlurPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ZoomBlurPass.cpp; sourceTree = "<group>"; };
 		6B1CDF201921CE9C00C0982C /* ZoomBlurPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomBlurPass.h; sourceTree = "<group>"; };
+		6B2277D5195F51D2001C99D7 /* ofxOpenVJEvents.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ofxOpenVJEvents.h; path = ../src/ofxOpenVJEvents.h; sourceTree = "<group>"; };
 		6B28EA3A193BFBE900258DFE /* SimpleOpenCVScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleOpenCVScene.cpp; sourceTree = "<group>"; };
 		6B28EA3B193BFBE900258DFE /* SimpleOpenCVScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleOpenCVScene.h; sourceTree = "<group>"; };
 		6B28EA3C193BFBE900258DFE /* SimplePointCloudScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimplePointCloudScene.cpp; sourceTree = "<group>"; };
@@ -1134,6 +1135,7 @@
 				6BBACDF2195D037D00139CF2 /* Scenes.cpp */,
 				6BBACDF3195D037D00139CF2 /* Scenes.h */,
 				6BBACDF4195D037D00139CF2 /* Utils.h */,
+				6B2277D5195F51D2001C99D7 /* ofxOpenVJEvents.h */,
 			);
 			name = src;
 			sourceTree = "<group>";
