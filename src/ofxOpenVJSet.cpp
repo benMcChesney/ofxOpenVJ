@@ -87,7 +87,7 @@ void ofxOpenVJSet::initialize( )
     for(int i = 0; i < scenes.size(); i++) {
         Scenes::registerScene(scenes[i]->index, scenes[i]->name);
 #ifdef USE_KINECT
-        scenes[i]->depthManager        = depthCameraManager;
+        scenes[i]->depthCameraManager        = depthCameraManager;
 #endif
 
 #ifdef USE_KINECT_V2

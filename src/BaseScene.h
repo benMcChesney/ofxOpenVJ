@@ -60,7 +60,7 @@ public:
     ofxUIScrollableCanvas* gui;
     
     #ifdef USE_KINECT
-    DepthCameraManager* depthManager;
+    DepthCameraManager* depthCameraManager;
     #endif
 
     bool bTransitionIn , bTransitionOut ;

@@ -41,8 +41,8 @@
 		63B57AC5BF4EF088491E0317 /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50DF87D612C5AAE17AAFA6C0 /* ofxXmlSettings.cpp */; };
 		67711D3AEDB7B97F40CB2A38 /* ofxBeatDetector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D71D8B0E9F76B9C9196D9D31 /* ofxBeatDetector.cpp */; };
 		6A505EAE8088949A9180FFE7 /* GodRaysPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C07AAE715D8853EDA76BC909 /* GodRaysPass.cpp */; };
-		6B28EA37193BFA1000258DFE /* SimpleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B28EA33193BFA1000258DFE /* SimpleScene.cpp */; };
-		6B28EA38193BFA1000258DFE /* TestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B28EA35193BFA1000258DFE /* TestScene.cpp */; };
+		6B3E9783196BAAE9007DFBD6 /* SimpleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B3E977D196BAAE9007DFBD6 /* SimpleScene.cpp */; };
+		6B3E9784196BAAE9007DFBD6 /* TestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B3E977F196BAAE9007DFBD6 /* TestScene.cpp */; };
 		6EA4ADCE1CD6775313195F34 /* CameraManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4A08F8802E0430ADD1EF00 /* CameraManager.cpp */; };
 		7252706DA14C1BE63950ADDA /* ofxUIFPS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FEB61645EF9120F5BACB7462 /* ofxUIFPS.cpp */; };
 		740A58CBFDFE578C83A349AF /* ofxUISlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DE8B77977749C1835A9472B /* ofxUISlider.cpp */; };
@@ -220,10 +220,10 @@
 		693CE376E7DD1175FD35FA96 /* Utils.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Utils.h; path = ../../../addons/ofxOpenVJ/src/Utils.h; sourceTree = SOURCE_ROOT; };
 		6968F1DEA668F911A9CB4CA1 /* Tweenzor.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Tweenzor.cpp; path = ../../../addons/ofxTweenzor/src/Tweenzor.cpp; sourceTree = SOURCE_ROOT; };
 		6AF187A99EECFB13E3BCCD33 /* LimbDarkeningPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = LimbDarkeningPass.h; path = ../../../addons/ofxPostProcessing/src/LimbDarkeningPass.h; sourceTree = SOURCE_ROOT; };
-		6B28EA33193BFA1000258DFE /* SimpleScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleScene.cpp; sourceTree = "<group>"; };
-		6B28EA34193BFA1000258DFE /* SimpleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleScene.h; sourceTree = "<group>"; };
-		6B28EA35193BFA1000258DFE /* TestScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestScene.cpp; sourceTree = "<group>"; };
-		6B28EA36193BFA1000258DFE /* TestScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestScene.h; sourceTree = "<group>"; };
+		6B3E977D196BAAE9007DFBD6 /* SimpleScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleScene.cpp; sourceTree = "<group>"; };
+		6B3E977E196BAAE9007DFBD6 /* SimpleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleScene.h; sourceTree = "<group>"; };
+		6B3E977F196BAAE9007DFBD6 /* TestScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestScene.cpp; sourceTree = "<group>"; };
+		6B3E9780196BAAE9007DFBD6 /* TestScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestScene.h; sourceTree = "<group>"; };
 		6BBE5C9251660EA96B398017 /* SSAOPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = SSAOPass.h; path = ../../../addons/ofxPostProcessing/src/SSAOPass.h; sourceTree = SOURCE_ROOT; };
 		702A2528CA64B397E9B91ABE /* ofxUIToggleMatrix.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxUIToggleMatrix.cpp; path = ../../../addons/ofxUI/src/ofxUIToggleMatrix.cpp; sourceTree = SOURCE_ROOT; };
 		73B8FF75147C985FBC88B05D /* BaseScene.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = BaseScene.h; path = ../../../addons/ofxOpenVJ/src/BaseScene.h; sourceTree = SOURCE_ROOT; };
@@ -438,16 +438,16 @@
 			name = ofxSimpleTimer;
 			sourceTree = "<group>";
 		};
-		6B28EA32193BFA1000258DFE /* Scenes */ = {
+		6B3E9778196BAAE9007DFBD6 /* scenes */ = {
 			isa = PBXGroup;
 			children = (
-				6B28EA33193BFA1000258DFE /* SimpleScene.cpp */,
-				6B28EA34193BFA1000258DFE /* SimpleScene.h */,
-				6B28EA35193BFA1000258DFE /* TestScene.cpp */,
-				6B28EA36193BFA1000258DFE /* TestScene.h */,
+				6B3E977D196BAAE9007DFBD6 /* SimpleScene.cpp */,
+				6B3E977E196BAAE9007DFBD6 /* SimpleScene.h */,
+				6B3E977F196BAAE9007DFBD6 /* TestScene.cpp */,
+				6B3E9780196BAAE9007DFBD6 /* TestScene.h */,
 			);
-			name = Scenes;
-			path = ../../simpleExample/src/Scenes;
+			name = scenes;
+			path = ../scenes;
 			sourceTree = "<group>";
 		};
 		6E54289412D2D94F45A05113 /* libs */ = {
@@ -746,6 +746,7 @@
 			children = (
 				E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */,
 				E4EB6923138AFD0F00A09F29 /* Project.xcconfig */,
+				6B3E9778196BAAE9007DFBD6 /* scenes */,
 				E4B69E1C0A3A1BDC003C02F2 /* src */,
 				E4EEC9E9138DF44700A80321 /* openFrameworks */,
 				BB4B014C10F69532006C3DED /* addons */,
@@ -757,7 +758,6 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				6B28EA32193BFA1000258DFE /* Scenes */,
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
@@ -962,8 +962,8 @@
 				AE281BEBF3A00F1FC37F3DA0 /* ofxUIWaveform.cpp in Sources */,
 				82845E1F8C90E1F5A99D9868 /* ofxUIWidget.cpp in Sources */,
 				CE5D89B9893EAA12F511DCAC /* ofxUIWidgetWithLabel.cpp in Sources */,
-				6B28EA37193BFA1000258DFE /* SimpleScene.cpp in Sources */,
-				6B28EA38193BFA1000258DFE /* TestScene.cpp in Sources */,
+				6B3E9783196BAAE9007DFBD6 /* SimpleScene.cpp in Sources */,
+				6B3E9784196BAAE9007DFBD6 /* TestScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
