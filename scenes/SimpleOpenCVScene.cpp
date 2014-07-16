@@ -45,12 +45,12 @@ void SimpleOpenCVScene::guiEvent(ofxUIEventArgs &e) {
 void SimpleOpenCVScene::update()
 {
     BaseScene::update( ) ; 
-    depthManager->update( );
-    depthManager->calculateCVOperations() ;
+    depthCameraManager->update( );
+    depthCameraManager->calculateCVOperations() ;
     
     //Set the values to very high so it's overriden easily
     boundingBox = ofRectangle( 40000 , 40000 , 0 , 0 ) ;
-    ofxCvContourFinder * c = &depthManager->contourFinder ;
+    ofxCvContourFinder * c = &depthCameraManager->contourFinder ;
     if ( c->nBlobs > 0 )
     {
         paths.clear() ;
@@ -69,7 +69,7 @@ void SimpleOpenCVScene::update()
                 if ( nPoint < completion )
                 {
                     //Transform the CV points from pixel space to screenspace
-                    line.addVertex( depthManager->cvPointToScreen( (*pt) , ofGetWidth() , ofGetHeight() ) );
+                    line.addVertex( depthCameraManager->cvPointToScreen( (*pt) , ofGetWidth() , ofGetHeight() ) );
                     nPoint += nPointInc ;
                 }
             }
