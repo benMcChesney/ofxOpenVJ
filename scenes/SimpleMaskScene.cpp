@@ -35,6 +35,8 @@ void SimpleMaskScene::setup() {
     ofClear( 1 , 1 , 1 , 0 ) ;
     fbo.end() ;
     
+    alpha = 0.0f ;
+    
     maskFbo.allocate( ofGetScreenWidth() , ofGetScreenHeight() ) ;
     maskFbo.begin() ;
     ofClear( 1 , 1 , 1 , 0 ) ;
@@ -43,30 +45,19 @@ void SimpleMaskScene::setup() {
     offsetAmount = 0.0f ; 
 }
 
-//--------------------------------------------------------------
 void SimpleMaskScene::setupGui(float a_x, float a_y) {
     // creates new gui and adds the name to it //
     BaseScene::setupGui(a_x, a_y);
     
-    //redrawAmount
-    BaseScene::setupGui(a_x, a_y);
-    
-    float dim = 24;
-	float xInit = OFX_UI_GLOBAL_WIDGET_SPACING;
-    float length = 320-xInit;
-    
-    // gui = new ofxUICanvas(0, 0, length+xInit, ofGetHeight());
-    
-    //gui->addWidgetDown(new ofxUIRangeSlider(length, dim, 0 , 10000 , pointCloudMinZ , pointCloudMaxZ, "POINT CLOUD Z RANGE")) ;
     int width = 300 ;
     int height = 18 ;
     
-    gui->addSlider( "Mask Fade Amount" , 0.0 , 255.0 , maskFadeAmount , width , height ) ; 
-    gui->addSlider( "Beat Decay Amount" , 0.0f , 0.25f , &decayAmount ) ; 
+    gui->addSlider( "Mask Fade Amount" , 0.0 , 255.0 , maskFadeAmount , width , height ) ;
+    gui->addSlider( "Beat Decay Amount" , 0.0f , 1.0f , &decayAmount ) ;
     
     ofAddListener( gui->newGUIEvent, this, &SimpleMaskScene::guiEvent );
     
-    BaseScene::loadSettings() ; 
+    loadSettings() ;
 }
 
 //--------------------------------------------------------------
@@ -83,17 +74,29 @@ void SimpleMaskScene::guiEvent(ofxUIEventArgs &e) {
     BaseScene::guiEvent( e ) ; 
 }
 
-/*
-//--------------------------------------------------------------
-void SimpleMaskScene::activate() {
-    BaseScene::activate() ; 
-    if(fbo.getWidth() != getWidth() || fbo.getHeight() != getHeight()) {
-        fbo.allocate( getWidth() , getHeight(), GL_RGBA ) ;
-        fbo.begin() ;
-        ofClear( 1 , 1 , 1 , 0 ) ;
-        fbo.end() ;
+bool SimpleMaskScene::transitionIn( float delay , float transitionTime )
+{
+    if ( BaseScene::transitionIn( delay , transitionTime ) == false )
+        return false ;
+    else
+    {
+        alpha = 0.0f;
+        Tweenzor::add( &alpha , alpha , 1.0f , delay , transitionTime ) ;
     }
-}*/
+    
+    return true ;
+}
+
+bool SimpleMaskScene::transitionOut( float delay , float transitionTime )
+{
+    if ( BaseScene::transitionOut( delay , transitionTime ) == false )
+        return false ;
+    else
+    {
+        Tweenzor::add( &alpha , alpha , 0.0f , delay , transitionTime ) ;
+    }
+    return true ;
+}
 
 
 //--------------------------------------------------------------
@@ -122,9 +125,9 @@ void SimpleMaskScene::draw() {
     
     fbo.begin() ;
     shader.begin() ;
-    shader.setUniform1f("time", ofGetElapsedTimef() );
+    shader.setUniform1f("time", sin ( ofGetElapsedTimef() * 0.7f ) * 8.0f  ) ; //ofGetElapsedTimef() );
     shader.setUniform2f("resolution", getWidth()  , getHeight() );
-    shader.setUniform1f("low", offsetAmount ) ;
+    shader.setUniform1f("low", 0.1f ) ; //offsetAmount ) ;
     ofSetColor( 255 ) ;
     ofRect( 0 , 0 , getWidth() , getHeight() ) ;
     shader.end() ;
@@ -139,7 +142,7 @@ void SimpleMaskScene::draw() {
     ofEnableAlphaBlending() ;
     maskFbo.end() ;
     
-    ofSetColor( 255 ) ;
+    ofSetColor( 255 , alpha * 255.0f ) ;
     
     simpleMask.drawMask( fbo.getTextureReference() , maskFbo.getTextureReference() , 0, 0, 1.0f ) ;
     ///fbo.draw( 0 , 0 ) ;

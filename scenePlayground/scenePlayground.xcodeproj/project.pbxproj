@@ -77,6 +77,7 @@
 		6B3E9796196BAC77007DFBD6 /* SimpleMaskScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B3E9794196BAC77007DFBD6 /* SimpleMaskScene.cpp */; };
 		6B51B7FA193BEBC300DC5241 /* ofxSimpleTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B51B7F6193BEBC300DC5241 /* ofxSimpleTimer.cpp */; };
 		6B7AA3831925D5C80042801B /* ofxBeatDetector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B7AA3811925D5C80042801B /* ofxBeatDetector.cpp */; };
+		6BA98BE219763753000BACB0 /* TronLines.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6BA98BE019763753000BACB0 /* TronLines.cpp */; };
 		6BBACDF5195D037D00139CF2 /* BaseScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6BBACDE0195D037D00139CF2 /* BaseScene.cpp */; };
 		6BBACDF6195D037D00139CF2 /* CameraManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6BBACDE2195D037D00139CF2 /* CameraManager.cpp */; };
 		6BBACDF7195D037D00139CF2 /* DepthCameraManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6BBACDE4195D037D00139CF2 /* DepthCameraManager.cpp */; };
@@ -370,6 +371,8 @@
 		6B7AA3821925D5C80042801B /* ofxBeatDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxBeatDetector.h; sourceTree = "<group>"; };
 		6B7AA38F1925E9420042801B /* SceneList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneList.h; sourceTree = "<group>"; };
 		6B907CFBB1B0FEDE76C41AA0 /* heap.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = heap.h; path = ../../ofxOpenCv/libs/opencv/include/opencv2/flann/heap.h; sourceTree = SOURCE_ROOT; };
+		6BA98BE019763753000BACB0 /* TronLines.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TronLines.cpp; sourceTree = "<group>"; };
+		6BA98BE119763753000BACB0 /* TronLines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TronLines.h; sourceTree = "<group>"; };
 		6BBACDE0195D037D00139CF2 /* BaseScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BaseScene.cpp; path = ../src/BaseScene.cpp; sourceTree = "<group>"; };
 		6BBACDE1195D037D00139CF2 /* BaseScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseScene.h; path = ../src/BaseScene.h; sourceTree = "<group>"; };
 		6BBACDE2195D037D00139CF2 /* CameraManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CameraManager.cpp; path = ../src/CameraManager.cpp; sourceTree = "<group>"; };
@@ -923,6 +926,8 @@
 		6B3E9785196BAB4E007DFBD6 /* scenes */ = {
 			isa = PBXGroup;
 			children = (
+				6BA98BE019763753000BACB0 /* TronLines.cpp */,
+				6BA98BE119763753000BACB0 /* TronLines.h */,
 				6B3E9794196BAC77007DFBD6 /* SimpleMaskScene.cpp */,
 				6B3E9795196BAC77007DFBD6 /* SimpleMaskScene.h */,
 				6B3E9786196BAB4E007DFBD6 /* SimpleOpenCVScene.cpp */,
@@ -1738,6 +1743,7 @@
 				6B3E9790196BAB4E007DFBD6 /* SimpleScene.cpp in Sources */,
 				6B3E9791196BAB4E007DFBD6 /* TestScene.cpp in Sources */,
 				6B3E9796196BAC77007DFBD6 /* SimpleMaskScene.cpp in Sources */,
+				6BA98BE219763753000BACB0 /* TronLines.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

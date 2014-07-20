@@ -25,9 +25,6 @@ public:
     void draw();
     void drawDebug();
     
-    //void activate();
-    
-    
     ofShader shader ; 
     ofFbo fbo ;
     
@@ -37,7 +34,14 @@ public:
     float maskFadeAmount ;
     
     float offsetAmount ; 
-    float decayAmount ; 
+    float decayAmount ;
+    
+    bool transitionIn( float delay , float transitionTime );
+    bool transitionOut( float delay , float transitionTime ) ;
+    
+    float timeScale ;
+    float maxShaderValue ; 
+    float alpha ; 
 };
 
 

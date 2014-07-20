@@ -33,7 +33,7 @@ void testApp::setup() {
     set.addScene( new SimplePointCloudScene((int)set.getNumScenes(), "SimplePointCloudScene" ) ) ;
     set.addScene( new SimpleOpenCVScene((int)set.getNumScenes(), "SimpleOpenCVScene" ) ) ;
     set.addScene( new SimpleMaskScene((int)set.getNumScenes(), "SimpleMaskScene" ) ) ;
-    
+    set.addScene( new TronLines( (int)set.getNumScenes(), "TronLines" ) ) ; 
     set.initialize() ; 
     
 }

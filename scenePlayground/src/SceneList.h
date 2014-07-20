@@ -14,5 +14,6 @@
 #include "SimplePointCloudScene.h"
 #include "SimpleOpenCVScene.h"
 #include "SimpleMaskScene.h"
+#include "TronLines.h"
 
 #endif
