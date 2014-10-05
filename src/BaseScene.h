@@ -16,7 +16,7 @@
 #include "DepthCameraManager.h"
 #include "Tweenzor.h"
 #include "ofxSimpleTimer.h"
-
+#include "SoundManager.h"
 
 #ifdef USE_KINECT
 #include "KinectManager.h"
@@ -53,7 +53,8 @@ public:
     void setBounds( float w, float h) { _width = w; _height = h; }
     
     string getXMLSettingsName() { return "GUI/guiSettings_scene_"+name+"_.xml"; }
-    
+    string getDefaultShaderDirectory() { return ofToDataPath( "../../../../ofxOpenVJ/shaders/" , true ) ; }
+
     int index ;
     string name;
     
@@ -75,7 +76,7 @@ public:
 	DepthCameraManager * depthCameraManager ; 
 #endif
     
-    ofxBeatDetector * beatDetector ;
+    SoundManager * soundManager ; 
     CameraManager* cameraManager;
     bool bVisible ;
     

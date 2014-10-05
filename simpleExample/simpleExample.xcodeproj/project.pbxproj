@@ -42,6 +42,7 @@
 		640279EE111671BD026CB013 /* ofxOscReceiver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2FAC65C491D4231379F3298 /* ofxOscReceiver.cpp */; };
 		67FE4C7B15C2F0478C8126C2 /* NetworkingUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B361208CD4107E479F04E7B /* NetworkingUtils.cpp */; };
 		686B0DF6249B52E1A85B39EC /* ofxKinect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9FFC7D08DA194C2CE7D09 /* ofxKinect.cpp */; };
+		6B1A910019E20ADE006E123B /* SoundManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B1A90FE19E20ADE006E123B /* SoundManager.cpp */; };
 		6B1CDEBF1921CDB100C0982C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B1CDE961921CDB100C0982C /* main.cpp */; };
 		6B1CDED21921CDB100C0982C /* testApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B1CDEBD1921CDB100C0982C /* testApp.cpp */; };
 		6B1CDED91921CE1500C0982C /* ofxParticle2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B1CDED51921CE1500C0982C /* ofxParticle2D.cpp */; };
@@ -285,6 +286,8 @@
 		67AF0E794FA186DD25454CC9 /* calib3d.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = calib3d.hpp; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/calib3d/calib3d.hpp; sourceTree = SOURCE_ROOT; };
 		682082DEC78C75C8FB18B7DB /* flags.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 30; name = flags.c; path = ../../../addons/ofxKinect/libs/libfreenect/src/flags.c; sourceTree = SOURCE_ROOT; };
 		6968F1DEA668F911A9CB4CA1 /* Tweenzor.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Tweenzor.cpp; path = ../../../addons/ofxTweenzor/src/Tweenzor.cpp; sourceTree = SOURCE_ROOT; };
+		6B1A90FE19E20ADE006E123B /* SoundManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SoundManager.cpp; path = ../src/SoundManager.cpp; sourceTree = "<group>"; };
+		6B1A90FF19E20ADE006E123B /* SoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SoundManager.h; path = ../src/SoundManager.h; sourceTree = "<group>"; };
 		6B1CDE961921CDB100C0982C /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		6B1CDEBD1921CDB100C0982C /* testApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testApp.cpp; sourceTree = "<group>"; };
 		6B1CDEBE1921CDB100C0982C /* testApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testApp.h; sourceTree = "<group>"; };
@@ -1133,6 +1136,8 @@
 				6BBACDED195D037D00139CF2 /* ofxOpenVJConstants.h */,
 				6BBACDEE195D037D00139CF2 /* ofxOpenVJSet.cpp */,
 				6BBACDEF195D037D00139CF2 /* ofxOpenVJSet.h */,
+				6B1A90FE19E20ADE006E123B /* SoundManager.cpp */,
+				6B1A90FF19E20ADE006E123B /* SoundManager.h */,
 				6BBACDF2195D037D00139CF2 /* Scenes.cpp */,
 				6BBACDF3195D037D00139CF2 /* Scenes.h */,
 				6BBACDF4195D037D00139CF2 /* Utils.h */,
@@ -1732,6 +1737,7 @@
 				6B3E978F196BAB4E007DFBD6 /* SimplePointCloudScene.cpp in Sources */,
 				6B3E9790196BAB4E007DFBD6 /* SimpleScene.cpp in Sources */,
 				6B3E9791196BAB4E007DFBD6 /* TestScene.cpp in Sources */,
+				6B1A910019E20ADE006E123B /* SoundManager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

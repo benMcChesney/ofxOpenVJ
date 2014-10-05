@@ -37,11 +37,11 @@ void main(void) {
 	vec2 pos = gl_FragCoord.xy;
 	vec2 p = pos/40.0; 
 	
-	float d = (hex(pos / 200.0) + time * (low+1.0) ) * ( 2.4 + sin ( time ) * -0.1 ) ;
+	float d = (hex(pos / 400.0) + ( time * 0.2 ) ) * ( 0.3 + low ) ;
 	float df = fract(d);
 	float di = floor(d);
 
-	float r = 0.99 - (smoothstep(0.0, 0.3, df) - smoothstep(0.3, 0. + 8.0 , df));
+	float r = 0.85 - (smoothstep(0.0, 0.3, df) - smoothstep(0.3, 0.5, df));
 	
 	gl_FragColor.rgb = palette(di) * smoothstep(r, r + 0.05, hex(p));
 	gl_FragColor.a = 1.0;

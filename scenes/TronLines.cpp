@@ -21,7 +21,7 @@ TronLines::~TronLines() {
 void TronLines::setup() {
     
     extrudeDepth = 100.0f ;
-
+    alpha = 0.0f ;
 }
 
 //--------------------------------------------------------------
@@ -53,6 +53,7 @@ void TronLines::guiEvent(ofxUIEventArgs &e) {
 	int kind = e.widget->getKind();
     
  
+    BaseScene::guiEvent( e ) ;
     
     if (name == "EXTRUDE DEPTH" )
 	{
@@ -65,8 +66,10 @@ void TronLines::guiEvent(ofxUIEventArgs &e) {
 
 //--------------------------------------------------------------
 void TronLines::update() {
+    
+    BaseScene::update( ) ;
+    
     depthCameraManager->update( );
-	depthCameraManager->calculatePointCloud( ) ; 
 }
 
 //--------------------------------------------------------------
@@ -76,8 +79,7 @@ void TronLines::draw() {
 
     cameraManager->begin();
     ofPushMatrix() ;
-        //ofTranslate(0 , 0 , depthCameraManager->pointCloudZOffset ) ;
-		drawPointCloud() ;
+        drawPointCloud() ;
 	ofPopMatrix();
 
     cameraManager->end() ;
@@ -96,7 +98,8 @@ void TronLines::drawPointCloud( )
     
 	ofColor col ; 
 
-	int inc = (int) lineRowSkip ; 
+	int inc = (int) lineRowSkip ;
+    ofColor c ;
 	for(int y = 0; y < h; y+= inc ) //= pcsdkMan->step )
     {
 		ofPath line ; 
@@ -104,7 +107,7 @@ void TronLines::drawPointCloud( )
 		for(int x = 0; x < w; x+= depthCameraManager->step ) //= pcsdkMan->step )
         {
             float low = ( sin ( ofGetElapsedTimef() * 1.5f ) + 1.0f ) / 2.0f ;
-            float   noiseStep =  ofNoise( x + y * h * _time ) * extrudeDepth * low ;
+            float   noiseStep =  ofNoise( x , y * ofGetElapsedTimef()  ) * extrudeDepth ; //* low ;
             
             ofVec3f vertex = depthCameraManager->getWorldCoordAt(x,y) ;
 			if ( vertex.z > depthCameraManager->pointCloudMinZ && vertex.z < depthCameraManager->pointCloudMaxZ )
@@ -117,7 +120,8 @@ void TronLines::drawPointCloud( )
 				}
 				else
 				{
-					line.lineTo( vertex ) ;//addVertex( vertex ) ; 
+					line.lineTo( vertex ) ;//addVertex( vertex ) ;
+                    c = depthCameraManager->getColorAt( x , y ) ;
 				}
 				bLastValid = true ; 
 			}
@@ -134,10 +138,11 @@ void TronLines::drawPointCloud( )
         
         
         ofEnableBlendMode(OF_BLENDMODE_ADD);
-		ofColor( 35 , 255 , 24 ) ;
-		line.setColor( ofColor( 35 , 255 , 24 ) ) ; 
+		ofColor( 35 , 255 , 24 , alpha * 255.0f ) ;
+        c = ofColor( 25 , 255 , 24 , alpha * 255.0f ) ;
+		line.setColor( c ) ; //ofColor( 35 , 255 , 24 ) ) ;
 		line.setFilled( false ) ;
-		line.setStrokeColor( ofColor( 35 , 255 , 24 ) ) ; 
+		line.setStrokeColor( c ) ; // ofColor( 35 , 255 , 24 ) ) ;
 		line.setStrokeWidth( 3 ) ; 
 		line.draw() ;
         
@@ -153,8 +158,8 @@ bool TronLines::transitionIn( float delay , float transitionTime )
         return false ;
     else
     {
-        //alpha = 0.0f;
-       // Tweenzor::add( &alpha , alpha , 1.0f , delay , transitionTime ) ;
+        alpha = 0.0f;
+        Tweenzor::add( &alpha , alpha , 1.0f , delay , transitionTime ) ;
     }
     
     return true ;
@@ -166,9 +171,38 @@ bool TronLines::transitionOut( float delay , float transitionTime )
         return false ;
     else
     {
-        //Tweenzor::add( &alpha , alpha , 0.0f , delay , transitionTime ) ;
+        Tweenzor::add( &alpha , alpha , 0.0f , delay , transitionTime ) ;
     }
     return true ;
 }
 
-
+/*
+ bool SimplePointCloudScene::transitionIn( float delay , float transitionTime )
+ {
+ 
+ if ( BaseScene::transitionIn( delay , transitionTime ) == false )
+ return false ;
+ else
+ {
+ cout << name << " transitionin ! " << endl ;
+ worldScale = 20.0f ;
+ //Build the scene out
+ Tweenzor::add( &alpha , 0.0f , 255.0f , delay , transitionTime , EASE_OUT_QUAD ) ;
+ Tweenzor::add( &worldScale, worldScale , 1.0f , delay, transitionTime, EASE_OUT_QUAD ) ;
+ }
+ 
+ return true ;
+ }
+ 
+ bool SimplePointCloudScene::transitionOut( float delay , float transitionTime )
+ {
+ if ( BaseScene::transitionOut( delay , transitionTime ) == false )
+ return false ;
+ else
+ {
+ Tweenzor::add( &alpha , alpha , 0.0f , delay , transitionTime , EASE_OUT_QUAD ) ;
+ Tweenzor::add( &worldScale, worldScale , 20.0f , delay, transitionTime, EASE_OUT_QUAD ) ;
+ }
+ return true ;
+ }
+ */

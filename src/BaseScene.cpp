@@ -16,7 +16,6 @@ BaseScene::BaseScene( int a_index, string a_name )
     gui=NULL;
     bTransitionIn = false ;
     bTransitionOut = false ;
-    //baseTweenArgs = 0.0f ;
     tweenArgs = 0.0f ; 
     bVisible = false ;
 }
@@ -37,9 +36,7 @@ void BaseScene::setupGui(float a_x , float a_y )
     gui->addButton( "SAVE SETTINGS" , false ) ;
     gui->addButton( "LOAD SETTINGS" , false ) ;
     gui->addSpacer(300, 2);
-};
-//virtual void guiEvent( ofxUIEventArgs & e ) { }
-
+}
 
 //--------------------------------------------------------------
 void BaseScene::guiEvent(ofxUIEventArgs &e)
@@ -95,10 +92,7 @@ bool BaseScene::transitionOut( float delay , float transitionTime )
     tweenArgs = 0.0f ;
     sceneTransitionTimer.setup( (delay + transitionTime) * 1000.0f ) ;
     sceneTransitionTimer.start( false , true ) ;
-    /*
-    baseTweenArgs = 0.0f ;
-    Tweenzor::add( &baseTweenArgs , 0.0f , 1.0f , delay , transitionTime ) ;
-    Tweenzor::addCompleteListener( Tweenzor::getTween( &baseTweenArgs ) , this , &BaseScene::transitionOutComplete ) ;*/
+   
     return true ; 
 }
 
@@ -117,7 +111,7 @@ void BaseScene::drawDebug()
 
 void BaseScene::transitionInComplete (  )
 {
-    cout << " BaseScene :: " << name << " transition IN  COMPLETE! " << endl ;
+    ofLogNotice() << " BaseScene :: " << name << " transition IN  COMPLETE! " << endl ;
     bTransitionIn = false ;
     tweenArgs = 0.0f ;
 }
@@ -133,8 +127,7 @@ void BaseScene::transitionOutComplete(  )
 
 void BaseScene::sceneTransitionTimerComplete ( int & args )
 {
-    cout << name << " sceneTransitionTimerComplete()! " << endl ; 
-    //sceneTransitionTimer.stop() ;
+    ofLogNotice()  << name << " sceneTransitionTimerComplete()! " << endl ;
     sceneTransitionTimer.reset() ; 
     if ( bTransitionIn == true )
     {

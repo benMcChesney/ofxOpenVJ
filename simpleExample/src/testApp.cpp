@@ -34,7 +34,7 @@ void testApp::setup() {
     set.addScene( new SimpleOpenCVScene((int)set.getNumScenes(), "SimpleOpenCVScene" ) ) ;
     
     set.initialize() ; 
-    
+   
 }
 
 //--------------------------------------------------------------

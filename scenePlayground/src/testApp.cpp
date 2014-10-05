@@ -7,7 +7,7 @@ void testApp::setup() {
     //Basic initialization of all components
     Tweenzor::init( ) ;
     
-	ofBackground(255*.15);
+	ofBackground(255 );
 	ofSetFrameRate(60);
 	ofSetVerticalSync(true);
 	ofSetEscapeQuitsApp(false);
@@ -19,7 +19,7 @@ void testApp::setup() {
     ofSetSmoothLighting(true);
     
     //ofSetLogLevel(OF_LOG_SILENT);
-    ofSetLogLevel(OF_LOG_VERBOSE ) ; 
+    ofSetLogLevel(OF_LOG_WARNING ) ;
 	
     int bufferSize = 512;
 	ofSoundStreamSetup(0, 1, this, 44100, bufferSize, 4);
@@ -27,17 +27,18 @@ void testApp::setup() {
     set.initKinectV1( );
     set.setup() ;
 
-    
-    set.addScene( new SimpleScene((int)set.getNumScenes(), "SimpleScene" ) ) ;
-    set.addScene( new TestScene((int)set.getNumScenes(), "TestScene" ) ) ;
+
+    //set.addScene( new ColorOutlineScene((int)set.getNumScenes(), "ColorOutlineScene" ) ) ;
+    set.addScene( new RippleTunnelScene((int)set.getNumScenes(), "RippleTunnelScene" ) ) ;
+    set.addScene( new TriangleKinectScene((int)set.getNumScenes(), "TriangleKinectScene" ) ) ;
     set.addScene( new SimplePointCloudScene((int)set.getNumScenes(), "SimplePointCloudScene" ) ) ;
     set.addScene( new SimpleOpenCVScene((int)set.getNumScenes(), "SimpleOpenCVScene" ) ) ;
     set.addScene( new SimpleMaskScene((int)set.getNumScenes(), "SimpleMaskScene" ) ) ;
-    set.addScene( new TronLines( (int)set.getNumScenes(), "TronLines" ) ) ; 
+    set.addScene( new TronLines( (int)set.getNumScenes(), "TronLines" ) ) ;
     set.initialize() ; 
     
 }
-
+	
 //--------------------------------------------------------------
 void testApp::update()
 {

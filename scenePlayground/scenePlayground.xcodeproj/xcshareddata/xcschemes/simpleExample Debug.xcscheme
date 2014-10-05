@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-               BuildableName = "scenePlayground.app"
-               BlueprintName = "scenePlayground"
+               BuildableName = "scenePlayground.temp_caseinsensitive_rename.app"
+               BlueprintName = "scenePlayground.temp_caseinsensitive_rename"
                ReferencedContainer = "container:scenePlayground.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,8 +33,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-            BuildableName = "scenePlayground.app"
-            BlueprintName = "scenePlayground"
+            BuildableName = "scenePlayground.temp_caseinsensitive_rename.app"
+            BlueprintName = "scenePlayground.temp_caseinsensitive_rename"
             ReferencedContainer = "container:scenePlayground.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -52,8 +52,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-            BuildableName = "scenePlayground.app"
-            BlueprintName = "scenePlayground"
+            BuildableName = "scenePlayground.temp_caseinsensitive_rename.app"
+            BlueprintName = "scenePlayground.temp_caseinsensitive_rename"
             ReferencedContainer = "container:scenePlayground.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -70,8 +70,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-            BuildableName = "scenePlayground.app"
-            BlueprintName = "scenePlayground"
+            BuildableName = "scenePlayground.temp_caseinsensitive_rename.app"
+            BlueprintName = "scenePlayground.temp_caseinsensitive_rename"
             ReferencedContainer = "container:scenePlayground.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

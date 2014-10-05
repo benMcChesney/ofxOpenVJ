@@ -23,7 +23,6 @@ public:
     
     void update();
     void draw();
-    void drawDebug();
     
     ofShader shader ; 
     ofFbo fbo ;

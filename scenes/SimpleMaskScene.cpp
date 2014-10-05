@@ -21,13 +21,11 @@ SimpleMaskScene::~SimpleMaskScene() {
 //--------------------------------------------------------------
 void SimpleMaskScene::setup() {
     
-    string path = ofToDataPath( "../../ofxOpenVJ/shaders/" ) ;
-    //
-    shader.load( path+"basic.vert", path+"hexagon.frag" ) ;
-    cout << " path : " << ofToDataPath( path , true ) << endl;
+    string path = BaseScene::getDefaultShaderDirectory() ;
+    shader.load( path+"basic.vert",path+"hexagon.frag" ) ;
     //tring path = ofToDataPath( "../../../../ofxOpenVJ/shaders/" ) ;
     
-    string maskPath = "../../ofxSimpleMask/shaders/" ; 
+    string maskPath = "../../../../ofxSimpleMask/shaders/" ;
     simpleMask.setup( maskPath+"composite_rgb", ofRectangle( 0 , 0 , ofGetScreenWidth() , ofGetScreenHeight() )) ;
    // shader.load( "shader/basicVertex.vert" , "shader/hexagon.frag" ) ;
     fbo.allocate( ofGetScreenWidth() , ofGetScreenHeight() ) ;
@@ -120,7 +118,7 @@ void SimpleMaskScene::draw() {
    
     ofSetColor(255, 255, 255);
     
-    if (  beatDetector->isBeat( 0 ) )
+    if (  soundManager->beatDetector.isBeat( 0 ) )
         offsetAmount = 1.0f ;
     
     fbo.begin() ;
@@ -153,14 +151,6 @@ void SimpleMaskScene::draw() {
     if ( offsetAmount < 0 )
         offsetAmount = 0 ; 
 }
-
-//--------------------------------------------------------------
-void SimpleMaskScene::drawDebug() {
-    
-}
-
-
-
 
 
 

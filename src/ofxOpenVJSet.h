@@ -11,6 +11,7 @@
 #include "ofxOpenVJ.h"
 #include "ofxSimpleTimer.h"
 #include "ofxOpenVJEvents.h"
+#include "SoundManager.h"
 
 class ofxOpenVJSet
 {
@@ -46,7 +47,6 @@ class ofxOpenVJSet
     bool bKinectCamGui;
     
     void audioReceived(float* input, int bufferSize, int nChannels);
-    float beatValue ;
     
     ofxSimpleTimer sceneTimer ;
     void sceneTimerComplete( int & args ) ;
@@ -69,8 +69,10 @@ protected :
 #endif
 
     CameraManager        cameraManager ;
-    ofxBeatDetector      beatDetector ;
+    SoundManager        soundManager ;
+    
     vector<BaseScene*> scenes;
+    
     int activeSceneIndex;
     
     float setTransitionTime , setDelayTime ; 

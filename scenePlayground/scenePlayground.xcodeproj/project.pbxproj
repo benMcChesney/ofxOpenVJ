@@ -77,6 +77,10 @@
 		6B3E9796196BAC77007DFBD6 /* SimpleMaskScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B3E9794196BAC77007DFBD6 /* SimpleMaskScene.cpp */; };
 		6B51B7FA193BEBC300DC5241 /* ofxSimpleTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B51B7F6193BEBC300DC5241 /* ofxSimpleTimer.cpp */; };
 		6B7AA3831925D5C80042801B /* ofxBeatDetector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B7AA3811925D5C80042801B /* ofxBeatDetector.cpp */; };
+		6BA987D819BD5A380055EE65 /* TriangleKinectScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6BA987D619BD5A380055EE65 /* TriangleKinectScene.cpp */; };
+		6BA987DB19BD63FE0055EE65 /* RippleTunnelScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6BA987D919BD63FE0055EE65 /* RippleTunnelScene.cpp */; };
+		6BA987DE19BD69000055EE65 /* SoundManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6BA987DC19BD69000055EE65 /* SoundManager.cpp */; };
+		6BA987E619BD707F0055EE65 /* ColorOutlineScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6BA987E419BD707F0055EE65 /* ColorOutlineScene.cpp */; };
 		6BA98BE219763753000BACB0 /* TronLines.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6BA98BE019763753000BACB0 /* TronLines.cpp */; };
 		6BBACDF5195D037D00139CF2 /* BaseScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6BBACDE0195D037D00139CF2 /* BaseScene.cpp */; };
 		6BBACDF6195D037D00139CF2 /* CameraManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6BBACDE2195D037D00139CF2 /* CameraManager.cpp */; };
@@ -371,6 +375,14 @@
 		6B7AA3821925D5C80042801B /* ofxBeatDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxBeatDetector.h; sourceTree = "<group>"; };
 		6B7AA38F1925E9420042801B /* SceneList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneList.h; sourceTree = "<group>"; };
 		6B907CFBB1B0FEDE76C41AA0 /* heap.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = heap.h; path = ../../ofxOpenCv/libs/opencv/include/opencv2/flann/heap.h; sourceTree = SOURCE_ROOT; };
+		6BA987D619BD5A380055EE65 /* TriangleKinectScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TriangleKinectScene.cpp; sourceTree = "<group>"; };
+		6BA987D719BD5A380055EE65 /* TriangleKinectScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriangleKinectScene.h; sourceTree = "<group>"; };
+		6BA987D919BD63FE0055EE65 /* RippleTunnelScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RippleTunnelScene.cpp; sourceTree = "<group>"; };
+		6BA987DA19BD63FE0055EE65 /* RippleTunnelScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RippleTunnelScene.h; sourceTree = "<group>"; };
+		6BA987DC19BD69000055EE65 /* SoundManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SoundManager.cpp; path = ../src/SoundManager.cpp; sourceTree = "<group>"; };
+		6BA987DD19BD69000055EE65 /* SoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SoundManager.h; path = ../src/SoundManager.h; sourceTree = "<group>"; };
+		6BA987E419BD707F0055EE65 /* ColorOutlineScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ColorOutlineScene.cpp; sourceTree = "<group>"; };
+		6BA987E519BD707F0055EE65 /* ColorOutlineScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorOutlineScene.h; sourceTree = "<group>"; };
 		6BA98BE019763753000BACB0 /* TronLines.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TronLines.cpp; sourceTree = "<group>"; };
 		6BA98BE119763753000BACB0 /* TronLines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TronLines.h; sourceTree = "<group>"; };
 		6BBACDE0195D037D00139CF2 /* BaseScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BaseScene.cpp; path = ../src/BaseScene.cpp; sourceTree = "<group>"; };
@@ -528,7 +540,7 @@
 		E45BE9770E8CC7DD009D7055 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
 		E45BE9790E8CC7DD009D7055 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
 		E45BE97A0E8CC7DD009D7055 /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = /System/Library/Frameworks/QuickTime.framework; sourceTree = "<absolute>"; };
-		E4B69B5B0A3A1756003C02F2 /* scenePlaygroundDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = scenePlaygroundDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4B69B5B0A3A1756003C02F2 /* scenePlayground.temp_caseinsensitive_renameDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = scenePlayground.temp_caseinsensitive_renameDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; path = "openFrameworks-Info.plist"; sourceTree = "<group>"; };
 		E4C2424410CC5A17004149E2 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		E4C2424510CC5A17004149E2 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
@@ -926,6 +938,12 @@
 		6B3E9785196BAB4E007DFBD6 /* scenes */ = {
 			isa = PBXGroup;
 			children = (
+				6BA987E419BD707F0055EE65 /* ColorOutlineScene.cpp */,
+				6BA987E519BD707F0055EE65 /* ColorOutlineScene.h */,
+				6BA987D919BD63FE0055EE65 /* RippleTunnelScene.cpp */,
+				6BA987DA19BD63FE0055EE65 /* RippleTunnelScene.h */,
+				6BA987D619BD5A380055EE65 /* TriangleKinectScene.cpp */,
+				6BA987D719BD5A380055EE65 /* TriangleKinectScene.h */,
 				6BA98BE019763753000BACB0 /* TronLines.cpp */,
 				6BA98BE119763753000BACB0 /* TronLines.h */,
 				6B3E9794196BAC77007DFBD6 /* SimpleMaskScene.cpp */,
@@ -1147,6 +1165,8 @@
 				6BBACDF3195D037D00139CF2 /* Scenes.h */,
 				6BBACDF4195D037D00139CF2 /* Utils.h */,
 				6B2277D5195F51D2001C99D7 /* ofxOpenVJEvents.h */,
+				6BA987DC19BD69000055EE65 /* SoundManager.cpp */,
+				6BA987DD19BD69000055EE65 /* SoundManager.h */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -1423,7 +1443,7 @@
 				E4EEC9E9138DF44700A80321 /* openFrameworks */,
 				BB4B014C10F69532006C3DED /* addons */,
 				E45BE5980E8CC70C009D7055 /* frameworks */,
-				E4B69B5B0A3A1756003C02F2 /* scenePlaygroundDebug.app */,
+				E4B69B5B0A3A1756003C02F2 /* scenePlayground.temp_caseinsensitive_renameDebug.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1534,9 +1554,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E4B69B5A0A3A1756003C02F2 /* scenePlayground */ = {
+		E4B69B5A0A3A1756003C02F2 /* scenePlayground.temp_caseinsensitive_rename */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E4B69B5F0A3A1757003C02F2 /* Build configuration list for PBXNativeTarget "scenePlayground" */;
+			buildConfigurationList = E4B69B5F0A3A1757003C02F2 /* Build configuration list for PBXNativeTarget "scenePlayground.temp_caseinsensitive_rename" */;
 			buildPhases = (
 				E4B69B580A3A1756003C02F2 /* Sources */,
 				E4B69B590A3A1756003C02F2 /* Frameworks */,
@@ -1548,9 +1568,9 @@
 			dependencies = (
 				E4EEB9AC138B136A00A80321 /* PBXTargetDependency */,
 			);
-			name = scenePlayground;
+			name = scenePlayground.temp_caseinsensitive_rename;
 			productName = myOFApp;
-			productReference = E4B69B5B0A3A1756003C02F2 /* scenePlaygroundDebug.app */;
+			productReference = E4B69B5B0A3A1756003C02F2 /* scenePlayground.temp_caseinsensitive_renameDebug.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1582,7 +1602,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				E4B69B5A0A3A1756003C02F2 /* scenePlayground */,
+				E4B69B5A0A3A1756003C02F2 /* scenePlayground.temp_caseinsensitive_rename */,
 			);
 		};
 /* End PBXProject section */
@@ -1673,6 +1693,7 @@
 				7F2CD93F681F3C1547B3BF2C /* ofxUIImageButton.cpp in Sources */,
 				FBD0CD0AFE3849C14E829CAF /* ofxUIImageSampler.cpp in Sources */,
 				26874B150C8535AEA0F24C8C /* ofxUIImageSlider.cpp in Sources */,
+				6BA987DB19BD63FE0055EE65 /* RippleTunnelScene.cpp in Sources */,
 				FB8AA9FA6535767BE31806BC /* ofxUIImageToggle.cpp in Sources */,
 				7C3DC84C9BFCBD2866DB2B6C /* ofxUILabel.cpp in Sources */,
 				FFD1EBFCA24DFB4E4427B4FE /* ofxUILabelButton.cpp in Sources */,
@@ -1716,6 +1737,7 @@
 				6B1CDF2B1921CE9C00C0982C /* FxaaPass.cpp in Sources */,
 				6B1CDF2C1921CE9C00C0982C /* GodRaysPass.cpp in Sources */,
 				6B1CDF2D1921CE9C00C0982C /* HorizontalTiltShifPass.cpp in Sources */,
+				6BA987E619BD707F0055EE65 /* ColorOutlineScene.cpp in Sources */,
 				6B1CDF2E1921CE9C00C0982C /* KaleidoscopePass.cpp in Sources */,
 				6B1CDF2F1921CE9C00C0982C /* LimbDarkeningPass.cpp in Sources */,
 				6B1CDF301921CE9C00C0982C /* LUTPass.cpp in Sources */,
@@ -1741,8 +1763,10 @@
 				6B3E978E196BAB4E007DFBD6 /* SimpleOpenCVScene.cpp in Sources */,
 				6B3E978F196BAB4E007DFBD6 /* SimplePointCloudScene.cpp in Sources */,
 				6B3E9790196BAB4E007DFBD6 /* SimpleScene.cpp in Sources */,
+				6BA987DE19BD69000055EE65 /* SoundManager.cpp in Sources */,
 				6B3E9791196BAB4E007DFBD6 /* TestScene.cpp in Sources */,
 				6B3E9796196BAC77007DFBD6 /* SimpleMaskScene.cpp in Sources */,
+				6BA987D819BD5A380055EE65 /* TriangleKinectScene.cpp in Sources */,
 				6BA98BE219763753000BACB0 /* TronLines.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2078,7 +2102,7 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_51)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_52)",
 				);
-				PRODUCT_NAME = scenePlaygroundDebug;
+				PRODUCT_NAME = scenePlayground.temp_caseinsensitive_renameDebug;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2163,7 +2187,7 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_50)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_51)",
 				);
-				PRODUCT_NAME = scenePlayground;
+				PRODUCT_NAME = scenePlayground.temp_caseinsensitive_rename;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -2180,7 +2204,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E4B69B5F0A3A1757003C02F2 /* Build configuration list for PBXNativeTarget "scenePlayground" */ = {
+		E4B69B5F0A3A1757003C02F2 /* Build configuration list for PBXNativeTarget "scenePlayground.temp_caseinsensitive_rename" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E4B69B600A3A1757003C02F2 /* Debug */,

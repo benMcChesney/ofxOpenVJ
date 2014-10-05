@@ -15,5 +15,9 @@
 #include "SimpleOpenCVScene.h"
 #include "SimpleMaskScene.h"
 #include "TronLines.h"
+#include "TriangleKinectScene.h"
+#include "RippleTunnelScene.h"
+#include "ColorOutlineScene.h"
+
 
 #endif

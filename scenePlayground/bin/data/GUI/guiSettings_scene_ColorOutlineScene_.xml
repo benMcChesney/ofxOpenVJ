@@ -1,0 +1,70 @@
+<Widget>
+    <Kind>4</Kind>
+    <Name>CONTOUR DELAY</Name>
+    <Value>296.633331299</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>HUE INCREMENT</Name>
+    <Value>0.228333339</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>HUE NOISE OFFSET</Name>
+    <Value>0.533333361</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>Z FORCE</Name>
+    <Value>-60.000003815</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>RADIUS</Name>
+    <Value>1002.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>RADIUS TIME</Name>
+    <Value>2.420000076</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>SPIRAL FACTOR</Name>
+    <Value>0.122000001</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>NUM MESHES</Name>
+    <Value>2.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>SPECIAL Z OFFSET</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>NOISE Z MULTIPLIER</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>RESAMPLE LINE AMOUNT</Name>
+    <Value>365.346679688</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>X OFFSET</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>Y OFFSET</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>Z OFFSET</Name>
+    <Value>0.000000000</Value>
+</Widget>

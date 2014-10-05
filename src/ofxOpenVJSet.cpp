@@ -22,7 +22,8 @@ void ofxOpenVJSet::setup() {
     bKinectCamGui = true;
     activeSceneIndex = 0;
     
-    beatDetector.enableBeatDetect() ;
+    soundManager.setup() ;
+
     //beatDetector.setBeatValue( 120 ) ;
     float guiY = 0 ;
     gui = new ofxUICanvas( 10, guiY, 320, ofGetHeight() - guiY - 10 );
@@ -43,7 +44,7 @@ void ofxOpenVJSet::setup() {
     
     sceneTimer.setup( 5000 , "SCENE TIMER" ) ; 
     ofAddListener( sceneTimer.TIMER_COMPLETE , this , &ofxOpenVJSet::sceneTimerComplete ) ;
-  
+    ofShowCursor() ;
 }
 
 void ofxOpenVJSet::initKinectV1( )
@@ -77,7 +78,7 @@ void ofxOpenVJSet::initKinectV2( )
 void ofxOpenVJSet::addScene( BaseScene * scene )
 {
     scenes.push_back( scene );
-    ofLogVerbose() << "added scene # " << scenes.size()  << " - " << scene->name ;
+    ofLogNotice() << "added scene # " << scenes.size()  << " - " << scene->name ;
 }
 
 void ofxOpenVJSet::initialize( )
@@ -93,7 +94,7 @@ void ofxOpenVJSet::initialize( )
 #ifdef USE_KINECT_V2
 		scenes[i]->depthCameraManager = depthCameraManager ; 
 #endif
-        scenes[i]->beatDetector     = &beatDetector;
+        scenes[i]->soundManager     = &soundManager;
         scenes[i]->cameraManager        = &cameraManager;
         scenes[i]->setup();
         scenes[i]->setupGui( 340 + 670 , guiY);
@@ -137,7 +138,8 @@ void ofxOpenVJSet::exit() {
 
 void ofxOpenVJSet::audioReceived(float* input, int bufferSize, int nChannels)
 {
-    beatDetector.update( input ) ;
+    soundManager.audioReceived( input , bufferSize , nChannels ) ;
+    soundManager.update() ;
     
 }
 
@@ -150,6 +152,7 @@ void ofxOpenVJSet::update() {
     depthCameraManager->update();
 #endif
     cameraManager.update();
+    soundManager.update() ;
     
     for ( auto scene = scenes.begin() ; scene != scenes.end() ; scene++ )
     {
@@ -158,16 +161,7 @@ void ofxOpenVJSet::update() {
     
     }
     
-//    ((ofxUISpectrum*)gui->getWidget("FFT")))->set
     
-    ((ofxUIToggle*)gui->getWidget("KICK"))->setValue( beatDetector.isKick() ) ;
-    ((ofxUIToggle*)gui->getWidget("SNARE"))->setValue( beatDetector.isSnare() ) ;
-    ((ofxUIToggle*)gui->getWidget("HAT"))->setValue( beatDetector.isHat() ) ;
-    
-   // ((ofxUIToggle*)gui->getWidget("SNARE"))->setValue( beatDetector.isSnare() ) ;
-   // ((ofxUIToggle*)gui->getWidget("KICK"))->setValue( beatDetector.isKick() );
-   // ((ofxUIToggle*)gui->getWidget("HAT"))->setValue( beatDetector.isHat() ) ;
-   // ((ofxUILabel*)gui->getWidget("BPM"))->setLabel( "BPM : " + ofToString( beatDetector.getBeatValue() ) ) ;
 }
 
 //--------------------------------------------------------------
@@ -245,11 +239,9 @@ void ofxOpenVJSet::setupMainGui() {
 
     
     
-    gui->addSpectrum("FFT" , beatDetector.getSmoothedFFT() , 32 ) ;
+    soundManager.setupGui( gui ) ;
     
-    gui->addToggle( "KICK" , false ) ;
-    gui->addToggle( "SNARE" , false ) ;
-    gui->addToggle( "HAT" , false ) ;
+  
 //    gui->addNumberDialer("BPM", 30, 200, 120, 0 ) ;
     //gui->addLabel("BPM" , "NONE" ) ;
     ofAddListener( gui->newGUIEvent, this, &ofxOpenVJSet::guiEvent );
@@ -312,6 +304,11 @@ void ofxOpenVJSet::setDrawGuis( bool bDraw ) {
     if(cameraManager.gui != NULL)
         cameraManager.gui->setVisible(bDrawGui);
     
+    
+    if ( bDraw )
+        ofShowCursor() ;
+    else
+        ofHideCursor() ; 
 }
 
 //--------------------------------------------------------------
