@@ -19,7 +19,7 @@ class ofxOpenVJSet
     ofxOpenVJSet() { }
     ~ofxOpenVJSet( ) { }
     
-    void setup();           //Defaults and other calls
+    void setup( int bufferSize );           //Defaults and other calls
     void initialize() ;     //This is called after the scenes have been added
     void addScene( BaseScene * scene ) ;
     
@@ -58,6 +58,8 @@ class ofxOpenVJSet
     
     void transitionToRelativeIndex ( int indexOffset ) ;
     bool bDrawDebug ;
+
+	SoundManager* getSoundManager() { return &soundManager;  }
     
 protected :
 #ifdef USE_KINECT

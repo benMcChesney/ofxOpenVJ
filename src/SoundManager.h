@@ -9,9 +9,14 @@
 #ifndef __scenePlayground__SoundManager__
 #define __scenePlayground__SoundManager__
 
+
+#include "ofxBeatTracking.h"
+
 #include "ofMain.h"
-#include "ofxBeatDetector.h"
+
 #include "ofxUI.h"
+
+
 
 
 class SoundManager
@@ -21,20 +26,21 @@ class SoundManager
     ~SoundManager() { }
 
     
-    void setup ( ) ;
+    void setup ( int bufferSize ) ;
     void setupGui( ofxUICanvas * gui ) ;
     void guiEvent( ofxUIEventArgs& e );
     
     void update( ) ;
     void draw ( ) ;
     void audioReceived(float* input, int bufferSize, int nChannels);
-    
-    ofxBeatDetector beatDetector ;
-    
+
+	ofxBeatTracking beatTracker ;
+
     ofxUICanvas * gui ;
     
     float beatValueDecay ;
     float low ; 
+	int bufferSize; 
 
 };
 

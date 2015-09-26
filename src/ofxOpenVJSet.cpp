@@ -9,7 +9,7 @@
 #include "ofxOpenVJSet.h"
 
 //--------------------------------------------------------------
-void ofxOpenVJSet::setup() {
+void ofxOpenVJSet::setup( int bufferSize ) {
     
     ofEnableSmoothing();
 	ofEnableAlphaBlending();
@@ -22,7 +22,7 @@ void ofxOpenVJSet::setup() {
     bKinectCamGui = true;
     activeSceneIndex = 0;
     
-    soundManager.setup() ;
+    soundManager.setup( bufferSize ) ;
 
     //beatDetector.setBeatValue( 120 ) ;
     float guiY = 0 ;

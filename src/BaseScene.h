@@ -12,7 +12,7 @@
 #include "ofxOpenVJEvents.h"
 #include "ofxOpenVJConstants.h"
 #include "CameraManager.h"
-#include "ofxBeatDetector.h"
+//#include "ofxBeatDetector.h"
 #include "DepthCameraManager.h"
 #include "Tweenzor.h"
 #include "ofxSimpleTimer.h"

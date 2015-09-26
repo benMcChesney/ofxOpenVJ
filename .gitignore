@@ -25,3 +25,7 @@ xcuserdata
 *.vcxproj.user
 *.suo
 *.sdf
+*.dll
+examples/simpleExample_noKinect/bin/simpleExample_noKinect_debug.exe
+*.exp
+*.opensdf

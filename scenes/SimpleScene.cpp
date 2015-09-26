@@ -77,11 +77,12 @@ void SimpleScene::draw()
         if ( count < drawNumCubes )
         {
             int cubeGroup = count % 3 ;
-            if ( cubeGroup == 0 && soundManager->beatDetector.isLow() == true )
+			
+            if ( cubeGroup == 0 && soundManager->beatTracker.isKick() == true )
                 ofSetColor( ofColor::red ) ;
-            else if ( cubeGroup == 1 && soundManager->beatDetector.isMid() == true )
+            else if ( cubeGroup == 1 && soundManager->beatTracker.isSnare() == true )
                 ofSetColor( ofColor::green ) ;
-            else if ( cubeGroup == 2 && soundManager->beatDetector.isHigh() == true )
+            else if ( cubeGroup == 2 && soundManager->beatTracker.isHat() == true )
                 ofSetColor( ofColor::blue ) ;
             else
                 ofSetColor( (*cube)->color ) ;
