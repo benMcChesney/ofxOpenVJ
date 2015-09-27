@@ -27,4 +27,7 @@ class ofApp : public ofBaseApp{
 		void audioReceived(float* input, int bufferSize, int nChannels);
 
 		ofxOpenVJSet set;
+
+		//ofxBeat beat;
+		void drawFFTBands(float x, float y, float width, float height);
 };

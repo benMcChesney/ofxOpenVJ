@@ -373,11 +373,11 @@
     <ClCompile Include="..\..\scenes\TestScene.cpp">
       <Filter>scenes</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\ofxBeatTracking\src\fft.cpp">
-      <Filter>addons\ofxBeatTracking\src</Filter>
+    <ClCompile Include="..\..\..\ofxBeat\src\fft.cpp">
+      <Filter>addons\ofxBeat\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\ofxBeatTracking\src\ofxBeatTracking.cpp">
-      <Filter>addons\ofxBeatTracking\src</Filter>
+    <ClCompile Include="..\..\..\ofxBeat\src\ofxBeat.cpp">
+      <Filter>addons\ofxBeat\src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -627,11 +627,11 @@
     <Filter Include="shaders">
       <UniqueIdentifier>{edfcbd09-0ab3-410e-b1d1-55dc13ca9053}</UniqueIdentifier>
     </Filter>
-    <Filter Include="addons\ofxBeatTracking">
-      <UniqueIdentifier>{2bafcca3-b75a-4dba-be88-cd3d746e2975}</UniqueIdentifier>
+    <Filter Include="addons\ofxBeat">
+      <UniqueIdentifier>{62b8c374-dba7-480a-9933-864fe8b3ce0a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="addons\ofxBeatTracking\src">
-      <UniqueIdentifier>{d6ff1862-13e8-4ab3-9d1e-713bf28ef488}</UniqueIdentifier>
+    <Filter Include="addons\ofxBeat\src">
+      <UniqueIdentifier>{f0186ebe-194e-410e-858e-a013f21495cd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1667,14 +1667,14 @@
     <ClInclude Include="..\..\scenes\TestScene.h">
       <Filter>scenes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\ofxBeatTracking\src\fft.h">
-      <Filter>addons\ofxBeatTracking\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\ofxBeatTracking\src\ofxBeatTracking.h">
-      <Filter>addons\ofxBeatTracking\src</Filter>
-    </ClInclude>
     <ClInclude Include="src\SceneList.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ofxBeat\src\fft.h">
+      <Filter>addons\ofxBeat\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ofxBeat\src\ofxBeat.h">
+      <Filter>addons\ofxBeat\src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

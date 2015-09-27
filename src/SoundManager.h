@@ -10,7 +10,7 @@
 #define __scenePlayground__SoundManager__
 
 
-#include "ofxBeatTracking.h"
+#include "ofxBeat.h"
 
 #include "ofMain.h"
 
@@ -19,7 +19,7 @@
 
 
 
-class SoundManager
+class SoundManager 
 {
     public :
     SoundManager() { }
@@ -34,7 +34,8 @@ class SoundManager
     void draw ( ) ;
     void audioReceived(float* input, int bufferSize, int nChannels);
 
-	ofxBeatTracking beatTracker ;
+	ofxBeat beatTracker ;
+	void drawFFTBands(float x, float y, float width, float height);
 
     ofxUICanvas * gui ;
     

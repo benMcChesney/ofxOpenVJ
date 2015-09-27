@@ -77,15 +77,31 @@ void SimpleScene::draw()
         if ( count < drawNumCubes )
         {
             int cubeGroup = count % 3 ;
-			
-            if ( cubeGroup == 0 && soundManager->beatTracker.isKick() == true )
-                ofSetColor( ofColor::red ) ;
-            else if ( cubeGroup == 1 && soundManager->beatTracker.isSnare() == true )
-                ofSetColor( ofColor::green ) ;
-            else if ( cubeGroup == 2 && soundManager->beatTracker.isHat() == true )
-                ofSetColor( ofColor::blue ) ;
-            else
-                ofSetColor( (*cube)->color ) ;
+			ofColor newColor; 
+			ofColor c; 
+			c = (*cube)->color;
+
+			if (cubeGroup == 0 )
+			{
+				
+				newColor = c.lerp(ofColor::red, soundManager->beatTracker.isKick()); 
+				//ofSetColor(newColor);
+			}
+	
+              
+			else if (cubeGroup == 1 )
+			{
+				newColor = c.lerp(ofColor::green, soundManager->beatTracker.isSnare());
+				//ofSetColor(newColor);
+			}
+                
+			else if (cubeGroup == 2)
+			{
+				newColor = c.lerp(ofColor::blue, soundManager->beatTracker.isHat());
+				//ofSetColor(newColor);
+			}
+
+			ofSetColor( newColor );
             ofDrawBox( (*cube)->position , (*cube)->size ) ;
         }
         count++ ; 

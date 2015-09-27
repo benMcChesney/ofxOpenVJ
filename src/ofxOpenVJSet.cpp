@@ -139,7 +139,6 @@ void ofxOpenVJSet::exit() {
 void ofxOpenVJSet::audioReceived(float* input, int bufferSize, int nChannels)
 {
     soundManager.audioReceived( input , bufferSize , nChannels ) ;
-    soundManager.update() ;
     
 }
 
