@@ -8,12 +8,11 @@
 
 #include "BaseScene.h"
 
-BaseScene::BaseScene() { gui = NULL; index = -1 ;  }
+BaseScene::BaseScene() { index = -1 ;  }
 BaseScene::BaseScene( int a_index, string a_name )
 {
     index = a_index;
     name = a_name;
-    gui=NULL;
     bTransitionIn = false ;
     bTransitionOut = false ;
     tweenArgs = 0.0f ; 
@@ -22,22 +21,26 @@ BaseScene::BaseScene( int a_index, string a_name )
 
 BaseScene::~BaseScene()
 {
-    if(gui != NULL) { delete gui; gui = NULL;}
-    cout << "BaseScene " << name << "->deconstructor()" << endl;
+  /*  if(gui != NULL) { delete gui; gui = NULL;}
+    cout << "BaseScene " << name << "->deconstructor()" << endl;*/
 };
+
+void BaseScene::drawGui()
+{
+	if (bDrawGui)
+		gui.draw();
+}
 
 void BaseScene::setupGui(float a_x , float a_y )
 {
     sceneTransitionTimer.setup( 500 , name + " timer" ) ;
     ofAddListener( sceneTransitionTimer.TIMER_COMPLETE , this , &BaseScene::sceneTransitionTimerComplete ) ;
-    
-    gui = new ofxUIScrollableCanvas( a_x, a_y, 320, ofGetHeight() - 10 - a_y );
-    gui->addWidgetDown(new ofxUILabel(name+" Scene Settings", OFX_UI_FONT_LARGE));
-    gui->addButton( "SAVE SETTINGS" , false ) ;
-    gui->addButton( "LOAD SETTINGS" , false ) ;
-    gui->addSpacer(300, 2);
+	gui.setup(name + " Scene Settings" );
+	gui.setPosition(a_x, a_y); 
+	gui.setWidthElements(320);
+    //gui = new ofxUIScrollableCanvas( a_x, a_y, 320, ofGetHeight() - 10 - a_y );
 }
-
+/*
 //--------------------------------------------------------------
 void BaseScene::guiEvent(ofxUIEventArgs &e)
 {
@@ -51,7 +54,7 @@ void BaseScene::guiEvent(ofxUIEventArgs &e)
         saveSettings() ;
     
 }
-
+*/
 bool BaseScene::transitionIn( float delay , float transitionTime )
 {
     if ( bTransitionIn == true  )
@@ -83,8 +86,7 @@ bool BaseScene::transitionOut( float delay , float transitionTime )
     if ( bTransitionOut == true  )
         return false ;
     
-    if ( gui != NULL )
-        gui->setVisible( false ) ; 
+	bDrawGui = false; 
     ofLogNotice() << " BaseScene :: " << name << " transition OUT ! " << endl ;
     
     bTransitionOut = true ;
@@ -150,25 +152,17 @@ void BaseScene::activate( )
 void BaseScene::deactivate()
 {
     bVisible = false ;
-    if(gui != NULL)
-    {
-        gui->setVisible(false);
-    }
+	bDrawGui = false;
 };
 
 void BaseScene::loadSettings()
 {
-    if(gui!=NULL) {
-        gui->loadSettings( getXMLSettingsName() );
-    }
+   
 }
 
 void BaseScene::saveSettings()
 {
-    if(gui!=NULL) {
-        cout << "BaseScene :: saveSettings() : " << getXMLSettingsName() << endl;
-        gui->saveSettings( getXMLSettingsName() );
-    }
+  
 };
 
 

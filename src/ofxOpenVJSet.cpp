@@ -17,8 +17,6 @@ void ofxOpenVJSet::setup( int bufferSize ) {
     ofSetSmoothLighting(true);
     
     // init reference vars before gui gets them //
-    bDrawGui    = false;
-    bAutoSceneSwitch = false;
     bKinectCamGui = true;
     activeSceneIndex = 0;
     
@@ -26,10 +24,11 @@ void ofxOpenVJSet::setup( int bufferSize ) {
 
     //beatDetector.setBeatValue( 120 ) ;
     float guiY = 0 ;
-    gui = new ofxUICanvas( 10, guiY, 320, ofGetHeight() - guiY - 10 );
+	gui.setup();// = new ofxUICanvas(10, guiY, 320, ofGetHeight() - guiY - 10);
     setupMainGui();
-    gui->loadSettings("GUI/mainGuiSettings.xml");
-    gui->setVisible( bDrawGui );
+	//gui.load
+    //gui->loadSettings("GUI/mainGuiSettings.xml");
+    //gui->setVisible( bDrawGui );
     
     //A few ifdefs to make sure there's not a gap in the GUIs
     float guiX = 340 ;
@@ -37,11 +36,13 @@ void ofxOpenVJSet::setup( int bufferSize ) {
     ofAddListener( ofxOpenVJEvents::Instance()->SCENE_TRANSITION_IN_COMPLETE , this , &ofxOpenVJSet::sceneTransitionInHandler ) ;
     ofAddListener( ofxOpenVJEvents::Instance()->SCENE_TRANSITION_OUT_COMPLETE , this , &ofxOpenVJSet::sceneTransitionOutHandler ) ;
     
+	/*
     cameraManager.setup();
     cameraManager.setupGui( 670 , guiY);
     cameraManager.loadSettings();
     cameraManager.gui->setVisible( false );
-    
+    */
+
     sceneTimer.setup( 5000 , "SCENE TIMER" ) ; 
     ofAddListener( sceneTimer.TIMER_COMPLETE , this , &ofxOpenVJSet::sceneTimerComplete ) ;
     ofShowCursor() ;
@@ -95,7 +96,7 @@ void ofxOpenVJSet::initialize( )
 		scenes[i]->depthCameraManager = depthCameraManager ; 
 #endif
         scenes[i]->soundManager     = &soundManager;
-        scenes[i]->cameraManager        = &cameraManager;
+        //scenes[i]->cameraManager        = &cameraManager;
         scenes[i]->setup();
         scenes[i]->setupGui( 340 + 670 , guiY);
         scenes[i]->loadSettings();
@@ -110,11 +111,11 @@ void ofxOpenVJSet::initialize( )
     scenes[activeSceneIndex]->transitionIn( setDelayTime , setTransitionTime );
     
     
-    gui->loadSettings( "GUI/mainGuiSettings.xml" );
+    //gui->loadFromFile( "GUI/mainGuiSettings.xml" );
 #ifdef USE_KINECT
     depthCameraManager->loadSettings();
 #endif
-    cameraManager.loadSettings();
+    //cameraManager.loadSettings();
 }
 
 //--------------------------------------------------------------
@@ -132,7 +133,7 @@ void ofxOpenVJSet::exit() {
     depthCameraManager->close();
 #endif
     
-    delete gui; gui = NULL;
+   // delete gui; gui = NULL;
     
 }
 
@@ -150,7 +151,7 @@ void ofxOpenVJSet::update() {
 #ifdef USE_KINECT
     depthCameraManager->update();
 #endif
-    cameraManager.update();
+    //cameraManager.update();
     soundManager.update() ;
     
     for ( auto scene = scenes.begin() ; scene != scenes.end() ; scene++ )
@@ -179,6 +180,17 @@ void ofxOpenVJSet::draw() {
     //   outputSyphonServer.publishScreen() ;
 #endif
 
+
+	if (bDrawGui == true)
+	{
+		for (auto scene = scenes.begin(); scene != scenes.end(); scene++)
+		{
+			// if ( (*scene)->isVisible() == true )
+			(*scene)->drawGui();
+		}
+		gui.draw(); 
+	}
+
     if ( bDrawDebug == true )
     {
         for ( auto scene = scenes.begin() ; scene != scenes.end() ; scene++ )
@@ -199,9 +211,7 @@ void ofxOpenVJSet::sceneTimerComplete( int & args )
     
     scenes[lastSceneIndex]->transitionOut( setDelayTime , setTransitionTime );
     //scenes[lastSceneIndex]->deactivate();
-   
-    if(bDrawGui)
-        scenes[activeSceneIndex]->gui->setVisible(true);
+   	scenes[activeSceneIndex]->bDrawGui = bDrawGui;
    
     scenes[activeSceneIndex]->transitionIn( setDelayTime , setTransitionTime );
 }
@@ -209,45 +219,18 @@ void ofxOpenVJSet::sceneTimerComplete( int & args )
 //--------------------------------------------------------------
 void ofxOpenVJSet::setupMainGui() {
     float guiW = 300;
-    
-    gui->setPadding(10);
-    
-    gui->addWidgetDown(new ofxUILabel("Main Settings", OFX_UI_FONT_LARGE));
-    
-    gui->addSpacer(guiW, 2);
-   
-    gui->addButton( "SAVE SETTINGS" , false ) ;
-    gui->addButton( "LOAD SETTINGS" , false ) ;
-    
-    gui->addSpacer(guiW, 1);
-    gui->addWidgetDown(new ofxUIFPS(OFX_UI_FONT_SMALL));
-    gui->addWidgetRight( new ofxUIButton("B_DRAW_GUI", false, 16, 16) );
-    
-    gui->addSpacer(guiW, 1);
-    gui->addWidgetDown( new ofxUIToggle("FULLSCREEN", false, 16, 16) );
-    gui->addWidgetRight( new ofxUIToggle("B_SHOVE_OVER", false, 16, 16) );
-    gui->addWidgetDown( new ofxUITextInput( "Projector Width", "1920", 120, 16) );
-    gui->addWidgetRight( new ofxUITextInput( "Projector Height", "1080", 120, 16) );
-    gui->addToggle( "DRAW DEBUG INFO" , &bDrawDebug ) ; 
-    gui->addSpacer(guiW, 1);
-    gui->addWidgetDown( new ofxUIToggle("B_AUTO_SCENE_SWITCH", false, 16, 16) );
-    
-    gui->addSlider("SCENE DELAY TIME", 0.0f , 120.0f, 30.0f  );
-    gui->addSlider("SET TRANSITION TIME", 0.1f , 2.0f , &setTransitionTime ) ;
-    gui->addSlider("SET DELAY TIME", 0.1f , 4.0f , &setDelayTime ) ;
-
-    
-    
-    soundManager.setupGui( gui ) ;
-    
-  
-//    gui->addNumberDialer("BPM", 30, 200, 120, 0 ) ;
-    //gui->addLabel("BPM" , "NONE" ) ;
-    ofAddListener( gui->newGUIEvent, this, &ofxOpenVJSet::guiEvent );
-    
+ 
+	gui.setup("ofxOpenVJ Settings"); 
+	gui.add(projectorWidth.setup("WIDTH", 1920, 50, 3840)); 
+	gui.add(projectorHeight.setup("HEIGHT", 1080, 50, 1400 ));
+	gui.add(bDrawDebug.setup("DRAW DEBUG")); 
+	gui.add(bAutoSceneSwitch.setup("AUTO SCENE SWITCH")); 
+	gui.add(setTransitionTime.setup("SET TRANSITION TIME", 0.5f, 0.1f, 3.0f));
+	gui.add(setDelayTime.setup("SET DELAY TIME", 0.2f, 0.1f, 4.0f)); 
     
 }
 
+/*
 //--------------------------------------------------------------
 void ofxOpenVJSet::guiEvent( ofxUIEventArgs& e ) {
     string name = e.widget->getName();
@@ -283,25 +266,23 @@ void ofxOpenVJSet::guiEvent( ofxUIEventArgs& e ) {
             sceneTimer.start( true , true ) ;
     } 
     
-}
+}*/
 
 //--------------------------------------------------------------
 void ofxOpenVJSet::setDrawGuis( bool bDraw ) {
-    ((ofxUIToggle*)gui->getWidget("B_DRAW_GUI"))->setValue(bDraw);
-    bDrawGui = ((ofxUIToggle*)gui->getWidget("B_DRAW_GUI"))->getValue();
-    
+
     if(Scenes::isValidIndex( activeSceneIndex )) {
-        scenes[activeSceneIndex]->gui->setVisible(bDrawGui);
+		scenes[activeSceneIndex]->bDrawGui = bDraw; 
     }
     
-    
-    gui->setVisible(bDrawGui);
+	bDrawGui = bDraw; 
+
 #ifdef USE_KINECT
     if ( depthCameraManager != NULL && depthCameraManager->gui != NULL )
         depthCameraManager->gui->setVisible( bDrawGui );
 #endif
-    if(cameraManager.gui != NULL)
-        cameraManager.gui->setVisible(bDrawGui);
+   // if(cameraManager.gui != NULL)
+   //     cameraManager.gui->setVisible(bDrawGui);
     
     
     if ( bDraw )
@@ -311,12 +292,10 @@ void ofxOpenVJSet::setDrawGuis( bool bDraw ) {
 }
 
 //--------------------------------------------------------------
-void ofxOpenVJSet::setSceneBounds() {
-    int pw = ofToInt( ((ofxUITextInput*)gui->getWidget("Projector Width"))->getTextString() );
-    int ph = ofToInt( ((ofxUITextInput*)gui->getWidget("Projector Height"))->getTextString() );
-    
+void ofxOpenVJSet::setSceneBounds()
+{
     for(int i = 0; i < scenes.size(); i++ ) {
-        scenes[i]->setBounds(pw, ph);
+        scenes[i]->setBounds( projectorWidth , projectorHeight );
     }
 }
 
@@ -354,21 +333,13 @@ void ofxOpenVJSet::keyPressed(int key)
 {	
     switch ( key )
     {
-        case 'f':
-        case 'F':
-        {
-            ((ofxUIToggle*)gui->getWidget("FULLSCREEN"))->toggleValue();
-            bool bSetFullscreen = ((ofxUIToggle*)gui->getWidget("FULLSCREEN"))->getValue();
-            ofSetFullscreen( bSetFullscreen );
-        }
-            break ; 
     
         case 'g':
         case 'G':
         {
-            ((ofxUIToggle*)gui->getWidget("B_DRAW_GUI"))->toggleValue();
-            bDrawGui = ((ofxUIToggle*)gui->getWidget("B_DRAW_GUI"))->getValue();
+			bDrawGui = !bDrawGui; 
             setDrawGuis( bDrawGui );
+			cout << "bDrawGui should be :" << bDrawGui << endl;
         }
             break ;
     
@@ -403,8 +374,8 @@ void ofxOpenVJSet::transitionToRelativeIndex ( int indexOffset )
         
         ofLogNotice() << "[" << activeSceneIndex << "] is IN" << endl ; 
         
-        if(bDrawGui)
-            scenes[activeSceneIndex]->gui->setVisible(true);
+		//if (bDrawGui)
+			scenes[activeSceneIndex]->bDrawGui = bDrawGui; 
         scenes[activeSceneIndex]->transitionIn( setDelayTime, setTransitionTime ) ;
     }
     else

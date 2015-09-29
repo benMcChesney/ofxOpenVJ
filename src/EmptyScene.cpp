@@ -29,16 +29,10 @@ void EmptyScene::setupGui(float a_x, float a_y)
     // creates new gui and adds the name to it //
     BaseScene::setupGui(a_x, a_y);
     
-    ofAddListener( gui->newGUIEvent, this, &EmptyScene::guiEvent );
-    loadSettings() ; 
+   // ofAddListener( gui->newGUIEvent, this, &EmptyScene::guiEvent );
+   // loadSettings() ; 
 }
 
-//--------------------------------------------------------------
-void EmptyScene::guiEvent(ofxUIEventArgs &e) {
-    
-    BaseScene::guiEvent( e ) ; 
-
- }
 
 //--------------------------------------------------------------
 void EmptyScene::activate() {

@@ -8,15 +8,15 @@
 
 #pragma once
 #include "ofMain.h"
-#include "ofxUI.h"
 #include "ofxOpenVJEvents.h"
 #include "ofxOpenVJConstants.h"
-#include "CameraManager.h"
+//#include "CameraManager.h"
 //#include "ofxBeatDetector.h"
 #include "DepthCameraManager.h"
 #include "Tweenzor.h"
 #include "ofxSimpleTimer.h"
 #include "SoundManager.h"
+#include "ofxGui.h"
 
 #ifdef USE_KINECT
 #include "KinectManager.h"
@@ -42,8 +42,8 @@ public:
     virtual void activate();
     virtual void deactivate(); 
     
-    void toggleGui() { if(gui!=NULL) {gui->toggleVisible();} };
-    virtual void guiEvent(ofxUIEventArgs &e) ; 
+    void toggleGui()  { bDrawGui = !bDrawGui; }
+    //virtual void guiEvent(ofxGui &e) ; 
     
     void loadSettings() ; 
     void saveSettings() ;
@@ -58,7 +58,8 @@ public:
     int index ;
     string name;
     
-    ofxUIScrollableCanvas* gui;
+	bool bDrawGui;
+	ofxPanel gui;
     
     #ifdef USE_KINECT
     DepthCameraManager* depthCameraManager;
@@ -71,13 +72,14 @@ public:
     virtual void transitionInComplete ( ) ; 
     virtual bool transitionOut( float delay , float transitionTime ) ;
     virtual void transitionOutComplete( ) ;
+	virtual void drawGui(); 
     
 #ifdef USE_KINECT_V2
 	DepthCameraManager * depthCameraManager ; 
 #endif
     
     SoundManager * soundManager ; 
-    CameraManager* cameraManager;
+   // CameraManager* cameraManager;
     bool bVisible ;
     
     void sceneTransitionTimerComplete ( int & args ) ;

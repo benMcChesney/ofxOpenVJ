@@ -8,7 +8,7 @@
 #pragma once
 #include "ofMain.h"
 #include "ofxParticle3D.h"
-#include "ofxUI.h"
+#include "ofxGui.h"
 #include "ofxPostProcessing.h"
 
 class CameraManager
@@ -35,13 +35,13 @@ public:
     void setLong( float lng) {_longitude = lng;}
     void setLat( float lat) {_latitude = lat;}
     
-    void guiEvent( ofxUIEventArgs &e );
+   // void guiEvent( ofxUIEventArgs &e );
     void setupGui( float a_x=0, float a_y=0 );
     
     void loadSettings();
     void saveSettings();
     
-    ofxUIScrollableCanvas* gui;
+	ofxPanel gui; 
     void updateFft( float _low , float _mid , float _high ) ;
     
     float zOffset ;

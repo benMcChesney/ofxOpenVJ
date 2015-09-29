@@ -11,13 +11,7 @@
 
 #include "TestScene.h"
 #include "SimpleScene.h"
-#include "SimplePointCloudScene.h"
-#include "SimpleOpenCVScene.h"
-#include "SimpleMaskScene.h"
-#include "TronLines.h"
-#include "TriangleKinectScene.h"
-#include "RippleTunnelScene.h"
-#include "ColorOutlineScene.h"
+
 
 
 #endif

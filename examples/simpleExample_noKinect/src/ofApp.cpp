@@ -31,7 +31,8 @@ void ofApp::setup(){
 
 	//set.addScene( new ColorOutlineScene((int)set.getNumScenes(), "ColorOutlineScene" ) ) ;
 	set.addScene(new SimpleScene((int)set.getNumScenes(), "Simple Scene"));
-	set.addScene(new RippleTunnelScene((int)set.getNumScenes(), "RippleTunnelScene"));
+	set.addScene(new TestScene((int)set.getNumScenes(), "Test Scene"));
+//	set.addScene(new RippleTunnelScene((int)set.getNumScenes(), "RippleTunnelScene"));
 	//set.addScene(new TriangleKinectScene((int)set.getNumScenes(), "TriangleKinectScene"));
 	//set.addScene(new SimplePointCloudScene((int)set.getNumScenes(), "SimplePointCloudScene"));
 	//set.addScene(new SimpleOpenCVScene((int)set.getNumScenes(), "SimpleOpenCVScene"));
@@ -106,7 +107,7 @@ void ofApp::drawFFTBands(float x, float y, float width, float height)
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-	set.draw();
+	set.keyPressed(key); 
 }
 
 

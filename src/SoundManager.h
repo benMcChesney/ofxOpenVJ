@@ -14,7 +14,7 @@
 
 #include "ofMain.h"
 
-#include "ofxUI.h"
+#include "ofxGui.h"
 
 
 
@@ -27,8 +27,8 @@ class SoundManager
 
     
     void setup ( int bufferSize ) ;
-    void setupGui( ofxUICanvas * gui ) ;
-    void guiEvent( ofxUIEventArgs& e );
+    //void setupGui( ofxUICanvas * gui ) ;
+    //void guiEvent( ofxUIEventArgs& e );
     
     void update( ) ;
     void draw ( ) ;
@@ -37,7 +37,8 @@ class SoundManager
 	ofxBeat beatTracker ;
 	void drawFFTBands(float x, float y, float width, float height);
 
-    ofxUICanvas * gui ;
+    ofxPanel gui ;
+	bool bDrawGui; 
     
     float beatValueDecay ;
     float low ; 

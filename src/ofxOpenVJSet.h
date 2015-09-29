@@ -29,7 +29,7 @@ class ofxOpenVJSet
 	void draw();
     
     void setupMainGui();
-    void guiEvent( ofxUIEventArgs& e );
+   // void guiEvent( ofxUIEventArgs& e );
     
     void setDrawGuis( bool bDraw );
     void setSceneBounds();
@@ -40,10 +40,9 @@ class ofxOpenVJSet
 	void initKinectV2( ) ; 
        
     // main gui vars - FPS, shove render FBO over, etc. //
-    ofxUICanvas* gui;
+    ofxPanel gui;
 
-    bool bDrawGui;
-    bool bAutoSceneSwitch;
+   // bool bDrawGui;
     bool bKinectCamGui;
     
     void audioReceived(float* input, int bufferSize, int nChannels);
@@ -57,7 +56,6 @@ class ofxOpenVJSet
     void sceneTransitionOutHandler( ofxOpenVJEventArgs &args ) ;
     
     void transitionToRelativeIndex ( int indexOffset ) ;
-    bool bDrawDebug ;
 
 	SoundManager* getSoundManager() { return &soundManager;  }
     
@@ -70,13 +68,24 @@ protected :
 	DepthCameraManager	* depthCameraManager ; 
 #endif
 
-    CameraManager        cameraManager ;
+    //CameraManager        cameraManager ;
     SoundManager        soundManager ;
     
     vector<BaseScene*> scenes;
     
     int activeSceneIndex;
     
-    float setTransitionTime , setDelayTime ; 
+    //float setTransitionTime , setDelayTime ; 
 
+	//Gui
+	ofxIntSlider projectorWidth;
+	ofxIntSlider projectorHeight; 
+	
+	ofxButton bDrawDebug;
+	bool bDrawGui; 
+	ofxButton bAutoSceneSwitch;
+	ofxFloatSlider setTransitionTime;
+	ofxFloatSlider setDelayTime;
+
+	
 };

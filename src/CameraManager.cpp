@@ -44,12 +44,13 @@ void CameraManager::setup() {
 
 //--------------------------------------------------------------
 void CameraManager::loadSettings() {
-    gui->loadSettings("GUI/camera_.xml");
+  //  gui->loadSettings("GUI/camera_.xml");
+	gui.loadFromFile("GUI/camera_.xml "); 
 }
 
 //--------------------------------------------------------------
 void CameraManager::saveSettings() {
-    gui->saveSettings("GUI/camera_.xml");
+    gui.saveToFile("GUI/camera_.xml");
 }
 
 void CameraManager::begin()
@@ -170,6 +171,7 @@ void CameraManager::updateFft( float _low , float _mid , float _high )
     high = _high ;
     
     _numBeatHits++;
+	/*
     if(_numBeatHits >= _maxBeatHits) {
         if(_bAuto) {
             if(ofRandom(0,1) > .5) {
@@ -186,7 +188,7 @@ void CameraManager::updateFft( float _low , float _mid , float _high )
         }
         
         _numBeatHits = 0;
-    }
+    }*/
 
 }
 
@@ -239,7 +241,7 @@ void CameraManager::setCenter(float a_x, float a_y, float a_z) {
 void CameraManager::setCenter(ofVec3f a_center) {
     _center.set(a_center);
 }
-
+/*
 //--------------------------------------------------------------
 void CameraManager::guiEvent(ofxUIEventArgs &e) {
     string ename = e.widget->getName();
@@ -379,9 +381,10 @@ void CameraManager::guiEvent(ofxUIEventArgs &e) {
      }
 
 }
-
+*/
 //--------------------------------------------------------------
 void CameraManager::setupGui( float a_x, float a_y ) {
+	/*
     gui = new ofxUIScrollableCanvas( a_x, a_y, 320, ofGetHeight() + 300 - a_y );
     
     float GUI_WIDGET_WIDTH = 300;
@@ -435,7 +438,7 @@ void CameraManager::setupGui( float a_x, float a_y ) {
     
     //cameraTargetZ
     gui->setScrollArea(a_x, a_y, 320, ofGetHeight() - 10 - a_y);
-    ofAddListener( gui->newGUIEvent, this, &CameraManager::guiEvent );
+    ofAddListener( gui->newGUIEvent, this, &CameraManager::guiEvent );*/
 }
 
 

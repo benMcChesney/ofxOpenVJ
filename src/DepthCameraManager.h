@@ -9,8 +9,8 @@
 #pragma once
 #include "ofMain.h"
 #include "ofxOpenVJConstants.h"
-#include "ofxUI.h"
 #include "ofxOpenCv.h"
+#include "ofxGui.h"
 
 class DepthCameraManager
 {
@@ -34,10 +34,10 @@ public:
 	virtual void calculatePointCloud( ) ; 
 	virtual ofPoint cvPointToScreen( ofPoint p , float width = ofGetWidth() , float height = ofGetHeight() ) { return ofPoint() ; } 
     virtual ofPoint cvPointToScreen( float x , float y , float width = ofGetWidth() , float height = ofGetHeight() ) { return cvPointToScreen( ofPoint ( x , y ) , width , height  ) ; }
-    
+    /*
     virtual void guiEvent(ofxUIEventArgs &e);
     virtual void setupGui(float a_x=0, float a_y=0);
-    
+    */
     virtual void loadSettings();
     virtual void saveSettings();
     
@@ -64,7 +64,7 @@ public:
 	ofImage depthImage ; 
 	//ofImage colorImage ; 
 
-    ofxUIScrollableCanvas* gui;
+    ofxPanel gui;
   
     // open cv work, for use with 2D elements //
     ofxCvGrayscaleImage grayImage; // grayscale depth image

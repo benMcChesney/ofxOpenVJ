@@ -72,26 +72,3 @@ void SoundManager::audioReceived(float* input, int bufferSize, int nChannels)
 {
 	beatTracker.audioReceived(input, bufferSize, nChannels);
 }
-
-void SoundManager::setupGui( ofxUICanvas * _gui )
-{
-    gui = _gui ;
-    gui->addSpacer() ;
-    gui->addLabel( "SOUND PARAMS" ) ;
-    
-
-	//gui->addSpectrum("FFT", beatTracker.getFFTRef(), FFT_SUBBANDS );
-    
-    gui->addSlider( "BEAT DECAY", 0.0f , 0.1f , &beatValueDecay ) ;
-    gui->addToggle( "KICK" , false ) ;
-    gui->addToggle( "SNARE" , false ) ;
-    gui->addToggle( "HAT" , false ) ;
-    
-   ofAddListener( gui->newGUIEvent, this, &SoundManager::guiEvent );
-}
-
-void SoundManager::guiEvent( ofxUIEventArgs& e )
-{
-    
-
-}

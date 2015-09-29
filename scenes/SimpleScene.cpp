@@ -13,7 +13,8 @@ void SimpleScene::setup()
     spawnRadius = 500 ;
     numCubes = 60 ;
     cubeSize = 50 ;
-    drawNumCubes = 0.0f ; 
+	drawNumCubes = 0.0f;
+
     generateRandomCubes() ;
 }
 
@@ -21,22 +22,13 @@ void SimpleScene::setupGui(float a_x, float a_y)
 {
     BaseScene::setupGui( a_x , a_y ) ;
     
-    gui->addSlider("SPAWN RADIUS", 300, 1500, &spawnRadius ) ;
-    gui->addSlider("NUM CUBES" , 1, 2000 , &numCubes ) ;
-    gui->addSlider("CUBE SIZE", 1 , 100 , &cubeSize ) ;
-    
-    gui->addButton("GENERATE CUBES" , false ) ;
-    
-    ofAddListener( gui->newGUIEvent , this , &SimpleScene::guiEvent ) ;
-    loadSettings() ; 
-}
+	gui.add(spawnRadius.setup("SPAWN RADIUS", spawnRadius, 300, 1500)); 
+	gui.add(numCubes.setup("NUM CUBES", numCubes, 1, 2000));
+	gui.add(cubeSize.setup("CUBE SIZE", cubeSize, 1, 100)); 
+	gui.add(generateCubesButton.setup("REGENERATE CUBES")); 
 
-void SimpleScene::guiEvent(ofxUIEventArgs &e )
-{
-    BaseScene::guiEvent( e ) ; 
-    string name = e.getName() ;
-    if ( name == "GENERATE CUBES" && e.getButton()->getValue() == true )
-        generateRandomCubes() ;
+	generateCubesButton.addListener(this, &SimpleScene::generateRandomCubes); 
+    loadSettings() ; 
 }
 
 void SimpleScene::generateRandomCubes( )
@@ -51,9 +43,9 @@ void SimpleScene::generateRandomCubes( )
     
     for ( int i = 0 ; i < (int)numCubes  ; i++ )
     {
-        cubes.push_back( new ColorCube() ) ;
+        cubes.push_back( new ColorSquare() ) ;
         cubes[i]->color = ofColor::fromHsb( ofRandom( 255 ) , 255 , 255 ) ;
-        cubes[i]->position = getRandomPointInSpawnRadius() ;
+		cubes[i]->position = ofPoint(ofRandom(0, ofGetWidth()), ofRandom(0, ofGetHeight()));
         cubes[i]->size = cubeSize ;
     }
     
@@ -67,7 +59,7 @@ void SimpleScene::update()
 
 void SimpleScene::draw()
 {
-    cameraManager->begin() ;
+    //cameraManager->begin() ;
     
     ofSetColor( 255 , 0 , 0 ) ;
 
@@ -102,12 +94,14 @@ void SimpleScene::draw()
 			}
 
 			ofSetColor( newColor );
-            ofDrawBox( (*cube)->position , (*cube)->size ) ;
+			ofSetRectMode(OF_RECTMODE_CENTER); 
+            ofRect( (*cube)->position , (*cube)->size , (*cube)->size) ;
+			ofSetRectMode(OF_RECTMODE_CORNER);
         }
         count++ ; 
     }
     
-    cameraManager->end() ;
+    //cameraManager->end() ;
     sceneTransitionTimer.draw( 50 , 50 ) ;
 }
 
