@@ -14,7 +14,7 @@ git clone https://github.com/NickHardeman/ofxTweenzor.git
 
 git clone https://github.com/darrenmothersele/ofxBeat.git
 
-git clone https://github.com/frauzufall/ofxGuiExtended.git
+#git clone https://github.com/frauzufall/ofxGuiExtended.git
 #for now pull down ofxGUI from https://github.com/arturoc/openFrameworks/tree/refactor-gui
 
 

@@ -30,6 +30,7 @@ public :
     
     void update();
     void draw();
+	void drawDebug(); 
     
     void activate();
     void deactivate();

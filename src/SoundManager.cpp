@@ -6,6 +6,7 @@
 //
 //
 #include "SoundManager.h"
+#include "ofxOpenVJConstants.h"
 
 
 void SoundManager::setup ( int _bufferSize )
@@ -21,7 +22,6 @@ void SoundManager::update( )
 void SoundManager::drawFFTBands(float x, float y, float width, float height)
 {
 	ofPushMatrix();
-
 
 	//HighHat / Snare / Kick + Space 
 	float widthPerBand = width / ((float)(FFT_SUBBANDS + 4.0));
@@ -57,15 +57,12 @@ void SoundManager::drawFFTBands(float x, float y, float width, float height)
 	ofDrawBitmapStringHighlight("H", x + (FFT_SUBBANDS + 3) * widthPerBand, y + height + 1);
 
 	ofPopMatrix();
-
-
-
 }
 
 
 void SoundManager::draw ( )
 {
-	drawFFTBands(400, 400, 400, 400); 
+	
 }
 
 void SoundManager::audioReceived(float* input, int bufferSize, int nChannels)

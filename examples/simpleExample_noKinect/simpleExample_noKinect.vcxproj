@@ -174,6 +174,7 @@
     <ClCompile Include="..\..\scenes\SimpleScene.cpp" />
     <ClCompile Include="..\..\scenes\TestScene.cpp" />
     <ClCompile Include="..\..\src\CameraManager.cpp" />
+    <ClCompile Include="..\..\src\CompositorManager.cpp" />
     <ClCompile Include="..\..\src\DepthCameraManager.cpp" />
     <ClCompile Include="..\..\src\ofxParticle2D.cpp" />
     <ClCompile Include="..\..\src\ofxParticle3D.cpp" />
@@ -260,6 +261,7 @@
     <ClInclude Include="..\..\scenes\SimpleScene.h" />
     <ClInclude Include="..\..\scenes\TestScene.h" />
     <ClInclude Include="..\..\src\CameraManager.h" />
+    <ClInclude Include="..\..\src\CompositorManager.h" />
     <ClInclude Include="..\..\src\DepthCameraManager.h" />
     <ClInclude Include="..\..\src\ofxParticle2D.h" />
     <ClInclude Include="..\..\src\ofxParticle3D.h" />

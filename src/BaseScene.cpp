@@ -33,8 +33,12 @@ void BaseScene::drawGui()
 
 void BaseScene::setupGui(float a_x , float a_y )
 {
+	//Non Gui things that happen every scene
+	setupCompositor();
     sceneTransitionTimer.setup( 500 , name + " timer" ) ;
     ofAddListener( sceneTransitionTimer.TIMER_COMPLETE , this , &BaseScene::sceneTransitionTimerComplete ) ;
+
+	//GUI Things
 	gui.setDefaultWidth(ofxOpenVJConstants::Instance()->GUI_WIDGET_WIDTH); 
 	gui.setDefaultHeight(ofxOpenVJConstants::Instance()->GUI_WIDGET_HEIGHT);
 
@@ -42,24 +46,8 @@ void BaseScene::setupGui(float a_x , float a_y )
 	gui.setBackgroundColor(ofxOpenVJConstants::Instance()->GUI_WIDGET_BG_COLOR); 
 	gui.setPosition(a_x, a_y); 
 	gui.setWidthElements(320);
+}
 
-    //gui = new ofxUIScrollableCanvas( a_x, a_y, 320, ofGetHeight() - 10 - a_y );
-}
-/*
-//--------------------------------------------------------------
-void BaseScene::guiEvent(ofxUIEventArgs &e)
-{
-    string name = e.widget->getName();
-    int kind = e.widget->getKind();
-    
-    if ( name == "LOAD SETTINGS" && e.getButton()->getValue() == true )
-        loadSettings() ;
-    
-    if ( name == "SAVE SETTINGS" && e.getButton()->getValue() == true )
-        saveSettings() ;
-    
-}
-*/
 bool BaseScene::transitionIn( float delay , float transitionTime )
 {
     if ( bTransitionIn == true  )
@@ -75,7 +63,7 @@ bool BaseScene::transitionIn( float delay , float transitionTime )
     //tweenArgs = 0.0f ;
     /*
      
-     TODO : how to get BaseScene to trigger it's own tween with compelte listener
+     ///TODO : how to get BaseScene to trigger it's own tween with compelte listener
     baseTweenArgs = 0.0f ;
     Tweenzor::add( &baseTweenArgs , 0.0f , 1.0f , delay , transitionTime ) ;
     Tweenzor::addCompleteListener( Tweenzor::getTween( &baseTweenArgs ) , this , &BaseScene::transitionInComplete ) ;
@@ -177,6 +165,15 @@ string BaseScene::getSettingsPath()
 	stringstream ss;
 	ss << "/GUI/" << name << "_Scene.xml";
 	return ss.str(); 
+}
+
+void BaseScene::setupCompositor()
+{
+	fbo.allocate(ofGetWidth(), ofGetHeight(), GL_RGBA); 
+
+	fbo.begin(); 
+	ofClear(0, 0, 0, 1); 
+	fbo.end(); 
 }
 
 

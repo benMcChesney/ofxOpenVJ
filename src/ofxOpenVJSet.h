@@ -70,6 +70,7 @@ protected :
 
     //CameraManager        cameraManager ;
     SoundManager        soundManager ;
+	CompositorManager	compositorManager; 
     
     vector<BaseScene*> scenes;
     

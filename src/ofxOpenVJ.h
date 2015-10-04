@@ -12,6 +12,7 @@
 #include "ofxOpenVJConstants.h"
 #include "Scenes.h"
 #include "CameraManager.h"
+#include "CompositorManager.h"
 
 #ifdef USE_KINECT
 #include "KinectManager.h"

@@ -1,4 +1,5 @@
 
+
 # ofxOpenVJ #
 
 
@@ -15,16 +16,24 @@ This software is released under the MIT License
 You can use it commercially or otherwise. For more details check out
 http://opensource.org/licenses/MIT
 
-Built using Open Frameworks version 0.8.1 on OS X ( for now ) 
+## Update
+
+ Update ! I no longer have an OSX computer so all further development / examples will focused on Windows 10+. But ! Since it's openFrameworks I'm sure most of it will work fine on OSX with just a little bit of love and project setup. The only split per platform should be using Spout or Syphon as your main output. 
+
+ All examples from me will be in VS2015 moving forward
+
+## end Update
+
+Built using Open Frameworks latest on Github ( close to 0.9 release ) on Windows 10 in VS Community 2015
 
 ## Community addons 
 	[ofxTweenzor] https://github.com/NickHardeman/ofxTweenzor
 	
-	[ofxUI] https://github.com/rezaali/ofxUI
-	
 	[ofxSimpleTimer] https://github.com/HeliosInteractive/ofxSimpleTimer
+
+	[ofxSimpleMask] https://github.com/HeliosInteractive/ofxSimpleMask
 	
-	[ofxBeatDetector] https://github.com/rezaali/ofxBeatDetector
+	[ofxBeat] https://github.com/darrenmothersele/ofxBeat
 	
 	[ofxPostProcessing] https://github.com/neilmendoza/ofxPostProcessing
 	

@@ -21,17 +21,11 @@ void ofxOpenVJSet::setup( int bufferSize ) {
     activeSceneIndex = 0;
     
     soundManager.setup( bufferSize ) ;
+	compositorManager.setup(); 
 
-    //beatDetector.setBeatValue( 120 ) ;
     float guiY = 0 ;
-	gui.setup();// = new ofxUICanvas(10, guiY, 320, ofGetHeight() - guiY - 10);
+	gui.setup();
     setupMainGui();
-	//gui.load
-    //gui->loadSettings("GUI/mainGuiSettings.xml");
-    //gui->setVisible( bDrawGui );
-    
-    //A few ifdefs to make sure there's not a gap in the GUIs
-    float guiX = 340 ;
 
     ofAddListener( ofxOpenVJEvents::Instance()->SCENE_TRANSITION_IN_COMPLETE , this , &ofxOpenVJSet::sceneTransitionInHandler ) ;
     ofAddListener( ofxOpenVJEvents::Instance()->SCENE_TRANSITION_OUT_COMPLETE , this , &ofxOpenVJSet::sceneTransitionOutHandler ) ;
@@ -86,7 +80,8 @@ void ofxOpenVJSet::initialize( )
 {
     float guiY = 0 ;
     setSceneBounds();
-    for(int i = 0; i < scenes.size(); i++) {
+    for(int i = 0; i < scenes.size(); i++)
+	{
         Scenes::registerScene(scenes[i]->index, scenes[i]->name);
 #ifdef USE_KINECT
         scenes[i]->depthCameraManager        = depthCameraManager;
@@ -96,6 +91,7 @@ void ofxOpenVJSet::initialize( )
 		scenes[i]->depthCameraManager = depthCameraManager ; 
 #endif
         scenes[i]->soundManager     = &soundManager;
+		scenes[i]->compositorManager = &compositorManager;
         //scenes[i]->cameraManager        = &cameraManager;
         scenes[i]->setup();
         scenes[i]->setupGui( 340 + 670 , guiY);
@@ -122,8 +118,7 @@ void ofxOpenVJSet::initialize( )
 void ofxOpenVJSet::exit() {
     
     for(int i = 0; i < scenes.size(); i++ )
-    {
-        
+    {   
         delete scenes[i];
         scenes[i] = NULL;
     }
@@ -153,6 +148,7 @@ void ofxOpenVJSet::update() {
 #endif
     //cameraManager.update();
     soundManager.update() ;
+	compositorManager.update(); 
     
     for ( auto scene = scenes.begin() ; scene != scenes.end() ; scene++ )
     {
@@ -170,11 +166,15 @@ void ofxOpenVJSet::draw() {
     
     for ( auto scene = scenes.begin() ; scene != scenes.end() ; scene++ )
     {
-        if ( (*scene)->bVisible == true )
-            (*scene)->draw();
+		if ((*scene)->bVisible == true)
+		{
+			(*scene)->draw();
+			compositorManager.drawScene( &(*scene)->fbo , ofColor( 0 , 0 , 0 , 1 )  ); 
+		}
     }
     
     ofSetColor(255);
+
     
 #ifdef USE_SYPHON
     //   outputSyphonServer.publishScreen() ;
@@ -188,8 +188,9 @@ void ofxOpenVJSet::draw() {
 			// if ( (*scene)->isVisible() == true )
 			(*scene)->drawGui();
 		}
+		compositorManager.gui.draw(); 
 		gui.draw(); 
-		getSoundManager()->drawFFTBands( 0 , 0 , 400, 200);
+		getSoundManager()->drawFFTBands( 0 , 0 , ofxOpenVJConstants::Instance()->GUI_WIDGET_WIDTH , 200);
 	}
 
     if ( bDrawDebug == true )

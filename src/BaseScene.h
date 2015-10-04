@@ -16,6 +16,7 @@
 #include "Tweenzor.h"
 #include "ofxSimpleTimer.h"
 #include "SoundManager.h"
+#include "CompositorManager.h"
 #include "ofxGui.h"
 
 #ifdef USE_KINECT
@@ -80,7 +81,10 @@ public:
 #endif
     
     SoundManager * soundManager ; 
-   // CameraManager* cameraManager;
+	CompositorManager * compositorManager;
+	ofFbo fbo; 
+	void setupCompositor(); 
+
     bool bVisible ;
     
     void sceneTransitionTimerComplete ( int & args ) ;

@@ -11,9 +11,7 @@
 
 
 #include "ofxBeat.h"
-
 #include "ofMain.h"
-
 #include "ofxGui.h"
 
 

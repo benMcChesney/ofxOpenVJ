@@ -265,6 +265,9 @@
     <ClCompile Include="..\..\scenes\TestScene.cpp">
       <Filter>addons\ofxOpenVJ\scenes</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\CompositorManager.cpp">
+      <Filter>addons\ofxOpenVJ\src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -1408,6 +1411,9 @@
     </ClInclude>
     <ClInclude Include="..\..\scenes\TestScene.h">
       <Filter>addons\ofxOpenVJ\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\CompositorManager.h">
+      <Filter>addons\ofxOpenVJ\src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

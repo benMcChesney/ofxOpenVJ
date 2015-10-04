@@ -21,6 +21,7 @@ void SimpleScene::setup()
 void SimpleScene::setupGui(float a_x, float a_y)
 {
     BaseScene::setupGui( a_x , a_y ) ;
+
     
 	ofxOpenVJConstants *c = ofxOpenVJConstants::Instance(); 
 	gui.add(spawnRadius.setup("SPAWN RADIUS", spawnRadius, 300, 1500, c->GUI_WIDGET_WIDTH , c->GUI_WIDGET_HEIGHT )); 
@@ -61,7 +62,8 @@ void SimpleScene::update()
 void SimpleScene::draw()
 {
     //cameraManager->begin() ;
-    
+	fbo.begin(); 
+
     ofSetColor( 255 , 0 , 0 ) ;
 
     int count = 0 ;
@@ -101,9 +103,11 @@ void SimpleScene::draw()
         }
         count++ ; 
     }
+
+	fbo.end(); 
     
     //cameraManager->end() ;
-    sceneTransitionTimer.draw( 50 , 50 ) ;
+  
 }
 
 
@@ -132,6 +136,11 @@ bool SimpleScene::transitionOut( float delay , float transitionTime )
         Tweenzor::add( &drawNumCubes , numCubes , 0.0f , delay , transitionTime , EASE_OUT_QUAD ) ;
     }
     return true ;
+}
+
+void SimpleScene::drawDebug( )
+{
+	sceneTransitionTimer.draw(50 , 50);
 }
 
 void SimpleScene::activate()
