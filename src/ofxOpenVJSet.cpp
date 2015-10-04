@@ -163,7 +163,8 @@ void ofxOpenVJSet::update() {
 //--------------------------------------------------------------
 void ofxOpenVJSet::draw() {
     
-    
+	compositorManager.beginDraw(); 
+
     for ( auto scene = scenes.begin() ; scene != scenes.end() ; scene++ )
     {
 		if ((*scene)->bVisible == true)
@@ -172,6 +173,8 @@ void ofxOpenVJSet::draw() {
 			compositorManager.drawScene( &(*scene)->fbo , ofColor( 0 , 0 , 0 , 1 )  ); 
 		}
     }
+
+	compositorManager.endDraw(); 
     
     ofSetColor(255);
 

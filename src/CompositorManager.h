@@ -9,7 +9,22 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofxPostGlitch.h"
 #include "ofxGui.h"
+class GlitchGuiMap
+{
+public:
+	GlitchGuiMap(string _label, ofxPostGlitchType _type)
+	{
+		label = _label;
+		type = _type;
+		toggle.setup(label, false);
+	}
+
+	ofxToggle toggle;
+	string label;
+	ofxPostGlitchType type;
+};
 
 class CompositorManager
 {
@@ -23,11 +38,17 @@ class CompositorManager
     
     void update( ) ;
 	void drawScene( ofFbo * fbo , ofColor clearColor ); 
+	void beginDraw(); 
+	void endDraw(); 
 
     ofxPanel gui ;
 	bool bDrawGui; 
 
 	ofxColorSlider channels;
 
+	ofxPostGlitch glitch  ; 
+	ofFbo fbo; 
+
+	vector< GlitchGuiMap * > glitches;
 
 };

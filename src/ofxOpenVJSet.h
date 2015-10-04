@@ -13,6 +13,9 @@
 #include "ofxOpenVJEvents.h"
 #include "SoundManager.h"
 
+
+
+
 class ofxOpenVJSet
 {
     public :
@@ -89,4 +92,8 @@ protected :
 	ofxFloatSlider setDelayTime;
 
 	
+
+	
 };
+
+
