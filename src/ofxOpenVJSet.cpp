@@ -113,7 +113,7 @@ void ofxOpenVJSet::initialize( )
 		scenes[i]->compositorManager = &compositorManager;
         //scenes[i]->cameraManager        = &cameraManager;
         scenes[i]->setup();
-        scenes[i]->setupGui( 340 + 670 , guiY);
+        scenes[i]->setupGui( ofxOpenVJConstants::Instance()->GUI_WIDGET_WIDTH * 3  , guiY);
         scenes[i]->loadSettings();
         scenes[i]->deactivate();
     }
@@ -216,9 +216,13 @@ void ofxOpenVJSet::draw() {
 			// if ( (*scene)->isVisible() == true )
 			(*scene)->drawGui();
 		}
+		soundManager.gui.draw(); 
 		compositorManager.gui.draw(); 
 		gui.draw(); 
-		getSoundManager()->drawFFTBands( 0 , 0 , ofxOpenVJConstants::Instance()->GUI_WIDGET_WIDTH , 200);
+
+		ofxOpenVJConstants * c = ofxOpenVJConstants::Instance(); 
+		soundManager.drawFFTBands( 0 , 0 , c->GUI_WIDGET_WIDTH , 200);
+		getSoundManager()->bpmTapper.draw( 25 , 220 + c->GUI_WIDGET_WIDTH / 2, 15  ) ;
 	}
 
     if ( bDrawDebug == true )
@@ -409,7 +413,8 @@ void ofxOpenVJSet::newMidiMessage(ofxMidiMessage& msg)
 	// make a copy of the latest message
 	midiMessage = msg;
 
-	compositorManager.midiMessageRecieved(msg);
+	compositorManager.midiMessageRecieved(msg); 
+	soundManager.midiMessageRecieved(msg); 
 }
 
 void ofxOpenVJSet::transitionToRelativeIndex ( int indexOffset ) 

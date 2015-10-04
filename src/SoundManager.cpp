@@ -9,14 +9,44 @@
 #include "ofxOpenVJConstants.h"
 
 
+
 void SoundManager::setup ( int _bufferSize )
 {
 	bufferSize = _bufferSize; 
+
+	ofxOpenVJConstants * c = ofxOpenVJConstants::Instance(); 
+	gui.setDefaultWidth(c->GUI_WIDGET_WIDTH); 
+	gui.setDefaultHeight(c->GUI_WIDGET_HEIGHT); 
+	gui.setup("SOUND MANAGER PANEL", "GUI/soundManagerGui.xml", c->GUI_WIDGET_WIDTH * 4, 0); 
+
+	gui.add(beatPerc.setup("BEAT %", 0.0f , 1.0f , 1.0f )); 
+	gui.add(beat.setup("BEAT ?", false)); 
+	gui.add(button_tapBPM.setup("TAP", false)); 
+	gui.add(button_clearBPM.setup("RESET BPM")); 
+	gui.add(bpmLabel.setup("BPM", "NONE" )); 
+
+	button_tapBPM.addListener(this, &SoundManager::tapBPM);
+	button_clearBPM.addListener(this, &SoundManager::clearBPM);
+}
+
+void SoundManager::tapBPM()
+{
+	bpmTapper.tap(); 
+	cout << "BPM TAP ! " << endl; 
+}
+
+void SoundManager::clearBPM()
+{
+	bpmTapper.startFresh(); 
+	cout << "BPM CLEAR ! " << endl;
 }
 
 void SoundManager::update( )
 {
 	beatTracker.update(ofGetElapsedTimeMillis());
+	bpmTapper.update();
+	beatPerc = bpmTapper.beatPerc(); 
+	//bpmLabel.set = ofToString( bpmTapper.bpm() ) ; 
 }
 
 void SoundManager::drawFFTBands(float x, float y, float width, float height)
@@ -57,6 +87,21 @@ void SoundManager::drawFFTBands(float x, float y, float width, float height)
 	ofDrawBitmapStringHighlight("H", x + (FFT_SUBBANDS + 3) * widthPerBand, y + height + 1);
 
 	ofPopMatrix();
+}
+
+void SoundManager::midiMessageRecieved(ofxMidiMessage& msg)
+{
+	if (msg.status == MIDI_NOTE_ON)
+	{
+		if (msg.pitch == 37)
+		{
+			tapBPM(); 
+		}
+		else if (msg.pitch == 36)
+		{
+			clearBPM(); 
+		}
+	}
 }
 
 

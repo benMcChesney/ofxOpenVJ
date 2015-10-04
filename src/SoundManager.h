@@ -13,8 +13,8 @@
 #include "ofxBeat.h"
 #include "ofMain.h"
 #include "ofxGui.h"
-
-
+#include "MSABPMTapper.h"
+#include "ofxMidi.h"
 
 
 class SoundManager 
@@ -31,6 +31,7 @@ class SoundManager
     void update( ) ;
     void draw ( ) ;
     void audioReceived(float* input, int bufferSize, int nChannels);
+	void midiMessageRecieved(ofxMidiMessage& msg);
 
 	ofxBeat beatTracker ;
 	void drawFFTBands(float x, float y, float width, float height);
@@ -42,6 +43,17 @@ class SoundManager
     float low ; 
 	int bufferSize; 
 
+	//BPM
+	msa::BPMTapper  bpmTapper;
+
+	void tapBPM(); 
+	void clearBPM(); 
+
+	ofxFloatSlider beatPerc; 
+	ofxButton beat; 
+	ofxButton button_tapBPM; 
+	ofxButton button_clearBPM; 
+	//ofxLabel bpmLabel; 
 };
 
 

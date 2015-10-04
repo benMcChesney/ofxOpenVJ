@@ -295,6 +295,9 @@
     <ClCompile Include="..\..\..\ofxSpout\src\ofxSpout.cpp">
       <Filter>addons\ofxSpout\src</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\ofxMSABPMTapper\src\MSABPMTapper.cpp">
+      <Filter>addons\ofxMSABPMTapper\src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -554,6 +557,18 @@
     </Filter>
     <Filter Include="addons\ofxSpout\libs\include">
       <UniqueIdentifier>{af55f841-2b03-46ac-9ec7-0342594ece1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxMSABPMTapper">
+      <UniqueIdentifier>{91dfbcbf-16bc-4f67-b71d-5917f00b3ef8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxMSATimer">
+      <UniqueIdentifier>{e4fe7de6-37a8-4513-abaf-19b08c6b1830}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxMSABPMTapper\src">
+      <UniqueIdentifier>{c70f289c-73f6-4386-92a7-906c0dde1398}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxMSATimer\src">
+      <UniqueIdentifier>{6a0f94ea-8268-4ddc-9937-8f7653e21e5c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1507,6 +1522,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\ofxSpout\libs\include\Spout.h">
       <Filter>addons\ofxSpout\libs\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ofxMSATimer\src\MSATimer.h">
+      <Filter>addons\ofxMSATimer\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ofxMSABPMTapper\src\MSABPMTapper.h">
+      <Filter>addons\ofxMSABPMTapper\src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
