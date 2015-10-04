@@ -35,7 +35,10 @@ void BaseScene::setupGui(float a_x , float a_y )
 {
     sceneTransitionTimer.setup( 500 , name + " timer" ) ;
     ofAddListener( sceneTransitionTimer.TIMER_COMPLETE , this , &BaseScene::sceneTransitionTimerComplete ) ;
-	gui.setup(name + " Scene Settings" );
+	gui.setDefaultWidth(ofxOpenVJConstants::Instance()->GUI_WIDGET_WIDTH); 
+	gui.setDefaultHeight(ofxOpenVJConstants::Instance()->GUI_WIDGET_HEIGHT);
+
+	gui.setup(name + " Scene Settings" , getSettingsPath() );
 	gui.setBackgroundColor(ofxOpenVJConstants::Instance()->GUI_WIDGET_BG_COLOR); 
 	gui.setPosition(a_x, a_y); 
 	gui.setWidthElements(320);
@@ -159,13 +162,22 @@ void BaseScene::deactivate()
 
 void BaseScene::loadSettings()
 {
-   
+	gui.loadFromFile(getSettingsPath()); 
 }
+
 
 void BaseScene::saveSettings()
 {
-  
+	gui.saveToFile(getSettingsPath());
 };
+
+
+string BaseScene::getSettingsPath()
+{
+	stringstream ss;
+	ss << "/GUI/" << name << "_Scene.xml";
+	return ss.str(); 
+}
 
 
 

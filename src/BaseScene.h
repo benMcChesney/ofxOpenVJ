@@ -47,7 +47,8 @@ public:
     
     void loadSettings() ; 
     void saveSettings() ;
-    
+	string getSettingsPath(); 
+
     float getWidth() { return _width; }
     float getHeight() { return _height; }
     void setBounds( float w, float h) { _width = w; _height = h; }

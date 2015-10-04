@@ -81,9 +81,9 @@ protected :
 	ofxIntSlider projectorWidth;
 	ofxIntSlider projectorHeight; 
 	
-	ofxButton bDrawDebug;
+	ofxToggle bDrawDebug;
 	bool bDrawGui; 
-	ofxButton bAutoSceneSwitch;
+	ofxToggle bAutoSceneSwitch;
 	ofxFloatSlider setTransitionTime;
 	ofxFloatSlider setDelayTime;
 
