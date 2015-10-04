@@ -36,8 +36,10 @@ void BaseScene::setupGui(float a_x , float a_y )
     sceneTransitionTimer.setup( 500 , name + " timer" ) ;
     ofAddListener( sceneTransitionTimer.TIMER_COMPLETE , this , &BaseScene::sceneTransitionTimerComplete ) ;
 	gui.setup(name + " Scene Settings" );
+	gui.setBackgroundColor(ofxOpenVJConstants::Instance()->GUI_WIDGET_BG_COLOR); 
 	gui.setPosition(a_x, a_y); 
 	gui.setWidthElements(320);
+
     //gui = new ofxUIScrollableCanvas( a_x, a_y, 320, ofGetHeight() - 10 - a_y );
 }
 /*

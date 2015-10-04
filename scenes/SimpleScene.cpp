@@ -22,10 +22,11 @@ void SimpleScene::setupGui(float a_x, float a_y)
 {
     BaseScene::setupGui( a_x , a_y ) ;
     
-	gui.add(spawnRadius.setup("SPAWN RADIUS", spawnRadius, 300, 1500)); 
-	gui.add(numCubes.setup("NUM CUBES", numCubes, 1, 2000));
-	gui.add(cubeSize.setup("CUBE SIZE", cubeSize, 1, 100)); 
-	gui.add(generateCubesButton.setup("REGENERATE CUBES")); 
+	ofxOpenVJConstants *c = ofxOpenVJConstants::Instance(); 
+	gui.add(spawnRadius.setup("SPAWN RADIUS", spawnRadius, 300, 1500, c->GUI_WIDGET_WIDTH , c->GUI_WIDGET_HEIGHT )); 
+	gui.add(numCubes.setup("NUM CUBES", numCubes, 1, 2000, c->GUI_WIDGET_WIDTH, c->GUI_WIDGET_HEIGHT));
+	gui.add(cubeSize.setup("CUBE SIZE", cubeSize, 1, 100, c->GUI_WIDGET_WIDTH, c->GUI_WIDGET_HEIGHT));
+	gui.add(generateCubesButton.setup("REGENERATE CUBES" , c->GUI_WIDGET_HEIGHT , c->GUI_WIDGET_HEIGHT )); 
 
 	generateCubesButton.addListener(this, &SimpleScene::generateRandomCubes); 
     loadSettings() ; 

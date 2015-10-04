@@ -221,12 +221,16 @@ void ofxOpenVJSet::setupMainGui() {
     float guiW = 300;
  
 	gui.setup("ofxOpenVJ Settings"); 
-	gui.add(projectorWidth.setup("WIDTH", 1920, 50, 3840)); 
-	gui.add(projectorHeight.setup("HEIGHT", 1080, 50, 1400 ));
-	gui.add(bDrawDebug.setup("DRAW DEBUG")); 
-	gui.add(bAutoSceneSwitch.setup("AUTO SCENE SWITCH")); 
-	gui.add(setTransitionTime.setup("SET TRANSITION TIME", 0.5f, 0.1f, 3.0f));
-	gui.add(setDelayTime.setup("SET DELAY TIME", 0.2f, 0.1f, 4.0f)); 
+
+	ofxOpenVJConstants *c = ofxOpenVJConstants::Instance();
+
+	gui.setBackgroundColor(c->GUI_WIDGET_BG_COLOR); 
+	gui.add(projectorWidth.setup("WIDTH", 1920, 50, 3840 , c->GUI_WIDGET_WIDTH, c->GUI_WIDGET_HEIGHT ));
+	gui.add(projectorHeight.setup("HEIGHT", 1080, 50, 1400,c->GUI_WIDGET_WIDTH, c->GUI_WIDGET_HEIGHT));
+	gui.add(bDrawDebug.setup("DRAW DEBUG", c->GUI_WIDGET_HEIGHT, c->GUI_WIDGET_HEIGHT));
+	gui.add(bAutoSceneSwitch.setup("AUTO SCENE SWITCH" , c->GUI_WIDGET_HEIGHT, c->GUI_WIDGET_HEIGHT));	
+	gui.add(setTransitionTime.setup("SET TRANSITION TIME", 0.5f, 0.1f, 3.0f, c->GUI_WIDGET_WIDTH,c->GUI_WIDGET_HEIGHT));
+	gui.add(setDelayTime.setup("SET DELAY TIME", 0.2f, 0.1f, 4.0f, c->GUI_WIDGET_WIDTH, c->GUI_WIDGET_HEIGHT));
     
 }
 

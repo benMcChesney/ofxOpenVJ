@@ -17,5 +17,26 @@
 
 class ofxOpenVJConstants {
 public:
+
+	ofxOpenVJConstants()
+	{
+		GUI_WIDGET_WIDTH = 300; 
+		GUI_WIDGET_HEIGHT = 45; 
+		GUI_WIDGET_BG_COLOR = ofColor(15, 15, 15, 128); 
+	}
+
+	static ofxOpenVJConstants* Instance()
+	{
+		static ofxOpenVJConstants inst;
+		return &inst;
+	}
+
+	float GUI_WIDGET_WIDTH; 
+	float GUI_WIDGET_HEIGHT; 
+	ofColor GUI_WIDGET_BG_COLOR; 
     
 };
+
+
+
+
