@@ -52,7 +52,10 @@ void ofxOpenVJSet::setup( int bufferSize ) {
     cameraManager.loadSettings();
     cameraManager.gui->setVisible( false );
     */
-
+#ifdef USE_SPOUT
+	// initialize Spout with a sender name, and a texture size
+	ofxSpout::init("ofxOpenVJ Set", ofGetWidth(), ofGetHeight(), true);
+#endif
     sceneTimer.setup( 5000 , "SCENE TIMER" ) ; 
     ofAddListener( sceneTimer.TIMER_COMPLETE , this , &ofxOpenVJSet::sceneTimerComplete ) ;
     ofShowCursor() ;
@@ -178,7 +181,10 @@ void ofxOpenVJSet::update() {
 
 //--------------------------------------------------------------
 void ofxOpenVJSet::draw() {
-    
+#ifdef USE_SPOUT
+	ofxSpout::initSender();
+#endif
+
 	compositorManager.beginDraw(); 
 
     for ( auto scene = scenes.begin() ; scene != scenes.end() ; scene++ )
@@ -191,7 +197,10 @@ void ofxOpenVJSet::draw() {
     }
 
 	compositorManager.endDraw(); 
-    
+
+#ifdef USE_SPOUT
+	ofxSpout::sendTexture();
+#endif  
     ofSetColor(255);
 
     

@@ -14,6 +14,7 @@
 
 //#define USE_KINECT 3
 //#define USE_KINECT_V2 3
+#define USE_SPOUT 4
 
 class ofxOpenVJConstants {
 public:

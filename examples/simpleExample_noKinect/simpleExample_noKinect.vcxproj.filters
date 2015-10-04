@@ -292,6 +292,9 @@
     <ClCompile Include="..\..\..\ofxMidi\src\desktop\ofxRtMidiOut.cpp">
       <Filter>addons\ofxMIDI\src\desktop</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\ofxSpout\src\ofxSpout.cpp">
+      <Filter>addons\ofxSpout\src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -539,6 +542,18 @@
     </Filter>
     <Filter Include="addons\ofxMIDI\src\desktop">
       <UniqueIdentifier>{a9790b7a-f2b8-4fb5-9b0e-b35eace64169}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxSpout">
+      <UniqueIdentifier>{da87b3ba-c478-4fa2-a451-c9e8d3b89a29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxSpout\src">
+      <UniqueIdentifier>{6df80945-e405-495f-9975-e0d1b79a88b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxSpout\libs">
+      <UniqueIdentifier>{b57f6e41-1d5a-4c09-9912-266f23487dd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxSpout\libs\include">
+      <UniqueIdentifier>{af55f841-2b03-46ac-9ec7-0342594ece1a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1483,6 +1498,15 @@
     </ClInclude>
     <ClInclude Include="..\..\..\ofxMidi\src\desktop\ofxRtMidiOut.h">
       <Filter>addons\ofxMIDI\src\desktop</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ofxSpout\src\ofxSpout.h">
+      <Filter>addons\ofxSpout\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ofxSpout\src\Spout.h">
+      <Filter>addons\ofxSpout\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ofxSpout\libs\include\Spout.h">
+      <Filter>addons\ofxSpout\libs\include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

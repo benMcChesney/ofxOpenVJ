@@ -14,6 +14,9 @@
 #include "SoundManager.h"
 #include "ofxMIDI.h"
 
+#ifdef USE_SPOUT
+#include "ofxSpout.h"
+#endif
 
 
 class ofxOpenVJSet : public ofxMidiListener
