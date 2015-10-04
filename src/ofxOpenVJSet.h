@@ -12,11 +12,11 @@
 #include "ofxSimpleTimer.h"
 #include "ofxOpenVJEvents.h"
 #include "SoundManager.h"
+#include "ofxMIDI.h"
 
 
 
-
-class ofxOpenVJSet
+class ofxOpenVJSet : public ofxMidiListener
 {
     public :
     ofxOpenVJSet() { }
@@ -70,6 +70,11 @@ protected :
 #ifdef USE_KINECT_V2
 	DepthCameraManager	* depthCameraManager ; 
 #endif
+
+	//Optional MIDI stuff
+	void newMidiMessage(ofxMidiMessage& eventArgs);
+	ofxMidiIn midiIn;
+	ofxMidiMessage midiMessage;
 
     //CameraManager        cameraManager ;
     SoundManager        soundManager ;

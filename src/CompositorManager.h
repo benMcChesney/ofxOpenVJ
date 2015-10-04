@@ -11,19 +11,23 @@
 #include "ofMain.h"
 #include "ofxPostGlitch.h"
 #include "ofxGui.h"
+#include "ofxMidi.h"
+
 class GlitchGuiMap
 {
 public:
-	GlitchGuiMap(string _label, ofxPostGlitchType _type)
+	GlitchGuiMap(string _label, ofxPostGlitchType _type , int _midiPitch = -1 )
 	{
 		label = _label;
 		type = _type;
 		toggle.setup(label, false);
+		midiPitch = _midiPitch; 
 	}
 
 	ofxToggle toggle;
 	string label;
 	ofxPostGlitchType type;
+	int midiPitch; 
 };
 
 class CompositorManager
@@ -40,6 +44,8 @@ class CompositorManager
 	void drawScene( ofFbo * fbo , ofColor clearColor ); 
 	void beginDraw(); 
 	void endDraw(); 
+
+	void midiMessageRecieved(ofxMidiMessage& msg); 
 
     ofxPanel gui ;
 	bool bDrawGui; 

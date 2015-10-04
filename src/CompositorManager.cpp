@@ -33,13 +33,29 @@ void CompositorManager::setupGui()
 	gui.setPosition( c->GUI_WIDGET_WIDTH * 2 , 0 );
 
 	
-	glitches.push_back(new GlitchGuiMap("CONVERGENCE", OFXPOSTGLITCH_CONVERGENCE)); 
-	glitches.push_back(new GlitchGuiMap("SHAKER", OFXPOSTGLITCH_SHAKER));
-	glitches.push_back(new GlitchGuiMap("TWIST", OFXPOSTGLITCH_TWIST));
+	glitches.push_back(new GlitchGuiMap("CONVERGENCE", OFXPOSTGLITCH_CONVERGENCE , 36 + glitches.size()));
+	glitches.push_back(new GlitchGuiMap("SHAKER", OFXPOSTGLITCH_SHAKER , 36 + glitches.size()));
+	glitches.push_back(new GlitchGuiMap("TWIST", OFXPOSTGLITCH_TWIST, 36 + glitches.size()));
+	glitches.push_back(new GlitchGuiMap("CUTSLIDER", OFXPOSTGLITCH_CUTSLIDER, 36 + glitches.size()));
 	
+	//Not performant on winodws
+	//glitches.push_back(new GlitchGuiMap("OUTLINE", OFXPOSTGLITCH_OUTLINE, 36 + glitches.size())); 
+	glitches.push_back(new GlitchGuiMap("NOISE", OFXPOSTGLITCH_NOISE, 36 + glitches.size()));
+	glitches.push_back(new GlitchGuiMap("SLITSCAN", OFXPOSTGLITCH_SLITSCAN, 36 + glitches.size()));
+	glitches.push_back(new GlitchGuiMap("SWELL", OFXPOSTGLITCH_SWELL, 36 + glitches.size()));
+	glitches.push_back(new GlitchGuiMap("INVERT", OFXPOSTGLITCH_INVERT, 36 + glitches.size()));
+	glitches.push_back(new GlitchGuiMap("HIGH CONTRAST", OFXPOSTGLITCH_CR_HIGHCONTRAST, 36 + glitches.size()));
+	
+	glitches.push_back(new GlitchGuiMap("BLUE RAISE", OFXPOSTGLITCH_CR_BLUERAISE, 36 + glitches.size()));
+	glitches.push_back(new GlitchGuiMap("BLUE INVERT", OFXPOSTGLITCH_CR_BLUEINVERT, 36 + glitches.size()));
+	glitches.push_back(new GlitchGuiMap("RED RAISE", OFXPOSTGLITCH_CR_REDRAISE, 36 + glitches.size()));
+	glitches.push_back(new GlitchGuiMap("RED INVERT", OFXPOSTGLITCH_CR_REDINVERT, 36 + glitches.size()));
+	glitches.push_back(new GlitchGuiMap("GREEN RAISE", OFXPOSTGLITCH_CR_GREENRAISE, 36 + glitches.size()));
+	glitches.push_back(new GlitchGuiMap("GREEN INVERT", OFXPOSTGLITCH_CR_GREENINVERT, 36 + glitches.size()));
+
 	for (auto fx = glitches.begin(); fx != glitches.end(); fx++)
 	{
-		gui.add((*fx)->toggle.setup( (*fx)->label , false )); 
+		gui.add((*fx)->toggle.setup((*fx)->label, false)); 
 	}
 
 }
@@ -79,4 +95,26 @@ void CompositorManager::endDraw()
 
 		fbo.draw(0, 0); 
 	ofPopStyle();
+}
+
+void CompositorManager::midiMessageRecieved(ofxMidiMessage& msg)
+{
+	//msg.status == MIDI_NOTE_OFF
+
+	for (auto fx = glitches.begin(); fx != glitches.end(); fx++)
+	{
+		if ((*fx)->midiPitch == msg.pitch)
+		{
+			switch (msg.status)
+			{
+				case MIDI_NOTE_OFF:
+					(*fx)->toggle = false;
+					break; 
+					
+				case MIDI_NOTE_ON: 
+					(*fx)->toggle = true;
+						break; 
+			}
+		}
+	}
 }

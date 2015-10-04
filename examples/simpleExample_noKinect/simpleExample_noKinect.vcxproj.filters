@@ -268,6 +268,30 @@
     <ClCompile Include="..\..\src\CompositorManager.cpp">
       <Filter>addons\ofxOpenVJ\src</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\ofxMidi\src\ofxBaseMidi.cpp">
+      <Filter>addons\ofxMIDI\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ofxMidi\src\ofxMidi.cpp">
+      <Filter>addons\ofxMIDI\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ofxMidi\src\ofxMidiIn.cpp">
+      <Filter>addons\ofxMIDI\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ofxMidi\src\ofxMidiMessage.cpp">
+      <Filter>addons\ofxMIDI\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ofxMidi\src\ofxMidiOut.cpp">
+      <Filter>addons\ofxMIDI\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ofxMidi\libs\rtmidi\RtMidi.cpp">
+      <Filter>addons\ofxMIDI\libs\rtmidi</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ofxMidi\src\desktop\ofxRtMidiIn.cpp">
+      <Filter>addons\ofxMIDI\src\desktop</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ofxMidi\src\desktop\ofxRtMidiOut.cpp">
+      <Filter>addons\ofxMIDI\src\desktop</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -500,6 +524,21 @@
     </Filter>
     <Filter Include="addons\ofxOpenVJ\scenes">
       <UniqueIdentifier>{9611d75b-b00d-465c-91df-eb01f688ab73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxMIDI">
+      <UniqueIdentifier>{3996c201-9334-4f30-bd6d-32f90ee80c29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxMIDI\src">
+      <UniqueIdentifier>{ae2b20d9-293d-4a4f-9978-d562bda86375}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxMIDI\libs">
+      <UniqueIdentifier>{827d95a1-995f-414c-b355-050c60bafe43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxMIDI\libs\rtmidi">
+      <UniqueIdentifier>{4fe25701-19b5-4688-8c00-4d0878bb1a2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxMIDI\src\desktop">
+      <UniqueIdentifier>{a9790b7a-f2b8-4fb5-9b0e-b35eace64169}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1414,6 +1453,36 @@
     </ClInclude>
     <ClInclude Include="..\..\src\CompositorManager.h">
       <Filter>addons\ofxOpenVJ\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ofxMidi\src\ofxBaseMidi.h">
+      <Filter>addons\ofxMIDI\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ofxMidi\src\ofxMidi.h">
+      <Filter>addons\ofxMIDI\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ofxMidi\src\ofxMidiConstants.h">
+      <Filter>addons\ofxMIDI\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ofxMidi\src\ofxMidiIn.h">
+      <Filter>addons\ofxMIDI\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ofxMidi\src\ofxMidiMessage.h">
+      <Filter>addons\ofxMIDI\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ofxMidi\src\ofxMidiOut.h">
+      <Filter>addons\ofxMIDI\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ofxMidi\src\ofxMidiTypes.h">
+      <Filter>addons\ofxMIDI\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ofxMidi\libs\rtmidi\RtMidi.h">
+      <Filter>addons\ofxMIDI\libs\rtmidi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ofxMidi\src\desktop\ofxRtMidiIn.h">
+      <Filter>addons\ofxMIDI\src\desktop</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ofxMidi\src\desktop\ofxRtMidiOut.h">
+      <Filter>addons\ofxMIDI\src\desktop</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

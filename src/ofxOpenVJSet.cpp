@@ -23,6 +23,22 @@ void ofxOpenVJSet::setup( int bufferSize ) {
     soundManager.setup( bufferSize ) ;
 	compositorManager.setup(); 
 
+	//MIDI
+	midiIn.listPorts(); // via instance
+						//ofxMidiIn::listPorts(); // via static as well
+
+						// open port by number (you may need to change this)
+	midiIn.openPort(0);
+	//midiIn.openPort("IAC Pure Data In");	// by name
+	//midiIn.openVirtualPort("ofxMidiIn Input"); // open a virtual port
+
+	// don't ignore sysex, timing, & active sense messages,
+	// these are ignored by default
+	midiIn.ignoreTypes(false, false, false);
+
+	// add ofApp as a listener
+	midiIn.addListener(this);
+
     float guiY = 0 ;
 	gui.setup();
     setupMainGui();
@@ -376,6 +392,15 @@ void ofxOpenVJSet::keyPressed(int key)
         }
             break;
     }
+}
+
+void ofxOpenVJSet::newMidiMessage(ofxMidiMessage& msg) 
+{
+
+	// make a copy of the latest message
+	midiMessage = msg;
+
+	compositorManager.midiMessageRecieved(msg);
 }
 
 void ofxOpenVJSet::transitionToRelativeIndex ( int indexOffset ) 
