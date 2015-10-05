@@ -6,59 +6,92 @@
 //
 //
 
-#include "EmptyScene.h"
+#include "ReflectMaskScene.h"
 
 //--------------------------------------------------------------
-EmptyScene::EmptyScene() {
+ReflectMaskScene::ReflectMaskScene() {
     
 }
 
 //--------------------------------------------------------------
-EmptyScene::~EmptyScene() {
+ReflectMaskScene::~ReflectMaskScene() {
     
 }
 
 //--------------------------------------------------------------
-void EmptyScene::setup() {
+void ReflectMaskScene::setup() {
     
 }
 
 //--------------------------------------------------------------
-void EmptyScene::setupGui(float a_x, float a_y)
+void ReflectMaskScene::setupGui(float a_x, float a_y)
 {
     // creates new gui and adds the name to it //
     BaseScene::setupGui(a_x, a_y);
-    
-   // ofAddListener( gui->newGUIEvent, this, &EmptyScene::guiEvent );
+
+	gui.add(rectWidthSlider.setup("RECT WIDTH SLIDER", 50.0f , 5.0f , 125.0f));
+
+   // ofAddListener( gui->newGUIEvent, this, &ReflectMaskScene::guiEvent );
    // loadSettings() ; 
 }
 
 
 //--------------------------------------------------------------
-void EmptyScene::activate() {
+void ReflectMaskScene::activate() {
     
 
 }
 
 //--------------------------------------------------------------
-void EmptyScene::deactivate() {
+void ReflectMaskScene::deactivate() {
     
     // turn off the gui //
     BaseScene::deactivate();
 }
 
 //--------------------------------------------------------------
-void EmptyScene::update() {
+void ReflectMaskScene::update() {
 }
 
 //--------------------------------------------------------------
-void EmptyScene::draw() {
+void ReflectMaskScene::draw() {
+
+	cout << "DRAW !! " << endl; 
+	fbo.begin();
+	ofSetColor(255, 0, 0); 
+	ofRect(0, 0, ofGetWidth(), ofGetHeight()); 
+	/*
+	ofPushMatrix();
+
+	ofSetRectMode(OF_RECTMODE_CENTER); 
+
+	//ofTranslate(ofGetWidth() / 2, ofGetHeight() / 2); 
+	//ofRotateZ( soundManager->beatPerc * 360 );
+
+	int numRectangles = (ofGetWidth() * 1.5) / rectWidthSlider; 
+	for (int i = 0; i < numRectangles; i++)
+	{
+		if (i % 2 == 0)
+			ofSetColor(255, 255 , 255 , 255);
+		else
+			ofSetColor(0, 0, 0, 255); 
+	
+		float w = i * rectWidthSlider; 
+		ofRect(0, 0, w , w ); 
+	}
+
+
+	ofSetRectMode(OF_RECTMODE_CORNER);
+
+	ofPopMatrix(); 
+	*/
+	fbo.end(); 
 }
 
-void EmptyScene::drawDebug() {
+void ReflectMaskScene::drawDebug() {
 }
 
-bool EmptyScene::transitionIn(float delay, float transitionTime)
+bool ReflectMaskScene::transitionIn(float delay, float transitionTime)
 {
 
 	if (BaseScene::transitionIn(delay, transitionTime) == false)
@@ -73,7 +106,7 @@ bool EmptyScene::transitionIn(float delay, float transitionTime)
 	return true;
 }
 
-bool EmptyScene::transitionOut(float delay, float transitionTime)
+bool ReflectMaskScene::transitionOut(float delay, float transitionTime)
 {
 	if (BaseScene::transitionOut(delay, transitionTime) == false)
 		return false;

@@ -86,14 +86,14 @@ void CompositorManager::endDraw()
 	fbo.end(); 
 
 	ofPushStyle();
-		ofSetColor( channels );
+		
 		glitch.generateFx(); 
 
 		for (auto fx = glitches.begin(); fx != glitches.end(); fx++)
 		{
 			glitch.setFx( (*fx)->type, (*fx)->toggle ); 
 		}
-
+		ofSetColor(channels);
 		fbo.draw(0, 0); 
 	ofPopStyle();
 }

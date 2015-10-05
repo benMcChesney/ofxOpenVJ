@@ -38,6 +38,7 @@ void SoundManager::tapBPM()
 void SoundManager::clearBPM()
 {
 	bpmTapper.startFresh(); 
+	bpmTapper.setBpm(120);
 	cout << "BPM CLEAR ! " << endl;
 }
 

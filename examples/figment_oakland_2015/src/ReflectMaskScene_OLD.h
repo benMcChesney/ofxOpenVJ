@@ -14,11 +14,11 @@
 #include "ofxTweenzor.h"
 #include "ofxGui.h"
 
-class EmptyScene : public BaseScene {
+class ReflectMaskScene: public BaseScene {
 public:
-    EmptyScene();
-    EmptyScene( int a_index, string a_name ):BaseScene( a_index, a_name ) {}
-    ~EmptyScene();
+	ReflectMaskScene();
+	ReflectMaskScene( int a_index, string a_name ):BaseScene( a_index, a_name ) {}
+    ~ReflectMaskScene();
     
     void setup();
     void setupGui(float a_x=0, float a_y=0);
@@ -32,5 +32,14 @@ public:
 
 	bool transitionIn(float delay, float transitionTime);
 	bool transitionOut(float delay, float transitionTime);
+
+	ofDirectory dir; 
+
+	vector< ofImage > loadedImages; 
+
+	int activeIndex; 
+
+	ofxFloatSlider rectWidthSlider ; 
+
 
 };

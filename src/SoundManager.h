@@ -53,7 +53,7 @@ class SoundManager
 	ofxButton beat; 
 	ofxButton button_tapBPM; 
 	ofxButton button_clearBPM; 
-	//ofxLabel bpmLabel; 
+	ofxLabel bpmLabel; 
 };
 
 

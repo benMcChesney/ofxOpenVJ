@@ -63,8 +63,8 @@ void SimpleScene::draw()
 {
     //cameraManager->begin() ;
 	fbo.begin(); 
-
-    ofSetColor( 255 , 0 , 0 ) ;
+	ofClear(1, 1, 1, 0); 
+   // ofSetColor( 255 , 0 , 0 ) ;
 
     int count = 0 ;
     for( auto cube = cubes.begin() ; cube != cubes.end() ; cube++ )
