@@ -12,5 +12,7 @@
 #include "ReflectMaskScene.h"
 #include "SimpleScene.h"
 #include "TileTextureScene.h"
+#include "DirectionalWashScene.h"
+#include "ShaderScene.h"
 
 #endif

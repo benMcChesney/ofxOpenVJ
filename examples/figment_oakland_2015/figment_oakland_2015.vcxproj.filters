@@ -292,17 +292,23 @@
     <ClCompile Include="..\..\..\..\addons\ofxXmlSettings\libs\tinyxmlparser.cpp">
       <Filter>addons\ofxXmlSettings\libs</Filter>
     </ClCompile>
-    <ClCompile Include="src\ReflectMaskScene.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\scenes\SimpleScene.cpp">
       <Filter>addons\ofxOpenVJ\src</Filter>
     </ClCompile>
     <ClCompile Include="src\EmptyScene.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\DirectionalWashScene.cpp">
+      <Filter>src\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ReflectMaskScene.cpp">
+      <Filter>src\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ShaderScene.cpp">
+      <Filter>src\scenes</Filter>
+    </ClCompile>
     <ClCompile Include="src\TileTextureScene.cpp">
-      <Filter>src</Filter>
+      <Filter>src\scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -578,6 +584,9 @@
     </Filter>
     <Filter Include="addons\ofxThreadedImageLoader\src">
       <UniqueIdentifier>{386b2d6a-342f-490c-a855-346a48bcf69a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scenes">
+      <UniqueIdentifier>{534ae72b-c6f8-4917-ae81-ba051f07bd2d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1532,17 +1541,23 @@
     <ClInclude Include="..\..\..\..\addons\ofxXmlSettings\libs\tinyxml.h">
       <Filter>addons\ofxXmlSettings\libs</Filter>
     </ClInclude>
-    <ClInclude Include="src\ReflectMaskScene.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\scenes\SimpleScene.h">
       <Filter>addons\ofxOpenVJ\src</Filter>
     </ClInclude>
     <ClInclude Include="src\EmptyScene.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="src\DirectionalWashScene.h">
+      <Filter>src\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ReflectMaskScene.h">
+      <Filter>src\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ShaderScene.h">
+      <Filter>src\scenes</Filter>
+    </ClInclude>
     <ClInclude Include="src\TileTextureScene.h">
-      <Filter>src</Filter>
+      <Filter>src\scenes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

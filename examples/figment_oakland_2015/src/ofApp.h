@@ -27,4 +27,5 @@ public:
 	void audioReceived(float* input, int bufferSize, int nChannels);
 
 	ofxOpenVJSet set;
+	
 };
