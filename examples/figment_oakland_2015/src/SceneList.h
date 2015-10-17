@@ -11,6 +11,6 @@
 
 #include "ReflectMaskScene.h"
 #include "SimpleScene.h"
-
+#include "TileTextureScene.h"
 
 #endif

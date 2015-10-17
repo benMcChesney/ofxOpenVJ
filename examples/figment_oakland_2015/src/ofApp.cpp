@@ -30,8 +30,10 @@ void ofApp::setup(){
 
 
 	//set.addScene( new ColorOutlineScene((int)set.getNumScenes(), "ColorOutlineScene" ) ) ;
+	set.addScene(new TileTextureScene((int)set.getNumScenes(), "TileTextureScene"));
 	set.addScene(new ReflectMaskScene((int)set.getNumScenes(), "ReflectMaskScene"));
 	set.addScene(new SimpleScene((int)set.getNumScenes(), "SimpleScene"));
+
 	//set.addScene(new TestScene((int)set.getNumScenes(), "Test Scene"));
 //	set.addScene(new RippleTunnelScene((int)set.getNumScenes(), "RippleTunnelScene"));
 	//set.addScene(new TriangleKinectScene((int)set.getNumScenes(), "TriangleKinectScene"));

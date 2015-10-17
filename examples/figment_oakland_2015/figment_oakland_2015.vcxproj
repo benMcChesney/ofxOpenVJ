@@ -172,6 +172,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\scenes\SimpleScene.cpp" />
+    <ClCompile Include="src\EmptyScene.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="..\..\..\..\addons\ofx3DModelLoader\src\3DS\model3DS.cpp" />
@@ -266,9 +267,11 @@
     <ClCompile Include="..\..\..\..\addons\ofxXmlSettings\libs\tinyxmlerror.cpp" />
     <ClCompile Include="..\..\..\..\addons\ofxXmlSettings\libs\tinyxmlparser.cpp" />
     <ClCompile Include="src\ReflectMaskScene.cpp" />
+    <ClCompile Include="src\TileTextureScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\scenes\SimpleScene.h" />
+    <ClInclude Include="src\EmptyScene.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="src\ReflectMaskScene.h" />
     <ClInclude Include="src\SceneList.h" />
@@ -586,6 +589,7 @@
     <ClInclude Include="..\..\..\..\addons\ofxTweenzor\src\Tweenzor.h" />
     <ClInclude Include="..\..\..\..\addons\ofxXmlSettings\src\ofxXmlSettings.h" />
     <ClInclude Include="..\..\..\..\addons\ofxXmlSettings\libs\tinyxml.h" />
+    <ClInclude Include="src\TileTextureScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="$(OF_ROOT)\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">

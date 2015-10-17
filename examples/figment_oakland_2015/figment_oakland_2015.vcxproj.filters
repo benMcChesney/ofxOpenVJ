@@ -298,6 +298,12 @@
     <ClCompile Include="..\..\scenes\SimpleScene.cpp">
       <Filter>addons\ofxOpenVJ\src</Filter>
     </ClCompile>
+    <ClCompile Include="src\EmptyScene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TileTextureScene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -1531,6 +1537,12 @@
     </ClInclude>
     <ClInclude Include="..\..\scenes\SimpleScene.h">
       <Filter>addons\ofxOpenVJ\src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EmptyScene.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TileTextureScene.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

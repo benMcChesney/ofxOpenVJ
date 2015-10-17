@@ -1,0 +1,17 @@
+ofx3DModelLoader
+ofxAssimpModelLoader
+ofxBeat
+ofxGui
+ofxKinect
+ofxMidi
+ofxMSABPMTapper
+ofxMSATimer
+ofxOpenCv
+ofxOpenVJ
+ofxPostGlitch
+ofxPostProcessing
+ofxSimpleMask
+ofxSimpleTimer
+ofxSpout
+ofxTweenzor
+ofxXmlSettings
