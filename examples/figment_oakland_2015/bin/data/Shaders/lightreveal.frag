@@ -19,7 +19,7 @@ void main( void )
 	float reso = max(resolution.x,resolution.y );
 	vec2 center = vec2(0.5 , 0.25);
 	vec2 uv = gl_FragCoord.xy / reso;
-	float t = beat * 0.1;
+	float t = beat * 0.1; //time * 0.1;
 	float Freq = 20.0 ; 
 	float m = 0.0;
 	

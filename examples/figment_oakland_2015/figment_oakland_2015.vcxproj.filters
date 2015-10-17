@@ -310,6 +310,12 @@
     <ClCompile Include="src\TileTextureScene.cpp">
       <Filter>src\scenes</Filter>
     </ClCompile>
+    <ClCompile Include="src\LightShaderScene.cpp">
+      <Filter>src\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\NeuralSpaceShaderScene.cpp">
+      <Filter>src\scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -1557,6 +1563,12 @@
       <Filter>src\scenes</Filter>
     </ClInclude>
     <ClInclude Include="src\TileTextureScene.h">
+      <Filter>src\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\LightShaderScene.h">
+      <Filter>src\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\NeuralSpaceShaderScene.h">
       <Filter>src\scenes</Filter>
     </ClInclude>
   </ItemGroup>

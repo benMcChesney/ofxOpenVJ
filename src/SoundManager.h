@@ -22,11 +22,8 @@ class SoundManager
     public :
     SoundManager() { }
     ~SoundManager() { }
-
     
     void setup ( int bufferSize ) ;
-    //void setupGui( ofxUICanvas * gui ) ;
-    //void guiEvent( ofxUIEventArgs& e );
     
     void update( ) ;
     void draw ( ) ;

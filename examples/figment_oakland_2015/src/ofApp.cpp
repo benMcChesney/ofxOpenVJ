@@ -31,7 +31,8 @@ void ofApp::setup(){
 
 	//set.addScene( new ColorOutlineScene((int)set.getNumScenes(), "ColorOutlineScene" ) ) ;
 	//
-	set.addScene(new ShaderScene((int)set.getNumScenes(), "ShaderScene"));
+	//set.addScene(new NeuralSpaceShaderScene((int)set.getNumScenes(), "NeuralSpaceShaderScene"));
+	set.addScene(new LightShaderScene((int)set.getNumScenes(), "LightShaderScene"));
 	set.addScene(new TileTextureScene((int)set.getNumScenes(), "TileTextureScene"));
 	set.addScene(new ReflectMaskScene((int)set.getNumScenes(), "ReflectMaskScene"));
 	set.addScene(new SimpleScene((int)set.getNumScenes(), "SimpleScene"));

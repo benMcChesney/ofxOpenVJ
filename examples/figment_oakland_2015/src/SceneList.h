@@ -13,6 +13,7 @@
 #include "SimpleScene.h"
 #include "TileTextureScene.h"
 #include "DirectionalWashScene.h"
-#include "ShaderScene.h"
+#include "LightShaderScene.h"
+#include "NeuralSpaceShaderScene.h"
 
 #endif

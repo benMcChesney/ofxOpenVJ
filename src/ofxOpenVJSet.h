@@ -99,6 +99,10 @@ protected :
 	ofxFloatSlider setTransitionTime;
 	ofxFloatSlider setDelayTime;
 
+	//Scene List
+	vector< ofxToggle* > sceneButtons; 
+	void sceneButtonListener();
+
 	
 
 	

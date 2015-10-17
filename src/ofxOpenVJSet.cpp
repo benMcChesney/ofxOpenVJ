@@ -116,6 +116,13 @@ void ofxOpenVJSet::initialize( )
         scenes[i]->setupGui( ofxOpenVJConstants::Instance()->GUI_WIDGET_WIDTH * 3  , guiY);
         scenes[i]->loadSettings();
         scenes[i]->deactivate();
+
+		sceneButtons.push_back( new ofxToggle());
+		sceneButtons[i]->setup(scenes[i]->name, false ); 
+		cout << "name : " << scenes[i]->name << endl; 
+		gui.add( sceneButtons[i] ); 
+		//sceneButtons[i]->addListener(this, &ofxOpenVJSet::sceneButtonListener );
+		//vector< ofxButton > sceneButtons;
     }
     
     Scenes::toString();
@@ -131,6 +138,31 @@ void ofxOpenVJSet::initialize( )
     depthCameraManager->loadSettings();
 #endif
     //cameraManager.loadSettings();
+}
+
+void ofxOpenVJSet::sceneButtonListener()
+{
+	//cout << "sceneButtonListener !" << endl; 
+
+	for (int i = 0; i < sceneButtons.size() ; i++)
+	{
+		//cout << "@ button " << i << " value : " << (*sceneButtons[i]) << " parameter : " << sceneButtons[i]->getParameter() << " mousePressed : "  << endl; 
+		if ( (*sceneButtons[i]) == true ) 
+		{
+			cout << "sceneButtons[i] == true " << sceneButtons[i]->getName() << endl; 
+			if (i != activeSceneIndex)
+			{
+				//sceneTimerComplete(activeSceneIndex); 
+				int lastSceneIndex = activeSceneIndex;
+				//Handy ofWrap function 
+				activeSceneIndex = i; 
+				scenes[lastSceneIndex]->transitionOut(setDelayTime, setTransitionTime);
+				scenes[activeSceneIndex]->bDrawGui = bDrawGui;
+				scenes[activeSceneIndex]->transitionIn(setDelayTime, setTransitionTime);
+			}
+			(*sceneButtons[i]) = false;
+		}
+	}
 }
 
 //--------------------------------------------------------------
@@ -176,7 +208,7 @@ void ofxOpenVJSet::update() {
     
     }
     
-    
+	sceneButtonListener(); 
 }
 
 //--------------------------------------------------------------
@@ -229,9 +261,7 @@ void ofxOpenVJSet::draw() {
     {
         for ( auto scene = scenes.begin() ; scene != scenes.end() ; scene++ )
         {
-           // if ( (*scene)->isVisible() == true )
-
-                (*scene)->drawDebug();
+			(*scene)->drawDebug();
         }
     }
 }

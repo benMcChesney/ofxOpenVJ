@@ -23,8 +23,8 @@ void SoundManager::setup ( int _bufferSize )
 	gui.add(beat.setup("BEAT ?", false)); 
 	gui.add(button_tapBPM.setup("TAP", false)); 
 	gui.add(button_clearBPM.setup("RESET BPM")); 
-	gui.add(bpmLabel.setup("BPM", "NONE" )); 
-
+	gui.add(bpmLabel.setup("BPM", "60" ));
+	
 	button_tapBPM.addListener(this, &SoundManager::tapBPM);
 	button_clearBPM.addListener(this, &SoundManager::clearBPM);
 }
@@ -37,7 +37,7 @@ void SoundManager::tapBPM()
 
 void SoundManager::clearBPM()
 {
-	bpmTapper.startFresh(); 
+	//bpmTapper.startFresh(); 
 	bpmTapper.setBpm(120);
 	cout << "BPM CLEAR ! " << endl;
 }
@@ -47,6 +47,8 @@ void SoundManager::update( )
 	beatTracker.update(ofGetElapsedTimeMillis());
 	bpmTapper.update();
 	beatPerc = bpmTapper.beatPerc(); 
+
+	bpmLabel = ofToString(bpmTapper.bpm() );
 	//bpmLabel.set = ofToString( bpmTapper.bpm() ) ; 
 }
 
