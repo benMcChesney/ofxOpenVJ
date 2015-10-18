@@ -17,5 +17,6 @@
 #include "LightShaderScene.h"
 #include "NeuralSpaceShaderScene.h"
 #include "SectionColorJumpScene.h"
+#include "CircleExpandScene.h"
 
 #endif

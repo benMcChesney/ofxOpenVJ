@@ -295,9 +295,6 @@
     <ClCompile Include="..\..\scenes\SimpleScene.cpp">
       <Filter>addons\ofxOpenVJ\src</Filter>
     </ClCompile>
-    <ClCompile Include="src\EmptyScene.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\DirectionalWashScene.cpp">
       <Filter>src\scenes</Filter>
     </ClCompile>
@@ -323,6 +320,9 @@
       <Filter>addons\ofxOpenVJ\src</Filter>
     </ClCompile>
     <ClCompile Include="src\SectionColorJumpScene.cpp">
+      <Filter>src\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CircleExpandScene.cpp">
       <Filter>src\scenes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1562,9 +1562,6 @@
     <ClInclude Include="..\..\scenes\SimpleScene.h">
       <Filter>addons\ofxOpenVJ\src</Filter>
     </ClInclude>
-    <ClInclude Include="src\EmptyScene.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="src\DirectionalWashScene.h">
       <Filter>src\scenes</Filter>
     </ClInclude>
@@ -1594,6 +1591,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\ofxOpenVJUtils.h">
       <Filter>addons\ofxOpenVJ\src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CircleExpandScene.h">
+      <Filter>src\scenes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

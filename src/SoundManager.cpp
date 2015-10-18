@@ -94,6 +94,11 @@ void SoundManager::drawFFTBands(float x, float y, float width, float height)
 	ofPopMatrix();
 }
 
+float SoundManager::getSecondsFromBPM()
+{
+	return ((float)bpmTapper.bpm() / 60.0f);
+}
+
 void SoundManager::midiMessageRecieved(ofxMidiMessage& msg)
 {
 	if (msg.status == MIDI_NOTE_ON)

@@ -48,6 +48,7 @@ class SoundManager
 
 	ofxFloatSlider beatPerc; 
 	float lastBeatPerc; 
+	float getSecondsFromBPM(); 
 
 
 	ofxButton beat; 
