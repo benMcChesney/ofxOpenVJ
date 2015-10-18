@@ -29,3 +29,6 @@ xcuserdata
 examples/simpleExample_noKinect/bin/simpleExample_noKinect_debug.exe
 *.exp
 *.opensdf
+*.ilk
+*.lib
+*.pdb

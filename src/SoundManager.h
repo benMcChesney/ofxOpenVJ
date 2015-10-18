@@ -47,6 +47,9 @@ class SoundManager
 	void clearBPM(); 
 
 	ofxFloatSlider beatPerc; 
+	float lastBeatPerc; 
+
+
 	ofxButton beat; 
 	ofxButton button_tapBPM; 
 	ofxButton button_clearBPM; 

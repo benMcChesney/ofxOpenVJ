@@ -33,6 +33,10 @@ void EmptyScene::setupGui(float a_x, float a_y)
    // loadSettings() ; 
 }
 
+void EmptyScene::newBeatHandler()
+{
+
+}
 
 //--------------------------------------------------------------
 void EmptyScene::activate() {

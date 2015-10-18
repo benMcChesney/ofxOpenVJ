@@ -9,11 +9,13 @@
 #ifndef simpleExample_SceneList_h
 #define simpleExample_SceneList_h
 
+#include "AnimatedTileTextureScene.h"
 #include "ReflectMaskScene.h"
 #include "SimpleScene.h"
 #include "TileTextureScene.h"
 #include "DirectionalWashScene.h"
 #include "LightShaderScene.h"
 #include "NeuralSpaceShaderScene.h"
+#include "SectionColorJumpScene.h"
 
 #endif

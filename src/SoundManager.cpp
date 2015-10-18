@@ -44,11 +44,13 @@ void SoundManager::clearBPM()
 
 void SoundManager::update( )
 {
+	lastBeatPerc = beatPerc; 
 	beatTracker.update(ofGetElapsedTimeMillis());
 	bpmTapper.update();
 	beatPerc = bpmTapper.beatPerc(); 
 
 	bpmLabel = ofToString(bpmTapper.bpm() );
+
 	//bpmLabel.set = ofToString( bpmTapper.bpm() ) ; 
 }
 

@@ -72,7 +72,20 @@ bool BaseScene::transitionIn( float delay , float transitionTime )
 }
 
 
+void BaseScene::update()
+{
+	sceneTransitionTimer.update(); 
 
+	if (soundManager->lastBeatPerc > soundManager->beatPerc)
+	{
+		newBeatHandler(); 
+	}
+}
+
+void BaseScene::newBeatHandler()
+{
+	cout << "BaseScene::newBeatHandler! @" << ofGetElapsedTimef() << endl; 
+}
 
 bool BaseScene::transitionOut( float delay , float transitionTime )
 {

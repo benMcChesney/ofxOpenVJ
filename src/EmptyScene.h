@@ -33,4 +33,5 @@ public:
 	bool transitionIn(float delay, float transitionTime);
 	bool transitionOut(float delay, float transitionTime);
 
+	void newBeatHandler();
 };

@@ -22,7 +22,7 @@
 #include "KinectV2Manager.h"
 #endif
 
-#include "Utils.h"
+#include "ofxOpenVJUtils.h"
 #include "ofxOpenVJSet.h"
 
 #endif

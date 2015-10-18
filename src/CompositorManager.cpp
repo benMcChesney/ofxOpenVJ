@@ -30,6 +30,10 @@ void CompositorManager::setupGui()
 	gui.setup("Compositor Settings", "GUI/compositorManager.xml" );
 	gui.setTextColor( ofColor( 128, 128, 128 ) ); 
 	gui.add( channels.setup("RENDER CHANNELS", ofColor(255, 255, 255, 255), ofColor(0, 0, 0, 0), ofColor(255, 255, 255, 255) ) ) ;
+
+	gui.add( bFlipVertical.setup("FLIP VERT", false));
+	gui.add( bFlipHozitonal.setup("FLIP HORZ", false));
+
 	gui.setPosition( c->GUI_WIDGET_WIDTH * 2 , 0 );
 
 	int startPitch = 38; 
@@ -94,7 +98,22 @@ void CompositorManager::endDraw()
 			glitch.setFx( (*fx)->type, (*fx)->toggle ); 
 		}
 		ofSetColor(channels);
-		fbo.draw(0, 0); 
+
+		ofPushMatrix();
+			if (bFlipHozitonal)
+			{
+				ofTranslate(ofGetWidth(), 0); 
+				ofScale(-1, 1, 1); 
+			}
+			if (bFlipVertical)
+			{
+				ofTranslate(0, ofGetHeight()); 
+				ofScale(1, -1, 1); 
+			}
+
+			fbo.draw(0, 0); 
+
+		ofPopMatrix(); 
 	ofPopStyle();
 }
 

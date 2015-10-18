@@ -18,6 +18,7 @@
 #include "SoundManager.h"
 #include "CompositorManager.h"
 #include "ofxGui.h"
+#include "ofxOpenVJUtils.h"
 
 #ifdef USE_KINECT
 #include "KinectManager.h"
@@ -32,16 +33,14 @@ public:
     virtual void setup() {};
     virtual void setupGui(float a_x=0, float a_y=0) ;
     
-    virtual void update()
-    {
-        sceneTransitionTimer.update() ; 
-    }
+	virtual void update();
     
     virtual void draw() = 0;
     virtual void drawDebug() ; 
 
     virtual void activate();
     virtual void deactivate(); 
+	virtual void newBeatHandler(); 
     
     void toggleGui()  { bDrawGui = !bDrawGui; }
     //virtual void guiEvent(ofxGui &e) ; 
@@ -63,6 +62,7 @@ public:
 	bool bDrawGui;
 	ofxPanel gui;
     
+	
     #ifdef USE_KINECT
     DepthCameraManager* depthCameraManager;
     #endif

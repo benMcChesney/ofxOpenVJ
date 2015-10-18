@@ -57,4 +57,7 @@ class CompositorManager
 
 	vector< GlitchGuiMap * > glitches;
 
+	ofxToggle bFlipVertical; 
+	ofxToggle bFlipHozitonal; 
+
 };

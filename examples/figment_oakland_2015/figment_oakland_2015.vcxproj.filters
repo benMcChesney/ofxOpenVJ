@@ -316,6 +316,15 @@
     <ClCompile Include="src\NeuralSpaceShaderScene.cpp">
       <Filter>src\scenes</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\ofxGif\src\ofxGif.cpp">
+      <Filter>addons\ofxGif\src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AnimatedTileTextureScene.cpp">
+      <Filter>addons\ofxOpenVJ\src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SectionColorJumpScene.cpp">
+      <Filter>src\scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -593,6 +602,12 @@
     </Filter>
     <Filter Include="src\scenes">
       <UniqueIdentifier>{534ae72b-c6f8-4917-ae81-ba051f07bd2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxGif">
+      <UniqueIdentifier>{3325716c-086b-416f-8fac-19eea2df9f86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxGif\src">
+      <UniqueIdentifier>{70b593bb-8019-455a-b056-ae3cc43b3c38}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1424,9 +1439,6 @@
     <ClInclude Include="..\..\..\..\addons\ofxOpenVJ\src\SoundManager.h">
       <Filter>addons\ofxOpenVJ\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\addons\ofxOpenVJ\src\Utils.h">
-      <Filter>addons\ofxOpenVJ\src</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\addons\ofxPostGlitch\src\ofxPostGlitch.h">
       <Filter>addons\ofxPostGlitch\src</Filter>
     </ClInclude>
@@ -1570,6 +1582,18 @@
     </ClInclude>
     <ClInclude Include="src\NeuralSpaceShaderScene.h">
       <Filter>src\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ofxGif\src\ofxGif.h">
+      <Filter>addons\ofxGif\src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AnimatedTileTextureScene.h">
+      <Filter>addons\ofxOpenVJ\src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SectionColorJumpScene.h">
+      <Filter>src\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ofxOpenVJUtils.h">
+      <Filter>addons\ofxOpenVJ\src</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
