@@ -271,6 +271,7 @@
     <ClCompile Include="..\..\..\..\addons\ofxXmlSettings\libs\tinyxml.cpp" />
     <ClCompile Include="..\..\..\..\addons\ofxXmlSettings\libs\tinyxmlerror.cpp" />
     <ClCompile Include="..\..\..\..\addons\ofxXmlSettings\libs\tinyxmlparser.cpp" />
+    <ClCompile Include="src\RadialFftScene.cpp" />
     <ClCompile Include="src\ReflectMaskScene.cpp" />
     <ClCompile Include="src\SectionColorJumpScene.cpp" />
     <ClCompile Include="src\ShaderScene.cpp" />
@@ -286,6 +287,7 @@
     <ClInclude Include="src\LightShaderScene.h" />
     <ClInclude Include="src\NeuralSpaceShaderScene.h" />
     <ClInclude Include="src\ofApp.h" />
+    <ClInclude Include="src\RadialFftScene.h" />
     <ClInclude Include="src\ReflectMaskScene.h" />
     <ClInclude Include="src\SceneList.h" />
     <ClInclude Include="..\..\..\..\addons\ofx3DModelLoader\src\3DS\model3DS.h" />

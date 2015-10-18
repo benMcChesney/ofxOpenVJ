@@ -99,16 +99,19 @@ void CircleExpandScene::newBeatHandler()
 	manualCreateShapeListener();
 }
 
-void CircleExpandScene::update( )
+void CircleExpandScene::update()
 {
 
 	BaseScene::update();
-	for (auto shape = shapes.begin(); shape != shapes.end(); shape++)
-	{
-		if ((*shape)->bRemove == true)
+	if (shapes.size() > 0)
+	{ 
+		for (auto shape = shapes.begin(); shape != shapes.end(); shape++)
 		{
-			delete (*shape); 
-			shape = shapes.erase(shape); 
+			if ((*shape)->bRemove == true)
+			{
+				delete (*shape); 
+				shape = shapes.erase(shape); 
+			}
 		}
 	}
 }

@@ -18,5 +18,6 @@
 #include "NeuralSpaceShaderScene.h"
 #include "SectionColorJumpScene.h"
 #include "CircleExpandScene.h"
+#include "RadialFftScene.h"
 
 #endif
