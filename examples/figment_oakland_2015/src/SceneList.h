@@ -20,6 +20,7 @@
 #include "SectionColorJumpScene.h"
 #include "CircleExpandScene.h"
 #include "NeonLightTunnelScene.h"
+#include "IronManTunnelShaderScene.h"
 //#include "RadialFftScene.h"
 
 #endif
