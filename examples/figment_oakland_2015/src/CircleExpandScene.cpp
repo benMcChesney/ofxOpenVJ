@@ -105,12 +105,17 @@ void CircleExpandScene::update()
 	BaseScene::update();
 	if (shapes.size() > 0)
 	{ 
-		for (auto shape = shapes.begin(); shape != shapes.end(); shape++)
+		//TODO fix crash her
+		for (auto shape = shapes.begin(); shape != shapes.end(); )
 		{
 			if ((*shape)->bRemove == true)
 			{
-				delete (*shape); 
+				delete *shape; 
 				shape = shapes.erase(shape); 
+			}
+			else
+			{
+				++shape; 
 			}
 		}
 	}
