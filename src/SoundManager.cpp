@@ -20,13 +20,31 @@ void SoundManager::setup ( int _bufferSize )
 	gui.setup("SOUND MANAGER PANEL", "GUI/soundManagerGui.xml", c->GUI_WIDGET_WIDTH * 4, 0); 
 
 	gui.add(beatPerc.setup("BEAT %", 0.0f , 1.0f , 1.0f )); 
-	gui.add(beat.setup("BEAT ?", false)); 
 	gui.add(button_tapBPM.setup("TAP", false)); 
 	gui.add(button_clearBPM.setup("RESET BPM")); 
 	gui.add(bpmLabel.setup("BPM", "60" ));
 	
 	button_tapBPM.addListener(this, &SoundManager::tapBPM);
 	button_clearBPM.addListener(this, &SoundManager::clearBPM);
+
+	gui.add( manualBpm.setup( "MANUAL BPM" , 90 , 40 , 200 ) );
+	gui.add( setBpm.setup( "SET BPM" , false )) ;
+	gui.add( resetBeat.setup("START FRESH", false)); 
+
+	setBpm.addListener(this, &SoundManager::bpmHandler); 
+	resetBeat.addListener(this, &SoundManager::resetBeatHandler); 
+	
+}
+
+void SoundManager::bpmHandler()
+{
+	bpmTapper.setBpm(manualBpm);
+	bpmTapper.startFresh(); 
+}
+
+void SoundManager::resetBeatHandler()
+{
+	bpmTapper.startFresh();
 }
 
 void SoundManager::tapBPM()

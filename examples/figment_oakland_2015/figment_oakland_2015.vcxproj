@@ -178,6 +178,7 @@
     <ClCompile Include="src\DirectionalWashScene.cpp" />
     <ClCompile Include="src\LightShaderScene.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\NeonLightTunnelScene.cpp" />
     <ClCompile Include="src\NeuralSpaceShaderScene.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="..\..\..\..\addons\ofx3DModelLoader\src\3DS\model3DS.cpp" />
@@ -285,6 +286,7 @@
     <ClInclude Include="src\CircleExpandScene.h" />
     <ClInclude Include="src\DirectionalWashScene.h" />
     <ClInclude Include="src\LightShaderScene.h" />
+    <ClInclude Include="src\NeonLightTunnelScene.h" />
     <ClInclude Include="src\NeuralSpaceShaderScene.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="src\RadialFftScene.h" />

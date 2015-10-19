@@ -31,6 +31,8 @@ void ofApp::setup(){
 
 	//set.addScene( new ColorOutlineScene((int)set.getNumScenes(), "ColorOutlineScene" ) ) ;
 	//set.addScene(new RadialFftScene((int)set.getNumScenes(), "RadialFftScene"));
+	
+	set.addScene(new NeonLightTunnelScene((int)set.getNumScenes(), "NeonLightTunnelScene"));
 	set.addScene(new CircleExpandScene((int)set.getNumScenes(), "CircleExpandScene"));
 	set.addScene(new SectionColorJumpScene((int)set.getNumScenes(), "SectionColorJumpScene"));
 	set.addScene(new AnimatedTileTextureScene((int)set.getNumScenes(), "AnimatedTileTextureScene"));

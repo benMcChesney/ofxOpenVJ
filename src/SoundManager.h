@@ -50,11 +50,15 @@ class SoundManager
 	float lastBeatPerc; 
 	float getSecondsFromBPM(); 
 
-
-	ofxButton beat; 
 	ofxButton button_tapBPM; 
 	ofxButton button_clearBPM; 
 	ofxLabel bpmLabel; 
+
+	ofxIntSlider manualBpm; 
+	ofxButton setBpm; 
+	void bpmHandler() ; 
+	ofxButton resetBeat; 
+	void resetBeatHandler(); 
 };
 
 

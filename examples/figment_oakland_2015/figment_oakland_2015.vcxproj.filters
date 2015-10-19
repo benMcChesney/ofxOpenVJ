@@ -328,6 +328,9 @@
     <ClCompile Include="src\RadialFftScene.cpp">
       <Filter>src\scenes</Filter>
     </ClCompile>
+    <ClCompile Include="src\NeonLightTunnelScene.cpp">
+      <Filter>src\scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -1599,6 +1602,9 @@
       <Filter>src\scenes</Filter>
     </ClInclude>
     <ClInclude Include="src\RadialFftScene.h">
+      <Filter>src\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\NeonLightTunnelScene.h">
       <Filter>src\scenes</Filter>
     </ClInclude>
   </ItemGroup>
