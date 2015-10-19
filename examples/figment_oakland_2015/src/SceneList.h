@@ -9,6 +9,7 @@
 #ifndef simpleExample_SceneList_h
 #define simpleExample_SceneList_h
 
+#include "GridMosiacFractalScene.h"
 #include "AnimatedTileTextureScene.h"
 #include "ReflectMaskScene.h"
 #include "SimpleScene.h"

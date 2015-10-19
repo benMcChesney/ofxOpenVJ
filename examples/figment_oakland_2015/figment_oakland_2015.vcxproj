@@ -176,6 +176,7 @@
     <ClCompile Include="src\AnimatedTileTextureScene.cpp" />
     <ClCompile Include="src\CircleExpandScene.cpp" />
     <ClCompile Include="src\DirectionalWashScene.cpp" />
+    <ClCompile Include="src\GridMosiacFractalScene.cpp" />
     <ClCompile Include="src\LightShaderScene.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\NeonLightTunnelScene.cpp" />
@@ -285,6 +286,7 @@
     <ClInclude Include="src\AnimatedTileTextureScene.h" />
     <ClInclude Include="src\CircleExpandScene.h" />
     <ClInclude Include="src\DirectionalWashScene.h" />
+    <ClInclude Include="src\GridMosiacFractalScene.h" />
     <ClInclude Include="src\LightShaderScene.h" />
     <ClInclude Include="src\NeonLightTunnelScene.h" />
     <ClInclude Include="src\NeuralSpaceShaderScene.h" />

@@ -42,10 +42,10 @@ void main( void ) {
 		float f = min(min(f2.x,f2.y),f2.z);
 		
 		pos += dir*f;
-		if (condition > float(i)/64.0 || condition < float(i)/64.0 - beat) color += float(MAXITER-i)/f2;
+		if (condition > float(i)/64.0 || condition < float(i)/64.0 - (beat*0.5)) color += float(MAXITER-i)/f2;
 	}
 	vec3 color3 = vec3(1.-1./(1.+color*(4.0/float(MAXITER*MAXITER*MAXITER))));
 	color3 *= color3;
-	gl_FragColor = vec4(vec3(color3.r/color3.g*color3.b),1.0);
+	gl_FragColor = vec4(vec3(color3.r/color3.g*color3.b),1.6);
 	//gl_FragColor = vec4(color3, 1.0);
 }
