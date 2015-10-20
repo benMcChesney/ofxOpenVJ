@@ -32,7 +32,9 @@ void ofApp::setup(){
 	//set.addScene( new ColorOutlineScene((int)set.getNumScenes(), "ColorOutlineScene" ) ) ;
 	//set.addScene(new RadialFftScene((int)set.getNumScenes(), "RadialFftScene"));
 	//
-	
+	set.addScene(new MRSFractalShaderScene((int)set.getNumScenes(), "MRSFractalShaderScene"));
+	set.addScene(new CellLifeShaderScene((int)set.getNumScenes(), "CellLifeShaderScene"));
+	set.addScene(new FractalTunnelScene((int)set.getNumScenes(), "FractalTunnelScene"));
 	set.addScene(new IronManTunnelShaderScene((int)set.getNumScenes(), "IronManTunnelShaderScene"));
 	set.addScene(new GridMosiacFractalScene((int)set.getNumScenes(), "GridMosiacFractalScene"));
 	set.addScene(new NeonLightTunnelScene((int)set.getNumScenes(), "NeonLightTunnelScene"));

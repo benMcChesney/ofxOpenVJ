@@ -337,6 +337,15 @@
     <ClCompile Include="src\IronManTunnelShaderScene.cpp">
       <Filter>src\scenes</Filter>
     </ClCompile>
+    <ClCompile Include="src\FractalTunnelScene.cpp">
+      <Filter>src\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CellLifeShaderScene.cpp">
+      <Filter>src\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MRSFractalShaderScene.cpp">
+      <Filter>src\scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -1617,6 +1626,15 @@
       <Filter>src\scenes</Filter>
     </ClInclude>
     <ClInclude Include="src\IronManTunnelShaderScene.h">
+      <Filter>src\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FractalTunnelScene.h">
+      <Filter>src\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CellLifeShaderScene.h">
+      <Filter>src\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MRSFractalShaderScene.h">
       <Filter>src\scenes</Filter>
     </ClInclude>
   </ItemGroup>

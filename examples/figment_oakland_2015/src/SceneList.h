@@ -21,6 +21,9 @@
 #include "CircleExpandScene.h"
 #include "NeonLightTunnelScene.h"
 #include "IronManTunnelShaderScene.h"
+#include "FractalTunnelScene.h"
+#include "CellLifeShaderScene.h"
+#include "MRSFractalShaderScene.h"
 //#include "RadialFftScene.h"
 
 #endif
