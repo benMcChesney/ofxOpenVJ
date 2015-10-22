@@ -24,7 +24,11 @@ void ofApp::setup(){
 	
 
 	
-
+	ofxOpenVJConstants::Instance()->colorPalette.addColor( ofColor( 64, 89, 82), "PURP" );
+	ofxOpenVJConstants::Instance()->colorPalette.addColor(ofColor(156, 155, 122), "BRIGHT RED");
+	ofxOpenVJConstants::Instance()->colorPalette.addColor(ofColor(255, 211, 147), "ORANGEY RED");
+	ofxOpenVJConstants::Instance()->colorPalette.addColor(ofColor(255, 151, 79), "ORANGEY");
+	ofxOpenVJConstants::Instance()->colorPalette.addColor(ofColor(245, 79, 41), "GREEN SLATE");
 	//set.initKinectV1();
 	set.setup( bufferSize );
 
@@ -32,6 +36,7 @@ void ofApp::setup(){
 	//set.addScene( new ColorOutlineScene((int)set.getNumScenes(), "ColorOutlineScene" ) ) ;
 	//set.addScene(new RadialFftScene((int)set.getNumScenes(), "RadialFftScene"));
 	//
+	set.addScene(new LightShaderScene((int)set.getNumScenes(), "LightShaderScene"));
 	set.addScene(new MRSFractalShaderScene((int)set.getNumScenes(), "MRSFractalShaderScene"));
 	set.addScene(new CellLifeShaderScene((int)set.getNumScenes(), "CellLifeShaderScene"));
 	set.addScene(new FractalTunnelScene((int)set.getNumScenes(), "FractalTunnelScene"));
@@ -41,10 +46,10 @@ void ofApp::setup(){
 	set.addScene(new CircleExpandScene((int)set.getNumScenes(), "CircleExpandScene"));
 	set.addScene(new SectionColorJumpScene((int)set.getNumScenes(), "SectionColorJumpScene"));
 	set.addScene(new AnimatedTileTextureScene((int)set.getNumScenes(), "AnimatedTileTextureScene"));
-	set.addScene(new LightShaderScene((int)set.getNumScenes(), "LightShaderScene"));
+	
 	set.addScene(new TileTextureScene((int)set.getNumScenes(), "TileTextureScene"));
 	set.addScene(new ReflectMaskScene((int)set.getNumScenes(), "ReflectMaskScene"));
-	set.addScene(new SimpleScene((int)set.getNumScenes(), "SimpleScene"));
+	//set.addScene(new SimpleScene((int)set.getNumScenes(), "SimpleScene"));
 	set.addScene(new NeuralSpaceShaderScene((int)set.getNumScenes(), "NeuralSpaceShaderScene"));
 
 	//set.addScene(new TestScene((int)set.getNumScenes(), "Test Scene"));

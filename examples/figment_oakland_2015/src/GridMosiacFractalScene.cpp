@@ -62,7 +62,9 @@ void GridMosiacFractalScene::draw()
 			shader.setUniform1f("low", soundManager->beatTracker.getBand(0));
 			shader.setUniform1f("medium", soundManager->beatTracker.isSnare());
 			shader.setUniform1f("high", soundManager->beatTracker.isHat()); 
-
+			shader.setUniform1f("beatSin2", soundManager->bpmTapper.sin2);
+			shader.setUniform1f("beatSin4", soundManager->bpmTapper.sin4);
+			shader.setUniform1f("beatSin8", soundManager->bpmTapper.sin8);
 			ofSetColor(255);
 			ofRect(0, 0, getWidth(), getHeight());
 			shader.end();

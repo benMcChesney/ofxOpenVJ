@@ -53,7 +53,10 @@ public :
 	ofxButton resetAngle; 
 	void resetAngleListener(); 
 
-
+	void newSegment(); 
+	int lastSectionIndex = 0; 
+	ofColor currentColor;
+	ofxToggle newColorOnBeat; 
     
 
 

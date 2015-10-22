@@ -161,4 +161,5 @@ public :
 	ofxToggle bTriangleShape; 
 	ofxToggle bCircleShape; 
     
+	ofFbo fbo; 
 };

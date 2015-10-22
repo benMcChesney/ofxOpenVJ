@@ -296,11 +296,15 @@ void ofxOpenVJSet::setupMainGui() {
 	gui.setPosition ( c->GUI_WIDGET_WIDTH, 0); 
 	gui.setBackgroundColor(c->GUI_WIDGET_BG_COLOR); 
 	gui.add(projectorWidth.setup("WIDTH", 1920, 50, 3840));
-	gui.add(projectorHeight.setup("HEIGHT", 1080, 50, 1400));
+	gui.add(projectorHeight.setup("HEIGHT", 1080, 50, 1900));
 	gui.add(bDrawDebug.setup("DRAW DEBUG" , false ));
 	gui.add(bAutoSceneSwitch.setup("AUTO SCENE SWITCH", false ));	
 	gui.add(setTransitionTime.setup("SET TRANSITION TIME", 0.5f, 0.1f, 3.0f ));
 	gui.add(setDelayTime.setup("SET DELAY TIME", 0.2f, 0.1f, 4.0f ));
+
+	gui.add(ofxOpenVJConstants::Instance()->colorPalette.bRandomColor.setup("RANDOM COLOR", false)); 
+	gui.add(ofxOpenVJConstants::Instance()->colorPalette.bSequentialColor.setup("SEQUENTIAL COLOR", false));
+	
 
 }
 

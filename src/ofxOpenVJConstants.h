@@ -6,6 +6,7 @@
 //
 //
 #include "ofMain.h"
+#include "ColorPalette.h"
 #pragma once
 
 /*
@@ -35,6 +36,8 @@ public:
 	float GUI_WIDGET_WIDTH; 
 	float GUI_WIDGET_HEIGHT; 
 	ofColor GUI_WIDGET_BG_COLOR; 
+
+	ColorPalette colorPalette; 
     
 };
 

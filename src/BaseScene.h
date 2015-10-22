@@ -19,12 +19,13 @@
 #include "CompositorManager.h"
 #include "ofxGui.h"
 #include "ofxOpenVJUtils.h"
+#include "ofxAlphaStackItem.h"
 
 #ifdef USE_KINECT
 #include "KinectManager.h"
 #endif
 
-class BaseScene {
+class BaseScene : public ofxAlphaStackItem {
 public:
     BaseScene() ;
     BaseScene( int a_index, string a_name ) ; 

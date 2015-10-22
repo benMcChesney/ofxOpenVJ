@@ -36,7 +36,9 @@ public :
 	ofShader shader; 
 
 	ofxFloatSlider spaceMovement; 
-    
+
+	ofxButton reloadShader; 
+	void reloadShaderHandler(); 
 
 
 

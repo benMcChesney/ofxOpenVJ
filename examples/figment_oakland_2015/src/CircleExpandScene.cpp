@@ -10,7 +10,10 @@
 
 void CircleExpandScene::setup()
 {
-
+	fbo.allocate(ofGetWidth(), ofGetHeight()); 
+	fbo.begin(); 
+	ofClear(1, 1, 1, 0); 
+	fbo.end(); 
 }
 
 void CircleExpandScene::setupGui(float a_x, float a_y)
@@ -87,7 +90,7 @@ void  CircleExpandScene::manualCreateShapeListener()
 			break;
 	}
 
-	shapes.push_back(new Shape(1.0f, r , ofColor::fromHsb(ofGetFrameNum() % 255, 255, 255), st , soundManager->getSecondsFromBPM() ));
+	shapes.push_back(new Shape(1.0f, r , ofxOpenVJConstants::Instance()->colorPalette.getColor(), st , soundManager->getSecondsFromBPM() ));
 
 	int index = shapes.size() - 1;
 	Tweenzor::add(&shapes[index]->radius, 1.0f, shapes[index]->maxRadius, 0.0f, soundManager->getSecondsFromBPM(), EASE_LINEAR);
@@ -123,8 +126,12 @@ void CircleExpandScene::update()
 
 void CircleExpandScene::draw()
 {
+	fbo.begin(); 
+	ofClear(0, 0, 0, 0); 
 	ofPushMatrix(); 
 	ofTranslate(ofGetWidth() / 2, ofGetHeight() / 2); 
+
+
 
 	for (auto shape = shapes.begin(); shape != shapes.end(); shape++)
 	{
@@ -132,6 +139,10 @@ void CircleExpandScene::draw()
 	}
 
 	ofPopMatrix(); 
+	fbo.end(); 
+
+	ofSetColor(255, 255, 255, getOFAlpha()); 
+	fbo.draw(0, 0, ofGetWidth() , ofGetHeight() ); 
 }
 
 

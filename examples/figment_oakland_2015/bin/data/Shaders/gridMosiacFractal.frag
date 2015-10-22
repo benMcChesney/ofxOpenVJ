@@ -14,7 +14,9 @@ uniform float low ;
 uniform float medium ; 
 uniform float high ; 
 uniform float beat ; 
-
+uniform float beatSin2 ; 
+uniform float beatSin4 ; 
+uniform float beatSin8 ; 
 void main( void ) {
 
 	vec2 uv = 128.0 * ( gl_FragCoord.xy / resolution.x ) + vec2(time) ;

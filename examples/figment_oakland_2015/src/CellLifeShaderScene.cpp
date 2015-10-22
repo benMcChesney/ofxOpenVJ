@@ -10,10 +10,7 @@
 
 void CellLifeShaderScene::setup()
 {
-	fbo.allocate(getWidth(), getHeight(), GL_RGBA);
-	fbo.begin();
-	ofClear(1, 1, 1, 0);
-	fbo.end();
+	setupCompositor(); 
 
 	string path = BaseScene::getDefaultShaderDirectory();
 	loadShaders(); 
@@ -91,7 +88,7 @@ void CellLifeShaderScene::draw()
 		ofSetColor(255, 255, 255 );
 
 		ofPushMatrix();
-			ofSetColor(255, 255, 255, 255);
+		ofSetColor(255, 255, 255, getOFAlpha()	);
 			fbo.draw(0, 0);
 		ofPopMatrix();
 

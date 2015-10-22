@@ -346,6 +346,12 @@
     <ClCompile Include="src\MRSFractalShaderScene.cpp">
       <Filter>src\scenes</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\ColorPalette.cpp">
+      <Filter>addons\ofxOpenVJ\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ofxHeliosLibs\src\ofxAlphaStack\ofxAlphaStackItem.cpp">
+      <Filter>addons\ofxHeliosLibs\src\ofxAlphaStack\src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -629,6 +635,18 @@
     </Filter>
     <Filter Include="addons\ofxGif\src">
       <UniqueIdentifier>{70b593bb-8019-455a-b056-ae3cc43b3c38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxHeliosLibs">
+      <UniqueIdentifier>{5b5e0b37-c86b-4c68-a299-fdbd789ec997}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxHeliosLibs\src">
+      <UniqueIdentifier>{1918ac14-e071-4e97-b615-2de555a4e380}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxHeliosLibs\src\ofxAlphaStack">
+      <UniqueIdentifier>{39dc9e0b-b657-45e2-80e2-6b3bab6ac42e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxHeliosLibs\src\ofxAlphaStack\src">
+      <UniqueIdentifier>{3b580064-cf86-4b96-a95f-b69efd56000b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1636,6 +1654,12 @@
     </ClInclude>
     <ClInclude Include="src\MRSFractalShaderScene.h">
       <Filter>src\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ColorPalette.h">
+      <Filter>addons\ofxOpenVJ\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ofxHeliosLibs\src\ofxAlphaStack\ofxAlphaStackItem.h">
+      <Filter>addons\ofxHeliosLibs\src\ofxAlphaStack\src</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

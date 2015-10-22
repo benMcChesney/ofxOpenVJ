@@ -59,6 +59,7 @@ class SoundManager
 	void bpmHandler() ; 
 	ofxButton resetBeat; 
 	void resetBeatHandler(); 
+
 };
 
 

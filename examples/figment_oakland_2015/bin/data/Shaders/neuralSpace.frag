@@ -15,20 +15,23 @@ uniform float medium ;
 uniform float high ; 
 uniform float beat ; 
 
+uniform float beatSin2 ; 
+uniform float beatSin4 ; 
+uniform float beatSin8 ; 
 uniform float spaceMovement ; 
 
 
 // http://www.fractalforums.com/new-theories-and-research/very-simple-formula-for-fractal-patterns/
 float field(in vec3 p) {
-	float strength = 7. + .03 * log(1.e-6 + fract(sin(time) * 4373.11));
+	float strength = 7. + .03 * log(1.e-6 + fract( beat  * 43.11));
 	float accum = 0.;
 	float prev = 0.;
 	float tw = 0.;
 	for (int i = 0; i < 24; ++i) {
 		float mag = dot(p, p);
-		p = abs(p) / mag + vec3(-.51, -.4, -1.3);
+		p = abs(p) / mag + vec3(-.51 + beatSin2 * 0.001 , -.4, -1.3);
 		float w = exp(-float(i) / 7.);
-		accum += w * exp(-strength * pow(abs(mag - prev), 2.3));
+		accum += w * exp(-strength * pow(abs(mag - prev), 2.3 + beat * 0.1));
 		tw += w;
 		prev = mag;
 	}
@@ -41,7 +44,7 @@ float rand(vec2 co) {
 
 float stars(float slow_time, vec2 position) {
 	
-	float brightness = 0.;
+	float brightness = low * 0.1 ; //0.;
 	
 	for (int i = 0; i < 100; i++) {
 		
@@ -51,7 +54,7 @@ float stars(float slow_time, vec2 position) {
 		vec2 l_pos = rand_pos - .15*vec2(sin(slow_time/16.), sin(slow_time/12.))*scale;
 		
 		l_pos = mod(l_pos,2.)-1.;
-		l_pos *= 1.03;
+		l_pos *= 1.03 ;
 		
 		vec2 dist = abs(l_pos - position);
 		dist.x = min(dist.x,.1);
@@ -61,7 +64,7 @@ float stars(float slow_time, vec2 position) {
 		float intensity = .0005*scale/sqrt(pow(dist.x,2.)+pow(dist.y,2.));
 		intensity = clamp(intensity * 1., 0., 1.);
 		
-		brightness = brightness + pow(4. * intensity, 2.);
+		brightness = brightness + pow(4. * intensity , 2.  + beat );
 	}
 		return brightness;
 }
@@ -88,12 +91,12 @@ void main() {
 	
 	float t = field(p);
 	float t2 = field(p2);
-	float v = (1. - exp((abs(uv.x) - 10.) * 6.)) * (1. - exp((abs(uv.y) - 1.) * 6.));
+	float v = (1. - exp((abs(uv.x) - 10.) * 6. + beat )) * (1. - exp((abs(uv.y) - 1.) * 6.));
 	
-	vec4 c1 = mix(.4, 1., v) * vec4(1.8 * t * t * t, 1.4 * t * t, t, 1.0);
-	vec4 c2 = mix(.4, 1., v) * vec4((sin(realtime/7.)+1.+uvs.x/16.+uvs.y/32.) * t2 * t2 * t2 * (t+9.)/10., (sin(realtime/11.)+1.-uvs.x/16.-uvs.y/32.) * t2 * t2, t2, sin(realtime/19.)/2.+.5);
+	vec4 c1 = mix(.4 + beatSin2 * 0.25, 1., v) * vec4(1.8 * t * t * t, 1.4 * t * t, t, 1.0);
+	vec4 c2 = mix(.4, 1. + beatSin4 * 0.2, v) * vec4((beatSin8+1.+uvs.x/16.+uvs.y/32. + beat ) * t2 * t2 * t2 * (t+9.)/10., (sin(realtime/11.)+1.-uvs.x/16.-uvs.y/32.) * t2 * t2, t2, sin(realtime/19.)/2.+.5);
 	//c1.b *= mod(gl_FragCoord.y+1.0, 2.0)*1.4;
-	c2.r *= mod(gl_FragCoord.y, 1.0)*7.4;
+	c2.r *= mod(gl_FragCoord.y, 1.0)*7.4 + low ;
 	gl_FragColor = (c1 + c2)*.8-.3;//+stars(realtime,uvs);
 	gl_FragColor += vec4(vec3(stars(realtime,uvs)),1.0);
 	

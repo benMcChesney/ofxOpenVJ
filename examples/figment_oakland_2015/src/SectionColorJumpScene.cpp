@@ -29,7 +29,7 @@ void SectionColorJumpScene::setupGui(float a_x, float a_y)
 	gui.add(segmentColorHue.setup("HUE COLOR HUE", 215.0f, 0.0f, 255.0f));
 	gui.add(segmentColorBrightness.setup("HUE COLOR BRIGHTNESS", 215.0f, 0.0f, 255.0f));
 	gui.add(segmentColorSaturation.setup("HUE COLOR SATURATION", 215.0f, 0.0f, 255.0f));
-	
+	gui.add(newColorOnBeat.setup("NEW COLOR ON BEAT", true));
 	gui.add(angleStep.setup("ANGLE STEP of 15", 3, 0, 6 )); 
 	gui.add(resetAngle.setup("RESET ANGLE")); 
 
@@ -45,6 +45,23 @@ void SectionColorJumpScene::setupGui(float a_x, float a_y)
    
 	*/
 	loadSettings();
+	newSegment();
+}
+
+void SectionColorJumpScene::newSegment()
+{
+	if (newColorOnBeat == false )
+	{
+		if (lastSectionIndex != 0 && curSegment == 0)
+		{
+			currentColor = ofxOpenVJConstants::Instance()->colorPalette.getColor();
+		}
+	}
+	else
+	{
+		currentColor = ofxOpenVJConstants::Instance()->colorPalette.getColor();
+	}
+	
 }
 
 void SectionColorJumpScene::resetAngleListener()
@@ -59,7 +76,7 @@ void SectionColorJumpScene::update()
 
 	float hue = segmentColor.getHue();
 	hue += hueSequenceStep;
-	segmentColor = ofColor::fromHsb(hue, segmentColorBrightness, segmentColorSaturation);
+	segmentColor = currentColor; // ofColor::fromHsb(hue, segmentColorBrightness, segmentColorSaturation);
 
 	/*
 	if (soundManager->lastBeatPerc > soundManager->beatPerc)
@@ -74,7 +91,12 @@ void SectionColorJumpScene::update()
 		//curSegment =
 		curSegment = ofxOpenVJUtils::Instance()->getFrameAtNormalized( soundManager->beatPerc, numSegments); 
 	}
+	if (curSegment != lastSectionIndex)
+	{
+		newSegment(); 
+	}
 
+	lastSectionIndex = curSegment; 
 }
 
 void SectionColorJumpScene::newBeatHandler()

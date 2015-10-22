@@ -64,7 +64,7 @@ class ofxOpenVJSet : public ofxMidiListener
     void transitionToRelativeIndex ( int indexOffset ) ;
 
 	SoundManager* getSoundManager() { return &soundManager;  }
-    
+   
 protected :
 #ifdef USE_KINECT
     DepthCameraManager    *    depthCameraManager;
@@ -102,7 +102,7 @@ protected :
 	//Scene List
 	vector< ofxToggle* > sceneButtons; 
 	void sceneButtonListener();
-
+	
 	
 
 	

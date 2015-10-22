@@ -75,7 +75,7 @@ bool BaseScene::transitionIn( float delay , float transitionTime )
 void BaseScene::update()
 {
 	sceneTransitionTimer.update(); 
-
+	alphaStackUpdate(calcAlpha); 
 	if (soundManager->lastBeatPerc > soundManager->beatPerc)
 	{
 		newBeatHandler(); 
