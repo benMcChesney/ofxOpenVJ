@@ -40,6 +40,8 @@ public :
 	ofxButton reloadShader; 
 	void reloadShaderHandler(); 
 
+	ofxFloatSlider flowAmount; 
+
 
 
     

@@ -15,6 +15,8 @@ uniform float medium ;
 uniform float high ; 
 uniform float beat ; 
 
+float intensity ; 
+
 const int MAXITER = 44;
 
 vec3 field(vec3 p) {
@@ -42,7 +44,7 @@ void main( void ) {
 		float f = min(min(f2.x,f2.y),f2.z);
 		
 		pos += dir*f;
-		if (condition > float(i)/64.0 || condition < float(i)/64.0 - (beat*0.5)) color += float(MAXITER-i)/f2;
+		if (condition > float(i)/64.0 || condition < float(i)/64.0 - (beat*0.25)) color += float(MAXITER-i)/f2;
 	}
 	vec3 color3 = vec3(1.-1./(1.+color*(4.0/float(MAXITER*MAXITER*MAXITER))));
 	color3 *= color3;

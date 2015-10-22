@@ -35,6 +35,10 @@ public :
 	ofFbo fbo; 
 	ofShader shader; 
 
+	void loadShaders();
+	ofxButton reloadShader;
+	ofxFloatSlider lightIntensity; 
+
     
 
 

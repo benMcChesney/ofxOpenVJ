@@ -31,6 +31,7 @@ void NeuralSpaceShaderScene::setupGui(float a_x, float a_y)
 
 	gui.add(spaceMovement.setup("SPACE MOVEMENT", 25.0, 0.0, 40.0)); 
 	gui.add(reloadShader.setup("RELOAD SHADER")); 
+	gui.add( flowAmount.setup("FLOW AMOUNT", 0.0005, 0.0005, 0.005)); 
 
 	reloadShader.addListener(this, &NeuralSpaceShaderScene::reloadShaderHandler); 
 	/*
@@ -73,8 +74,8 @@ void NeuralSpaceShaderScene::draw()
 			shader.setUniform1f("beatSin2", soundManager->bpmTapper.sin2);
 			shader.setUniform1f("beatSin4", soundManager->bpmTapper.sin4);
 			shader.setUniform1f("beatSin8", soundManager->bpmTapper.sin8);
-	
-
+			shader.setUniform1f("flowAmount", flowAmount);
+			
 			
 			
 			ofSetColor(255, 255, 255);

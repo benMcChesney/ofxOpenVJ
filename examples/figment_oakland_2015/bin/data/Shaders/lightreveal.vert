@@ -4,7 +4,10 @@ uniform float low ;
 uniform float medium ; 
 uniform float high ; 
 uniform float beat ; 
-
+uniform float beatSin2 ; 
+uniform float beatSin4 ; 
+uniform float beatSin8 ; 
+uniform float intensity ; 
 void main(void)
 {
 	//this is a default vertex shader all it does is this...

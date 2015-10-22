@@ -18,7 +18,7 @@ void LightShaderScene::setup()
 	string path = BaseScene::getDefaultShaderDirectory();
 
 	cout << "attemping to load shaders.... " << endl; 
-	shader.load("Shaders/lightreveal.vert", "Shaders/lightreveal.frag");
+	loadShaders(); 
 
 	cout << "after load shaders.... " << endl;
 }
@@ -28,14 +28,22 @@ void LightShaderScene::setupGui(float a_x, float a_y)
     BaseScene::setupGui( a_x , a_y ) ;
 
 	ofxOpenVJConstants *c = ofxOpenVJConstants::Instance(); 
-
-	
+	gui.add(lightIntensity.setup("LIGHT INTENSITY", 0.25f, 0.0f, 6.0f)); 
+	gui.add(reloadShader.setup("RELOAD SHADER"));
+	reloadShader.addListener(this, &LightShaderScene::loadShaders);
 	/*
 	gui.add(rectWidthSlider.setup("RECT WIDTH SLIDER", 150.0f, 50.0f, 400.0f));
-    loadSettings() ; 
 	*/
-	
+	loadSettings();
+
+
 }
+
+void LightShaderScene::loadShaders()
+{
+	shader.load("Shaders/lightreveal.vert", "Shaders/lightreveal.frag");
+}
+
 
 void LightShaderScene::update()
 {
@@ -57,10 +65,14 @@ void LightShaderScene::draw()
 			shader.setUniform1f("beat", soundManager->beatPerc );
 
 			shader.setUniform2f("resolution", getWidth(), getHeight());
-			shader.setUniform1f("low", soundManager->beatTracker.isKick());
+			shader.setUniform1f("low", soundManager->beatTracker.getBand(0));
 			shader.setUniform1f("medium", soundManager->beatTracker.isSnare());
 			shader.setUniform1f("high", soundManager->beatTracker.isHat()); 
-
+			shader.setUniform1f("beatSin2", soundManager->bpmTapper.sin2);
+			shader.setUniform1f("beatSin4", soundManager->bpmTapper.sin4);
+			shader.setUniform1f("beatSin8", soundManager->bpmTapper.sin8);
+			shader.setUniform1f("intensity", lightIntensity);
+			
 			ofSetColor(255, 255, 255);
 			ofRect(0, 0, getWidth(), getHeight());
 			shader.end();

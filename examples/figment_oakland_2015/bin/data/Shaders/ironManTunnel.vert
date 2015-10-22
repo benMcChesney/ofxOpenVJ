@@ -11,7 +11,9 @@ uniform float tunnelSpeed ;
 uniform float maxBrightness ; 
 uniform float lowBrightnessFactor ; 
 uniform float beatJumpOffset ;
-
+uniform float beatSin2 ; 
+uniform float beatSin4 ; 
+uniform float beatSin8 ; 
 void main(void)
 {
 	//this is a default vertex shader all it does is this...

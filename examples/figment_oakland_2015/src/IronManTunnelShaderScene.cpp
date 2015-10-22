@@ -74,6 +74,10 @@ void IronManTunnelShaderScene::draw()
 			shader.setUniform1f("tunnelSpeed", tunnelSpeed);
 			shader.setUniform1f("beatJumpOffset", beatJumpOffset);
 			
+			shader.setUniform1f("beatSin2", soundManager->bpmTapper.sin2);
+			shader.setUniform1f("beatSin4", soundManager->bpmTapper.sin4);
+			shader.setUniform1f("beatSin8", soundManager->bpmTapper.sin8);
+
 			ofSetColor(255);
 			ofRect(0, 0, getWidth(), getHeight());
 			shader.end();

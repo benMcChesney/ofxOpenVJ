@@ -18,7 +18,9 @@ uniform float tunnelSpeed ;
 uniform float maxBrightness ; 
 uniform float lowBrightnessFactor; 
 uniform float beatJumpOffset ;
-
+uniform float beatSin2 ; 
+uniform float beatSin4 ; 
+uniform float beatSin8 ; 
 void main( void ) 
 {
 	vec3 light_color = vec3(1.2,0.8,0.6);
@@ -42,13 +44,13 @@ void main( void )
 		float t = t*speed  - ( beat * beatJumpOffset) + angleRnd1*30.;
 		float radDist = sqrt(angleRnd2+float(i));
 		
-		float adist = radDist/rad*.1;
+		float adist = radDist/rad*.1 + ( 1.0 - beat );
 		float dist = (t*.1+adist);
-		dist = abs(fract(dist)-.5);
-		color +=  (1.0 / (dist))*cos(0.7*(sin(t)))*adist/radDist * brightness;
+		dist = abs(fract(dist)-beat);
+		color +=  (1.0 / (dist))*cos(0.4*(beat))*adist/radDist * brightness;
 		angle = fract(angle+.61  );
 	}
 	
 	
-	gl_FragColor = vec4(color,color,color,1.0)*vec4(light_color,1.0);
+	gl_FragColor = vec4(color/2 + beatSin2 * 0.5,color/2 +  beatSin4 * 0.5 , color/2 + beatSin8 * 0.5 ,1.0)*vec4(light_color,1.0);
 }

@@ -141,7 +141,7 @@ void CircleExpandScene::draw()
 	ofPopMatrix(); 
 	fbo.end(); 
 
-	ofSetColor(255, 255, 255, getOFAlpha()); 
+	ofSetColor(255, 255, 255); 
 	fbo.draw(0, 0, ofGetWidth() , ofGetHeight() ); 
 }
 
