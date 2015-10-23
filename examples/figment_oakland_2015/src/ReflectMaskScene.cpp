@@ -46,18 +46,7 @@ void ReflectMaskScene::setupGui(float a_x, float a_y)
 		squares.push_back(new TileSquare(c, w, (-w / 2) ) ); 
 	}
 
-	dir.allowExt("jpg"); 
-	dir.allowExt("png");
-	dir = ofDirectory("symmetrical_images"); 
-	dir.listDir(); 
-	cout << " dir size : " << dir.size() << endl; 
-
-	for (int i = 0; i < dir.size(); i++)
-	{
-		loadedImages.push_back( ofImage()); 
-		loadedImages[i].loadImage(dir.getPath(i));
-	}
-	activeIndex = 0; 
+	
 
 	gui.add(nextImage.setup("NEXT IMAGE")); 
 	gui.add(prevImage.setup("PREV IMAGE"));
@@ -182,6 +171,23 @@ void ReflectMaskScene::draw()
 }
 
 
+void ReflectMaskScene::loadContentFromDir(string path)
+{
+	
+	dir.allowExt("jpg");
+	dir.allowExt("png"); 
+	dir = ofDirectory(path);
+	dir.listDir();
+	cout << " dir size : " << dir.size() << endl;
+
+	for (int i = 0; i < dir.size(); i++)
+	{
+		loadedImages.push_back(ofImage());
+		cout << "loading : " << dir.getPath(i) << endl;
+		loadedImages[i].loadImage(dir.getPath(i));
+	}
+	activeIndex = 0;
+}
 
 bool ReflectMaskScene::transitionIn( float delay , float transitionTime )
 {

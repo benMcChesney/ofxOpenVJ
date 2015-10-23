@@ -316,9 +316,6 @@
     <ClCompile Include="..\..\..\ofxGif\src\ofxGif.cpp">
       <Filter>addons\ofxGif\src</Filter>
     </ClCompile>
-    <ClCompile Include="src\AnimatedTileTextureScene.cpp">
-      <Filter>addons\ofxOpenVJ\src</Filter>
-    </ClCompile>
     <ClCompile Include="src\SectionColorJumpScene.cpp">
       <Filter>src\scenes</Filter>
     </ClCompile>
@@ -351,6 +348,12 @@
     </ClCompile>
     <ClCompile Include="..\..\..\ofxHeliosLibs\src\ofxAlphaStack\ofxAlphaStackItem.cpp">
       <Filter>addons\ofxHeliosLibs\src\ofxAlphaStack\src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AnimatedTileTextureScene.cpp">
+      <Filter>src\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DrivingAnimScene.cpp">
+      <Filter>src\scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1622,9 +1625,6 @@
     <ClInclude Include="..\..\..\ofxGif\src\ofxGif.h">
       <Filter>addons\ofxGif\src</Filter>
     </ClInclude>
-    <ClInclude Include="src\AnimatedTileTextureScene.h">
-      <Filter>addons\ofxOpenVJ\src</Filter>
-    </ClInclude>
     <ClInclude Include="src\SectionColorJumpScene.h">
       <Filter>src\scenes</Filter>
     </ClInclude>
@@ -1660,6 +1660,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\ofxHeliosLibs\src\ofxAlphaStack\ofxAlphaStackItem.h">
       <Filter>addons\ofxHeliosLibs\src\ofxAlphaStack\src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AnimatedTileTextureScene.h">
+      <Filter>src\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DrivingAnimScene.h">
+      <Filter>src\scenes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

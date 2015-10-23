@@ -266,6 +266,16 @@ void ofxOpenVJSet::draw() {
     }
 }
 
+BaseScene* ofxOpenVJSet::getSceneAt(int index)
+{
+	if (index >= 0 && index < getNumScenes())
+	{
+		return scenes[index]; 
+	}
+
+	return NULL; 
+}
+
 void ofxOpenVJSet::sceneTimerComplete( int & args ) 
 {
     if ( !bAutoSceneSwitch ) return ; 

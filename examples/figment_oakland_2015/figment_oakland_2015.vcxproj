@@ -179,6 +179,7 @@
     <ClCompile Include="src\CellLifeShaderScene.cpp" />
     <ClCompile Include="src\CircleExpandScene.cpp" />
     <ClCompile Include="src\DirectionalWashScene.cpp" />
+    <ClCompile Include="src\DrivingAnimScene.cpp" />
     <ClCompile Include="src\FractalTunnelScene.cpp" />
     <ClCompile Include="src\GridMosiacFractalScene.cpp" />
     <ClCompile Include="src\IronManTunnelShaderScene.cpp" />
@@ -295,6 +296,7 @@
     <ClInclude Include="src\CellLifeShaderScene.h" />
     <ClInclude Include="src\CircleExpandScene.h" />
     <ClInclude Include="src\DirectionalWashScene.h" />
+    <ClInclude Include="src\DrivingAnimScene.h" />
     <ClInclude Include="src\FractalTunnelScene.h" />
     <ClInclude Include="src\GridMosiacFractalScene.h" />
     <ClInclude Include="src\IronManTunnelShaderScene.h" />

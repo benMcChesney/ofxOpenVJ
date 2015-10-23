@@ -30,7 +30,7 @@ class ReflectMaskScene : public BaseScene
 {
 public :
 	ReflectMaskScene() {} 
-	ReflectMaskScene( int a_index, string a_name ):BaseScene( a_index, a_name ) {}
+	ReflectMaskScene(int a_index, string a_name, string folder) :BaseScene(a_index, a_name) { loadContentFromDir(folder); }
    
     struct ColorSquare
     {
@@ -39,6 +39,7 @@ public :
         float size = 50.0f ;
     };
 
+	void loadContentFromDir(string path); 
     void setup();
     void setupGui(float a_x=0, float a_y=0);
 //    void guiEvent(ofxUIEventArgs &e);

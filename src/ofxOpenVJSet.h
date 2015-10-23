@@ -65,6 +65,7 @@ class ofxOpenVJSet : public ofxMidiListener
 
 	SoundManager* getSoundManager() { return &soundManager;  }
    
+	BaseScene* getSceneAt(int index);
 protected :
 #ifdef USE_KINECT
     DepthCameraManager    *    depthCameraManager;
@@ -86,7 +87,6 @@ protected :
     vector<BaseScene*> scenes;
     
     int activeSceneIndex;
-    
     //float setTransitionTime , setDelayTime ; 
 
 	//Gui

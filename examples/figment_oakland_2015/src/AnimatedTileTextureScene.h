@@ -16,10 +16,12 @@ class AnimatedTileTextureScene : public BaseScene
 {
 public :
 	AnimatedTileTextureScene() {}
-	AnimatedTileTextureScene( int a_index, string a_name ):BaseScene( a_index, a_name ) {}
+	AnimatedTileTextureScene(int a_index, string a_name, string folder) :BaseScene(a_index, a_name) { loadContentFromFolder( folder );  }
 
     void setup();
     void setupGui(float a_x=0, float a_y=0);
+
+	void loadContentFromFolder(string path); 
 //    void guiEvent(ofxUIEventArgs &e);
     
     void update();
@@ -45,5 +47,9 @@ public :
 	void nextImageHandler();
 	void prevImageHandler();
 	void offsetImageByIndex(int index);
-    
+
+	int curBeats; 
+	ofxToggle bAutoChangeImageOnBeat; 
+	ofxIntSlider beatsUntilChange;
+	void newBeatHandler(); ;
 };

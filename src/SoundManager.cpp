@@ -27,7 +27,7 @@ void SoundManager::setup ( int _bufferSize )
 	button_tapBPM.addListener(this, &SoundManager::tapBPM);
 	button_clearBPM.addListener(this, &SoundManager::clearBPM);
 
-	gui.add( manualBpm.setup( "MANUAL BPM" , 90 , 40 , 200 ) );
+	gui.add( manualBpm.setup( "MANUAL BPM" , 90 , 30 , 200 ) );
 	gui.add( setBpm.setup( "SET BPM" , false )) ;
 	gui.add( resetBeat.setup("START FRESH", false)); 
 

@@ -35,22 +35,43 @@ void ofApp::setup(){
 
 	//set.addScene( new ColorOutlineScene((int)set.getNumScenes(), "ColorOutlineScene" ) ) ;
 	//set.addScene(new RadialFftScene((int)set.getNumScenes(), "RadialFftScene"));
-	//
+	//Intro
 	set.addScene(new LightShaderScene((int)set.getNumScenes(), "LightShaderScene"));
-	set.addScene(new MRSFractalShaderScene((int)set.getNumScenes(), "MRSFractalShaderScene"));
-	set.addScene(new CellLifeShaderScene((int)set.getNumScenes(), "CellLifeShaderScene"));
-	set.addScene(new FractalTunnelScene((int)set.getNumScenes(), "FractalTunnelScene"));
-	set.addScene(new IronManTunnelShaderScene((int)set.getNumScenes(), "IronManTunnelShaderScene"));
-	set.addScene(new GridMosiacFractalScene((int)set.getNumScenes(), "GridMosiacFractalScene"));
-	set.addScene(new NeonLightTunnelScene((int)set.getNumScenes(), "NeonLightTunnelScene"));
 	set.addScene(new CircleExpandScene((int)set.getNumScenes(), "CircleExpandScene"));
-	set.addScene(new SectionColorJumpScene((int)set.getNumScenes(), "SectionColorJumpScene"));
-	set.addScene(new AnimatedTileTextureScene((int)set.getNumScenes(), "AnimatedTileTextureScene"));
-	
-	set.addScene(new TileTextureScene((int)set.getNumScenes(), "TileTextureScene"));
-	set.addScene(new ReflectMaskScene((int)set.getNumScenes(), "ReflectMaskScene"));
-	//set.addScene(new SimpleScene((int)set.getNumScenes(), "SimpleScene"));
+	set.addScene(new NeonLightTunnelScene((int)set.getNumScenes(), "NeonLightTunnelScene"));
+	set.addScene(new AnimatedTileTextureScene((int)set.getNumScenes(), "Wave Tiles", "waves_gifs"));
+	//texture tile for intro for build / fast beat 
+	//HiRoller
+	set.addScene(new MRSFractalShaderScene((int)set.getNumScenes(), "MRSFractalShaderScene"));
+	set.addScene(new FractalTunnelScene((int)set.getNumScenes(), "FractalTunnelScene"));
+	set.addScene(new SectionColorJumpScene((int)set.getNumScenes(), "SectionColorJumpScene")); 
+	set.addScene(new AnimatedTileTextureScene((int)set.getNumScenes(), "Dance Tiles", "dance_gifs"));
+
+	//Distant
 	set.addScene(new NeuralSpaceShaderScene((int)set.getNumScenes(), "NeuralSpaceShaderScene"));
+	set.addScene(new ReflectMaskScene((int)set.getNumScenes(), "ReflectMaskScene", "distant_images"));
+	//reflectmask scene "distant" objects
+	//then back into space
+	//Tile TExture of... something ? kits / planes / things in the sky ?
+
+	//with friends
+	//animatedTileTexture driving / motion gifs
+	set.addScene(new AnimatedTileTextureScene( (int)set.getNumScenes(), "Driving Tiles" , "driving_gifs" ));
+	//((AnimatedTileTextureScene*)set.getSceneAt(set.getNumScenes() - 1))->loadContentFromFolder("driving_gifs");
+
+	set.addScene(new GridMosiacFractalScene((int)set.getNumScenes(), "GridMosiacFractalScene"));
+	set.addScene(new CellLifeShaderScene((int)set.getNumScenes(), "CellLifeShaderScene"));
+	set.addScene(new IronManTunnelShaderScene((int)set.getNumScenes(), "IronManTunnelShaderScene"));
+	
+	//Solitaire
+	set.addScene(new ReflectMaskScene((int)set.getNumScenes(), "ReflectMaskScene" , "distant_images" ));
+	//set.addScene(new AnimatedTileTextureScene(, "AnimatedTileTextureScene"));
+//	((AnimatedTileTextureScene*)set.getSceneAt(set.getNumScenes() - 1))->loadContentFromFolder("animatedTileTextures"); 
+
+	set.addScene(new TileTextureScene((int)set.getNumScenes(), "TileTextureScene"));
+	
+	//set.addScene(new SimpleScene((int)set.getNumScenes(), "SimpleScene"));
+	
 
 	//set.addScene(new TestScene((int)set.getNumScenes(), "Test Scene"));
 //	set.addScene(new RippleTunnelScene((int)set.getNumScenes(), "RippleTunnelScene"));

@@ -40,23 +40,27 @@ void CompositorManager::setupGui()
 
 	glitches.push_back(new GlitchGuiMap("CONVERGENCE", OFXPOSTGLITCH_CONVERGENCE , startPitch + glitches.size()));
 	glitches.push_back(new GlitchGuiMap("SHAKER", OFXPOSTGLITCH_SHAKER , startPitch + glitches.size()));
-	glitches.push_back(new GlitchGuiMap("TWIST", OFXPOSTGLITCH_TWIST, startPitch + glitches.size()));
+	//glitches.push_back(new GlitchGuiMap("TWIST", OFXPOSTGLITCH_TWIST, startPitch + glitches.size()));
+	glitches.push_back(new GlitchGuiMap("SWELL", OFXPOSTGLITCH_SWELL, startPitch + glitches.size()));
 	glitches.push_back(new GlitchGuiMap("CUTSLIDER", OFXPOSTGLITCH_CUTSLIDER, startPitch + glitches.size()));
 	
 	//Not performant on winodws
 	//glitches.push_back(new GlitchGuiMap("OUTLINE", OFXPOSTGLITCH_OUTLINE, 36 + glitches.size())); 
 	glitches.push_back(new GlitchGuiMap("NOISE", OFXPOSTGLITCH_NOISE, startPitch + glitches.size()));
 	glitches.push_back(new GlitchGuiMap("SLITSCAN", OFXPOSTGLITCH_SLITSCAN, startPitch + glitches.size()));
-	glitches.push_back(new GlitchGuiMap("SWELL", OFXPOSTGLITCH_SWELL, startPitch + glitches.size()));
+	
 	glitches.push_back(new GlitchGuiMap("INVERT", OFXPOSTGLITCH_INVERT, startPitch + glitches.size()));
 	glitches.push_back(new GlitchGuiMap("HIGH CONTRAST", OFXPOSTGLITCH_CR_HIGHCONTRAST, startPitch + glitches.size()));
 	
-	glitches.push_back(new GlitchGuiMap("BLUE RAISE", OFXPOSTGLITCH_CR_BLUERAISE, startPitch + glitches.size()));
+	
 	glitches.push_back(new GlitchGuiMap("BLUE INVERT", OFXPOSTGLITCH_CR_BLUEINVERT, startPitch + glitches.size()));
-	glitches.push_back(new GlitchGuiMap("RED RAISE", OFXPOSTGLITCH_CR_REDRAISE, startPitch + glitches.size()));
+	glitches.push_back(new GlitchGuiMap("BLUE RAISE", OFXPOSTGLITCH_CR_BLUERAISE, startPitch + glitches.size()));
+	
 	glitches.push_back(new GlitchGuiMap("RED INVERT", OFXPOSTGLITCH_CR_REDINVERT, startPitch + glitches.size()));
-	glitches.push_back(new GlitchGuiMap("GREEN RAISE", OFXPOSTGLITCH_CR_GREENRAISE, startPitch + glitches.size()));
+	glitches.push_back(new GlitchGuiMap("RED RAISE", OFXPOSTGLITCH_CR_REDRAISE, startPitch + glitches.size()));
+	
 	glitches.push_back(new GlitchGuiMap("GREEN INVERT", OFXPOSTGLITCH_CR_GREENINVERT, startPitch + glitches.size()));
+	glitches.push_back(new GlitchGuiMap("GREEN RAISE", OFXPOSTGLITCH_CR_GREENRAISE, startPitch + glitches.size()));
 
 	for (auto fx = glitches.begin(); fx != glitches.end(); fx++)
 	{

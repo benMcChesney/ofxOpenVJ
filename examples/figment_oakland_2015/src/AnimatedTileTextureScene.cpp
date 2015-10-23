@@ -10,7 +10,7 @@
 
 void AnimatedTileTextureScene::setup()
 {
-	dir = ofDirectory("animatedTileTextures"); 
+	/*dir = ofDirectory("animatedTileTextures"); 
 	dir.sort(); 
 	dir.listDir(); 
 	for (int i = 0; i < dir.size(); i++)
@@ -18,7 +18,22 @@ void AnimatedTileTextureScene::setup()
 		textures.push_back(new ofxGIF::fiGifLoader());
 		textures[i]->load(dir.getPath(i));
 	}
-	activeIndex = 0; 
+	activeIndex = 0; */
+}
+
+void AnimatedTileTextureScene::loadContentFromFolder(string path)
+{
+	dir = ofDirectory(path);
+	cout << "loading directory " << path << endl;
+	dir.sort();
+	dir.listDir();
+	for (int i = 0; i < dir.size(); i++)
+	{
+		cout << "loading... " << dir.getPath(i) << endl;
+		textures.push_back(new ofxGIF::fiGifLoader());
+		textures[i]->load(dir.getPath(i));
+	}
+	activeIndex = 0;
 }
 
 void AnimatedTileTextureScene::setupGui(float a_x, float a_y)
@@ -33,13 +48,29 @@ void AnimatedTileTextureScene::setupGui(float a_x, float a_y)
 	gui.add(numCopies.setup("NUM COPIES", 2, 1, 10)); 
 	gui.add(nextImage.setup("NEXT IMAGE")); 
 	gui.add(prevImage.setup("PREV IMAGE")); 
-	gui.add(minTextureScale.setup("MIN TEX SCALE", 0.9, 0.25, 1.0)); 
-	gui.add(maxTextureScale.setup("MAX TEX SCALE", 1.05, 0.35, 1.5));
+	gui.add(minTextureScale.setup("MIN TEX SCALE", 1.00, 0.25, 1.0)); 
+	gui.add(maxTextureScale.setup("MAX TEX SCALE", 1.02, 0.35, 1.5));
+
+	gui.add( bAutoChangeImageOnBeat.setup("AUTO CHANGE IMAGE", true));
+	gui.add(beatsUntilChange.setup("NUM BEATS ON AUTO", 4, 1, 16)); 
+	curBeats = 0; 
 
     loadSettings() ; 
 
 	nextImage.addListener(this, &AnimatedTileTextureScene::nextImageHandler);
 	prevImage.addListener(this, &AnimatedTileTextureScene::prevImageHandler);
+}
+
+void AnimatedTileTextureScene::newBeatHandler()
+{
+	curBeats++; 
+	if (curBeats >= beatsUntilChange)
+	{
+		curBeats = 0; 
+		nextImageHandler(); 
+	}
+
+	
 }
 
 void AnimatedTileTextureScene::update()
@@ -55,20 +86,20 @@ void AnimatedTileTextureScene::draw()
 	ofxGIF::fiGifLoader * img = textures[activeIndex];
 
 	float width = ofGetWidth() / numCopies; 
-
+	float height = ofGetHeight() / numCopies; 
 	float s = ofMap(soundManager->beatPerc, 0.0f, 1.0f, minTextureScale, maxTextureScale ,  true);
 	for (int y = 0; y < numCopies; y++)
 	{
 		for (int x = 0; x < numCopies; x++)
 		{
 			ofPushMatrix(); 
-				ofTranslate(x * width, y * width ); 
-				ofTranslate(width / 2, width / 2); 
+				ofTranslate(x * width, y * height ); 
+				ofTranslate(width / 2, height / 2); 
 				ofScale(s, s, 1); 
 
 
 				int frame = floor(ofMap( soundManager->beatPerc , 0.0f, 1.0f, 0, (img->pages.size()-1) , true));
-				img->pages[frame].draw( -width/2 , -width/2, width , width ); 
+				img->pages[frame].draw( -width/2 , -height/2, width , height ); 
 			ofPopMatrix(); 
 		}
 	}
