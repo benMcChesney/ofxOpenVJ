@@ -1,4 +1,5 @@
 <NeuralSpaceShaderScene_Scene_Settings>
-	<SPACE_MOVEMENT>3.6</SPACE_MOVEMENT>
+	<SPACE_MOVEMENT>1.06667</SPACE_MOVEMENT>
 <NeuralSpaceShaderScene_Scene_Settings/>
+<FLOW_AMOUNT>0.0005</FLOW_AMOUNT>
 </NeuralSpaceShaderScene_Scene_Settings>

@@ -352,9 +352,6 @@
     <ClCompile Include="src\AnimatedTileTextureScene.cpp">
       <Filter>src\scenes</Filter>
     </ClCompile>
-    <ClCompile Include="src\DrivingAnimScene.cpp">
-      <Filter>src\scenes</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -1662,9 +1659,6 @@
       <Filter>addons\ofxHeliosLibs\src\ofxAlphaStack\src</Filter>
     </ClInclude>
     <ClInclude Include="src\AnimatedTileTextureScene.h">
-      <Filter>src\scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\DrivingAnimScene.h">
       <Filter>src\scenes</Filter>
     </ClInclude>
   </ItemGroup>

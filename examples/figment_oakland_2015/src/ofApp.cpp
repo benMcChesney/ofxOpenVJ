@@ -50,6 +50,7 @@ void ofApp::setup(){
 	//Distant
 	set.addScene(new NeuralSpaceShaderScene((int)set.getNumScenes(), "NeuralSpaceShaderScene"));
 	set.addScene(new ReflectMaskScene((int)set.getNumScenes(), "ReflectMaskScene", "distant_images"));
+	set.addScene(new AnimatedTileTextureScene((int)set.getNumScenes(), "Destroy Tiles", "destroy_gifs"));
 	//reflectmask scene "distant" objects
 	//then back into space
 	//Tile TExture of... something ? kits / planes / things in the sky ?
@@ -57,14 +58,12 @@ void ofApp::setup(){
 	//with friends
 	//animatedTileTexture driving / motion gifs
 	set.addScene(new AnimatedTileTextureScene( (int)set.getNumScenes(), "Driving Tiles" , "driving_gifs" ));
-	//((AnimatedTileTextureScene*)set.getSceneAt(set.getNumScenes() - 1))->loadContentFromFolder("driving_gifs");
-
 	set.addScene(new GridMosiacFractalScene((int)set.getNumScenes(), "GridMosiacFractalScene"));
 	set.addScene(new CellLifeShaderScene((int)set.getNumScenes(), "CellLifeShaderScene"));
 	set.addScene(new IronManTunnelShaderScene((int)set.getNumScenes(), "IronManTunnelShaderScene"));
 	
 	//Solitaire
-	set.addScene(new ReflectMaskScene((int)set.getNumScenes(), "ReflectMaskScene" , "distant_images" ));
+	//set.addScene(new ReflectMaskScene((int)set.getNumScenes(), "ReflectMaskScene" , "distant_images" ));
 	//set.addScene(new AnimatedTileTextureScene(, "AnimatedTileTextureScene"));
 //	((AnimatedTileTextureScene*)set.getSceneAt(set.getNumScenes() - 1))->loadContentFromFolder("animatedTileTextures"); 
 

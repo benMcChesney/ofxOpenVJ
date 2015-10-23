@@ -52,4 +52,8 @@ public :
 	ofxToggle bAutoChangeImageOnBeat; 
 	ofxIntSlider beatsUntilChange;
 	void newBeatHandler(); ;
+
+	ofxToggle bAutoChangeCopy; 
+	int minCopies, maxCopies; 
+	ofxToggle bIsRandomCopySize; 
 };

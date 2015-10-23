@@ -159,7 +159,7 @@ void ReflectMaskScene::draw()
 	ofPushMatrix(); 
 	ofTranslate(ofGetWidth(), 0 ); 
 	ofScale(-1, 1, 1); 
-	tex.draw(0, 0); 
+	tex.draw(0, 0, ofGetWidth() , ofGetHeight() ); 
 	ofPopMatrix();
 
 	mask.drawMask( tex , maskFbo.getTextureReference(), 0, 0, 1.0f); 

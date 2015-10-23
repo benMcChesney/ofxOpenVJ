@@ -44,8 +44,9 @@ void AnimatedTileTextureScene::setupGui(float a_x, float a_y)
 	/*
 	gui.add(rectWidthSlider.setup("RECT WIDTH SLIDER", 150.0f, 50.0f, 400.0f));
 	*/
-
-	gui.add(numCopies.setup("NUM COPIES", 2, 1, 10)); 
+	minCopies = 1; 
+	maxCopies = 8; 
+	gui.add(numCopies.setup("NUM COPIES", 2, minCopies, maxCopies));
 	gui.add(nextImage.setup("NEXT IMAGE")); 
 	gui.add(prevImage.setup("PREV IMAGE")); 
 	gui.add(minTextureScale.setup("MIN TEX SCALE", 1.00, 0.25, 1.0)); 
@@ -55,6 +56,9 @@ void AnimatedTileTextureScene::setupGui(float a_x, float a_y)
 	gui.add(beatsUntilChange.setup("NUM BEATS ON AUTO", 4, 1, 16)); 
 	curBeats = 0; 
 
+	gui.add(bAutoChangeCopy.setup("AUTO CHANGE COPY", true));
+	gui.add(bIsRandomCopySize.setup("RANDOM COPY SIZE", false));
+	
     loadSettings() ; 
 
 	nextImage.addListener(this, &AnimatedTileTextureScene::nextImageHandler);
@@ -66,8 +70,27 @@ void AnimatedTileTextureScene::newBeatHandler()
 	curBeats++; 
 	if (curBeats >= beatsUntilChange)
 	{
-		curBeats = 0; 
-		nextImageHandler(); 
+		curBeats = 0;
+		if ( bAutoChangeImageOnBeat == true )
+		{ 
+			nextImageHandler(); 
+		}
+
+		if (bAutoChangeCopy == true)
+		{
+			if (bIsRandomCopySize == true)
+			{
+				int index = ofRandom(minCopies, maxCopies);
+				numCopies = index;
+			}
+			else
+			{
+				numCopies = numCopies + 1;
+				if (numCopies >= maxCopies)
+					numCopies = minCopies;
+			}
+		}
+		
 	}
 
 	

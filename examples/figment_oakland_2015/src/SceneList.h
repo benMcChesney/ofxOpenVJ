@@ -24,7 +24,6 @@
 #include "FractalTunnelScene.h"
 #include "CellLifeShaderScene.h"
 #include "MRSFractalShaderScene.h"
-#include "DrivingAnimScene.h"
 //#include "RadialFftScene.h"
 
 #endif
