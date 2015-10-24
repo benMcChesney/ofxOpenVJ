@@ -14,10 +14,18 @@ uniform float low ;
 uniform float medium ; 
 uniform float high ; 
 uniform float beat ; 
+uniform float minFractalTime ; 
+uniform float maxFractalTime ; 
+uniform float beatSin2 ; 
+uniform float beatSin4 ; 
+uniform float beatSin8 ; 
+uniform float complexity ; 
 
 void main( void ) {
 
     vec2 uv = .5 * gl_FragCoord.xy / resolution.y;
+
+		
     float t = time*.03, k = cos(t), l = sin(t);        
     
     float s = .5;
@@ -28,6 +36,6 @@ void main( void ) {
         s  *= (.95156 + scale);         // Scale
     }
     
-    float x = .5 + cos( (6.28318 + low * 0.1 )*(40.*length(uv)));
-    gl_FragColor = vec4(vec3(x),1);
+    float x = .5 + cos( ( complexity + low * 0.05 )*(  40.*length(uv)) + beatSin2 );
+    gl_FragColor = vec4(vec3(x - beatSin2 * 0.2 , beatSin8 * 0.4 + x , beatSin2 * 0.1 + x ),1);
 }

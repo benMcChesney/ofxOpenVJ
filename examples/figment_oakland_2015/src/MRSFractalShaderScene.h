@@ -43,5 +43,8 @@ public :
 	ofxFloatSlider colorMin ;
 	ofxToggle bBeatCellScale ; 
 
+	ofxFloatSlider maxFractalTime; 
+	ofxFloatSlider minFractalTime; 
+	ofxFloatSlider complexity; 
     
 };

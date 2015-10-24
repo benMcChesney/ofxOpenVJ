@@ -37,7 +37,8 @@ public :
 	void loadShaders(); 
 	ofxButton reloadShader; 
     
-
+	ofxFloatSlider xDrift;
+	ofxFloatSlider yDrift;
 
     
 };

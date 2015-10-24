@@ -33,6 +33,10 @@ void MRSFractalShaderScene::setupGui(float a_x, float a_y)
 
 	gui.add(bBeatCellScale.setup("CELL BEAT SCALE", false));
 	gui.add(colorMin.setup("COLOR MIN", 0.2f, 0.0f, 1.0f)); 
+
+	gui.add(maxFractalTime.setup("MAX FRACTAL TIME",  30.0f , 1.0f, 90.0f));
+	gui.add(minFractalTime.setup("MIN FRACTAL TIME",  30.0f, 1.0f, 90.0f));
+	gui.add(complexity.setup("COMPLEXITY", 1.0f, 1.0f, 15.0f)); 
 	/*
 	gui.add(rectWidthSlider.setup("RECT WIDTH SLIDER", 150.0f, 50.0f, 400.0f));
 	*/
@@ -62,7 +66,8 @@ void MRSFractalShaderScene::draw()
 		fbo.begin();
 			shader.begin();
 		
-			shader.setUniform1f("time", ofGetElapsedTimef());
+			float _time = ofWrap(ofGetElapsedTimef(), minFractalTime, maxFractalTime); 
+			shader.setUniform1f("time", _time );
 			shader.setUniform1f("beat", soundManager->beatPerc );
 
 			shader.setUniform2f("resolution", getWidth(), getHeight());
@@ -70,6 +75,13 @@ void MRSFractalShaderScene::draw()
 			shader.setUniform1f("medium", soundManager->beatTracker.isSnare());
 			shader.setUniform1f("high", soundManager->beatTracker.isHat()); 
 			shader.setUniform1f("colorMin", colorMin); 
+			shader.setUniform1f("maxFractalTime", maxFractalTime);
+			shader.setUniform1f("minFractalTime", minFractalTime);
+			shader.setUniform1f("beatSin2", soundManager->bpmTapper.sin2);
+			shader.setUniform1f("beatSin4", soundManager->bpmTapper.sin4);
+			shader.setUniform1f("beatSin8", soundManager->bpmTapper.sin8);
+			shader.setUniform1f("complexity", complexity); 
+
 			if ( !bBeatCellScale)
 				shader.setUniform1f("cellScale", cellScale); 
 			else

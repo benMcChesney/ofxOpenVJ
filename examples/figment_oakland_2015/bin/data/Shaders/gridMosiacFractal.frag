@@ -17,9 +17,11 @@ uniform float beat ;
 uniform float beatSin2 ; 
 uniform float beatSin4 ; 
 uniform float beatSin8 ; 
+uniform float size ; 
+
 void main( void ) {
 
-	vec2 uv = 128.0 * ( gl_FragCoord.xy / resolution.x ) + vec2(time * 5.0f ) ;
+	vec2 uv = size  * ( gl_FragCoord.xy / resolution.x ) + vec2(time * 5.0f ) ;
 
 	
 	vec3 col = vec3(0.0);

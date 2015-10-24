@@ -36,7 +36,17 @@ public :
 	ofShader shader; 
 	void loadShaders(); 
 	ofxButton reloadShader; 
-    
+
+	ofxToggle bAutoChangeSize;
+	ofxIntSlider cellPower; 
+
+	ofxIntSlider beatsUntilChange;
+	void newBeatHandler(); 
+
+	
+	int minCellSize, maxCellSize;
+	ofxToggle bIsRandomSize;
+	int curBeats; 
 
 
 
